@@ -1,11 +1,20 @@
 // Styling of content that is editable in wysiwyg
 
 .user-content {
+  @include clearfix();
+
   h1,h2,h3,h4,h5,h6 {
+    
   }
+
   p {
 
   }
+
+  a {
+    
+  }
+
   ol,
   ul {
     li {
@@ -15,6 +24,7 @@
       }
     }
   }
+
   hr {
     height: 0;
     border: 0;
@@ -23,12 +33,14 @@
       margin-bottom: 0;
     }
   }
+
   em {
     font-style: italic;
   }
+
   strong {
     font-weight: bold;
   }
-  a {
-  }
+
+
 }

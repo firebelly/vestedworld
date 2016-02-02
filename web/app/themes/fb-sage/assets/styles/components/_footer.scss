@@ -2,11 +2,13 @@
 
 .site-footer {
   .contact {
-    @include min-screen($breakpoint-small) {}
+    @include media-sm {
+
+    }
   }
 
   .secondary-nav {
-    @include min-screen($breakpoint-small) {}
-    @include min-screen($breakpoint-medium) {}
+    @include media-sm {}
+    @include media-md {}
   }
 }

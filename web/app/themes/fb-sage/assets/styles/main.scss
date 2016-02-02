@@ -1,14 +1,11 @@
-// bower:sass
-// endbower
-
 @charset "UTF-8"; 
 
 // Reset
 @import "vendor/normalize";
 
 // Helpers and Variables
-@import "helpers/mixins";
 @import "helpers/variables";
+@import "helpers/mixins";
 @import "helpers/typography";
 @import "helpers/animations";
 @import "helpers/accessibility";
