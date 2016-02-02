@@ -1,4 +1,8 @@
-# [Bedrock](https://roots.io/bedrock/)
+# VestedWorld
+
+Custom Wordpress site built with [Bedrock](#user-content-bedrock), and our Firebelly fork of the [Sage](https://github.com/roots/sage) theme, [fb-sage](https://github.com/firebelly/fb-sage).
+
+## [Bedrock](https://roots.io/bedrock/)
 [![Build Status](https://travis-ci.org/roots/bedrock.svg)](https://travis-ci.org/roots/bedrock)
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
