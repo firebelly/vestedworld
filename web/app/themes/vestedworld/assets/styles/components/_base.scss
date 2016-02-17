@@ -9,8 +9,7 @@ html {
 
 body {
   color: $black;
-  font-size: 16px; //Em base unit
-  font-size: 100%;
+  font-size: 16px;
   overflow-x: hidden;
   font-family: $sans;
   background: $white;
@@ -57,18 +56,12 @@ img {
   display: none;
 }
 
-.wrap {
+.container {
   width: 100%;
   margin: 0 auto;
   padding: 0 10px;
   position: relative;
   @include clearfix();
-  @include min-screen($breakpoint-medium) {
+  @include media-md {
   }
-}
-
-.content {
-  z-index: 1;
-  width: 100%;
-  position: relative;
 }
