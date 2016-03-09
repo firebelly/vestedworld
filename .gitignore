@@ -29,5 +29,11 @@ node_modules
 # Vagrant
 bin
 .vagrant
+<<<<<<< HEAD
 web/app/.DS_Store
 web/app/themes/.DS_Store
+=======
+
+# OSX
+.DS_Store
+>>>>>>> 14548cd5bd4743e4db905289cb4eb68e779f94e0
