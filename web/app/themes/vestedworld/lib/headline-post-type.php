@@ -145,29 +145,28 @@ function cmb2_get_post_options( $query_args ) {
 function get_headlines() {
   $output = '';
 
-//   $args = array(
-//     'numberposts' => -1,
-//     'post_type' => 'headline',
-//     );
+  $args = array(
+    'numberposts' => -1,
+    'post_type' => 'headline',
+    );
 
-//   $headline_posts = get_posts($args);
-//   if (!$headline_posts) return false;
+  $headline_posts = get_posts($args);
+  if (!$headline_posts) return false;
 
-//   foreach ($headline_posts as $post):
-//     $thumb = get_the_post_thumbnail($post->ID, 'large');
-//     $link_text = get_post_meta( $post->ID, '_cmb2_link_text', true );
-//     $links_to = get_permalink(get_post_meta( $post->ID, '_cmb2_links_to', true ));
+  foreach ($headline_posts as $post):
+    $thumb = get_the_post_thumbnail($post->ID, 'large');
+    $link_text = get_post_meta( $post->ID, '_cmb2_link_text', true );
+    $links_to = get_permalink(get_post_meta( $post->ID, '_cmb2_links_to', true ));
 
-//     $output .= <<<HTML
-//        <div class="slide-item">
-//            <div class="slider-content">
-//          {$thumb}
-//          <h2>{$post->post_title}</h2>
-//          <a href="{$links_to}">{$link_text}</a>
-//        </div>
-//    </div>
-// HTML;
-//   endforeach;
+    $output .= <<<HTML
+       <div class="slide-item">
+         {$thumb}
+         <a href="{$links_to}">{$link_text}</a>
+         <h2>{$post->post_title}</h2>
+         <a href="{$links_to}">Learn More</a>
+       </div>
+HTML;
+  endforeach;
  
   return $output;
 }

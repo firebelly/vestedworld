@@ -24,6 +24,9 @@ var FBSage = (function($) {
     // Set screen size vars
     _resize();
 
+    //initialize sliders
+    _initSliders();
+
     // Fit them vids!
     $('main').fitVids();
  
@@ -157,6 +160,16 @@ var FBSage = (function($) {
   // Track events in Analytics
   function _trackEvent(category, action) {
     if (typeof ga !== 'undefined') { ga('send', 'event', category, action); }
+  }
+
+    //Initialize Slick Sliders
+  function _initSliders(){
+    $('.slider').slick({
+      slide: '.slide-item',
+      autoplay: true,
+      autoplaySpeed: 6000,
+      speed: 800
+    });
   }
 
   // Called in quick succession as window is resized
