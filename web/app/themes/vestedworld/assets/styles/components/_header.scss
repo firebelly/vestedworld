@@ -1,9 +1,17 @@
 // Header
 
 .site-header {
-  @include media-sm {
-  }
+	@include media-sm {
+	}
 
-  @include media-md {
-  }
+	@include media-md {
+	}
+
+	.icon-logo,{
+		height: 50px; width: 50px;
+	}
+	.icon-vestedworld,{
+		height: 50px; width: 100px;
+	}
 }
+

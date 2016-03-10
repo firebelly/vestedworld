@@ -15,7 +15,7 @@ function post_type() {
   $labels = array(
     'name'                => 'Companies',
     'singular_name'       => 'Company',
-    'menu_name'           => '**Companies',
+    'menu_name'           => 'Companies',
     'parent_item_colon'   => '',
     'all_items'           => 'All Companies',
     'view_item'           => 'View Company',

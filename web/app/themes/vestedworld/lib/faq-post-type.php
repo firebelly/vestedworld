@@ -140,48 +140,38 @@ function shortcode($atts) {
     ), $atts));
   $output = '';
 
-//   $args = array(
-//     'numberposts' => -1,
-//     'post_type' => 'faq',
-//     'orderby' => 'menu_order',
-//     );
-//   if ($category != '') {
-//     $args['tax_query'] = array(
-//       array(
-//         'taxonomy' => 'faq_cat',
-//         'field' => 'slug',
-//         'terms' => $category
-//       )
-//     );
-//   }
+  $args = array(
+    'numberposts' => -1,
+    'post_type' => 'faq',
+    'orderby' => 'menu_order',
+    );
+  if ($category != '') {
+    $args['tax_query'] = array(
+      array(
+        'taxonomy' => 'faq_cat',
+        'field' => 'slug',
+        'terms' => $category
+      )
+    );
+  }
 
-//   $faq_posts = get_posts($args);
-//   if (!$faq_posts) return false;
+  $faq_posts = get_posts($args);
+  if (!$faq_posts) return false;
 
-//   $question_output = $answer_output = '';
-//   $i = 1;
-//   foreach ($faq_posts as $post):
-//     $body = apply_filters('the_content', $post->post_content);
-//     $question_output .= "<li><a class=\"no-ajaxy\" href=\"#faq{$i}\">{$post->post_title}</a></li>";
-//     $answer_output .= "<div id=\"faq{$i}\" class=\"faq-answer user-content\">{$body}</div>";
-//     $i++;
-//   endforeach;
+  $output .= '<ul class="faq-list">';
 
-//     $output = <<<HTML
-//     <section class="faq-nav -white">
-//       <div class="wrap-extend">
-//         <h3>FAQ:</h3>
-//         <div class="section-content">
-//           <ul>
-//           {$question_output}
-//           </ul>
-//         </div>
-//       </div>
-//     </section>
-//     <div class="faq-content user-content">
-//       {$answer_output}
-//     </div>
-// HTML;
+  foreach ($faq_posts as $post):
+    $question = $post->post_title;
+    $answer = apply_filters('the_content', $post->post_content);
+    $output .= <<<HTML
+      <li>
+        <h2 class="answer-toggle">{$question}</h4>
+        <button class="answer-toggle">&gt;</button>
+        <div class="faq-answer user-content">{$answer}</div>
+      </li>
+HTML;
+  endforeach;
+  $output .= "</ul>";
 
   return $output;
 }

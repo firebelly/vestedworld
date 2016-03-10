@@ -27,6 +27,9 @@ var FBSage = (function($) {
     //initialize sliders
     _initSliders();
 
+    //put the svg icons inline to grab with use
+    _injectSvgSprite();
+
     // Fit them vids!
     $('main').fitVids();
  
@@ -111,6 +114,10 @@ var FBSage = (function($) {
   function _hideMobileNav() {
     $('.menu-toggle').removeClass('menu-open');
     $('.site-nav').removeClass('active');
+  }
+
+  function _injectSvgSprite() {
+    boomsvgloader.load('/app/themes/vestedworld/assets/svgs/build/svgs-defs.svg'); 
   }
 
   function _initLoadMore() {

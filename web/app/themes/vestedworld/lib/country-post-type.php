@@ -15,7 +15,7 @@ function post_type() {
   $labels = array(
     'name'                => 'Countries',
     'singular_name'       => 'Country',
-    'menu_name'           => '**Countries',
+    'menu_name'           => 'Countries',
     'parent_item_colon'   => '',
     'all_items'           => 'All Countries',
     'view_item'           => 'View Country',

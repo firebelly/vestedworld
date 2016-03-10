@@ -33,7 +33,7 @@ function post_type() {
     'label'               => 'headline',
     'description'         => 'Headlines',
     'labels'              => $labels,
-    'supports'            => array( 'title','thumbnail'), //took out editor
+    'supports'            => array( 'title','thumbnail', 'editor'), 
     'hierarchical'        => false,
     'public'              => true,
     'show_ui'             => true,
@@ -60,7 +60,6 @@ function edit_columns($columns){
     'cb' => '<input type="checkbox" />',
     'title' => 'Title',
     'featured_image' => 'Image',
-    '_cmb2_link_text' => 'Side Link Text',
     '_cmb2_links_to' => 'Links To'
   );
   return $columns;
@@ -83,8 +82,10 @@ function custom_columns($column){
     }
     elseif ( $column == 'content' )
       echo the_content();
-    elseif ( $column == '_cmb2_link_text' || $column == '_cmb2_order_num' )
-      echo $custom[$column][0];
+    else {
+      if (array_key_exists($column, $custom))
+        echo $custom[$column][0];
+    }
   }
 }
 add_action('manage_posts_custom_column',  __NAMESPACE__ . '\custom_columns');
@@ -95,24 +96,21 @@ function metaboxes( array $meta_boxes ) {
 
   $meta_boxes['headline_metabox'] = array(
     'id'            => 'headline_metabox',
-    'title'         => __( 'Extra Fields', 'cmb2' ),
+    'title'         => __( 'Link', 'cmb2' ),
     'object_types'  => array( 'headline', ), // Post type
     'context'       => 'normal',
     'priority'      => 'high',
     'show_names'    => true, // Show field names on the left
     'fields'        => array(
     	array(
-    	    'name'    => 'Side link text',
-    	    'id'      => $prefix . 'link_text',
-          'desc'    => 'The text of the sideways link to the left',
-    	    'type'    => 'text',
-  		    'default' => 'About Us'
-    	),
-    	array(
     	    'name'    => 'Links to',
     	    'id'      => $prefix . 'links_to',
     	    'type'    => 'select',
-    	    'options' => cmb2_get_post_options( array( 'post_type' => 'page', 'numberposts' => -1, 'post_parent' => 0	 ) ),
+    	    'options' => cmb2_get_post_options( array( 
+            'post_type' => array('page','post'), 
+            'numberposts' => 0, 
+            'post_parent' => null	 
+          ) ),
     	),
     ),
   );
@@ -154,16 +152,18 @@ function get_headlines() {
   if (!$headline_posts) return false;
 
   foreach ($headline_posts as $post):
-    $thumb = get_the_post_thumbnail($post->ID, 'large');
-    $link_text = get_post_meta( $post->ID, '_cmb2_link_text', true );
+    $thumb = get_the_post_thumbnail($post->ID, 'medium');
+    $body = apply_filters('the_content', $post->post_content);
     $links_to = get_permalink(get_post_meta( $post->ID, '_cmb2_links_to', true ));
 
     $output .= <<<HTML
        <div class="slide-item">
-         {$thumb}
-         <a href="{$links_to}">{$link_text}</a>
-         <h2>{$post->post_title}</h2>
-         <a href="{$links_to}">Learn More</a>
+         <article>
+           {$thumb}
+           <a href="{$links_to}"><h1>{$post->post_title}</h1></a>
+           <div class="body user-content">{$body}</div>
+           <a href="{$links_to}">Learn More</a>
+        </article>
        </div>
 HTML;
   endforeach;

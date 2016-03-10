@@ -1,6 +1,11 @@
 // Footer
 
 .site-footer {
+	
+	.icon-vestedworld,{
+		height: 50px; width: 100px;
+	}
+
   .contact {
     @include media-sm {
 

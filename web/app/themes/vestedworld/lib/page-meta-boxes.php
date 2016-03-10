@@ -23,19 +23,19 @@ namespace Firebelly\PostTypes\Pages;
        array(
          'name' => 'Target',
          'desc' => 'Text under "Target" header on home page',
-         'id'   => $prefix . 'approach_target',
+         'id'   => $prefix . 'target',
          'type' => 'textarea',
        ),
        array(
          'name' => 'Connect',
          'desc' => 'Copy under "Connect" header on home page',
-         'id'   => $prefix . 'approach_connect',
+         'id'   => $prefix . 'connect',
          'type' => 'textarea',
        ),
        array(
          'name' => 'Invest',
          'desc' => 'Copy under "Invest" header on home page',
-         'id'   => $prefix . 'approach_invest',
+         'id'   => $prefix . 'invest',
          'type' => 'textarea',
        ),
      ),
@@ -99,6 +99,7 @@ function hide_editor() {
   		'front-page.php',
   		'about-us',
   		'resources',
+      'faqs',
   		);
   	if(in_array($template_file,$exclude_on) || in_array($slug,$exclude_on)){ 
     	remove_post_type_support('page', 'editor');
