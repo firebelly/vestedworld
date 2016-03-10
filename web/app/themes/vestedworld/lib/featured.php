@@ -47,17 +47,19 @@ function get_featured() {
       'value' => 'on',
     ),
   );
-  $posts = get_posts($args);
+  $featured_posts = get_posts($args);
+  if(!$featured_posts) return false;
   
-
-  foreach ($posts as $post) {
+  foreach ($featured_posts as $post) {
     $type = $post->post_type;
-    $output .= '<div class="slide-item">';
-    $output .= '<article>';
-    $output .= "<h1>{$post->post_title}</h1>";
-    $output .= "<p>!!templates for content here waiting on design!!</p>";
-    $output .= '</article>';
-    $output .= '</div>';
+    $output .= <<<HTML
+      <div class="slide-item">
+        <article>
+          <h1>{$post->post_title}</h1>
+          <p>!!templates for content here waiting on design!!</p>
+        </article>
+      </div>
+HTML;
   }
 
   return $output;

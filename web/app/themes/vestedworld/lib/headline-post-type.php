@@ -152,7 +152,7 @@ function get_headlines() {
   if (!$headline_posts) return false;
 
   foreach ($headline_posts as $post):
-    $thumb = get_the_post_thumbnail($post->ID, 'medium');
+    $thumb = get_the_post_thumbnail($post->ID, 'full');
     $body = apply_filters('the_content', $post->post_content);
     $links_to = get_permalink(get_post_meta( $post->ID, '_cmb2_links_to', true ));
 
