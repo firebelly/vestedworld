@@ -1,4 +1,5 @@
 // FBSage - Firebelly 2015
+/*jshint latedef:false*/
 
 // Good Design for Good Reason for Good Namespace
 var FBSage = (function($) {
