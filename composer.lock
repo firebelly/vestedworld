@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dd627ada674edbc150ab259552878be1",
-    "content-hash": "56ebbcaf64d4c7c37a287082d6497f62",
+    "hash": "25b6ff3aff42d67d719b1d9e0f3d8983",
+    "content-hash": "ff099610e872041d4d25e7f61eb42947",
     "packages": [
         {
             "name": "composer/installers",
@@ -246,7 +246,7 @@
             "version": "3.1.1",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/akismet/",
+                "url": "https://plugins.svn.wordpress.org/akismet/",
                 "reference": "tags/3.1.1"
             },
             "dist": {
@@ -266,7 +266,7 @@
             "version": "2.2.1",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/cmb2/",
+                "url": "https://plugins.svn.wordpress.org/cmb2/",
                 "reference": "trunk"
             },
             "dist": {
@@ -286,7 +286,7 @@
             "version": "2.6",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/duplicate-post/",
+                "url": "https://plugins.svn.wordpress.org/duplicate-post/",
                 "reference": "tags/2.6"
             },
             "dist": {
@@ -306,7 +306,7 @@
             "version": "3.0.7",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/intuitive-custom-post-order/",
+                "url": "https://plugins.svn.wordpress.org/intuitive-custom-post-order/",
                 "reference": "tags/3.0.7"
             },
             "dist": {
@@ -326,7 +326,7 @@
             "version": "1.7.1",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/limit-login-attempts/",
+                "url": "https://plugins.svn.wordpress.org/limit-login-attempts/",
                 "reference": "tags/1.7.1"
             },
             "dist": {
@@ -346,7 +346,7 @@
             "version": "3.2.2",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/multiple-content-blocks/",
+                "url": "https://plugins.svn.wordpress.org/multiple-content-blocks/",
                 "reference": "trunk"
             },
             "dist": {
@@ -366,7 +366,7 @@
             "version": "0.6.1",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/wordpress-importer/",
+                "url": "https://plugins.svn.wordpress.org/wordpress-importer/",
                 "reference": "tags/0.6.1"
             },
             "dist": {
@@ -386,7 +386,7 @@
             "version": "2.0.13",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/wp-facebook-open-graph-protocol/",
+                "url": "https://plugins.svn.wordpress.org/wp-facebook-open-graph-protocol/",
                 "reference": "tags/2.0.13"
             },
             "dist": {
