@@ -29,7 +29,6 @@ node_modules
 # Vagrant
 bin
 .vagrant
-<<<<<<< HEAD
 web/app/.DS_Store
 web/app/themes/.DS_Store
 
