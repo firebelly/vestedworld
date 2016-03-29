@@ -17,7 +17,8 @@
     "velocity": "~1.2.2",
     "slick-carousel": "~1.4.1",
     "fastclick": "~1.0.6",
-    "boomsvgloader": "^0.0.2"
+    "boomsvgloader": "^0.0.2",
+    "gridle": "^2.0.44"
   },
   "overrides": {
     "modernizr": {
