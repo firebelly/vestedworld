@@ -80,6 +80,9 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
 function display_sidebar() {
   static $display;
 
+  // no sidebars
+  return false;
+
   isset($display) || $display = !in_array(true, [
     // The sidebar will NOT be displayed if ANY of the following return true.
     // @link https://codex.wordpress.org/Conditional_Tags
