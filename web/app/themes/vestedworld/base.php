@@ -20,8 +20,8 @@ use Roots\Sage\Wrapper;
       do_action('get_header');
       get_template_part('templates/header');
     ?>
-    <div class="site-wrap container" role="document">
-      <div class="content row">
+    <div class="site-wrap" role="document">
+      <div class="content container">
         <main class="site-main" role="main">
           <?php include Wrapper\template_path(); ?>
         </main><!-- /.main -->
@@ -37,5 +37,10 @@ use Roots\Sage\Wrapper;
       get_template_part('templates/footer');
       wp_footer();
     ?>
+    <?php if (WP_ENV === 'development'): ?>
+    <script type='text/javascript' id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.11.1.js'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
+    <?php endif; ?>
   </body>
 </html>

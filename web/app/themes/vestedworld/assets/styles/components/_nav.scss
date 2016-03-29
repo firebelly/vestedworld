@@ -1,11 +1,258 @@
 // Nav
 
 // wp admin bar push
-.admin-bar {}
+.admin-bar {
+  .site-nav {
+    top: 46px;
+  }
+
+  @include min-screen(783px) {
+    .site-nav,
+    .site-header {
+      top: 32px;
+    }
+  }
+
+  @include min-screen($breakpoint-nav) {
+    .site-nav {
+      top: 0;
+    }
+  }
+}
 
 #menu-main-nav {
 }
 
 // mobile menu toggle
 .menu-toggle {
+  top: 43px;
+  padding: 0;
+  width: 22px;
+  float: right;
+  border: none;
+  height: 18px;
+  background: $blue;
+  position: relative;
+  .lines {
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    background: $white;
+    transform: translate(-50%, -50%);
+    &::before,
+    &::after {
+      left: 0;
+      height: 2px;
+      width: 100%;
+      content: '';
+      background: $white;
+      position: absolute;
+      transition: transform .2s ease-out;
+    }
+    &::before {
+      top: -6px;
+    }
+    &::after {
+      bottom: -6px;
+    }
+  }
+
+  // States
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    .lines {
+      &::before {
+        transform: translateY(-2px);
+      }
+      &::after {
+        transform: translateY(2px);
+      }
+    }
+  }
+
+  @include min-screen($breakpoint-nav) {
+    top: auto;
+    display: none;
+  }
+}
+
+.site-nav {
+  text-align: right;
+  top: 0;
+  right: 0;
+  z-index: 200;
+  position: fixed;
+  max-width: 300px;
+  min-height: 100%;
+  background: $gray-lite;
+  @include clearfix();
+  width: calc(100% - 97px);
+  transform: translateX(100%);
+  transition: transform .2s ease-out;
+  &.active {
+    transform: translateX(0);
+  }
+
+  @include min-screen($breakpoint-nav) {
+    top: auto;
+    right: auto;
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    max-width: none;
+    background: none;
+    position: relative;
+    float: left;
+    transform: translate(0);
+  }
+
+  .hide-nav {
+    top: 51px;
+    right: 10px;
+    padding: 10px;
+    position: absolute;
+    background: $blue;
+    .plus {
+      width: 22px;
+      height: 22px;
+      &::before,
+      &::after {
+        width: 22px;
+        background: $white;
+      }
+    }
+
+    @include min-screen($breakpoint-medium) {
+      top: 72px;
+      right: 30px;
+    }
+
+    @include min-screen($breakpoint-nav) {
+      display: none;
+    }
+  }
+
+  .nav {
+    margin: 0;
+    padding: 0;
+    @include clearfix();
+
+    .sub-menu {
+      display: none;
+    }
+
+    li {
+      transition: padding .2s ease-out;
+      margin-top: 5px;
+      &:first-of-type {
+        margin-top: 0;
+      }
+      &.active {
+        a::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    a {
+      color: $blue;
+      padding: 2px;
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      vertical-align: middle;
+      line-height: 1;
+      transition: color .2s;
+      &:hover, &:focus {
+        &::after {
+          transform: scaleY(1);
+        }
+        color: $gray-lite;
+      }
+      &::after {
+        transform-origin: bottom center;
+        left: 0;
+        z-index: -1;
+        height: 20px;
+        width: 100%;
+        bottom: 0;
+        content: '';
+        position: absolute;
+        transform: scaleY(0);
+        background: $brand-primary;
+        transition: transform .2s $cubic-ease1;
+      }
+    }
+
+    // Highlight current page
+    li.current-menu-item a {
+      background: $blue;
+      color: $gray-lite;
+    }
+
+    @include min-screen($breakpoint-medium) {
+      li {
+        line-height: 30px;
+      }
+    }
+
+    @include min-screen($breakpoint-nav) {
+      float: left;
+
+      li {
+        display: inline-block;
+        margin-top: 0;
+        margin-left: 15px;
+        vertical-align: bottom;
+        &:first-of-type {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .nav-actions {
+    padding: 0 0 20px 30px;
+
+    @include min-screen($breakpoint-nav) {
+      right: 0;
+      padding: 0;
+      bottom: 0;
+      position: absolute;
+    }
+
+    // Sign Up button is styled differently
+    a.sign-up {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      padding: 4px 6px;
+      border: 1px solid $blue;
+      text-decoration: none;
+      transition: all .2s;
+      color: $blue;
+      &:hover {
+        background: $blue;
+        color: $gray-lite;
+      }
+    }
+
+    a.show-search {
+      display: none;
+    }
+
+    .icon {
+      fill: $black;
+      transition: fill .2s ease-out;
+    }
+    .icon-search {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
 }

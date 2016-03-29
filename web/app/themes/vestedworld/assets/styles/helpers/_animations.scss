@@ -1,1 +1,44 @@
 // Animations
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fadeInDown {
+  animation: fadeInDown .35s both;
+}
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+.fadeOutUp {
+  animation: fadeOutUp .35s both;
+}
+@keyframes hover {
+  0%, 50%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  25% {
+    transform: translate3d(0,-15%,0);
+  }
+  75% {
+    transform: translate3d(0,-15%,0);
+  }
+}
+
+// Custom cubic easings
+
+$cubic-ease1: cubic-bezier(0.77, 0, 0.175, 1);
+$cubic-ease2: cubic-bezier(0.165, 0.84, 0.44, 1);

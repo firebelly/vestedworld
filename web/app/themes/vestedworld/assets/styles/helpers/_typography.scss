@@ -1,7 +1,35 @@
 // Typography
 
+@font-face {
+  font-family: 'apercu_regular';
+  src: url('../fonts/apercu_regular.eot');
+  src: url('../fonts/apercu_regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/apercu_regular.woff') format('woff'),
+       url('../fonts/apercu_regular.woff2') format('woff2'),
+       url('../fonts/apercu_regular.ttf')  format('truetype'),
+       url('../fonts/apercu_regular.svg#apercuregular') format('svg');
+}
+@font-face {
+  font-family: 'apercu_regular_italic';
+  src: url('../fonts/apercu_regular_italic.eot');
+  src: url('../fonts/apercu_regular_italic.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/apercu_regular_italic.woff') format('woff'),
+       url('../fonts/apercu_regular_italic.woff2') format('woff2'),
+       url('../fonts/apercu_regular_italic.ttf')  format('truetype'),
+       url('../fonts/apercu_regular_italic.svg#apercuitalic') format('svg');
+}
+@font-face {
+  font-family: 'apercu_bold';
+  src: url('../fonts/apercu_bold.eot');
+  src: url('../fonts/apercu_bold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/apercu_bold.woff') format('woff'),
+       url('../fonts/apercu_bold.woff2') format('woff2'),
+       url('../fonts/apercu_bold.ttf')  format('truetype'),
+       url('../fonts/apercu_bold.svg#apercubold') format('svg');
+}
+
 // Fonts
-$sans: Helvetica, sans-serif;
+$sans: 'apercu_regular', Helvetica, sans-serif;
 $serif: Georgia, serif;
 
 // Sans-specific styles to chunk into one include

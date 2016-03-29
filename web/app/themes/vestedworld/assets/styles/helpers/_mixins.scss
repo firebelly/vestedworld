@@ -2,12 +2,9 @@
 
 // Clearfix
 @mixin clearfix {
-  *zoom: 1;
   &:before, &:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
+    content: "";
+    display: table;
   }
   &:after {
     clear: both;
@@ -17,22 +14,22 @@
 // Responsive mixins by Andy Richardson (@andimal): https://github.com/andimal/sass-responsive-mixin-madness
 
 @mixin media-xs() {
-  @media screen and (max-width: $breakpoint-sm - 1) {
+  @media screen and (max-width: $breakpoint-small - 1) {
     @content;
   }
 }
-@mixin media-sm() {
-  @media screen and (min-width: $breakpoint-sm) {
+@mixin media-small() {
+  @media screen and (min-width: $breakpoint-small) {
     @content;
   }
 }
-@mixin media-md() {
-  @media screen and (min-width: $breakpoint-md) {
+@mixin media-medium() {
+  @media screen and (min-width: $breakpoint-medium) {
     @content;
   }
 }
-@mixin media-lg() {
-  @media screen and (min-width: $breakpoint-lg) {
+@mixin media-large() {
+  @media screen and (min-width: $breakpoint-large) {
     @content;
   }
 }

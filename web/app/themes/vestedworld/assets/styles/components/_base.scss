@@ -1,4 +1,7 @@
 // Base styles
+
+@import 'helpers/settings';
+
 *, *::before, *::after {
   box-sizing: inherit;
 }
@@ -8,17 +11,22 @@ html {
 }
 
 body {
-  color: $black;
+  color: $gray-dark;
   font-size: 16px;
+  line-height: 24px;
   overflow-x: hidden;
   font-family: $sans;
-  background: $white;
+  background: $gray-lite;
 }
 
 p {
   em {
     font-style: italic;
   }
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
@@ -28,6 +36,11 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+%smooth {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // Browser alert
@@ -56,12 +69,9 @@ img {
   display: none;
 }
 
-.container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 10px;
-  position: relative;
+.site-wrap {
+  @include gridle_grid(23);
+}
+.content {
   @include clearfix();
-  @include media-md {
-  }
 }

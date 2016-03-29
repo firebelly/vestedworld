@@ -1,19 +1,25 @@
 // Footer
 
 .site-footer {
-	
-	.icon-vestedworld,{
-		height: 50px; width: 100px;
-	}
-
-  .contact {
-    @include media-sm {
-
-    }
+  @include clearfix();
+  clear: left;
+  .copyright {
+    @include gridle(11 push 1);
   }
-
-  .secondary-nav {
-    @include media-sm {}
-    @include media-md {}
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  .office,
+  .info {
+    @include gridle_grid(4);
+  }
+  .social {
+    @include gridle_grid(3);
+  }
+  .icon-vestedworld {
+    width: 165px;
+    height: 25px;
+    fill: $gray-dark;
   }
 }
