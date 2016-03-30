@@ -1,13 +1,36 @@
+# split foo.firebelly.co -> { domain: firebelly.co, subdomain: foo }
+def split_domain(host)
+    domain = host.sub(/.*?([^.]+(\.com|\.co|\.net|\.org))$/, "\\1")
+    subdomain = host.sub(domain,'').chomp('.')
+    { domain: domain, subdomain: subdomain }
+end
+
+# test if a webfaction object exists
 def wf_obj_exists(type, check, value)
   objs = @wf_server.call("list_#{type}", @wf_session);
   objs.each do |obj|
     if obj[check] == value
-      return true 
+      return true
     end
   end
   return false
 end
 
+# test if a domain/subdomain exists in webfaction account
+def wf_domain_exists(domain)
+  domain_split = split_domain(domain)
+  objs = @wf_server.call('list_domains', @wf_session);
+  objs.each do |obj|
+    if obj['domain'] == domain_split[:domain]
+      if domain_split[:subdomain].empty? || obj['subdomains'].include?(domain_split[:subdomain])
+        return true
+      end
+    end
+  end
+  return false
+end
+
+# get the main IP address
 def wf_get_ip_address
   puts "Getting IP addresses..."
   @wf_ip_address = ''
@@ -20,13 +43,16 @@ def wf_get_ip_address
   puts "Main IP: #{@wf_ip_address}"
 end
 
+# connect to webfaction API
 def wf_api_connect
   @wf_server = XMLRPC::Client.new2('https://api.webfaction.com/')
   @wf_session, @wf_account = @wf_server.call('login', ENV['WF_USER'], ENV['WF_PASSWORD'])
   puts "Connected to WebFaction API: #{@wf_session}, #{@wf_account}"
 end
 
+# webfaction deploy tasks
 namespace :deploy do
+  # delete db, db_user, apps, and website entry
   task :wf_delete do
     require 'xmlrpc/client'
     require 'dotenv'
@@ -53,11 +79,11 @@ namespace :deploy do
     end
   end
 
+  # set up bedrock/sage installation on webfaction via API
   task :wf_setup do
     require 'xmlrpc/client'
     require 'dotenv'
     Dotenv.load(".env.#{fetch(:stage)}")
-
     wf_api_connect
     wf_get_ip_address
 
@@ -107,10 +133,26 @@ namespace :deploy do
       end
     end
 
+    # add domain/subdomain (i guess this doesn't really make sense? unless you manually set your /etc/hosts for the new subdomain)
+    if !wf_domain_exists(fetch(:domain))
+      begin
+        domain_split = split_domain(fetch(:domain))
+        puts "Creating domain #{fetch(:domain)}..."
+        ret = @wf_server.call('create_domain', @wf_session, domain_split[:domain], domain_split[:subdomain] );
+        puts ret
+      rescue Exception => e
+        puts "Unable to create domain #{fetch(:domain)}: #{e.message}"
+      end
+    end
+
     # create dirs for app
-    puts "Creating /shared/web/app/uploads directories..."
+    puts "Creating #{release_path.join('../shared/web/app/uploads')}..."
     on roles :web do
-      execute :mkdir, "-p #{release_path.join('../shared/web/app/uploads')}"
+      if test("[ -d #{release_path.join('../shared/web/app/uploads')} ]")
+        puts "Directories already exist."
+      else
+        execute :mkdir, "-p #{release_path.join('../shared/web/app/uploads')}"
+      end
     end
 
     # install Composer for deploys
@@ -158,16 +200,7 @@ namespace :deploy do
       end
     end
 
-    # if !wf_obj_exists('domains', 'name', "#{fetch(:domain)}")
-    #   begin
-    #     puts "Creating domain #{fetch(:domain)}..."
-    #     ret = @wf_server.call('create_domain', @wf_session, "#{fetch(:domain)}", @wf_ip_address, false, [fetch(:domain)], ["#{fetch(:application)}_web", '/']);
-    #     puts ret
-    #   rescue Exception => e
-    #     puts "Unable to create website #{fetch(:application)}: #{e.message}"
-    #   end
-    # end
-
+    # create website and assign domain + application
     if !wf_obj_exists('websites', 'name', "#{fetch(:application)}")
       begin
         puts "Creating website #{fetch(:application)}..."
