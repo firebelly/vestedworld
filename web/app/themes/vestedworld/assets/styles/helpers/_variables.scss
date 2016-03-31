@@ -1,22 +1,23 @@
 // Variables
 
 // Colors
-
 $black: #101220;
 // $black-lite: #101220;
 $white: #fff;
-$gray-lite: #d1d1c9;
-$gray: #969696;
-$gray-dark: #66635b;
+$gray-lite: #d7d7d4;
+$gray: #aaaaa6;
+$gray-dark: #605e56;
 $blue: #191eff;
+$blue-dark: #2d335b;
+$green: #0a4230;
 
 // Brand Swatches
 $brand-primary: $blue;
 $brand-secondary: $white;
 
 // Breakpoints
-$breakpoint-small: 480px;
-$breakpoint-medium: 768px;
-$breakpoint-large: 1000px;
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1000px;
 $breakpoint-huge: 1200px;
 $breakpoint-nav: 1050px;

@@ -5,9 +5,9 @@
 var FBSage = (function($) {
 
   var screen_width = 0,
-      breakpoint_small = false,
-      breakpoint_medium = false,
-      breakpoint_large = false,
+      breakpoint_sm = false,
+      breakpoint_md = false,
+      breakpoint_lg = false,
       breakpoint_array = [480,1000,1200],
       $document,
       $sidebar,
@@ -33,7 +33,7 @@ var FBSage = (function($) {
 
     // Fit them vids!
     $('main').fitVids();
- 
+
     // _initNav();
     // _initSearch();
     // _initLoadMore();
@@ -56,7 +56,7 @@ var FBSage = (function($) {
     // Scroll down to hash afer page load
     $(window).load(function() {
       if (window.location.hash) {
-        _scrollBody($(window.location.hash)); 
+        _scrollBody($(window.location.hash));
       }
     });
 
@@ -67,7 +67,7 @@ var FBSage = (function($) {
       wpOffset = $('#wpadminbar').height();
     } else {
       wpOffset = 0;
-    } 
+    }
     element.velocity("scroll", {
       duration: duration,
       delay: delay,
@@ -118,7 +118,7 @@ var FBSage = (function($) {
   }
 
   function _injectSvgSprite() {
-    boomsvgloader.load('/app/themes/vestedworld/assets/svgs/build/svgs-defs.svg'); 
+    boomsvgloader.load('/app/themes/vestedworld/assets/svgs/build/svgs-defs.svg');
   }
 
   function _initLoadMore() {
@@ -146,7 +146,7 @@ var FBSage = (function($) {
             var $data = $(data);
             if (loadingTimer) { clearTimeout(loadingTimer); }
             more_container.append($data).removeClass('loading');
-            if (breakpoint_medium) {
+            if (breakpoint_md) {
               more_container.masonry('appended', $data, true);
             }
             $load_more.attr('data-page-at', page+1);
@@ -183,9 +183,9 @@ var FBSage = (function($) {
   // Called in quick succession as window is resized
   function _resize() {
     screenWidth = document.documentElement.clientWidth;
-    breakpoint_small = (screenWidth > breakpoint_array[0]);
-    breakpoint_medium = (screenWidth > breakpoint_array[1]);
-    breakpoint_large = (screenWidth > breakpoint_array[2]);
+    breakpoint_sm = (screenWidth > breakpoint_array[0]);
+    breakpoint_md = (screenWidth > breakpoint_array[1]);
+    breakpoint_lg = (screenWidth > breakpoint_array[2]);
   }
 
   // Called on scroll

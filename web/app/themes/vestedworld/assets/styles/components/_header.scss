@@ -1,12 +1,11 @@
 // Header
 
 .site-header {
-  @include gridle_grid(23);
-  @include clearfix();
+  @include clearfix;
 
+  padding: 16px #{$column-width * 1} 16px 24px;
   height: 62px;
   background: $gray-lite;
-  padding: 16px 0 16px 24px;
 
   .logo {
     width: 50%;
@@ -16,10 +15,10 @@
   h1 {
     margin: 0;
   }
-  @include media-small {
+  @include media-sm {
   }
 
-  @include media-medium {
+  @include media-md {
   }
 
   .icon-logo {

@@ -1,7 +1,7 @@
 <footer class="site-footer" role="contentinfo">
-  <h2>Contact</h2>
   <div class="copyright">
-    <h3><svg class="icon icon-vestedworld" role="img"><title><?php bloginfo('name'); ?></title><use xlink:href="#icon-vestedworld"></use></svg></h3>
+    <h2 class="tab">Contact</h2>
+    <svg class="icon icon-vestedworld" role="img"><title><?php bloginfo('name'); ?></title><use xlink:href="#icon-vestedworld"></use></svg>
     <p>&copy; <?php echo date('Y'); ?> VestedWorld, Inc.<br>
     all rights reserved.</p>
   </div>
@@ -16,8 +16,8 @@
       </a>
     </address>
   </div>
-  <div class="info">
-    <h3>Info</h3>
+  <div class="contact">
+    <h3>Contact</h3>
     <ul>
       <li><a target="_blank" href="mailto:<?php echo get_option( 'contact_email' ); ?>"><?php echo get_option( 'contact_email' ); ?></a></li>
       <li>+1 333 000 0000</li>

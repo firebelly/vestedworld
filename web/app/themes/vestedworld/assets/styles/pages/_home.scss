@@ -6,4 +6,50 @@
 		height: 100px; width: 100px;
 	}
 
+	.what-we-do {
+		@include column(12);
+		article {
+			padding-top: 50px;
+			margin-top: 50px;
+			border-top: 1px solid $gray-dark;
+			h1 {
+				color: $blue;
+			}
+			&:first-of-type {
+				margin-top: 0;
+			}
+		}
+
+		@include media-md {
+			padding: 50px #{$column-width * 1};
+			article {
+				position: relative;
+				padding-left: #{$column-width * 2 * $num_columns/12};
+				svg {
+					position: absolute;
+					top: 50px;
+					left: 0;
+					width: #{$column-width * 1.5 * $num_columns/12};
+				}
+			}
+		}
+	}
+	.home-features {
+		@include column(11);
+	}
+	.join {
+		position: relative;
+		background: $blue;
+		color: $white;
+		@include media-md {
+			padding: 50px #{$column-width * 1 * $num_columns/10}
+		}
+	}
+	.featured {
+		position: relative;
+		@include media-md {
+			padding: 50px #{$column-width * 1 * $num_columns/10}
+		}
+	}
+
 }

@@ -41,6 +41,10 @@ img {
   -moz-osx-font-smoothing: grayscale;
 }
 
+address {
+  font-style: normal;
+}
+
 // Browser alert
 .alert-warning {
   top: 0;
@@ -68,8 +72,46 @@ img {
 }
 
 .site-wrap {
-  @include gridle_grid(23);
+  @include media-md {
+    padding: 0 #{$column-width * 1} 0 0;
+  }
 }
 .content {
-  @include clearfix();
+  @include clearfix;
+}
+
+h2.tab {
+  background: $gray-dark;
+  color: $white;
+  @include small-caps;
+  line-height: 1;
+  padding: 10px 16px;
+  white-space: nowrap;
+  &.-white {
+    background: $white;
+    color: $gray-dark;
+  }
+  &.-bluetxt {
+    color: $blue;
+  }
+  @include media-md {
+    transform: rotate(270deg);
+    transform-origin: right top;
+    position: absolute;
+    top: 50px;
+    right: 100%;
+  }
+}
+
+.learn-more {
+  @include small-caps;
+  position: absolute;
+  padding-right: 16px;
+  &::after {
+    content: '>';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

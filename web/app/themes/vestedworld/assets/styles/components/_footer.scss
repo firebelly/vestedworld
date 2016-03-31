@@ -1,21 +1,46 @@
 // Footer
 
 .site-footer {
-  @include clearfix();
-  clear: left;
-  .copyright {
-    @include gridle(11 push 1);
+  @include clearfix;
+  @include small-caps;
+
+  a {
+    text-decoration: none;
+  }
+  h3 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid $gray-dark;
   }
   ul {
     margin: 0;
     padding: 0;
   }
+
+  @include media-md {
+    padding: 120px #{$column-width * 1} 120px 0;
+
+    h2.tab {
+      top: 0;
+    }
+  }
+
+  .copyright {
+    p {
+      padding: 30px 0 0 0;
+      font: 9px/16px $sans;
+    }
+    @include column(12);
+    @include media-md {
+      padding-left: #{$column-width * 1};
+    }
+  }
   .office,
-  .info {
-    @include gridle_grid(4);
+  .contact {
+    @include column(4);
+    padding-right: #{$column-width * 1};
   }
   .social {
-    @include gridle_grid(3);
+    @include column(3);
   }
   .icon-vestedworld {
     width: 165px;

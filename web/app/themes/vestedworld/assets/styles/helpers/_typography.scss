@@ -39,6 +39,20 @@ $serif: Georgia, serif;
 @mixin font-sans() {
 }
 
+h1,h2,h3,h4 {
+  font-weight: normal;
+  @extend %smooth;
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+@mixin small-caps() {
+  font: 11px/24px $sans;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+}
+
 // Hide fonts while loading from Typekit
 .wf-loading {
   visibility: hidden;
