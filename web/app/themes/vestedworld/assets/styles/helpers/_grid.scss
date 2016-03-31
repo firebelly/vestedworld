@@ -1,74 +1,78 @@
 // Grid
 
-// import settings :
-@import 'settings';
+// 23-column grid (actually 24 but right side is always one column of padding, this reduces crazy math)
+$num-columns: 23;
+$column-width: 100% / $num-columns;
 
-// generate classes :
-@include gridle_generate_classes ( );
+$margin: 1em;
+$padding: 1em;
 
-// manage container width :
-.container {
-    // max-width : 960px;
-    // margin : 0 auto;
+@mixin column($columns, $parent:false) {
+  position: relative;
+  @include media-md {
+    float: left;
+    @include clearfix;
+    @if $parent == false {
+      width: #{$column-width * $columns}
+    } @else {
+      width: #{$column-width * $columns * $num_columns/$parent}
+    }
+  }
 }
 
-// $margin: 1em;
-// $padding: 1em;
+.grid {
+  width: 100%;
+  display: block;
+  @include min-screen($breakpoint-md) {
+    display: flex;
+  }
+  &.-persist {
+    display: flex;
+  }
+}
 
-// .grid {
-//   width: 100%;
-//   display: block;
-//   @include min-screen($breakpoint-medium) {
-//     display: flex;
-//   }
-//   &.-persist {
-//     display: flex;
-//   }
-// }
+.one-half-right, .two-thirds-right, .one-third-right, .one-third-middle, .one-fourth-right  {margin-top: $margin;}
 
-// .one-half-right, .two-thirds-right, .one-third-right, .one-third-middle, .one-fourth-right  {margin-top: $margin;}
+.grid.-persist {
+  .flex-item {
+    flex-basis: auto;
+  }
+  .one-fourth {
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .one-third {
+    flex-basis: 33.3333333%;
+    max-width: 33.3333333%;
+  }
+  .one-half {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  .two-thirds {
+    flex-basis: 66.6666667%;
+    max-width: 66.6666667%;
+  }
+}
 
-
-// .grid.-persist {
-//   .flex-item {
-//     flex-basis: auto;
-//   }
-//   .one-fourth {
-//     max-width: 25%;
-//     flex-basis: 25%;
-//   }
-//   .one-third {
-//     flex-basis: 33.3333333%;
-//     max-width: 33.3333333%;
-//   }
-//   .one-half {
-//     flex-basis: 50%;
-//     max-width: 50%;
-//   }
-//   .two-thirds {
-//     flex-basis: 66.6666667%;
-//     max-width: 66.6666667%;
-//   }
-// }
-
-// @include min-screen($breakpoint-medium) {
-//   .flex-item {
-//     flex-basis: auto;
-//   }
-//   .one-fourth {
-//     max-width: 25%;
-//     flex-basis: 25%;
-//   }
-//   .one-third {
-//     flex-basis: 33.3333333%;
-//     max-width: 33.3333333%;
-//   }
-//   .one-half {
-//     flex-basis: 50%;
-//     max-width: 50%;
-//   }
-//   .two-thirds {
-//     flex-basis: 66.6666667%;
-//     max-width: 66.6666667%;
-//   }
-// }
+@include min-screen($breakpoint-md) {
+  .flex-item {
+    flex-basis: auto;
+  }
+  .one-fourth {
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .one-third {
+    flex-basis: 33.3333333%;
+    max-width: 33.3333333%;
+  }
+  .one-half {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  .two-thirds {
+    flex-basis: 66.6666667%;
+    max-width: 66.6666667%;
+  }
+}
