@@ -8,6 +8,7 @@
     text-decoration: none;
   }
   h3 {
+    @include small-caps;
     padding-bottom: 10px;
     border-bottom: 1px solid $gray-dark;
   }
