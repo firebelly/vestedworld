@@ -12,7 +12,7 @@
 			padding-top: 50px;
 			margin-top: 50px;
 			border-top: 1px solid $gray-dark;
-			h1 {
+			h2 {
 				color: $blue;
 			}
 			&:first-of-type {
@@ -21,15 +21,15 @@
 		}
 
 		@include media-md {
-			padding: 50px #{$column-width * 1};
+			padding: 50px 0 50px #{$column-width * 1};
 			article {
 				position: relative;
-				padding-left: #{$column-width * 2 * $num_columns/12};
+				padding: 50px #{$column-width * 1 * $num_columns/10} 50px #{$column-width * 2 * $num_columns/10};
 				svg {
 					position: absolute;
 					top: 50px;
 					left: 0;
-					width: #{$column-width * 1.5 * $num_columns/12};
+					width: #{$column-width * 1.5 * $num_columns/10};
 				}
 			}
 		}

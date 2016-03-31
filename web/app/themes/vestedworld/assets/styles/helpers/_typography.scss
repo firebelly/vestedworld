@@ -46,6 +46,17 @@ h1,h2,h3,h4 {
     margin-top: 0;
   }
 }
+h1,.h1 {
+  font: 48px/48px $sans;
+}
+h2,.h2 {
+  font: 32px/40px $sans;
+}
+h3,.h3 {
+  font: 16px/24px $sans;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+}
 
 @mixin small-caps() {
   font: 11px/24px $sans;

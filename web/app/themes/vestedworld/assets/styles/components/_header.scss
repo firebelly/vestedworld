@@ -8,6 +8,7 @@
   background: $gray-lite;
 
   .logo {
+    font: 1px/1 $sans; // override default h1 style
     width: 50%;
     float: left;
   }

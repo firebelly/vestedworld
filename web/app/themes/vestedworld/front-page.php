@@ -16,22 +16,22 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
 
   <!-- what-we-do -->
   <section class="what-we-do">
-    <h2 class="tab">What We Do</h2>
+    <h3 class="tab">What We Do</h3>
     <article>
       <svg role="image" class="icon icon-target"><use xlink:href="#icon-target"></use></svg>
-      <h1>Target</h1>
+      <h2>Target</h2>
       <p><?= $target ?></p>
       <a href="#" class="learn-more">Learn More</a>
     </article>
     <article>
       <svg role="image" class="icon icon-connect"><use xlink:href="#icon-connect"></use></svg>
-      <h1>Connect</h1>
+      <h2>Connect</h2>
       <p><?= $connect ?></p>
       <a href="#" class="learn-more">Learn More</a>
     </article>
     <article>
       <svg role="image" class="icon icon-invest"><use xlink:href="#icon-invest"></use></svg>
-      <h1>Invest</h1>
+      <h2>Invest</h2>
       <p><?= $invest ?></p>
       <a href="#" class="learn-more">Learn More</a>
     </article>
@@ -41,15 +41,15 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
 
     <!-- join -->
     <section class="join">
-      <h2 class="tab -white -bluetxt">Join</h2>
-      <h1>Join VestedWorld</h1>
+      <h3 class="tab -white -bluetxt">Join</h3>
+      <h2>Join VestedWorld</h2>
       <p>We’re always looking for sharp, savvy and socially-conscious investors and advisors to join our growing community. Sign up to learn more.</p>
       <?php include ('templates/join.php'); ?>
     </section>
 
     <!-- featured -->
     <section class="featured">
-      <h2 class="tab -white">Resources</h2>
+      <h3 class="tab -white">Resources</h3>
       <div class="slider">
         <?= \Firebelly\Featured\get_featured(); ?>
       </div>

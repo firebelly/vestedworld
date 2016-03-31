@@ -80,7 +80,7 @@ address {
   @include clearfix;
 }
 
-h2.tab {
+.tab {
   background: $gray-dark;
   color: $white;
   @include small-caps;
