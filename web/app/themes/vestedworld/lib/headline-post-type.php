@@ -144,7 +144,7 @@ function get_headlines() {
   $output = '';
 
   $args = array(
-    'numberposts' => -1,
+    'numberposts' => 3,
     'post_type' => 'headline',
     );
 
@@ -162,7 +162,7 @@ function get_headlines() {
            {$thumb}
            <a href="{$links_to}"><h1>{$post->post_title}</h1></a>
            <div class="body user-content">{$body}</div>
-           <a href="{$links_to}">Learn More</a>
+           <a class="button" href="{$links_to}">Learn More</a>
         </article>
        </div>
 HTML;
