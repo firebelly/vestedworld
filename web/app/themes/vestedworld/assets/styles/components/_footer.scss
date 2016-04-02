@@ -6,6 +6,10 @@
 
   a {
     text-decoration: none;
+    transition: all .1s;
+    &:hover {
+      color: $blue;
+    }
   }
   h3 {
     @include small-caps;
