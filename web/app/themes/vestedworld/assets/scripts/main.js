@@ -175,6 +175,8 @@ var FBSage = (function($) {
     $('.slider').slick({
       slide: '.slide-item',
       autoplay: true,
+      arrows: false,
+      dots: true,
       autoplaySpeed: 6000,
       speed: 800
     });
