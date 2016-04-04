@@ -19,21 +19,21 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
     <h3 class="tab">What We Do</h3>
     <article>
       <svg role="image" class="icon icon-target"><use xlink:href="#icon-target"></use></svg>
-      <h2>Target</h2>
+      <h2><a href="/target/">Target</a></h2>
       <p><?= $target ?></p>
-      <a href="#" class="learn-more">Learn More</a>
+      <a href="/target/" class="learn-more">Learn More</a>
     </article>
     <article>
       <svg role="image" class="icon icon-connect"><use xlink:href="#icon-connect"></use></svg>
-      <h2>Connect</h2>
+      <h2><a href="/connect/">Connect</a></h2>
       <p><?= $connect ?></p>
-      <a href="#" class="learn-more">Learn More</a>
+      <a href="/connect/" class="learn-more">Learn More</a>
     </article>
     <article>
       <svg role="image" class="icon icon-invest"><use xlink:href="#icon-invest"></use></svg>
-      <h2>Invest</h2>
+      <h2><a href="/invest/">Invest</a></h2>
       <p><?= $invest ?></p>
-      <a href="#" class="learn-more">Learn More</a>
+      <a href="/invest/" class="learn-more">Learn More</a>
     </article>
   </section>
 
@@ -44,7 +44,7 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
       <h3 class="tab -white -bluetxt">Join</h3>
       <h2>Join VestedWorld</h2>
       <p>We’re always looking for sharp, savvy and socially-conscious investors and advisors to join our growing community. Sign up to learn more.</p>
-      <?php include ('templates/join.php'); ?>
+      <?php include(locate_template('templates/join.php')); ?>
     </section>
 
     <!-- featured -->

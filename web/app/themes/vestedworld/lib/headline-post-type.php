@@ -5,6 +5,12 @@
 
 namespace Firebelly\PostTypes\Headlines;
 
+// Custom image size for post type?
+function add_image_sizes() {
+  add_image_size( 'slide', 1600, 870, true );
+}
+add_action('after_setup_theme', __NAMESPACE__ . '\add_image_sizes');
+
 // Register Custom Post Type
 function post_type() {
 
@@ -152,7 +158,7 @@ function get_headlines() {
   if (!$headline_posts) return false;
 
   foreach ($headline_posts as $post):
-    $thumb = get_the_post_thumbnail($post->ID, 'full');
+    $thumb = get_the_post_thumbnail($post->ID, 'slide');
     $body = strip_tags($post->post_content);
     $links_to = get_permalink(get_post_meta($post->ID, '_cmb2_links_to', true));
 

@@ -22,7 +22,7 @@
   }
 
   @include media-md {
-    padding: 120px #{$column-width * 1} 120px 0;
+    padding: #{$vertical-beat * 16} #{$column-width * 1} #{$vertical-beat * 16} 0;
 
     h2.tab {
       top: 0;

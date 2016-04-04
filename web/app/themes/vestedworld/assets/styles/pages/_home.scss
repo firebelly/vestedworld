@@ -6,8 +6,35 @@
     height: 100px; width: 100px;
   }
 
+  // Slider
   .slick-slider {
     margin: 0;
+  }
+  .slick-dots {
+    margin: 0;
+    padding: 0;
+    bottom: 20px;
+    left: #{$column-width * 1};
+    width: 200px;
+    text-align: left;
+    @include media-md {
+      bottom: 40px;
+    }
+    li {
+      display: inline-block;
+      button::before {
+        content: '';
+        border-radius: 50%;
+        display: block;
+        height: 8px;
+        width: 8px;
+        border: 1px solid $white;
+        opacity: 1;
+      }
+      &.slick-active button::before {
+        background: $white;
+      }
+    }
   }
   .slide-item {
     position: relative;
@@ -15,31 +42,36 @@
       background: $white;
       color: $blue;
     }
+    img {
+      width: 100%;
+    }
     .slide-text {
       @include column(12);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      background: rgba($blue,.5);
+      background: rgba($blue,.85);
       color: $white;
       p.headline {
-        margin: -6px 0 80px 0;
+        margin: 0 0 40px 0;
       }
       .learn-more-wrap {
         text-align: right;
       }
       @include media-md {
-        float: none;
-        padding: 50px #{$column-width * 1}
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: #{$vertical-beat * 6} #{$column-width * 1} #{$vertical-beat * 8};
+        p.headline {
+          margin: -6px 0 64px 0;
+        }
       }
     }
   }
 
+  // What We Do block
   .what-we-do {
     @include column(12);
     article {
-      padding-top: 50px;
-      margin-top: 50px;
+      padding-top: #{$vertical-beat * 6};
       border-top: 1px solid $gray-dark;
       h2 {
         color: $blue;
@@ -50,19 +82,20 @@
     }
 
     @include media-md {
-      padding: 50px 0 50px #{$column-width * 1};
+      padding: #{$vertical-beat * 6} 0 #{$vertical-beat * 8} #{$column-width * 1};
       article {
         position: relative;
-        padding: 50px #{$column-width * 1 * $num_columns/10} 50px #{$column-width * 2 * $num_columns/10};
+        padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/10} #{$vertical-beat * 8} #{$column-width * 2 * $num_columns/10};
         svg {
           position: absolute;
-          top: 50px;
+          top: 64px;
           left: 0;
           width: #{$column-width * 1.5 * $num_columns/10};
         }
       }
     }
   }
+  // Wrapper for Join & Featured slider
   .home-features {
     @include column(11);
   }
@@ -71,13 +104,45 @@
     background: $blue;
     color: $white;
     @include media-md {
-      padding: 50px #{$column-width * 1 * $num_columns/10}
+      padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/11} #{$vertical-beat * 8};
     }
   }
+  .newsletter {
+    margin: #{$vertical-beat * 8} 0 0;
+    height: 80px;
+    width: 100%;
+    border: 1px solid $white;
+    position: relative;
+    input[type=email] {
+      background: none;
+      border: none;
+      font: 32px/78px $sans;
+      padding: 0 30px;
+      color: $white;
+      outline: none;
+      &::placeholder {
+        color: $white;
+      }
+    }
+    button.submit {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 0;
+      width: #{$column-width * 1 * $num_columns/9};
+      background: $white;
+      color: $blue;
+      text-align: center;
+      line-height: 78px;
+      height: 78px;
+      border: none;
+    }
+  }
+
   .featured {
     position: relative;
     @include media-md {
-      padding: 50px #{$column-width * 1 * $num_columns/10}
+      padding: 64px #{$column-width * 1 * $num_columns/11}
     }
   }
 

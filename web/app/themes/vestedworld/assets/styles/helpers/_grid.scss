@@ -3,6 +3,7 @@
 // 23-column grid (actually 24 but right side is always one column of padding, this reduces crazy math)
 $num-columns: 23;
 $column-width: 100% / $num-columns;
+$vertical-beat: 8px;
 
 $margin: 1em;
 $padding: 1em;
