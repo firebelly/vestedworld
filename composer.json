@@ -37,6 +37,7 @@
     "composer/installers": "~1.0.12",
     "vlucas/phpdotenv": "^2.0.1",
     "johnpbloch/wordpress": "4.4.2",
+    "roots/soil": ">=3.0.0",
     "wpackagist-plugin/duplicate-post": "2.6",
     "wpackagist-plugin/limit-login-attempts" : "*",
     "wpackagist-plugin/wordpress-importer" : "*",
@@ -44,11 +45,14 @@
     "wpackagist-plugin/cmb2": ">=2.0.2",
     "wpackagist-plugin/multiple-content-blocks": "3.2.2",
     "wpackagist-plugin/wp-facebook-open-graph-protocol": ">=2.0.11",
-    "wpackagist-plugin/akismet": "3.1.1"
+    "wpackagist-plugin/akismet": ">=3.1.1",
+    "wpackagist-plugin/redirection": ">=2.3.16",
+    "wpackagist-plugin/google-sitemap-generator": ">=4.0.8",
+    "wpackagist-plugin/regenerate-thumbnails": "2.2.6"
   },
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin", "roots/soil", "wpackagist-plugin/cmb2", "wpackagist-plugin/akismet"],
       "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
