@@ -144,7 +144,7 @@ function get_headlines() {
   $output = '';
 
   $args = array(
-    'numberposts' => -1,
+    'numberposts' => 3,
     'post_type' => 'headline',
     );
 
@@ -167,7 +167,7 @@ function get_headlines() {
                 <a class="button learn-more" href="{$links_to}">Learn More</a>
               </div>
             </div>
-        </article>
+         </article>
        </div>
 HTML;
   endforeach;

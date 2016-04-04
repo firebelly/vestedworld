@@ -6,8 +6,13 @@
 
   a {
     text-decoration: none;
+    transition: all .1s;
+    &:hover {
+      color: $blue;
+    }
   }
   h3 {
+    @include small-caps;
     padding-bottom: 10px;
     border-bottom: 1px solid $gray-dark;
   }
