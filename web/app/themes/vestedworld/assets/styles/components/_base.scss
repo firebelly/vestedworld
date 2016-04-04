@@ -108,12 +108,19 @@ address {
   position: relative;
   padding-right: 16px;
   &::after {
+    transition: all .2s;
     content: '>';
     display: block;
     position: absolute;
     top: 0;
     right: 0;
     line-height: 1;
+  }
+  &:not(.button):hover {
+    color: $blue;
+    &::after {
+      right: -4px;
+    }
   }
   // learn more buttons
   &.button {
@@ -126,6 +133,9 @@ address {
     &:hover {
       background: $white;
       color: $blue;
+      &::after {
+        right: 6px;
+      }
     }
   }
 }
