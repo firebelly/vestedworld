@@ -105,7 +105,7 @@ address {
 
 .learn-more {
   @include small-caps;
-  position: absolute;
+  position: relative;
   padding-right: 16px;
   &::after {
     content: '>';
@@ -113,5 +113,29 @@ address {
     position: absolute;
     top: 0;
     right: 0;
+    line-height: 1;
   }
+  // learn more buttons
+  &.button {
+    transition: background .2s;
+    padding-right: 50px;
+    &::after {
+      top: 10px;
+      right: 10px;
+    }
+    &:hover {
+      background: $white;
+      color: $blue;
+    }
+  }
+}
+
+.button {
+  border: 1px solid $white;
+  padding: 7px 16px;
+  font: 16px/24px $sans;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  text-decoration: none;
+  display: inline-block;
 }

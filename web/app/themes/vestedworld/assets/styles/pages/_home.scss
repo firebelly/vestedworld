@@ -2,54 +2,83 @@
 
 .home.page {
 
-	.icon-target, .icon-connect, .icon-invest {
-		height: 100px; width: 100px;
-	}
+  .icon-target, .icon-connect, .icon-invest {
+    height: 100px; width: 100px;
+  }
 
-	.what-we-do {
-		@include column(12);
-		article {
-			padding-top: 50px;
-			margin-top: 50px;
-			border-top: 1px solid $gray-dark;
-			h2 {
-				color: $blue;
-			}
-			&:first-of-type {
-				margin-top: 0;
-			}
-		}
+  .slick-slider {
+    margin: 0;
+  }
+  .slide-item {
+    position: relative;
+    h3.tab {
+      background: $white;
+      color: $blue;
+    }
+    .slide-text {
+      @include column(12);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: rgba($blue,.5);
+      color: $white;
+      p.headline {
+        margin: -6px 0 80px 0;
+      }
+      .learn-more-wrap {
+        text-align: right;
+      }
+      @include media-md {
+        float: none;
+        padding: 50px #{$column-width * 1}
+      }
+    }
+  }
 
-		@include media-md {
-			padding: 50px 0 50px #{$column-width * 1};
-			article {
-				position: relative;
-				padding: 50px #{$column-width * 1 * $num_columns/10} 50px #{$column-width * 2 * $num_columns/10};
-				svg {
-					position: absolute;
-					top: 50px;
-					left: 0;
-					width: #{$column-width * 1.5 * $num_columns/10};
-				}
-			}
-		}
-	}
-	.home-features {
-		@include column(11);
-	}
-	.join {
-		position: relative;
-		background: $blue;
-		color: $white;
-		@include media-md {
-			padding: 50px #{$column-width * 1 * $num_columns/10}
-		}
-	}
-	.featured {
-		position: relative;
-		@include media-md {
-			padding: 50px #{$column-width * 1 * $num_columns/10}
-		}
-	}
+  .what-we-do {
+    @include column(12);
+    article {
+      padding-top: 50px;
+      margin-top: 50px;
+      border-top: 1px solid $gray-dark;
+      h2 {
+        color: $blue;
+      }
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    @include media-md {
+      padding: 50px 0 50px #{$column-width * 1};
+      article {
+        position: relative;
+        padding: 50px #{$column-width * 1 * $num_columns/10} 50px #{$column-width * 2 * $num_columns/10};
+        svg {
+          position: absolute;
+          top: 50px;
+          left: 0;
+          width: #{$column-width * 1.5 * $num_columns/10};
+        }
+      }
+    }
+  }
+  .home-features {
+    @include column(11);
+  }
+  .join {
+    position: relative;
+    background: $blue;
+    color: $white;
+    @include media-md {
+      padding: 50px #{$column-width * 1 * $num_columns/10}
+    }
+  }
+  .featured {
+    position: relative;
+    @include media-md {
+      padding: 50px #{$column-width * 1 * $num_columns/10}
+    }
+  }
 
 }

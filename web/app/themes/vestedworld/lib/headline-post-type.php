@@ -33,7 +33,7 @@ function post_type() {
     'label'               => 'headline',
     'description'         => 'Headlines',
     'labels'              => $labels,
-    'supports'            => array( 'title','thumbnail', 'editor'), 
+    'supports'            => array( 'title', 'thumbnail', 'editor'),
     'hierarchical'        => false,
     'public'              => true,
     'show_ui'             => true,
@@ -106,10 +106,10 @@ function metaboxes( array $meta_boxes ) {
     	    'name'    => 'Links to',
     	    'id'      => $prefix . 'links_to',
     	    'type'    => 'select',
-    	    'options' => cmb2_get_post_options( array( 
-            'post_type' => array('page','post'), 
-            'numberposts' => 0, 
-            'post_parent' => null	 
+    	    'options' => cmb2_get_post_options( array(
+            'post_type' => array('page','post'),
+            'numberposts' => 0,
+            'post_parent' => null
           ) ),
     	),
     ),
@@ -153,20 +153,24 @@ function get_headlines() {
 
   foreach ($headline_posts as $post):
     $thumb = get_the_post_thumbnail($post->ID, 'full');
-    $body = apply_filters('the_content', $post->post_content);
-    $links_to = get_permalink(get_post_meta( $post->ID, '_cmb2_links_to', true ));
+    $body = strip_tags($post->post_content);
+    $links_to = get_permalink(get_post_meta($post->ID, '_cmb2_links_to', true));
 
     $output .= <<<HTML
        <div class="slide-item">
          <article>
-           {$thumb}
-           <a href="{$links_to}"><h1>{$post->post_title}</h1></a>
-           <div class="body user-content">{$body}</div>
-           <a href="{$links_to}">Learn More</a>
+            {$thumb}
+            <div class="slide-text">
+              <h3 class="tab"><a href="{$links_to}">{$post->post_title}</a></h3>
+              <p class="headline h1">{$body}</p>
+              <div class="learn-more-wrap">
+                <a class="button learn-more" href="{$links_to}">Learn More</a>
+              </div>
+            </div>
         </article>
        </div>
 HTML;
   endforeach;
- 
+
   return $output;
 }
