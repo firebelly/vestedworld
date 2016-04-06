@@ -37,6 +37,7 @@ var FBSage = (function($) {
     // _initNav();
     // _initSearch();
     // _initLoadMore();
+    _initParallaxBackgrounds();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -158,6 +159,34 @@ var FBSage = (function($) {
           }
       });
     });
+  }
+
+  function _initParallaxBackgrounds() {
+    // Check to see if there's anything to lax on the page
+    if ($('.parallax-this').length) {
+      $(window).on('scroll', function() {
+        // The speed we want to make our changes at compared to the speed of the user scrolling
+        var speed = 0.05;
+        // The thing we want to effect
+        var $thingToLax = $('.parallax-this');
+        
+        // Assuming we have multiple, do our logic for each of the thingToLax's
+        $thingToLax.each(function() {
+          // Find the parent of the thingToLax, so we can subtract it from the current scroll position
+          // in order to get an accurate number to work with
+          var $thisSection = $(this).closest('.parallax-parent');
+          // Get the current scroll position
+          var scrollRate = $(window).scrollTop();
+          // Subtract the top position of the parent from the scroll position
+          scrollRate = scrollRate - ($thisSection.offset().top);
+          // Now let's change some CSS properties of the thing based on our chosen speed
+          // and the rate of the scrolling
+          $(this).css({
+            'background-position': 'center ' + scrollRate * speed + 'px'
+          });
+        });
+      });
+    }
   }
 
   // Track ajax pages in Analytics
