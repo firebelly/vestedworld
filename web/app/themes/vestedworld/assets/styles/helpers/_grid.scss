@@ -5,6 +5,9 @@ $num-columns: 23;
 $column-width: 100% / $num-columns;
 $vertical-beat: 8px;
 
+$mobile-num-columns: 12;
+$mobile-column-width: 100% / $mobile-num-columns;
+
 $margin: 1em;
 $padding: 1em;
 
@@ -14,9 +17,9 @@ $padding: 1em;
     float: left;
     @include clearfix;
     @if $parent == false {
-      width: #{$column-width * $columns}
+      width: #{$column-width * $columns};
     } @else {
-      width: #{$column-width * $columns * $num_columns/$parent}
+      width: #{$column-width * $columns * $num_columns/$parent};
     }
   }
 }

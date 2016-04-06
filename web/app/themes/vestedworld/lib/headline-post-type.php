@@ -168,7 +168,7 @@ function get_headlines() {
             {$thumb}
             <div class="slide-text">
               <h3 class="tab"><a href="{$links_to}">{$post->post_title}</a></h3>
-              <p class="headline h1">{$body}</p>
+              <p class="headline h2">{$body}</p>
               <div class="learn-more-wrap">
                 <a class="button learn-more" href="{$links_to}">Learn More</a>
               </div>
