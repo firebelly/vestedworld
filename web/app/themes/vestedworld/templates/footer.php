@@ -1,9 +1,7 @@
 <footer class="site-footer" role="contentinfo">
-  <div class="copyright">
+  <div class="footer-logo">
     <h2 class="tab">Contact</h2>
     <svg class="icon icon-vestedworld" role="img"><title><?php bloginfo('name'); ?></title><use xlink:href="#icon-vestedworld"></use></svg>
-    <p>&copy; <?php echo date('Y'); ?> VestedWorld, Inc.<br>
-    all rights reserved.</p>
   </div>
   <div class="office">
     <h3>Office</h3>
@@ -30,5 +28,9 @@
       <li><a href="https://www.facebook.com/<?php echo get_option( 'facebook_id', 'vestedworld' ); ?>">Facebook</a></li>
       <li><a href="https://www.twitter.com/<?php echo get_option( 'twitter_id', 'vestedworld' ); ?>">Twitter</a></li>
     </ul>
+  </div>
+  <div class="copyright">
+    <p>&copy; <?php echo date('Y'); ?> VestedWorld, Inc.<br>
+    all rights reserved.</p>
   </div>
 </footer>

@@ -9,8 +9,10 @@
 
   .logo {
     font: 1px/1 $sans; // override default h1 style
-    width: 50%;
-    float: left;
+    @include media-md {
+      width: 50%;
+      float: left;
+    }
   }
 
   h1 {

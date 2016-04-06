@@ -13,12 +13,13 @@
   .slick-dots {
     margin: 0;
     padding: 0;
-    bottom: 20px;
-    left: #{$column-width * 1};
+    bottom: 40px;
+    left: #{$mobile-column-width * 1};
     width: 200px;
     text-align: left;
     @include media-md {
       bottom: 40px;
+      left: #{$column-width * 1};
     }
     li {
       display: inline-block;
@@ -47,6 +48,8 @@
     }
     .slide-text {
       @include column(12);
+      padding: #{$vertical-beat * 4} #{$mobile-column-width * 1} #{$vertical-beat * 6};
+
       background: rgba($blue,.85);
       color: $white;
       p.headline {
@@ -61,6 +64,7 @@
         bottom: 0;
         padding: #{$vertical-beat * 6} #{$column-width * 1} #{$vertical-beat * 8};
         p.headline {
+          font: 48px/48px $sans;
           margin: -6px 0 64px 0;
         }
       }
@@ -71,24 +75,31 @@
   .what-we-do {
     @include column(12);
     article {
-      padding-top: #{$vertical-beat * 6};
+      margin: 0 #{$mobile-column-width * 1};
+      padding: #{$vertical-beat * 4} 0 #{$vertical-beat * 6} 0;
       border-top: 1px solid $gray-dark;
+      position: relative;
       h2 {
         color: $blue;
       }
       &:first-of-type {
         margin-top: 0;
       }
+      svg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: #{$mobile-column-width * 2};
+      }
     }
 
     @include media-md {
       padding: #{$vertical-beat * 6} 0 #{$vertical-beat * 8} #{$column-width * 1};
       article {
-        position: relative;
         padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/10} #{$vertical-beat * 8} #{$column-width * 2 * $num_columns/10};
         svg {
-          position: absolute;
           top: 64px;
+          right: auto;
           left: 0;
           width: #{$column-width * 1.5 * $num_columns/10};
         }
