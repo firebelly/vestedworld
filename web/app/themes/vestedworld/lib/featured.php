@@ -36,7 +36,7 @@ function get_featured_types() {
 // Get featured content
 function get_featured() {
   $output = '';
-  
+
   $args = array(
     'numberposts' => -1,
     'post_type' => get_featured_types(),
@@ -49,15 +49,23 @@ function get_featured() {
   );
   $featured_posts = get_posts($args);
   if(!$featured_posts) return false;
-  
+
   foreach ($featured_posts as $post) {
     $type = $post->post_type;
+    $link = get_permalink($post->ID);
+    $excerpt = \Firebelly\Utils\get_excerpt($post);
     $output .= <<<HTML
       <div class="slide-item">
         <article>
-          <h1>{$post->post_title}</h1>
-          <p>!!templates for content here waiting on design!!</p>
-        </article>
+          <h3>{$type}</h3>
+          <h2><a href="{$link}">{$post->post_title}</a></h2>
+          <p>{$excerpt}</p>
+          <a class="learn-more" href="{$link}">Learn More</a>
+
+          <div class="learn-more-wrap">
+            <a class="button learn-more" href="/{$type}/">All {$type}s</a>
+          </div>
+       </article>
       </div>
 HTML;
   }

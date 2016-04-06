@@ -114,46 +114,65 @@
     position: relative;
     background: $blue;
     color: $white;
+    padding: #{$vertical-beat * 6} #{$mobile-column-width} #{$vertical-beat * 8};
     @include media-md {
       padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/11} #{$vertical-beat * 8};
     }
   }
   .newsletter {
-    margin: #{$vertical-beat * 8} 0 0;
+    margin: #{$vertical-beat * 4} 0 0;
     height: 80px;
     width: 100%;
     border: 1px solid $white;
     position: relative;
+    @include media-md {
+      margin: #{$vertical-beat * 8} 0 0;
+    }
     input[type=email] {
       background: none;
       border: none;
-      font: 32px/78px $sans;
+      font: 22px/78px $sans;
       padding: 0 30px;
       color: $white;
       outline: none;
       &::placeholder {
         color: $white;
       }
+      @include media-md {
+        font: 32px/78px $sans;
+      }
     }
     button.submit {
       position: absolute;
       right: 0;
       top: 0;
+      width: #{$mobile-column-width * 2};
       padding: 0;
-      width: #{$column-width * 1 * $num_columns/9};
       background: $white;
       color: $blue;
       text-align: center;
       line-height: 78px;
       height: 78px;
       border: none;
+      @include media-md {
+        width: #{$column-width * 1 * $num_columns/9};
+      }
     }
   }
 
   .featured {
     position: relative;
+    padding: #{$vertical-beat * 4} #{$mobile-column-width * 1};
+    h3 {
+      margin-bottom: 0;
+    }
+    .learn-more-wrap {
+      margin-top: #{$vertical-beat * 12};
+      text-align: right;
+    }
     @include media-md {
-      padding: 64px #{$column-width * 1 * $num_columns/11}
+      min-height: 480px;
+      padding: #{$vertical-beat * 8} #{$column-width * 1 * $num_columns/11};
     }
   }
 
