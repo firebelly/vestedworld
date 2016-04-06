@@ -1,15 +1,20 @@
-<?php /* Template Name: About Us - Article */
+<?php 
+/* 
+Template Name: About Us - Article 
+*/
 
-$thumb = get_the_post_thumbnail($page->ID, 'large');
 $title = $page->post_title;
+$name = $page->post_name;
 $headline = get_post_meta($page->ID, '_cmb2_headline', true);
 $summary = get_post_meta($page->ID, '_cmb2_summary', true);
 $body = apply_filters('the_content', $page->post_content);
 
 ?>
 
-<article id="<?= $title; ?> !empty($thumb) ? ">
-	<?= !empty($thumb) ? '<div class="thumbnail">'.$thumb.'</div>' : ''; ?>
+<article id="<?= $name ?>" class="about-section parallax-parent">
+	<?php if ($thumb = \Firebelly\Media\get_post_thumbnail($page->ID, 'large')): ?>
+	  <div class="image-wrap parallax-this" style="background-image:url(<?= $thumb ?>);"></div>
+	<?php endif; ?>
 	<div class="content">
 		<h1><?= $title ?></h1>
 		<div class="summary">
