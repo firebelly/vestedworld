@@ -38,12 +38,14 @@ var FBSage = (function($) {
     // _initSearch();
     // _initLoadMore();
     _initParallaxBackgrounds();
+    _initPeopleModals();
 
     // Esc handlers
     $(document).keyup(function(e) {
       if (e.keyCode === 27) {
         _hideSearch();
         _hideMobileNav();
+        _closePerson();
       }
     });
 
@@ -165,28 +167,106 @@ var FBSage = (function($) {
     // Check to see if there's anything to lax on the page
     if ($('.parallax-this').length) {
       $(window).on('scroll', function() {
-        // The speed we want to make our changes at compared to the speed of the user scrolling
-        var speed = 0.05;
-        // The thing we want to effect
+        var speed = 0.02;
         var $thingToLax = $('.parallax-this');
         
-        // Assuming we have multiple, do our logic for each of the thingToLax's
         $thingToLax.each(function() {
-          // Find the parent of the thingToLax, so we can subtract it from the current scroll position
-          // in order to get an accurate number to work with
+          // Find the parent of the thingToLax
           var $thisSection = $(this).closest('.parallax-parent');
           // Get the current scroll position
           var scrollRate = $(window).scrollTop();
           // Subtract the top position of the parent from the scroll position
           scrollRate = scrollRate - ($thisSection.offset().top);
-          // Now let's change some CSS properties of the thing based on our chosen speed
-          // and the rate of the scrolling
+
           $(this).css({
-            'background-position': 'center ' + scrollRate * speed + 'px'
+            'transform': 'translate(-50%,' + (-70 - (scrollRate * speed)) + '%)'
           });
         });
       });
     }
+  }
+
+  function _initPeopleModals() {
+    $('.person-activate').on('click', function(e) {
+      var $activeContainer = $('.active-person-container'),
+          $activeDataContainer = $activeContainer.find('.person-data-container'),
+          $thisPerson = $(this).closest('.person'),
+          $personData = $thisPerson.find('.person-data'),
+          thisPersonOffset = -(($('.people-sections').offset().top) - ($thisPerson.offset().top));
+
+      _showOverlay();
+
+      $('.person.-active, .people-grid.-active').removeClass('-active');
+      $activeDataContainer.empty();
+      $thisPerson.addClass('-active');
+      $thisPerson.closest('.people-grid').addClass('-active');
+      $personData.clone().appendTo($activeDataContainer);
+      $activeContainer.css('top', thisPersonOffset);
+      $activeContainer.addClass('-active');
+      _scrollBody($activeContainer, 250, 0);
+    }); 
+
+    // Shut it down!
+    $('html, body').on('click', '.person-deactivate', function(e) {
+      _closePerson();
+      _hideOverlay();
+    });
+    // Close if user clicks outside modal
+    $('html, body').on('click', '.global-overlay', function() {
+      if($('.active-person-container').is('.-active')) {
+        _closePerson();
+      }
+    });
+
+    // People Grid navigation
+    $('.next-person').on('click', function(e) {
+      $('.active-person-container .person-data').addClass('exitLeft');
+      setTimeout(function() {
+        _nextPerson();
+      }, 200);
+    });
+    $('.previous-person').on('click', function(e) {
+      $('.active-person-container .person-data').addClass('exitRight');
+      setTimeout(function() {
+        _prevPerson();
+      }, 200);
+    });
+
+  }
+
+  function _nextPerson() {
+    var $active = $('.people-grid.-active').find('.person.-active');
+    // find next or first person
+    var $next = ($active.next('.person').length > 0) ? $active.next('.person') : $('.people-grid.-active .person:first');
+    $next.find('.person-activate').trigger('click');
+    $('.active-person-container .person-data').addClass('enterRight');
+  }
+
+  function _prevPerson() {
+    var $active = $('.people-grid.-active').find('.person.-active');
+    // find prev or last person
+    var $prev = ($active.prev('.person').length > 0) ? $active.prev('.person') : $('.people-grid.-active .person:last');
+    $prev.find('.person-activate').trigger('click');
+    $('.active-person-container .person-data').addClass('enterLeft');
+  }
+
+  function _showOverlay() {
+    $('.global-overlay').addClass('-active');
+  }
+
+  function _hideOverlay() {
+    $('.global-overlay').removeClass('-active');
+  }
+
+  function _closePerson() {
+    var $activeContainer = $('.active-person-container'),
+        $activeDataContainer = $('.person-data-container');
+
+    _hideOverlay();
+    $activeContainer.removeClass('-active');
+    $('.person.-active').removeClass('-active');
+    $('.person-grid.-active').removeClass('-active');
+    $activeDataContainer.empty();
   }
 
   // Track ajax pages in Analytics

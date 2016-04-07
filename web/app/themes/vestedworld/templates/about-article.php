@@ -11,12 +11,12 @@ $body = apply_filters('the_content', $page->post_content);
 
 ?>
 
-<article id="<?= $name ?>" class="about-section parallax-parent">
+<article id="<?= $name ?>" class="about-section">
 	<?php if ($thumb = \Firebelly\Media\get_post_thumbnail($page->ID, 'large')): ?>
-	  <div class="image-wrap parallax-this" style="background-image:url(<?= $thumb ?>);"></div>
+	  <div class="image-wrap parallax-parent"><img src="<?= $thumb ?>" class="parallax-this"></div>
 	<?php endif; ?>
 	<div class="content">
-		<h1><?= $title ?></h1>
+		<h1 class="section-title"><?= $title ?></h1>
 		<div class="summary">
 			<h2><?= $headline ?></h2>
 			<?= !empty($summary) ? '<p>'.$summary.'</p>' : ''; ?>

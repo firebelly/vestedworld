@@ -1,55 +1,241 @@
 // About Page
 
 .page.about-us {
-  article {
+
+  .section-title {
+    left: 0;
+    top: 55px;
+    height: 25px;
+    color: $white;
+    padding: 0 16px;
+    line-height: 25px;
+    position: absolute;
+    font-weight: normal;
+    @include small-caps();
+    transform-origin: top left;
+    background: $brand-primary;
+    transform: rotate(-90deg) translateX(-100%);
+  }
+
+  .about-section {
     position: relative;
+    @include clearfix();
+
     .image-wrap {
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 0;
-      position: absolute;
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center center;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      img {
+        top: 50%;
+        left: 50%;
+        height: auto;
+        min-width: 100%;
+        position: absolute;
+        transition: transform 0s linear;
+        transform: translate(-50%, -70%);
+      }
+
+      @include media-md {
+        height: 392px;
+      }
     }
 
     .content { 
       z-index: 1;
-      padding: 55px;
       position: relative;
       background: $white;
+      padding: 48px $column-width 96px;
+      &::before {
+        left: 0;
+        height: 1px;
+        width: 25px;
+        content: '';
+        bottom: 120px;
+        position: absolute;
+        background: $gray-dark;
+      }
+    }
+
+    .summary {
+      h2 {
+        font-size: 48px;
+        line-height: 1em;
+        color: $brand-primary;
+      }
+      p {
+        font-size: 32px;
+        line-height: 1.25em;
+      }
+    }
+
+    .body {
+      margin-top: 6px;
+      padding-top: $vertical-beat * 2;
+      border-top: 1px solid $gray-dark;
+      h3 {
+        color: $brand-primary;
+      }
+      p {
+        font-size: 16px;
+        margin: 0 0 1.5em;
+        line-height: 1.5em;
+      }
+    }
+
+    @include media-md {
+      .summary {
+        @include column(12);
+        padding-right: $column-width;
+      }
+      .body {
+        @include column(11);
+        padding-right: $column-width;
+      }
     }
   }
 
-  .about-section {
-    h1 {
-      top: 0;
-      left: 0;
-      color: $white;
-      font-size: 11px;
-      position: absolute;
-      font-weight: normal;
-      padding: 2px 16px 4px;
-      transform-origin: top left;
-      line-height: 1.454545455em;
-      background: $brand-primary;
-      transform: rotate(-90deg) translateX(-100%);
-    }
+  .people-sections {
+    position: relative;
   }
 
   // About us section
   #about-us.about-section {
-    .content {    
+    h1 {
+      background: $white;
+      color: $brand-primary;
+    }
+
+    .content {
       color: $white;
       background: $brand-primary;
+      &::before {
+        background: $white;
+      }
+      p {
+        @extend %smooth;
+      }
+    }
+
+    .summary h2 {
+      color: $white;
+    }
+
+    .body {
+      border-color: $white;
     }
   }
 
-  // Our Purpose Section
-  #about-us.about-section,
-  #approach.about-section {
-    padding: 300px 0;
+  section {
+    margin-top: 60px;
+    background: $white;
+  }
+}
+
+// Team grid
+.people {
+  padding: 55px $column-width;
+  .people-grid {
+    display: flex;
+    flex-wrap: wrap;
+    @include clearfix();
+  }
+  .person {
+    max-width: 50%;
+    flex-basis: 50%;
+    h1 {
+      font-size: 32px;
+      line-height: 1.25em;
+    }
+    .bio {
+      display: none;
+    }
+  }
+}
+
+// Management grid
+.people.management {
+  &::before {
+    left: 0;
+    height: 1px;
+    width: 25px;
+    content: '';
+    bottom: 55px;
+    position: absolute;
+    background: $gray-dark;
+  }
+  .person {
+    display: flex;
+    padding-left: 30px;
+    padding-right: $column-width;
+    &:nth-of-type(odd) {
+      padding-left: 0;
+      border-right: 1px solid $gray-dark;
+    }
+    h1 {
+      margin-bottom: .25em;
+      color: $brand-primary;
+    }
+    h2 {
+      margin: 0;
+      @include small-caps();
+      line-height: 1.5em;
+    }
+    article {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .person-text {
+      min-width: 150px;
+      position: relative;
+      padding: 30px 0 80px;
+    }
+    button {
+      left: 0;
+      bottom: 30px;
+      position: absolute;
+    }
+    .person-image {
+      text-align: right;
+      align-self: flex-end;
+      img {
+        vertical-align: top;
+      }
+    }
+  }
+  .people-grid {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid $gray-dark;
+    border-bottom: 1px solid $gray-dark;
+  }
+}
+
+// Advisory Board grid
+.people.board {
+  > p {
+    margin-top: 0;
+    font-size: 32px;
+    line-height: 40px;
+    color: $brand-primary;
+    @include media-md {
+      width: 50%;
+    }
+  }
+  .person {
+    h1 {
+      color: $white;
+    }
+  }
+}
+
+// Active Person Container
+.active-person-container {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  background: $white;
+  &.-active {
+    display: block;
   }
 }

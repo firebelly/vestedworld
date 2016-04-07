@@ -146,7 +146,7 @@ add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 
 
 /**
- * Get Peop;e
+ * Get People
  */
 function get_people($options=[]) {
   $output = '';

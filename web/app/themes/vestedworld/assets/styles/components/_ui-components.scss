@@ -1,0 +1,26 @@
+// UI Components
+
+.btn {
+  @include small-caps();
+  font-size: 16px;
+  @extend %smooth;
+  background: none;
+  position: relative;
+  line-height: 1.5em;
+  padding: 6px 50px 4px 10px;
+  border: 1px solid $gray-dark;
+  transition: background .1s ease-out, color .1s ease-out;
+  &::after {
+    top: 6px;
+    right: 10px;
+    content: '>';
+    position: absolute;
+  }
+  &:hover {
+    color: $white;
+    background: $gray-dark;
+  }
+  &:focus {
+    outline: none;
+  }
+}

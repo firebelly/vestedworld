@@ -14,11 +14,31 @@ foreach($pages as $page) {
 
 //Get Management and board
 ?>
-<section class="about-secton management">
-	<h1>Management</h1>
-	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'management']); ?>
-</section>
-<section class="about-secton board">
-	<h1>Advisory Board</h1>
-	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'board']); ?>
-</section>
+<div class="people-sections">
+  <div class="global-overlay"></div>
+  <div class="active-person-container">
+    <div class="post-nav">
+      <div class="previous previous-person">Previous profile &gt;</div>
+      <div class="next next-person">&lt; Next profile</div>
+    </div>
+    <button class="person-deactivate person-toggle x-button"><div class="x"></div></button>
+    <div class="bio-content">
+      <h1 class="section-title">Profile</h1>
+      <div class="person-data-container">
+
+      </div>
+    </div>
+  </div>
+
+  <section class="about-section people management">
+  	<h1 class="section-title">Management</h1>
+    <div class="management-container">
+    	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'management']); ?>
+    </div>
+  </section>
+  <section class="about-section people board">
+  	<h1 class="section-title">Advisory Board</h1>
+    <p>VestedWorld’s approach is influenced by a diverse team of leaders who uphold our values and support our mission to invest for the greatest global impact.</p>
+  	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'board']); ?>
+  </section>
+</div>
