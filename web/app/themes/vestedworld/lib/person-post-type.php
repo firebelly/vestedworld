@@ -134,6 +134,12 @@ function metaboxes( array $meta_boxes ) {
         'desc' => 'e.g. Chief Executive Officer',
         'id'   => $prefix . 'subtitle',
         'type' => 'text_medium',
+      ),     
+      array(
+        'name' => 'Quote',
+        'desc' => 'A callout quote or summary',
+        'id'   => $prefix . 'quote',
+        'type' => 'wysiwyg',
       ),
     ),
   );

@@ -140,8 +140,6 @@
     @include clearfix();
   }
   .person {
-    max-width: 50%;
-    flex-basis: 50%;
     h1 {
       font-size: 32px;
       line-height: 1.25em;
@@ -164,13 +162,7 @@
     background: $gray-dark;
   }
   .person {
-    display: flex;
-    padding-left: 30px;
     padding-right: $column-width;
-    &:nth-of-type(odd) {
-      padding-left: 0;
-      border-right: 1px solid $gray-dark;
-    }
     h1 {
       margin-bottom: .25em;
       color: $brand-primary;
@@ -182,6 +174,15 @@
     }
     article {
       width: 100%;
+      @include media-md {        
+        display: flex;
+        > div {
+          max-width: 50%;
+          flex-basis: 50%;
+        }
+      }
+    }
+    .person-inner {
       display: flex;
       justify-content: space-between;
     }
@@ -189,6 +190,12 @@
       min-width: 150px;
       position: relative;
       padding: 30px 0 80px;
+    }
+    .quote {
+      font-size: 32px;
+      line-height: 1.25em;
+      color: $brand-primary;
+      padding: 30px 0 30px 30px;
     }
     button {
       left: 0;
@@ -223,6 +230,8 @@
     }
   }
   .person {
+    max-width: 50%;
+    flex-basis: 50%;
     h1 {
       color: $white;
     }
