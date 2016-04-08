@@ -18,10 +18,10 @@ foreach($pages as $page) {
   <div class="global-overlay"></div>
   <div class="active-person-container">
     <div class="post-nav">
-      <div class="previous previous-person">Previous profile &gt;</div>
-      <div class="next next-person">&lt; Next profile</div>
+      <div class="previous-person">Previous profile &gt;</div>
+      <div class="next-person">&lt; Next profile</div>
     </div>
-    <button class="person-deactivate person-toggle x-button"><div class="x"></div></button>
+    <button class="person-deactivate person-toggle plus-button close"><div class="plus"></div></button>
     <div class="bio-content">
       <h1 class="section-title">Profile</h1>
       <div class="person-data-container">

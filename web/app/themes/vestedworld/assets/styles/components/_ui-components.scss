@@ -23,4 +23,56 @@
   &:focus {
     outline: none;
   }
+
+  &.-white {
+    color: $white;
+    border-color: $white;
+    &:hover {
+      color: $gray-dark;
+      background: $white;
+    }
+  }
+}
+
+// Plus buttons
+.plus-button {
+  padding: 0;
+  border: none;
+  background: none;
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+  &.-expandable.expanded .plus {
+    &::after {
+      transform: translateY(-50%) rotate(0);
+    }
+  }
+  &.close {
+    .plus {
+      transform: rotate(45deg);
+    }
+  }
+  .plus {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    &:before,
+    &:after {
+      left: 0;
+      top: 50%;
+      content: '';
+      width: 18px;
+      height: 2px;
+      position: absolute;
+      background: $brand-primary;
+      transition: transform .2s ease-out, background .2s ease-out;
+    }
+    &::before {
+      transform: translateY(-50%);
+    }
+    &::after {
+      transform: translateY(-50%) rotate(90deg);
+    }
+  }
 }

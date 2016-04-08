@@ -49,6 +49,24 @@ var FBSage = (function($) {
       }
     });
 
+    // People/post nav arrow handlers
+    // Next
+    $(document).keydown(function(e) {
+      if (e.keyCode === 39) {
+        if ($('.person.-active').length) {
+          _nextPerson();
+        }
+      }
+    });
+    // Previous
+    $(document).keydown(function(e) {
+      if (e.keyCode === 37) {
+        if ($('.person.-active').length) {
+          _prevPerson();
+        }
+      }
+    });
+
     // Smoothscroll links
     $('a.smoothscroll').click(function(e) {
       e.preventDefault();
