@@ -34,7 +34,7 @@ var FBSage = (function($) {
     // Fit them vids!
     $('main').fitVids();
 
-    // _initNav();
+    _initNav();
     // _initSearch();
     // _initLoadMore();
     _initParallaxBackgrounds();
@@ -119,23 +119,26 @@ var FBSage = (function($) {
   // Handles main nav
   function _initNav() {
     // SEO-useless nav toggler
-    $('<div class="menu-toggle"><div class="menu-bar"><span class="sr-only">Menu</span></div></div>')
-      .prependTo('header.banner')
+    // $('<div class="menu-toggle"><div class="menu-bar"><span class="sr-only">Menu</span></div></div>')
+    $('<button class="menu-toggle"><span class="lines"></span></button>')
+      .prependTo('.site-header')
       .on('click', function(e) {
         _showMobileNav();
       });
-    var mobileSearch = $('.search-form').clone().addClass('mobile-search');
-    mobileSearch.prependTo('.site-nav');
+    // var mobileSearch = $('.search-form').clone().addClass('mobile-search');
+    // mobileSearch.prependTo('.site-nav');
   }
 
   function _showMobileNav() {
     $('.menu-toggle').addClass('menu-open');
     $('.site-nav').addClass('active');
+    _showOverlay();
   }
 
   function _hideMobileNav() {
     $('.menu-toggle').removeClass('menu-open');
     $('.site-nav').removeClass('active');
+    _hideOverlay();
   }
 
   function _injectSvgSprite() {
@@ -183,7 +186,7 @@ var FBSage = (function($) {
 
   function _initParallaxBackgrounds() {
     // Performance techniques from http://kristerkari.github.io/adventures-in-webkit-land/blog/2013/08/30/fixing-a-parallax-scrolling-website-to-run-in-60-fps/
-    
+
     var parallaxImages = [],
         speed = 0.02;
 
@@ -196,7 +199,7 @@ var FBSage = (function($) {
       parallaxImages.push(parallaxImage);
     });
 
-    $(window).on('scroll', function() {        
+    $(window).on('scroll', function() {
       window.requestAnimationFrame(backgroundScroll);
     });
 
@@ -232,7 +235,7 @@ var FBSage = (function($) {
       $activeContainer.css('top', thisPersonOffset);
       $activeContainer.addClass('-active');
       _scrollBody($activeContainer, 250, 0);
-    }); 
+    });
 
     // Shut it down!
     $('html, body').on('click', '.person-deactivate', function(e) {
@@ -307,7 +310,7 @@ var FBSage = (function($) {
     if (typeof ga !== 'undefined') { ga('send', 'event', category, action); }
   }
 
-    //Initialize Slick Sliders
+  //Initialize Slick Sliders
   function _initSliders(){
     $('.slider').slick({
       slide: '.slide-item',

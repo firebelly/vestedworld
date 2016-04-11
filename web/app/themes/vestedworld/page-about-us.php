@@ -15,7 +15,6 @@ foreach($pages as $page) {
 //Get Management and board
 ?>
 <div class="people-sections">
-  <div class="global-overlay"></div>
   <div class="active-person-container">
     <div class="post-nav">
       <div class="previous-person">Previous profile &gt;</div>
