@@ -3,19 +3,23 @@
 .page.about-us {
 
   .section-title {
-    left: 0;
-    top: 55px;
+    top: 0;
     z-index: 1;
     height: 25px;
     color: $white;
-    padding: 0 16px;
-    line-height: 25px;
+    padding: 0 10px;
     position: absolute;
     font-weight: normal;
     @include small-caps();
-    transform-origin: top left;
+    line-height: 25px;
+    left: #{$column-width * 2};
     background: $brand-primary;
-    transform: rotate(-90deg) translateX(-100%);
+    @include media-md {
+      left: 0;
+      top: 55px;
+      transform-origin: top left;
+      transform: rotate(-90deg) translateX(-100%);
+    }
   }
 
   .about-section {
@@ -51,29 +55,27 @@
       position: relative;
       background: $white;
       padding: 48px #{$column-width * 2} 96px;
-      &::before {
-        left: 0;
-        height: 1px;
-        width: 25px;
-        content: '';
-        bottom: 120px;
-        position: absolute;
-        background: $gray-dark;
-      }
       @include media-md {
         padding: 48px $column-width 96px;
+        &::before {
+          left: 0;
+          height: 1px;
+          width: 25px;
+          content: '';
+          bottom: 120px;
+          position: absolute;
+          background: $gray-dark;
+        }
       }
     }
 
     .summary {
       h2 {
-        font-size: 48px;
-        line-height: 1em;
+        @extend .h1;
         color: $brand-primary;
       }
       p {
-        font-size: 32px;
-        line-height: 1.25em;
+        @extend .h2;
       }
     }
 
@@ -170,8 +172,7 @@
   }
   .person {
     h1 {
-      font-size: 32px;
-      line-height: 1.25em;
+      @extend .h2;
     }
     .bio {
       display: none;
@@ -198,15 +199,19 @@
 
 // Management grid
 .people.management {
-  &::before {
-    left: 0;
-    height: 1px;
-    width: 25px;
-    content: '';
-    bottom: 55px;
-    position: absolute;
-    background: $gray-dark;
+
+  @include media-md {
+    &::before {
+      left: 0;
+      height: 1px;
+      width: 25px;
+      content: '';
+      bottom: 55px;
+      position: absolute;
+      background: $gray-dark;
+    }
   }
+
   .person {
     width: 100%;
     padding-right: $column-width;
@@ -234,10 +239,12 @@
       padding: 30px 0 80px;
     }
     .quote {
-      font-size: 32px;
-      line-height: 1.25em;
+      @extend .h1;
+      padding: 30px 0;
       color: $brand-primary;
-      padding: 30px 0 30px 30px;
+      @include media-md {
+        padding-left: 30px;
+      }
     }
     button {
       left: 0;
@@ -332,7 +339,10 @@
   display: none;
   position: absolute;
   background: $white;
-  margin-right: $column-width;
+  margin-right: #{$column-width * 2};
+  @include media-md {
+    margin-right: $column-width;
+  }
   &.-active {
     display: block;
   }
@@ -342,7 +352,7 @@
   .person-deactivate {
     top: 0;
     position: absolute;
-    right: -#{$column-width / 2};
+    right: -$column-width;
     transform: translateX(50%);
     .plus {
       &::before,
@@ -350,13 +360,16 @@
         background: $white;
       }
     }
+    @include media-md {
+      right: -#{$column-width / 2};
+    }
   }
   .post-nav {
     top: 0;
     bottom: 0;
     position: absolute;
-    width: $column-width;
-    right: -$column-width;
+    width: #{$column-width * 2};
+    right: -#{$column-width * 2};
     > div {
       left: 50%;
       color: $white;
@@ -372,6 +385,11 @@
       &.next-person {
         bottom: 0;
       }
+    }
+
+    @include media-md {
+      width: $column-width;
+      right: -$column-width;
     }
   }
   .person-data {
@@ -400,9 +418,12 @@
   .bio {
     position: relative;
     background: $gray-lite;
-    padding: 55px $column-width;
+    padding: 55px #{$column-width * 2};
     p:first-of-type {
       margin-top: 0;
+    }
+    @include media-md {
+      padding: 55px $column-width;
     }
   }
 
@@ -433,9 +454,13 @@
       }
     }
     .person-text {
-      padding: 55px #{$column-width * 2};
+      padding: 32px #{$column-width * 2};
+      @include media-md {
+        padding: 55px #{$column-width * 2};
+      }
       h1 {
-        font-size: 32px;
+        margin: 0;
+        @extend .h2;
       }
     }
   } 
