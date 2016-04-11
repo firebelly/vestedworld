@@ -226,7 +226,7 @@
       padding: 30px 0 80px;
     }
     .quote {
-      @extend .h1;
+      @extend .h2;
       padding: 30px 0;
       color: $brand-primary;
       @include media-md {
