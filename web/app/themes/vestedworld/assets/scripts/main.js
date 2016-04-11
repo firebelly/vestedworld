@@ -185,26 +185,36 @@ var FBSage = (function($) {
   }
 
   function _initParallaxBackgrounds() {
-    // Check to see if there's anything to lax on the page
-    if ($('.parallax-this').length) {
-      $(window).on('scroll', function() {
-        var speed = 0.02;
-        var $thingToLax = $('.parallax-this');
+    // Performance techniques from http://kristerkari.github.io/adventures-in-webkit-land/blog/2013/08/30/fixing-a-parallax-scrolling-website-to-run-in-60-fps/
 
-        $thingToLax.each(function() {
-          // Find the parent of the thingToLax
-          var $thisSection = $(this).closest('.parallax-parent');
-          // Get the current scroll position
-          var scrollRate = $(window).scrollTop();
-          // Subtract the top position of the parent from the scroll position
-          scrollRate = scrollRate - ($thisSection.offset().top);
+    var parallaxImages = [],
+        speed = 0.02;
 
-          $(this).css({
-            'transform': 'translate(-50%,' + (-70 - (scrollRate * speed)) + '%)'
-          });
+    $('.parallax-this').each(function(i) {
+      var parallaxImage = {};
+      parallaxImage.element = $(this);
+      parallaxImage.parent = parallaxImage.element.closest('.parallax-parent');
+      parallaxImage.offsetTop = parallaxImage.parent.offset().top;
+
+      parallaxImages.push(parallaxImage);
+    });
+
+    $(window).on('scroll', function() {
+      window.requestAnimationFrame(backgroundScroll);
+    });
+
+    function backgroundScroll() {
+      $.each(parallaxImages, function(i, parallaxImage) {
+        var scrollRate = $(window).scrollTop();
+        // Subtract the top position of the parent from the scroll position
+        scrollRate = scrollRate - (parallaxImage.offsetTop);
+
+        parallaxImage.element.css({
+          'transform': 'translate(-50%,' + (-70 - (scrollRate * speed)) + '%)'
         });
       });
     }
+
   }
 
   function _initPeopleModals() {
