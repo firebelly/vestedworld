@@ -396,9 +396,8 @@
     padding: 55px #{$column-width * 2} 0;
   }
   .quote {
+    @extend .h1;
     color: $white;
-    font-size: 48px;
-    line-height: 1em;
     background: $brand-primary;
     padding: 55px #{$column-width * 2};
   }
