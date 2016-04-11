@@ -25,37 +25,38 @@
 
 // mobile menu toggle
 .menu-toggle {
-  top: 43px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 64px;
+  height: 65px;
   padding: 0;
-  width: 22px;
-  float: right;
   border: none;
-  height: 18px;
   background: $blue;
-  position: relative;
   .lines {
-    top: 50%;
+    display: block;
+    top: 48%;
     left: 50%;
-    width: 100%;
-    height: 2px;
+    margin-left: -15px;
+    width: 50%;
+    height: 1px;
     position: absolute;
     background: $white;
-    transform: translate(-50%, -50%);
     &::before,
     &::after {
       left: 0;
-      height: 2px;
+      height: 1px;
       width: 100%;
       content: '';
       background: $white;
       position: absolute;
-      transition: transform .2s ease-out;
+      transition: all .2s ease-out;
     }
     &::before {
-      top: -6px;
+      top: -10px;
     }
     &::after {
-      bottom: -6px;
+      bottom: -10px;
     }
   }
 
@@ -63,16 +64,16 @@
   &:focus {
     outline: none;
   }
-  &:hover {
-    .lines {
-      &::before {
-        transform: translateY(-2px);
-      }
-      &::after {
-        transform: translateY(2px);
-      }
-    }
-  }
+  // &:hover {
+  //   .lines {
+  //     &::before {
+  //       top: -14px;
+  //     }
+  //     &::after {
+  //       bottom: -12px;
+  //     }
+  //   }
+  // }
 
   @include min-screen($breakpoint-nav) {
     top: auto;

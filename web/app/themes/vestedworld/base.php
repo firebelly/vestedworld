@@ -42,5 +42,6 @@ use Roots\Sage\Wrapper;
         document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.11.1.js'><\/script>".replace("HOST", location.hostname));
     //]]></script>
     <?php endif; ?>
+    <div class="global-overlay"></div>
   </body>
 </html>
