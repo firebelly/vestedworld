@@ -50,7 +50,7 @@
       @include column(12);
       padding: #{$vertical-beat * 4} #{$mobile-column-width * 1} #{$vertical-beat * 6};
 
-      background: rgba($blue,.85);
+      background: rgba($blue,1);
       color: $white;
       p.headline {
         margin: 0 0 40px 0;
@@ -62,6 +62,7 @@
         position: absolute;
         left: 0;
         bottom: 0;
+        background: rgba($blue,.85);
         padding: #{$vertical-beat * 6} #{$column-width * 1} #{$vertical-beat * 8};
         p.headline {
           font: 48px/48px $sans;
@@ -84,6 +85,7 @@
       }
       &:first-of-type {
         margin-top: 0;
+        border-top: none;
       }
       img {
         opacity: 0;
@@ -100,8 +102,23 @@
 
     @include media-md {
       padding: #{$vertical-beat * 6} 0 #{$vertical-beat * 8} #{$column-width * 1};
+      &::before {
+        left: 0;
+        content: '';
+        width: 31px;
+        height: 1px;
+        bottom: 64px;
+        position: absolute;
+        background: $gray-dark;
+      }
       article {
+        margin-right: 0;
+        border-top: none;
+        border-bottom: 1px solid $gray-dark;
         padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/10} #{$vertical-beat * 8} #{$column-width * 2 * $num_columns/10};
+        &:first-of-type {
+          border-top: 1px solid $gray-dark;
+        }
         img {
           top: 64px;
           right: auto;
@@ -126,17 +143,18 @@
   }
   .newsletter {
     margin: #{$vertical-beat * 4} 0 0;
-    height: 80px;
+    height: 48px;
     width: 100%;
     border: 1px solid $white;
     position: relative;
     @include media-md {
+      height: 80px;
       margin: #{$vertical-beat * 8} 0 0;
     }
     input[type=email] {
       background: none;
       border: none;
-      font: 22px/78px $sans;
+      font: 16px/46px $sans;
       padding: 0 30px;
       color: $white;
       outline: none;
@@ -156,16 +174,19 @@
       background: $white;
       color: $blue;
       text-align: center;
-      line-height: 78px;
-      height: 78px;
+      line-height: 46px;
+      height: 46px;
       border: none;
       @include media-md {
+        height: 78px;
         width: #{$column-width * 1 * $num_columns/9};
       }
     }
   }
 
   .featured {
+    color: $white;
+    background: $blue-dark;
     position: relative;
     padding: #{$vertical-beat * 4} #{$mobile-column-width * 1};
     h3 {
