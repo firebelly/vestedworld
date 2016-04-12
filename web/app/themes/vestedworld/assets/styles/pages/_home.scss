@@ -133,12 +133,35 @@
     @include column(11);
   }
   .join {
+    display: none;
     position: relative;
     background: $blue;
     color: $white;
     padding: #{$vertical-beat * 6} #{$mobile-column-width} #{$vertical-beat * 8};
     @include media-md {
+      display: block;
       padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/11} #{$vertical-beat * 8};
+    }
+    &.-mobile {
+      color: $gray-dark;
+      display: block;
+      background: $white;
+      .newsletter {
+        border-color: $gray-dark;
+        input[type=email] {
+          color: $gray-dark;
+          &::placeholder {
+            color: $gray-dark;
+          }
+        }
+        button.submit {
+          color: $white;
+          background: $gray-dark;
+        }
+      }
+      @include media-md {
+        display: none;
+      }
     }
   }
   .newsletter {

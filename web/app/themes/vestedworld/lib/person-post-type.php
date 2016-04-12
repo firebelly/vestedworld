@@ -137,8 +137,14 @@ function metaboxes( array $meta_boxes ) {
       ),     
       array(
         'name' => 'Quote',
-        'desc' => 'A callout quote or summary',
+        'desc' => 'A quote associated with a management team member',
         'id'   => $prefix . 'quote',
+        'type' => 'wysiwyg',
+      ),     
+      array(
+        'name' => 'Callout text',
+        'desc' => 'A callout quote or summary for the full bio view',
+        'id'   => $prefix . 'callout',
         'type' => 'wysiwyg',
       ),
     ),
