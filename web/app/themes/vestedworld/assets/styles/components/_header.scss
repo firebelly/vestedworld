@@ -3,7 +3,7 @@
 .site-header {
   @include clearfix;
 
-  padding: 16px #{$column-width * 1} 16px 24px;
+  padding: 16px 0 16px 24px;
   height: 62px;
   background: $gray-lite;
 
@@ -17,11 +17,6 @@
 
   h1 {
     margin: 0;
-  }
-  @include media-sm {
-  }
-
-  @include media-md {
   }
 
   .icon-logo {
@@ -37,5 +32,36 @@
     vertical-align: middle;
     fill: $blue;
   }
+
+  .nav-actions {
+    position: relative;
+  }
+
+  @include media-md {
+    padding: 16px #{100% / 24 * 1} 16px 24px;
+  }
 }
 
+// Investor dropdown form
+.investor-form-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $white;
+  width: 100%;
+  z-index: 1000;
+  &.active {
+    display: block;
+  }
+  @include media-md {
+    top: 62px;
+    width: #{100% / 24 * 11};
+    right: #{100% / 24 * 1};
+  }
+}
+.admin-bar .investor-form-container {
+  @include media-md {
+    top: 94px;
+  }
+}

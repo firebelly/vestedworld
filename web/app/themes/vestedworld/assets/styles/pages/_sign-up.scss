@@ -1,0 +1,85 @@
+// Sign Up Page
+
+form.signup-form {
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .contact-details {
+    label {
+      @extend .sr-only;
+    }
+    input {
+      // height: #{$vertical-beat * 6};
+      background: $gray-lite;
+      padding: #{$vertical-beat * 2};
+      border: none;
+      width: 100%;
+      margin-bottom: #{$vertical-beat * 1};
+    }
+  }
+  .required {
+    font: 11px/24px $sans;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+  }
+  h2 {
+    font: 16px/24px $sans;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+  }
+  .checkboxes {
+    padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 8};
+  }
+  @include media-md {
+    padding: #{$vertical-beat * 8} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
+    p.required {
+      width: #{$column-width * 4 * 23/9};
+      float: left;
+    }
+    .button {
+      width: #{$column-width * 5 * 23/9};
+    }
+    .checkboxes {
+      label {
+        width: 50%;
+        float: left;
+      }
+    }
+  }
+
+}
+
+.page.sign-up {
+  .page-content {
+    @include column(12);
+    background: $blue;
+    color: $white;
+    padding: #{$vertical-beat * 4} #{$mobile-column-width * 1} #{$vertical-beat * 6};
+    h3.tab {
+      background: $white;
+      color: $blue;
+    }
+    @include media-md {
+      h3.tab {
+        top: #{$vertical-beat * 8};
+      }
+      h2 {
+        margin-top: -6px;
+        font: 48px/48px $sans;
+      }
+      p {
+        font: 32px/40px $sans;
+        @extend %smooth;
+      }
+      padding: #{$vertical-beat * 8} #{$column-width * 1} #{$vertical-beat * 8};
+    }
+  }
+
+  .form-content {
+    @include column(11);
+    background: $white;
+
+  }
+}
