@@ -14,7 +14,7 @@
       </a>
     </address>
   </div>
-  <div class="contact">
+  <div class="contact" id="contact">
     <h3>Contact</h3>
     <ul>
       <li><a target="_blank" href="mailto:<?php echo get_option( 'contact_email' ); ?>"><?php echo get_option( 'contact_email' ); ?></a></li>

@@ -70,7 +70,7 @@ var FBSage = (function($) {
     });
 
     // Smoothscroll links
-    $('a.smoothscroll').click(function(e) {
+    $('a.smoothscroll, .smoothscroll a').click(function(e) {
       e.preventDefault();
       var href = $(this).attr('href');
       _scrollBody($(href));
