@@ -50,6 +50,7 @@
     background: $white;
     &.active {
       display: block;
+      width: 700px; //tmp
     }
   }
 }
