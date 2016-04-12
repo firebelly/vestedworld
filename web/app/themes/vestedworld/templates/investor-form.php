@@ -30,6 +30,8 @@ if (empty($application_type)) {
 
   <div class="actions">
     <p class="required">* REQUIRED</p>
-    <input type="submit" value="Join VestedWorld" class="button">
+    <div class="btn-wrap btn -blue">
+      <input type="submit" value="Join VestedWorld" class="submit">
+    </div>
   </div>
 </form>

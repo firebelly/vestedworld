@@ -17,6 +17,9 @@ form.signup-form {
       border: none;
       width: 100%;
       margin-bottom: #{$vertical-beat * 1};
+      &:focus {
+        outline: 1px solid $brand-primary;
+      }
     }
   }
   .required {
@@ -35,11 +38,20 @@ form.signup-form {
   @include media-md {
     padding: #{$vertical-beat * 8} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
     p.required {
-      width: #{$column-width * 4 * 23/9};
       float: left;
     }
-    .button {
-      width: #{$column-width * 5 * 23/9};
+    .btn-wrap {
+      padding: 0;
+      float: right;
+      input[type=submit] {
+        border: none;
+        background: none;
+        line-height: 1.5em;
+        padding: 6px 50px 4px 10px;
+        &:focus {
+          outline: none;
+        }
+      }
     }
     .checkboxes {
       label {
