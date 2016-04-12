@@ -58,8 +58,8 @@
   }
   @include media-md {
     top: 62px;
-    width: #{$column-width * 11};
-    right: #{$column-width * 1};
+    width: #{100% / 24 * 11};
+    right: #{100% / 24 * 1};
   }
 }
 .admin-bar .investor-form-container {
