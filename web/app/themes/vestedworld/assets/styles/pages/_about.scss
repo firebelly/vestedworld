@@ -233,6 +233,9 @@
         order: 0;
       }
     }
+    .callout {
+      display: none;
+    }
     .quote {
       @extend .h2;
       padding: 30px 0;
@@ -415,11 +418,14 @@
   .quote {
     padding: 55px #{$column-width * 2} 0;
   }
-  .quote {
+  .callout {
     @extend .h1;
     color: $white;
     background: $brand-primary;
     padding: 55px #{$column-width * 2};
+  }
+  .quote {
+    display: none;
   }
   .bio {
     position: relative;
