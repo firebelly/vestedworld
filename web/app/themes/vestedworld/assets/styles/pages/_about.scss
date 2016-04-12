@@ -38,6 +38,9 @@
         min-width: 100%;
         min-height: 400px;
         position: absolute;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000;
         transition: transform 0s linear;
         transform: translate(-50%, -70%);
       }

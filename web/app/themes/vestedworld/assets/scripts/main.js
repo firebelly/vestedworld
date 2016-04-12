@@ -196,7 +196,7 @@ var FBSage = (function($) {
     // Performance techniques from http://kristerkari.github.io/adventures-in-webkit-land/blog/2013/08/30/fixing-a-parallax-scrolling-website-to-run-in-60-fps/
 
     var parallaxImages = [],
-        speed = 0.02;
+        speed = 0.01;
 
     $('.parallax-this').each(function(i) {
       var parallaxImage = {};
@@ -218,7 +218,7 @@ var FBSage = (function($) {
         scrollRate = scrollRate - (parallaxImage.offsetTop);
 
         parallaxImage.element.css({
-          'transform': 'translate(-50%,' + (-70 - (scrollRate * speed)) + '%)'
+          'transform': 'translate(-50%,' + (-70 + (scrollRate * speed)) + '%)'
         });
       });
     }
@@ -237,7 +237,6 @@ var FBSage = (function($) {
 
         isGifInView(this, gifSrc);
 
-
         $(window).on('scroll', function() {
           if ($(window).scrollTop() + ($(window).height() * delayOffset) > gifOffset && !$gif.is('.in-view')) {
             $gif.addClass('in-view');
@@ -254,12 +253,10 @@ var FBSage = (function($) {
 
       if ($(window).scrollTop() + $(window).height() < elementOffsetTop) {
         fired = false;
-        console.log(fired);
       } else {
         $element.addClass('in-view');
         $element.attr('src', gifSrc);
         fired = true;
-        console.log(fired);
       }
     }
 
