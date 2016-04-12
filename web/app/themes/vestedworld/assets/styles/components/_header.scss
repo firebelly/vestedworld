@@ -37,5 +37,20 @@
     vertical-align: middle;
     fill: $blue;
   }
+
+  .nav-actions {
+    position: relative;
+  }
+
+  // Investor dropdown form
+  .investor-form-container {
+    right: 0;
+    display: none;
+    position: absolute;
+    background: $white;
+    &.active {
+      display: block;
+    }
+  }
 }
 

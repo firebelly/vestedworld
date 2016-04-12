@@ -40,6 +40,7 @@ var FBSage = (function($) {
     _initParallaxBackgrounds();
     _initGifPlay();
     _initPeopleModals();
+    _initDropdownInvestorForm();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -128,16 +129,22 @@ var FBSage = (function($) {
       });
     // var mobileSearch = $('.search-form').clone().addClass('mobile-search');
     // mobileSearch.prependTo('.site-nav');
+
+    // Close it when clicking off!
+    $document.on('click', 'body.menu-open', _hideMobileNav);
   }
 
   function _showMobileNav() {
+    setTimeout(function() {
+      $('body').addClass('menu-open');
+    }, 50);
     $('.menu-toggle').addClass('menu-open');
     $('.site-nav').addClass('active');
     _showOverlay();
   }
 
   function _hideMobileNav() {
-    $('.menu-toggle').removeClass('menu-open');
+    $('body, .menu-toggle').removeClass('menu-open');
     $('.site-nav').removeClass('active');
     _hideOverlay();
   }
@@ -256,6 +263,13 @@ var FBSage = (function($) {
       }
     }
 
+  }
+
+  function _initDropdownInvestorForm() {
+    $('.site-header .sign-up').on('click', function(e) {
+      e.preventDefault();
+      $('.investor-form-container').toggleClass('active');
+    });
   }
 
   function _initPeopleModals() {
