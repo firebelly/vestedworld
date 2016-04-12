@@ -85,7 +85,7 @@
       &:first-of-type {
         margin-top: 0;
       }
-      svg {
+      img {
         position: absolute;
         top: 0;
         right: 0;
@@ -97,7 +97,7 @@
       padding: #{$vertical-beat * 6} 0 #{$vertical-beat * 8} #{$column-width * 1};
       article {
         padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/10} #{$vertical-beat * 8} #{$column-width * 2 * $num_columns/10};
-        svg {
+        img {
           top: 64px;
           right: auto;
           left: 0;

@@ -18,19 +18,19 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
   <section class="what-we-do">
     <h3 class="tab">What We Do</h3>
     <article>
-      <svg role="image" class="icon icon-target"><use xlink:href="#icon-target"></use></svg>
+      <img src="<?= Roots\Sage\Assets\asset_path('images/Target.gif?'.time().'') ?>" alt="Target">
       <h2><a href="/target/">Target</a></h2>
       <p><?= $target ?></p>
       <a href="/target/" class="learn-more">Learn More</a>
     </article>
     <article>
-      <svg role="image" class="icon icon-connect"><use xlink:href="#icon-connect"></use></svg>
+      <img src="<?= Roots\Sage\Assets\asset_path('images/Invest.gif?'.time().'') ?>" alt="Invest">
       <h2><a href="/connect/">Connect</a></h2>
       <p><?= $connect ?></p>
       <a href="/connect/" class="learn-more">Learn More</a>
     </article>
     <article>
-      <svg role="image" class="icon icon-invest"><use xlink:href="#icon-invest"></use></svg>
+      <img src="<?= Roots\Sage\Assets\asset_path('images/Invest.gif?'.time().'') ?>" alt="Invest">
       <h2><a href="/invest/">Invest</a></h2>
       <p><?= $invest ?></p>
       <a href="/invest/" class="learn-more">Learn More</a>
