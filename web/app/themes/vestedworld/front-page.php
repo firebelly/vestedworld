@@ -18,19 +18,19 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
   <section class="what-we-do">
     <h3 class="tab">What We Do</h3>
     <article>
-      <img src="<?= Roots\Sage\Assets\asset_path('images/Target.gif?'.time().'') ?>" alt="Target">
+      <img src="<?= Roots\Sage\Assets\asset_path('images/Target.gif?'.time().'') ?>" alt="Target" class="gif-to-play">
       <h2><a href="/target/">Target</a></h2>
       <p><?= $target ?></p>
       <a href="/target/" class="learn-more">Learn More</a>
     </article>
     <article>
-      <img src="<?= Roots\Sage\Assets\asset_path('images/Invest.gif?'.time().'') ?>" alt="Invest">
+      <img src="<?= Roots\Sage\Assets\asset_path('images/Connect.gif?'.time().'') ?>" alt="Connect" class="gif-to-play">
       <h2><a href="/connect/">Connect</a></h2>
       <p><?= $connect ?></p>
       <a href="/connect/" class="learn-more">Learn More</a>
     </article>
     <article>
-      <img src="<?= Roots\Sage\Assets\asset_path('images/Invest.gif?'.time().'') ?>" alt="Invest">
+      <img src="<?= Roots\Sage\Assets\asset_path('images/Invest.gif?'.time().'') ?>" alt="Invest" class="gif-to-play">
       <h2><a href="/invest/">Invest</a></h2>
       <p><?= $invest ?></p>
       <a href="/invest/" class="learn-more">Learn More</a>
