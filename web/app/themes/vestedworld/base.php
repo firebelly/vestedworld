@@ -43,5 +43,6 @@ use Roots\Sage\Wrapper;
     //]]></script>
     <?php endif; ?>
     <div class="global-overlay"></div>
+    <div class="investor-form-container"><?php include(locate_template('templates/investor-form.php')); ?></div>
   </body>
 </html>

@@ -24,6 +24,31 @@ form.signup-form {
     text-transform: uppercase;
     letter-spacing: .2em;
   }
+  h2 {
+    font: 16px/24px $sans;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+  }
+  .checkboxes {
+    padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 8};
+  }
+  @include media-md {
+    padding: #{$vertical-beat * 8} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
+    p.required {
+      width: #{$column-width * 4 * 23/9};
+      float: left;
+    }
+    .button {
+      width: #{$column-width * 5 * 23/9};
+    }
+    .checkboxes {
+      label {
+        width: 50%;
+        float: left;
+      }
+    }
+  }
+
 }
 
 .page.sign-up {
@@ -55,14 +80,6 @@ form.signup-form {
   .form-content {
     @include column(11);
     background: $white;
-    h2 {
-      font: 16px/24px $sans;
-      text-transform: uppercase;
-      letter-spacing: .2em;
-    }
-    @include media-md {
-      padding: #{$vertical-beat * 8} #{$column-width * 1} #{$vertical-beat * 8};
-    }
 
   }
 }

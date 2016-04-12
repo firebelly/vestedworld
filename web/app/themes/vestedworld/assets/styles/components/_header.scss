@@ -42,16 +42,28 @@
     position: relative;
   }
 
-  // Investor dropdown form
-  .investor-form-container {
-    right: 0;
-    display: none;
-    position: absolute;
-    background: $white;
-    &.active {
-      display: block;
-      width: 700px; //tmp
-    }
-  }
 }
 
+// Investor dropdown form
+.investor-form-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $white;
+  width: 100%;
+  z-index: 1000;
+  &.active {
+    display: block;
+  }
+  @include media-md {
+    top: 62px;
+    width: #{$column-width * 11};
+    right: #{$column-width * 1};
+  }
+}
+.admin-bar .investor-form-container {
+  @include media-md {
+    top: 94px;
+  }
+}

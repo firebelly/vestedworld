@@ -13,7 +13,6 @@
       ?>
       <div class="nav-actions">
         <a class="sign-up" href="/sign-up/">Sign Up</a>
-        <div class="investor-form-container"><?php include ('investor-form.php'); ?></div>
         <a class="show-search" href="/search/"><span class="sr-only">Search</span><svg class="icon icon-search"><use xlink:href="#icon-search"></svg></a>
       </div>
     </nav>
