@@ -29,13 +29,13 @@ foreach($pages as $page) {
     </div>
   </div>
 
-  <section class="about-section people management">
+  <section class="about-section people management" id="management">
   	<h1 class="section-title">Management</h1>
     <div class="management-container">
     	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'management']); ?>
     </div>
   </section>
-  <section class="about-section people board">
+  <section class="about-section people board" id="advisory-board">
   	<h1 class="section-title">Advisory Board</h1>
     <p>VestedWorld’s approach is influenced by a diverse team of leaders who uphold our values and support our mission to invest for the greatest global impact.</p>
   	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'board']); ?>
