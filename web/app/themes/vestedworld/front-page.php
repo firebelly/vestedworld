@@ -19,7 +19,7 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
     <h3 class="tab -white -bluetxt">Join</h3>
     <h2>Join VestedWorld</h2>
     <p>We’re always looking for sharp, savvy and socially-conscious investors and advisors to join our growing community. Sign up to learn more.</p>
-    <?php include(locate_template('templates/join.php')); ?>
+    <a href="sign-up" class="sign-up-button">Sign up</a>
   </section>
 
   <!-- what-we-do -->
@@ -50,7 +50,7 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
       <h3 class="tab -white -bluetxt">Join</h3>
       <h2>Join VestedWorld</h2>
       <p>We’re always looking for sharp, savvy and socially-conscious investors and advisors to join our growing community. Sign up to learn more.</p>
-      <?php include(locate_template('templates/join.php')); ?>
+      <a href="sign-up" class="sign-up-button">Sign up</a>
     </section>
 
     <!-- featured -->

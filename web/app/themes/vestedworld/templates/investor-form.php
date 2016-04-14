@@ -9,10 +9,10 @@ if (empty($application_type)) {
   <h2>Become A VestedAngel</h2>
 
   <fieldset class="contact-details">
-    <div><label>First Name (Required)</label><input type="text" name="vestedangel_first_name" placeholder="First Name" required></div>
-    <div><label>Last Name (Required)</label><input type="text" name="vestedangel_last_name" placeholder="Last Name" required></div>
-    <div><label>Email Address (Required)</label><input type="email" name="vestedangel_email" placeholder="Email Address" required></div>
-    <div><label>Phone Number (Required)</label><input type="tel" name="vestedangel_phone" placeholder="Phone Number" required></div>
+    <div><label>First Name (Required)</label><input type="text" name="vestedangel_first_name" placeholder="First Name*" required></div>
+    <div><label>Last Name (Required)</label><input type="text" name="vestedangel_last_name" placeholder="Last Name*" required></div>
+    <div><label>Email Address (Required)</label><input type="email" name="vestedangel_email" placeholder="Email Address*" required></div>
+    <div><label>Phone Number (Required)</label><input type="tel" name="vestedangel_phone" placeholder="Phone Number*" required></div>
     <div><label>Company</label><input type="text" name="vestedangel_company" placeholder="Company"></div>
   </fieldset>
 

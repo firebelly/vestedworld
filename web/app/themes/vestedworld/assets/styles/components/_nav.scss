@@ -34,6 +34,7 @@
   padding: 0;
   border: none;
   background: $blue;
+  transition: right .2s ease-out;
   .lines {
     display: block;
     top: 48%;
@@ -65,16 +66,28 @@
   &:focus {
     outline: none;
   }
-  // &:hover {
-  //   .lines {
-  //     &::before {
-  //       top: -14px;
-  //     }
-  //     &::after {
-  //       bottom: -12px;
-  //     }
-  //   }
-  // }
+
+  // Open
+  &.menu-open {
+    left: 0;
+    right: auto;
+    @include min-screen(364px) {
+      left: auto;
+      right: 300px;
+    }
+
+    .lines {
+      background: rgba($white, 0);
+      &::before {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+      &::after {
+        top: 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
 
   // change back to $breakpoint-nav
   @include min-screen($breakpoint-md) {
@@ -93,10 +106,10 @@
   min-height: 100%;
   background: $gray-lite;
   @include clearfix;
-  width: calc(100% - 97px);
+  width: calc(100% - 64px);
   transform: translateX(100%);
   transition: transform .2s ease-out;
-  &.active {
+  &.-active {
     transform: translateX(0);
   }
 
@@ -156,7 +169,7 @@
       &:first-of-type {
         margin-top: 0;
       }
-      &.active {
+      &.-active {
         a::after {
           opacity: 1;
         }
@@ -276,7 +289,7 @@
     display: none;
     position: absolute;
     background: $white;
-    &.active {
+    &.-active {
       display: block;
     }
   }

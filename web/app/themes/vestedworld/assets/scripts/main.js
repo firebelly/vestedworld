@@ -48,6 +48,7 @@ var FBSage = (function($) {
         _hideSearch();
         _hideMobileNav();
         _closePerson();
+        _hideInvestorForm();
       }
     });
 
@@ -85,16 +86,14 @@ var FBSage = (function($) {
 
   } // end init()
 
-  function _scrollBody(element, duration, delay) {
+  function _scrollBody(element, duration, delay, offset) {
     if ($('#wpadminbar').length) {
-      wpOffset = $('#wpadminbar').height();
-    } else {
-      wpOffset = 0;
+      offset = $('#wpadminbar').height() + offset;
     }
     element.velocity("scroll", {
       duration: duration,
       delay: delay,
-      offset: -wpOffset
+      offset: -offset
     }, "easeOutSine");
   }
 
@@ -125,13 +124,17 @@ var FBSage = (function($) {
     $('<button class="menu-toggle"><span class="lines"></span></button>')
       .prependTo('.site-header')
       .on('click', function(e) {
-        _showMobileNav();
+        if (!$('.site-nav').is('.-active')) {
+          _showMobileNav();
+        } else {
+          _hideMobileNav();
+        }
       });
     // var mobileSearch = $('.search-form').clone().addClass('mobile-search');
     // mobileSearch.prependTo('.site-nav');
 
     // Close it when clicking off!
-    $document.on('click', 'body.menu-open', _hideMobileNav);
+    $document.on('click', '.global-overlay, .site-nav a', _hideMobileNav);
   }
 
   function _showMobileNav() {
@@ -139,13 +142,13 @@ var FBSage = (function($) {
       $('body').addClass('menu-open');
     }, 50);
     $('.menu-toggle').addClass('menu-open');
-    $('.site-nav').addClass('active');
+    $('.site-nav').addClass('-active');
     _showOverlay();
   }
 
   function _hideMobileNav() {
     $('body, .menu-toggle').removeClass('menu-open');
-    $('.site-nav').removeClass('active');
+    $('.site-nav').removeClass('-active');
     _hideOverlay();
   }
 
@@ -265,8 +268,38 @@ var FBSage = (function($) {
   function _initDropdownInvestorForm() {
     $('.site-header .sign-up').on('click', function(e) {
       e.preventDefault();
-      $('.investor-form-container').toggleClass('active');
+
+      if (!$('.investor-form-container').is('.-active')) {
+        _showInvestorForm();
+      } else {
+        _hideInvestorForm();
+      }
     });
+
+    // Shut it down!
+    $document.on('click', '.global-overlay, .investor-form-container .close, .menu-toggle', function() {
+      if ($('.investor-form-container').is('.-active')) {
+        _hideInvestorForm();
+      }
+    });
+  }
+
+  function _showInvestorForm() {
+    _showOverlay();
+    $('.investor-form-container').addClass('-active');
+    setTimeout(function() {
+      $('.investor-form-container').addClass('-show');
+    }, 50);
+  }
+
+  function _hideInvestorForm() {
+    $('.investor-form-container').removeClass('-show');
+    setTimeout(function() {
+     $('.investor-form-container').removeClass('-active');
+    }, 400);
+    setTimeout(function() {
+      _hideOverlay();
+    }, 200);
   }
 
   function _initPeopleModals() {
@@ -286,7 +319,7 @@ var FBSage = (function($) {
       $personData.clone().appendTo($activeDataContainer);
       $activeContainer.css('top', thisPersonOffset);
       $activeContainer.addClass('-active');
-      _scrollBody($activeContainer, 250, 0);
+      _scrollBody($activeContainer, 250, 0, 60);
     });
 
     // Shut it down!
@@ -334,11 +367,26 @@ var FBSage = (function($) {
   }
 
   function _showOverlay() {
-    $('.global-overlay').addClass('-active');
+    if (!$('.global-overlay').length) {
+      $('<div class="global-overlay"></div>').appendTo($('body'));
+      setTimeout(function() {
+        $('.global-overlay').addClass('-active');
+      }, 50);
+    } else {
+      setTimeout(function() {
+        $('<div class="global-overlay"></div>').appendTo($('body'));
+        setTimeout(function() {
+          $('.global-overlay').addClass('-active');
+        }, 50);
+      }, 260);
+    }
   }
 
   function _hideOverlay() {
     $('.global-overlay').removeClass('-active');
+    setTimeout(function() {
+      $('.global-overlay').remove();
+    }, 250);
   }
 
   function _closePerson() {

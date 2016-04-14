@@ -163,6 +163,59 @@
         display: none;
       }
     }
+    .sign-up-button {
+      margin: #{$vertical-beat * 4} 0 0;
+      height: 48px;
+      width: 100%;
+      z-index: 1;
+      display: block;
+      padding: 0 30px;
+      text-decoration: none;
+      font: 16px/46px $sans;
+      color: $brand-primary;
+      border: 1px solid $brand-primary;
+      position: relative;
+      transition: background .2s ease-out, color .2s ease-out;
+      &::after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: #{$mobile-column-width * 2};
+        font-size: 16px;
+        background: $brand-primary;
+        color: $white;
+        content: '>';
+        text-align: center;
+        line-height: 46px;
+        height: 46px;
+        border: none;
+        transition: width .2s ease-out, padding .2s ease-out;
+        @include media-md {
+          height: 78px;
+          line-height: 78px;
+          text-align: right;
+          background: $white;
+          color: $brand-primary;
+          padding: 0 #{$mobile-column-width - 3} 0 0;
+          width: #{$column-width * 1 * $num_columns/9};
+        }
+      }
+      @include media-md {
+        height: 80px;
+        color: $white;
+        font: 32px/78px $sans;
+        border-color: $white;
+        margin: #{$vertical-beat * 8} 0 0;
+        &:hover {
+          color: $brand-primary;
+          &::after {
+            z-index: -1;
+            width: 100%;
+            padding-right: #{$mobile-column-width - 4}; 
+          }
+        }
+      }
+    }
   }
   .newsletter {
     margin: #{$vertical-beat * 4} 0 0;

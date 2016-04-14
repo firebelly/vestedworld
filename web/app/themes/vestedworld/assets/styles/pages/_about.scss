@@ -367,12 +367,6 @@
     position: absolute;
     right: -$column-width;
     transform: translateX(50%);
-    .plus {
-      &::before,
-      &::after {
-        background: $white;
-      }
-    }
     @include media-md {
       right: -#{$column-width / 2};
     }

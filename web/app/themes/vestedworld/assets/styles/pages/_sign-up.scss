@@ -1,6 +1,8 @@
 // Sign Up Page
 
 form.signup-form {
+  padding: #{$vertical-beat * 3} #{$column-width} #{$vertical-beat * 5};
+
   fieldset {
     border: none;
     padding: 0;
@@ -17,6 +19,10 @@ form.signup-form {
       border: none;
       width: 100%;
       margin-bottom: #{$vertical-beat * 1};
+      transition: background .1s ease-out, outline .1s ease-out;
+      &:hover {
+        background: lighten($gray-lite, 5);
+      }
       &:focus {
         outline: 1px solid $brand-primary;
       }
@@ -31,27 +37,46 @@ form.signup-form {
     font: 16px/24px $sans;
     text-transform: uppercase;
     letter-spacing: .2em;
+    margin-bottom: #{$vertical-beat * 5};
+  }
+  .actions {
+    @include clearfix();
   }
   .checkboxes {
     padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 8};
+    label {
+      position: relative;
+      padding-left: 20px;
+      input {
+        top: 4px;
+        left: 0;
+        position: absolute;
+      }
+    }
+  }
+  .btn-wrap {
+    padding: 0;
+    float: right;
+    input[type=submit] {
+      border: none;
+      background: none;
+      line-height: 1.5em;
+      @include small-caps();
+      font-size: 16px;
+      padding: 6px 50px 4px 10px;
+      &:focus {
+        outline: none;
+        background: lighten($gray-lite, 5);
+      }
+      &:focus:hover {
+        background: none;
+      }
+    }
   }
   @include media-md {
-    padding: #{$vertical-beat * 8} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
+    padding: #{$vertical-beat * 6} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
     p.required {
       float: left;
-    }
-    .btn-wrap {
-      padding: 0;
-      float: right;
-      input[type=submit] {
-        border: none;
-        background: none;
-        line-height: 1.5em;
-        padding: 6px 50px 4px 10px;
-        &:focus {
-          outline: none;
-        }
-      }
     }
     .checkboxes {
       label {
@@ -93,5 +118,41 @@ form.signup-form {
     @include column(11);
     background: $white;
 
+  }
+}
+
+// Investor dropdown form
+.investor-form-container {
+  right: 0;
+  top: 62px;
+  width: 100%;
+  display: none;
+  z-index: 1000;
+  background: $white;
+  position: absolute;
+  transform: translateY(-100%);
+  transition: transform .3s ease-out;
+  &.-active {
+    display: block;
+  }
+  &.-show {
+    transform: translateY(0);
+  }
+  @include media-md {
+    width: #{100% / 24 * 11};
+    right: #{100% / 24 * 1};
+  }
+
+  // close button
+  button.close {
+    top: 60px;
+    position: absolute;
+    right: -$column-width;
+    transform: translateX(50%);
+  }
+}
+.admin-bar .investor-form-container {
+  @include media-md {
+    top: 94px;
   }
 }
