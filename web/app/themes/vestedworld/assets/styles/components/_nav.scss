@@ -2,15 +2,14 @@
 
 // wp admin bar push
 .admin-bar {
-  .menu-toggle,
   .site-nav {
-    top: 46px;
+    top: 32px;
   }
 
-  @include min-screen(783px) {
+  @include min-screen(770px) {
     .site-nav,
     .site-header {
-      top: 32px;
+      top: 0;
     }
   }
 
