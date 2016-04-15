@@ -37,14 +37,16 @@ form.signup-form {
     font: 16px/24px $sans;
     text-transform: uppercase;
     letter-spacing: .2em;
-    margin-bottom: #{$vertical-beat * 5};
+    margin-bottom: #{$vertical-beat * 3};
   }
   .actions {
     @include clearfix();
   }
   .checkboxes {
-    padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 8};
+    padding: #{$vertical-beat * 2} 0;
     label {
+      display: block;
+      margin-top: 10px;
       position: relative;
       padding-left: 20px;
       input {
@@ -56,8 +58,9 @@ form.signup-form {
   }
   .btn-wrap {
     padding: 0;
-    float: right;
+    float: left;
     input[type=submit] {
+      width: 100%;
       border: none;
       background: none;
       line-height: 1.5em;
@@ -75,13 +78,24 @@ form.signup-form {
   }
   @include media-md {
     padding: #{$vertical-beat * 6} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
+
+    h2 {
+      margin-bottom: #{$vertical-beat * 5};
+    }
     p.required {
       float: left;
     }
     .checkboxes {
+      padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 8};
       label {
         width: 50%;
         float: left;
+      }
+    }
+    .btn-wrap {
+      float: right;
+      input[type=submit] {
+        width: auto; 
       }
     }
   }
@@ -145,10 +159,26 @@ form.signup-form {
 
   // close button
   button.close {
-    top: 60px;
     position: absolute;
-    right: -$column-width;
-    transform: translateX(50%);
+    right: $column-width;
+    top: #{$vertical-beat * 3};
+    .plus {
+      &::before,
+      &::after {
+        background: $brand-primary;
+      }
+    }
+    @include media-md {
+      top: 60px;
+      right: -$column-width;
+      transform: translateX(50%);
+      .plus {
+        &::before,
+        &::after {
+          background: $white;
+        }
+      }
+    }
   }
 }
 .admin-bar .investor-form-container {
