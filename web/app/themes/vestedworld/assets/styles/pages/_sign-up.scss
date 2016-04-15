@@ -1,7 +1,7 @@
 // Sign Up Page
 
 form.signup-form {
-  padding: #{$vertical-beat * 3} #{$column-width} #{$vertical-beat * 5};
+  padding: #{$vertical-beat * 3} #{$column-width * 2} #{$vertical-beat * 5};
 
   fieldset {
     border: none;
