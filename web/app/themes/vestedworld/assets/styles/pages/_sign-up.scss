@@ -160,7 +160,7 @@ form.signup-form {
   // close button
   button.close {
     position: absolute;
-    right: $column-width;
+    right: #{$column-width * 2};
     top: #{$vertical-beat * 3};
     .plus {
       &::before,
