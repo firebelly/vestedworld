@@ -359,6 +359,7 @@
   &.-active {
     display: block;
   }
+
   .person-activate {
     display: none;
   }
@@ -403,6 +404,67 @@
     @include media-md {
       display: flex;
     }
+
+    &.management {
+      .person-inner {
+        background: $white;
+      }
+      .-left {
+        background: $brand-primary;
+      }
+    }
+
+    // State change animations
+    &.exitRight {
+      .callout-inner,
+      .person-text h1,
+      .person-text h2 {
+        animation: exitRight .5s forwards;
+      }
+      .bio-inner .user-content {
+        animation: exitRight .5s forwards .1s;
+      }
+    }
+    &.exitLeft {
+      .callout-inner,
+      .person-text h1,
+      .person-text h2 {
+        animation: exitLeft .5s forwards;
+      }
+      .bio-inner .user-content {
+        animation: exitLeft .5s forwards .1s;
+      }
+    }
+    &.enterRight {
+      .callout-inner,
+      .person-text h1,
+      .person-text h2 {
+        opacity: 0;
+        animation: enterRight $cubic-ease1 .6s forwards .1s;
+      }
+      .bio-inner .user-content {
+        opacity: 0;
+        animation: enterRight $cubic-ease1 .6s forwards .25s; 
+      }
+      .person-image-inner {
+        animation: zoomInFade .5s forwards;
+      }
+    }
+    &.enterLeft {
+      .callout-inner,
+      .person-text h1,
+      .person-text h2 {
+        opacity: 0;
+        animation: enterLeft $cubic-ease1 .6s forwards .1s;
+      }
+      .bio-inner .user-content {
+        opacity: 0;
+        animation: enterLeft $cubic-ease1 .6s forwards .25s; 
+      }
+      .person-image-inner {
+        animation: zoomInFade .5s forwards;
+      }
+    }
   }
   .-left,
   .bio {
@@ -413,6 +475,7 @@
   }
   .person-inner,
   .quote {
+    overflow: hidden;
     padding: 55px #{$column-width * 2} 0;
   }
   .callout {
@@ -424,7 +487,11 @@
   .quote {
     display: none;
   }
+  .person-text header {
+    overflow: hidden;
+  }
   .bio {
+    overflow: hidden;
     position: relative;
     background: $gray-lite;
     padding: 55px #{$column-width * 2};
@@ -434,6 +501,9 @@
     @include media-md {
       padding: 55px $column-width;
     }
+  }
+  .bio-inner {
+    overflow: hidden;
   }
 
    // Board Member mods
@@ -449,7 +519,16 @@
       width: 100%;
       overflow: hidden;
       position: relative;
+      background: $blue-dark;
       padding-bottom: 56.8181818%;
+      .person-image-inner {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        position: absolute;
+      }
       img {
       top: 50%;
       left: 50%;

@@ -21,15 +21,19 @@ $body = apply_filters('the_content', $post->post_content);
           <button class="btn person-activate">Profile</button>
         </div>
         <div class="person-image">
-          <?= $photo ?>
+          <div class="person-image-inner">
+            <?= $photo ?>
+          </div>
         </div>
       </div>
       <?= !empty($quote) ? '<div class="quote">'.$quote.'</div>' : ''; ?>
-      <?= !empty($callout) ? '<div class="callout">'.$callout.'</div>' : ''; ?>
+      <?= !empty($callout) ? '<div class="callout"><div class="callout-inner">'.$callout.'</div></div>' : ''; ?>
     <?php } else { ?>
       <div class="person-inner">
         <div class="person-image">
-          <?= $photo ?>
+          <div class="person-image-inner">
+            <?= $photo ?>
+          </div>
         </div>
         <div class="person-text">  
           <header>      
@@ -40,8 +44,12 @@ $body = apply_filters('the_content', $post->post_content);
       </div>
     <?php } ?>
   </div>
-  <div class="bio user-content">
+  <div class="bio">
     <h1 class="section-title">Bio</h1>
-    <?= $body ?>
+    <div class="bio-inner">
+      <div class="user-content">
+        <?= $body ?>
+      </div>
+    </div>
   </div>
 </article>
