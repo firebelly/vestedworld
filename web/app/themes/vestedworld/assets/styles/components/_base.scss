@@ -72,6 +72,9 @@ address {
 .hide {
   display: none;
 }
+.clearfix {
+  @include clearfix();
+}
 
 .site-wrap {
   @include media-md {

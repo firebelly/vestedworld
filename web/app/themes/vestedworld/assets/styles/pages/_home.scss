@@ -72,8 +72,16 @@
     }
   }
 
+  .row {
+    background: $blue-dark;
+    @include media-md {
+      margin-bottom: #{$vertical-beat * 8};
+    }
+  }
+
   // What We Do block
   .what-we-do {
+    background: $gray-lite;
     @include column(12);
     article {
       margin: 0 #{$mobile-column-width * 1};
@@ -101,7 +109,7 @@
     }
 
     @include media-md {
-      padding: #{$vertical-beat * 6} 0 #{$vertical-beat * 8} #{$column-width * 1};
+      padding: #{$vertical-beat * 6} 0 0 #{$column-width * 1};
       &::before {
         left: 0;
         content: '';

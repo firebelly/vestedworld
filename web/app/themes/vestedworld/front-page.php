@@ -12,7 +12,7 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
   </div>
 </section>
 
-<div class="row">
+<div class="row clearfix">
 
   <!-- quick and dirty temporary -->
   <section class="join -mobile">
