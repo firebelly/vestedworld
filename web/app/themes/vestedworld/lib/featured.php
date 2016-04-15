@@ -60,7 +60,7 @@ function get_featured() {
           <h3>{$type}</h3>
           <h2><a href="{$link}">{$post->post_title}</a></h2>
           <p>{$excerpt}</p>
-          <a class="learn-more" href="{$link}">Learn More</a>
+          <!--<a class="learn-more" href="{$link}">Learn More</a>-->
 
           <div class="learn-more-wrap">
             <a class="button learn-more" href="/{$type}/">All {$type}s</a>

@@ -284,6 +284,18 @@
       min-height: 480px;
       padding: #{$vertical-beat * 8} #{$column-width * 1 * $num_columns/11};
     }
+
+    .slick-dots {
+      left: 0;
+      margin: 0;
+      bottom: 0;
+      padding: 0;
+      width: 200px;
+      text-align: left;
+      @include media-md {
+        bottom: -60px;
+      }
+    }
   }
 
 }
