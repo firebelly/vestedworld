@@ -134,7 +134,16 @@ var FBSage = (function($) {
     // mobileSearch.prependTo('.site-nav');
 
     // Close it when clicking off!
-    $document.on('click', '.global-overlay, .site-nav a', _hideMobileNav);
+    $document.on('click', '.global-overlay, .site-nav a', function() {
+      if ($('.site-nav').is('.-active')) {
+        if ($(this).is('.sign-up')) {
+          $('body, .menu-toggle').removeClass('menu-open');
+          $('.site-nav').removeClass('-active');
+        } else {
+          _hideMobileNav();
+        }
+      }
+    });
   }
 
   function _showMobileNav() {
@@ -279,7 +288,14 @@ var FBSage = (function($) {
     // Shut it down!
     $document.on('click', '.global-overlay, .investor-form-container .close, .menu-toggle', function() {
       if ($('.investor-form-container').is('.-active')) {
-        _hideInvestorForm();
+        if ($(this).is('.menu-toggle')) {
+          $('.investor-form-container').removeClass('-show');
+          setTimeout(function() {
+           $('.investor-form-container').removeClass('-active');
+          }, 400);
+        } else {
+          _hideInvestorForm();
+        }
       }
     });
   }
@@ -295,11 +311,11 @@ var FBSage = (function($) {
   function _hideInvestorForm() {
     $('.investor-form-container').removeClass('-show');
     setTimeout(function() {
-     $('.investor-form-container').removeClass('-active');
-    }, 400);
-    setTimeout(function() {
       _hideOverlay();
     }, 200);
+    setTimeout(function() {
+     $('.investor-form-container').removeClass('-active');
+    }, 400);
   }
 
   function _initPeopleModals() {
@@ -372,13 +388,6 @@ var FBSage = (function($) {
       setTimeout(function() {
         $('.global-overlay').addClass('-active');
       }, 50);
-    } else {
-      setTimeout(function() {
-        $('<div class="global-overlay"></div>').appendTo($('body'));
-        setTimeout(function() {
-          $('.global-overlay').addClass('-active');
-        }, 50);
-      }, 260);
     }
   }
 
