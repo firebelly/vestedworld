@@ -114,7 +114,7 @@ function metaboxes( array $meta_boxes ) {
     	    'type'    => 'select',
     	    'options' => cmb2_get_post_options( array(
             'post_type' => array('page','post'),
-            'numberposts' => 0,
+            'numberposts' => -1,
             'post_parent' => null
           ) ),
     	),
@@ -129,7 +129,7 @@ function cmb2_get_post_options( $query_args ) {
 
     $args = wp_parse_args( $query_args, array(
         'post_type'   => 'post',
-        'numberposts' => 10,
+        'numberposts' => -1,
         'post_parent' => 0,
     ) );
 
