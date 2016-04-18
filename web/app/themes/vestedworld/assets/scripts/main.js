@@ -12,7 +12,8 @@ var FBSage = (function($) {
       $document,
       $sidebar,
       loadingTimer,
-      page_at;
+      page_at,
+      ajax_handler_url = '/app/themes/vestedworld/lib/ajax-handler.php';
 
   function _init() {
     // touch-friendly fast clicks
