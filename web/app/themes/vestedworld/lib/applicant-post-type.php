@@ -197,7 +197,7 @@ function new_applicant() {
   $application_type = $_POST['application_type'];
   $name = $_POST['application_first_name'] .' '. $_POST['application_last_name'];
 
-  if (0 && has_applied($_POST['application_email'], $application_type)) {
+  if (has_applied($_POST['application_email'], $application_type)) {
     return ["We've already received your application."];
   }
 
@@ -205,7 +205,7 @@ function new_applicant() {
     'post_title'    => 'Application from ' . $name,
     'post_type'     => 'applicant',
     'post_author'   => 1,
-    'post_status'   => 'draft',
+    'post_status'   => 'publish',
   );
   $post_id = wp_insert_post($applicant_post);
   if ($post_id) {
