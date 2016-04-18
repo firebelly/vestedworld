@@ -1,8 +1,8 @@
-// FBSage - Firebelly 2015
+// VestedWorld - Firebelly 2016
 /*jshint latedef:false*/
 
 // Good Design for Good Reason for Good Namespace
-var FBSage = (function($) {
+var VestedWorld = (function($) {
 
   var screen_width = 0,
       breakpoint_sm = false,
@@ -42,6 +42,7 @@ var FBSage = (function($) {
     _initGifPlay();
     _initPeopleModals();
     _initDropdownInvestorForm();
+    _initApplicationForms();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -87,15 +88,53 @@ var FBSage = (function($) {
 
   } // end init()
 
+  // AJAX Application form submissions
+  function _initApplicationForms() {
+    // Handle application form submissions
+    $('form.application-form').each(function() {
+      var $form = $(this);
+
+      $form.validate({
+        messages: {
+          application_first_name: 'Please leave us your first name',
+          application_last_name: 'Please leave us your last name',
+          application_email: 'We will need a valid email to contact you at',
+          application_phone: 'In case we need to call you'
+        },
+        submitHandler: function(form) {
+          $.ajax({
+            url: ajax_handler_url,
+            method: 'post',
+            dataType: 'json',
+            data: $(form).serialize()
+          }).done(function(response) {
+            if (response.success) {
+              _feedbackMessage('Your application was submitted successfully!');
+              form.reset();
+            } else {
+              _feedbackMessage(response.data.message);
+            }
+          }).fail(function(response) {
+            _feedbackMessage('Sorry, there was an error signing up.');
+          });
+        }
+      });
+    });
+  }
+
   function _scrollBody(element, duration, delay, offset) {
     if ($('#wpadminbar').length) {
       offset = $('#wpadminbar').height() + offset;
     }
-    element.velocity("scroll", {
+    element.velocity('scroll', {
       duration: duration,
       delay: delay,
       offset: -offset
-    }, "easeOutSine");
+    }, 'easeOutSine');
+  }
+
+  function _feedbackMessage(message) {
+    alert(message);
   }
 
   function _initSearch() {
@@ -178,7 +217,7 @@ var FBSage = (function($) {
       loadingTimer = setTimeout(function() { more_container.addClass('loading'); }, 500);
 
       $.ajax({
-          url: wp_ajax_url,
+          url: ajax_handler_url,
           method: 'post',
           data: {
               action: 'load_more_posts',
@@ -457,7 +496,7 @@ var FBSage = (function($) {
 })(jQuery);
 
 // Fire up the mothership
-jQuery(document).ready(FBSage.init);
+jQuery(document).ready(VestedWorld.init);
 
 // Zig-zag the mothership
-jQuery(window).resize(FBSage.resize);
+jQuery(window).resize(VestedWorld.resize);

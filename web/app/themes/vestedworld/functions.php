@@ -28,8 +28,9 @@ $firebelly_includes = [
   'lib/person-post-type.php',          // People
   'lib/faq-post-type.php',             // FAQs
   'lib/headline-post-type.php',        // Headlines
-  //'lib/company-post-type.php',         // Companies
-  //'lib/country-post-type.php',         // Headlines
+  'lib/applicant-post-type.php',       // Applicants
+  //'lib/company-post-type.php',       // Companies
+  //'lib/country-post-type.php',       // Countries
   'lib/featured.php',                  // Featured Post Capability
   'lib/page-meta-boxes.php',           // Various tweaks for multiple post types
   'lib/post-meta-boxes.php',           // Various tweaks for multiple post types
