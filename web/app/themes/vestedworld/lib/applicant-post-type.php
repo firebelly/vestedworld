@@ -82,7 +82,7 @@ function edit_columns($columns){
   $columns = array(
     'cb' => '<input type="checkbox" />',
     'title' => 'Title',
-    '_cmb2_application_type' => 'Applicant Type',
+    '_cmb2_application_type' => 'Application Type',
     '_cmb2_accredited' => 'Accredited Investor?',
     'date' => 'Date',
   );
