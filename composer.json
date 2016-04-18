@@ -41,6 +41,7 @@
     "wpackagist-plugin/duplicate-post": "2.6",
     "wpackagist-plugin/limit-login-attempts" : "*",
     "wpackagist-plugin/wordpress-importer" : "*",
+    "wpackagist-plugin/redirection": ">=2.3.16",
     "wpackagist-plugin/intuitive-custom-post-order": "*",
     "wpackagist-plugin/cmb2": ">=2.0.2",
     "wpackagist-plugin/akismet": ">=3.1.1",
