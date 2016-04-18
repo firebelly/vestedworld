@@ -498,6 +498,8 @@
   .callout {
     @extend .h1;
     color: $white;
+    font-size: 24px;
+    line-height: 1.333333333em;
     background: $brand-primary;
     padding: #{$vertical-beat * 8} $mobile-global-padding;
     @include media-md {
