@@ -212,7 +212,7 @@
       @include media-md {
         height: 80px;
         color: $white;
-        font: 32px/78px $sans;
+        font: 16px/78px $sans;
         border-color: $white;
         margin: #{$vertical-beat * 8} 0 0;
         &:hover {
@@ -223,6 +223,12 @@
             padding-right: #{$mobile-column-width - 4}; 
           }
         }
+      }
+      @include min-screen(960px) {
+        font-size: 22px;
+      }
+      @include min-screen(1195px) {
+        font-size: 32px;
       }
     }
   }

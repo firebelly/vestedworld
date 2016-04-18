@@ -18,8 +18,8 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
   <section class="join -mobile">
     <h3 class="tab -white -bluetxt">Join</h3>
     <h2>Join VestedWorld</h2>
-    <p>We’re always looking for sharp, savvy and socially-conscious investors and advisors to join our growing community. Sign up to learn more.</p>
-    <a href="sign-up" class="sign-up-button">Sign up</a>
+    <p>Are you a sharp, savvy and socially conscious investor or advisor? Join our growing community.</p>
+    <a href="sign-up" class="sign-up-button">Sign up to learn more</a>
   </section>
 
   <!-- what-we-do -->
@@ -49,8 +49,8 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
     <section class="join">
       <h3 class="tab -white -bluetxt">Join</h3>
       <h2>Join VestedWorld</h2>
-      <p>We’re always looking for sharp, savvy and socially-conscious investors and advisors to join our growing community. Sign up to learn more.</p>
-      <a href="sign-up" class="sign-up-button">Sign up</a>
+      <p>Are you a sharp, savvy and socially conscious investor or advisor? Join our growing community.</p>
+      <a href="sign-up" class="sign-up-button">Sign up to learn more</a>
     </section>
 
     <!-- featured -->
