@@ -42,6 +42,6 @@ use Roots\Sage\Wrapper;
         document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.11.2.js'><\/script>".replace("HOST", location.hostname));
     //]]></script>
     <?php endif; ?>
-    <div class="investor-form-container"><button class="plus-button close"><div class="plus"></div></button><?php include(locate_template('templates/investor-form.php')); ?></div>
+    <div class="investor-form-container"><button class="plus-button close"><div class="plus"></div></button><?php $application_type = ''; include(locate_template('templates/investor-form.php')); ?></div>
   </body>
 </html>
