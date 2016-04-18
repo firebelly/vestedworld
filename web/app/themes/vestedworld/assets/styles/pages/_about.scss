@@ -308,6 +308,13 @@
       padding: 0 30px 23.809523776%;
     }
 
+    &:hover,
+    &:focus {
+      .person-image::before {
+        opacity: 0;
+      }
+    }
+
     .person-image {
       top: 0;
       left: 0;
@@ -323,6 +330,7 @@
         z-index: 1;
         content: '';
         position: absolute;
+        transition: opacity .35s ease-out;
         background: rgba($blue-dark, .75);
       }
       .person-image-inner {
