@@ -34,9 +34,10 @@ form.application-form {
     letter-spacing: .2em;
   }
   h2 {
+    padding-right: 28px;
+    letter-spacing: .2em;
     font: 16px/24px $sans;
     text-transform: uppercase;
-    letter-spacing: .2em;
     margin-bottom: #{$vertical-beat * 3};
   }
   .actions {
@@ -81,6 +82,7 @@ form.application-form {
     padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 8};
 
     h2 {
+      padding-right: 0;
       margin-bottom: #{$vertical-beat * 5};
     }
     p.required {
