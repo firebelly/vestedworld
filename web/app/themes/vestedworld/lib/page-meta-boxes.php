@@ -66,6 +66,25 @@ namespace Firebelly\PostTypes\Pages;
      ),
    );
 
+   $meta_boxes['page_signup'] = array(
+     'id'            => 'page_signup',
+     'title'         => __( 'Form Details', 'cmb2' ),
+     'object_types'  => array( 'page', ), // Post type
+     'context'       => 'normal',
+     'show_on'       => array( 'key' => 'page-template', 'value' => 'templates/sign-up.php'),
+     'priority'      => 'high',
+     'show_names'    => true, // Show field names on the left
+     'fields'        => array(
+       // General page fields
+       array(
+         'name' => 'Application Type',
+         'desc' => 'Used to differentiate applicant submissions',
+         'id'   => $prefix . 'application_type',
+         'type' => 'text',
+       ),
+     ),
+   );
+
 
    return $meta_boxes;
  }

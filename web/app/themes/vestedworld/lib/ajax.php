@@ -17,7 +17,7 @@ function is_ajax() {
 }
 
 /**
- * AJAX load more posts (news or events)
+ * AJAX load more posts
  */
 // function load_more_posts() {
 //   // news or projects?
@@ -72,5 +72,5 @@ function is_ajax() {
 //   // we use this call outside AJAX calls; WP likes die() after an AJAX call
 //   if (is_ajax()) die();
 // }
-// add_action( 'wp_ajax_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
-// add_action( 'wp_ajax_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
+// add_action( 'FB_AJAX_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
+// add_action( 'FB_AJAX_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );

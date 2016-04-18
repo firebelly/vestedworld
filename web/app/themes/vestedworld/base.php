@@ -38,8 +38,8 @@ use Roots\Sage\Wrapper;
       wp_footer();
     ?>
     <?php if (WP_ENV === 'development'): ?>
-    <script type='text/javascript' id="__bs_script__">//<![CDATA[
-        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.11.1.js'><\/script>".replace("HOST", location.hostname));
+    <script id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.11.2.js'><\/script>".replace("HOST", location.hostname));
     //]]></script>
     <?php endif; ?>
     <div class="investor-form-container"><button class="plus-button close"><div class="plus"></div></button><?php include(locate_template('templates/investor-form.php')); ?></div>

@@ -1,25 +1,25 @@
 <?php
 // Set application_type if it isn't sent along
 if (empty($application_type)) {
-  $application_type = 'Sign Up';
+  $application_type = 'General Sign Up';
 }
 ?>
-<form action="<?= admin_url('admin-ajax.php') ?>" class="signup-form" method="post" enctype="multipart/form-data" novalidate>
+<form action="<?= admin_url('admin-ajax.php') ?>" class="application-form" method="post" enctype="multipart/form-data" novalidate>
 
   <h2>Become A VestedAngel</h2>
 
   <fieldset class="contact-details">
-    <div><label class="sr-only">First Name (Required)</label><input type="text" name="vestedangel_first_name" placeholder="First Name*" required></div>
-    <div><label class="sr-only">Last Name (Required)</label><input type="text" name="vestedangel_last_name" placeholder="Last Name*" required></div>
-    <div><label class="sr-only">Email Address (Required)</label><input type="email" name="vestedangel_email" placeholder="Email Address*" required></div>
-    <div><label class="sr-only">Phone Number (Required)</label><input type="tel" name="vestedangel_phone" placeholder="Phone Number*" required></div>
-    <div><label class="sr-only">Company</label><input type="text" name="vestedangel_company" placeholder="Company"></div>
+    <div><label class="sr-only">First Name (Required)</label><input type="text" name="application_first_name" placeholder="First Name*" required></div>
+    <div><label class="sr-only">Last Name (Required)</label><input type="text" name="application_last_name" placeholder="Last Name*" required></div>
+    <div><label class="sr-only">Email Address (Required)</label><input type="email" name="application_email" placeholder="Email Address*" required></div>
+    <div><label class="sr-only">Phone Number (Required)</label><input type="tel" name="application_phone" placeholder="Phone Number*" required></div>
+    <div><label class="sr-only">Company</label><input type="text" name="application_company" placeholder="Company"></div>
   </fieldset>
 
   <fieldset>
     <div class="checkboxes">
-      <label><input type="radio" name="vestedangel_accredited" value="1"> I am an Accredited Investor</label>
-      <label><input type="radio" name="vestedangel_accredited" value="1"> I am not an Accredited Investor</label>
+      <label><input type="radio" name="application_accredited" value="yes"> I am an Accredited Investor</label>
+      <label><input type="radio" name="application_accredited" value="no"> I am not an Accredited Investor</label>
     </div>
 
     <input type="hidden" name="application_type" value="<?= $application_type ?>">

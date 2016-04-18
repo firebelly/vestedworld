@@ -1,7 +1,7 @@
 // Sign Up Page
 
-form.signup-form {
-  padding: #{$vertical-beat * 3} $mobile-global-padding #{$vertical-beat * 5};
+form.application-form {
+  padding: $mobile-global-padding;
 
   fieldset {
     border: none;
@@ -160,9 +160,9 @@ form.signup-form {
 
   // close button
   button.close {
+    top: 34px;
     position: absolute;
-    right: #{$column-width * 2};
-    top: #{$vertical-beat * 3};
+    right: $mobile-global-padding;
     .plus {
       &::before,
       &::after {
@@ -170,7 +170,7 @@ form.signup-form {
       }
     }
     @include media-md {
-      top: 60px;
+      top: 51px;
       right: -$column-width;
       transform: translateX(50%);
       .plus {
@@ -182,8 +182,7 @@ form.signup-form {
     }
   }
 }
+// If wordress admin bar
 .admin-bar .investor-form-container {
-  @include media-md {
-    top: 94px;
-  }
+  top: 94px;
 }
