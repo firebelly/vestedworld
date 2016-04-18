@@ -13,6 +13,7 @@ var VestedWorld = (function($) {
       $sidebar,
       loadingTimer,
       page_at,
+      feedback_message_timer,
       ajax_handler_url = '/app/themes/vestedworld/lib/ajax-handler.php';
 
   function _init() {
@@ -134,7 +135,26 @@ var VestedWorld = (function($) {
   }
 
   function _feedbackMessage(message) {
-    alert(message);
+    
+    $('body').append('<div class="flash-message"><h2>'+message+'</h2></div>');
+
+    setTimeout(function(){
+      $('.flash-message').addClass('show-message');
+    }, 250);
+
+    if (feedback_message_timer) { clearTimeout(feedback_message_timer); }
+    feedback_message_timer = setTimeout(hideFeedbackMessage, 3000);
+
+    $('.flash-message').on('mouseenter', function() {
+      if (feedback_message_timer) { clearTimeout(feedback_message_timer); }
+    }).on('mouseleave', function() {
+      if (feedback_message_timer) { clearTimeout(feedback_message_timer); }
+      feedback_message_timer = setTimeout(hideFeedbackMessage, 1000);
+    });
+  }
+  function hideFeedbackMessage() {
+    $('.flash-message').removeClass('show-message');
+    setTimeout(function() { $('.flash-message').remove(); }, 250);
   }
 
   function _initSearch() {

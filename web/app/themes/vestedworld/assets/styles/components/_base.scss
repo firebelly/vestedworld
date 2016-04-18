@@ -63,6 +63,35 @@ address {
   background: #fff;
 }
 
+.flash-message {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  color: $white;
+  z-index: 3000;
+  position: fixed;
+  transform: translateY(-100%);
+  background: rgba($blue-dark, .9);
+  transition: transform .35s ease-out;
+  &.show-message {
+    transform: translateY(0);
+  }
+
+  h2 {
+    margin: 0;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  @include media-md {
+    height: 100px;
+    h2 {
+      line-height: 100px;
+    }
+  }
+}
+
 // Disable scrolling when modals are active
 .no-scroll {
   overflow: hidden;
