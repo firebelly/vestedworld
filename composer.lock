@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2e216bc013c83fcf525e6ede9cb7d918",
-    "content-hash": "b384c0cc886b6942c5a254236ae43421",
+    "hash": "0e1a0cc15008b1005fa9340eccd11439",
+    "content-hash": "c8b18ce747d7debb8456af45cee4fdb4",
     "packages": [
         {
             "name": "composer/installers",
@@ -406,26 +406,6 @@
             "homepage": "https://wordpress.org/plugins/limit-login-attempts/"
         },
         {
-            "name": "wpackagist-plugin/multiple-content-blocks",
-            "version": "3.2.2",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/multiple-content-blocks/",
-                "reference": "trunk"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/multiple-content-blocks.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/multiple-content-blocks/"
-        },
-        {
             "name": "wpackagist-plugin/redirection",
             "version": "2.4.4",
             "source": {
@@ -484,26 +464,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wordpress-importer/"
-        },
-        {
-            "name": "wpackagist-plugin/wp-facebook-open-graph-protocol",
-            "version": "2.0.13",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/wp-facebook-open-graph-protocol/",
-                "reference": "tags/2.0.13"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-facebook-open-graph-protocol.2.0.13.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/wp-facebook-open-graph-protocol/"
         }
     ],
     "packages-dev": [],
