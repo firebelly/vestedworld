@@ -369,7 +369,7 @@ var VestedWorld = (function($) {
       _showOverlay();
 
       // Is this the only person in their group?
-      if (!$thisPerson.next('.person').length) {
+      if (!$thisPerson.next('.person').length && !$thisPerson.prev('.person').length) {
         $activeContainer.addClass('solo');
       } else {
         $activeContainer.removeClass('solo');
@@ -431,6 +431,7 @@ var VestedWorld = (function($) {
 
   function _showOverlay() {
     if (!$('.global-overlay').length) {
+      $('body').addClass('overlay-open');
       $('<div class="global-overlay"></div>').appendTo($('body'));
       setTimeout(function() {
         $('.global-overlay').addClass('-active');
@@ -439,6 +440,7 @@ var VestedWorld = (function($) {
   }
 
   function _hideOverlay() {
+    $('body').removeClass('overlay-open');
     $('.global-overlay').removeClass('-active');
     setTimeout(function() {
       $('.global-overlay').remove();
