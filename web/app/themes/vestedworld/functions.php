@@ -21,6 +21,7 @@ $firebelly_includes = [
   'lib/disable-comments.php',          // Disables WP comments in admin and frontend
   'lib/fb_init.php',                   // FB theme setups
   'lib/fb_assets.php',                 // FB assets
+  'lib/fb_metatags.php',               // FB metatags / ogtags
   'lib/media.php',                     // FB media
   'lib/ajax.php',                      // AJAX functions
   'lib/custom-functions.php',          // Rando utility functions and miscellany
@@ -32,8 +33,9 @@ $firebelly_includes = [
   //'lib/company-post-type.php',       // Companies
   //'lib/country-post-type.php',       // Countries
   'lib/featured.php',                  // Featured Post Capability
-  'lib/page-meta-boxes.php',           // Various tweaks for multiple post types
-  'lib/post-meta-boxes.php',           // Various tweaks for multiple post types
+  'lib/page-meta-boxes.php',           // Various tweaks for pages
+  'lib/site-options.php',              // Site Options page with CMB2 fields
+  // 'lib/post-meta-boxes.php',        // Various tweaks for posts
 ];
 
 $sage_includes = array_merge($sage_includes, $firebelly_includes);
