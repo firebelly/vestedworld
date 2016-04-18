@@ -289,12 +289,12 @@
     .slick-dots {
       left: 0;
       margin: 0;
-      bottom: 0;
       padding: 0;
       width: 200px;
       text-align: left;
+      bottom: #{$vertical-beat * 8};
       @include media-md {
-        bottom: -60px;
+        bottom: -#{$vertical-beat * 8};
       }
     }
   }
