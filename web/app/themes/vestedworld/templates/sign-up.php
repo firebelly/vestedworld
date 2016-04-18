@@ -4,7 +4,7 @@ Template Name: Sign Up
 */
 
 $featured_image = \Firebelly\Media\get_post_thumbnail($post->ID, 'large');
-// $form_type = get_post_meta($post->ID, '_cmb2_form_type', true);
+$application_type = get_post_meta($post->ID, '_cmb2_application_type', true);
 ?>
 
 <div class="row">
