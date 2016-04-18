@@ -4,7 +4,7 @@
   @include clearfix;
   @include small-caps;
   position: relative;
-  padding: #{$vertical-beat * 16} #{$mobile-column-width * 1} #{$vertical-beat * 20};
+  padding: #{$vertical-beat * 16} $mobile-global-padding #{$vertical-beat * 20};
 
   a {
     text-decoration: none;
@@ -24,24 +24,23 @@
   }
 
   @include media-md {
-    padding: #{$vertical-beat * 16} #{100% / 24 * 1} #{$vertical-beat * 16} 0;
+    padding: #{$vertical-beat * 16} #{100% / 24 * 1} #{$vertical-beat * 16} $global-padding;
 
     h2.tab {
       top: 0;
+      left: -159px;
+      right: auto;
     }
   }
 
   .footer-logo {
     @include column(12);
-    @include media-md {
-      padding-left: #{$column-width * 1};
-    }
   }
   .copyright {
     font: 9px/16px $sans;
     @include media-md {
       position: absolute;
-      left: #{$column-width * 1};
+      left: $global-padding;
       top: #{$vertical-beat * 23};
     }
   }

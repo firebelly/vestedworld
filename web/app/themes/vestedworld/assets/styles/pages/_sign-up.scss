@@ -1,7 +1,7 @@
 // Sign Up Page
 
 form.signup-form {
-  padding: #{$vertical-beat * 3} #{$column-width * 2} #{$vertical-beat * 5};
+  padding: #{$vertical-beat * 3} $mobile-global-padding #{$vertical-beat * 5};
 
   fieldset {
     border: none;
@@ -78,7 +78,7 @@ form.signup-form {
     }
   }
   @include media-md {
-    padding: #{$vertical-beat * 6} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
+    padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 8};
 
     h2 {
       margin-bottom: #{$vertical-beat * 5};
@@ -108,7 +108,7 @@ form.signup-form {
     @include column(12);
     background: $blue;
     color: $white;
-    padding: #{$vertical-beat * 4} #{$mobile-column-width * 1} #{$vertical-beat * 6};
+    padding: #{$vertical-beat * 4} $mobile-global-padding #{$vertical-beat * 6};
     h3.tab {
       background: $white;
       color: $blue;
@@ -125,7 +125,7 @@ form.signup-form {
         font: 32px/40px $sans;
         @extend %smooth;
       }
-      padding: #{$vertical-beat * 8} #{$column-width * 1} #{$vertical-beat * 8};
+      padding: #{$vertical-beat * 8} $global-padding #{$vertical-beat * 8};
     }
   }
 
