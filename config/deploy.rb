@@ -1,5 +1,5 @@
 set :application, 'vestedworld'
-set :domain, 'vestedworld.firebelly.co'
+set :domain, 'vestedworld.com'
 set :theme, 'vestedworld'
 set :login, 'firebelly'
 set :repo_url, 'git@github.com:firebelly/vestedworld.git'
