@@ -368,6 +368,13 @@ var VestedWorld = (function($) {
 
       _showOverlay();
 
+      // Is this the only person in their group?
+      if (!$thisPerson.next('.person').length) {
+        $activeContainer.addClass('solo');
+      } else {
+        $activeContainer.removeClass('solo');
+      }
+
       $('.person.-active, .people-grid.-active').removeClass('-active');
       $activeDataContainer.empty();
       $thisPerson.addClass('-active');

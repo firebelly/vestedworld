@@ -320,15 +320,23 @@
         left: 0;
         right: 0;
         bottom: 0;
+        z-index: 1;
         content: '';
         position: absolute;
         background: rgba($blue-dark, .75);
       }
+      .person-image-inner {
+        height: 100%;
+        position: relative;
+      }
       img {
-        width: 100%;
-        height: auto;
+        left: 50%;
+        width: auto;
+        max-width: none;
         min-width: 100%;
         min-height: 100%;
+        position: relative;
+        transform: translateX(-50%);
       }
     }
 
@@ -375,6 +383,12 @@
       right: -#{$column-width / 2};
     }
   }
+
+  // If .solo, no need for nav
+  &.solo .post-nav {
+    display: none;
+  }
+
   .post-nav {
     top: 0;
     bottom: 0;
@@ -533,6 +547,7 @@
         right: 0;
         bottom: 0;
         z-index: 0;
+        height: auto;
         position: absolute;
       }
       img {
