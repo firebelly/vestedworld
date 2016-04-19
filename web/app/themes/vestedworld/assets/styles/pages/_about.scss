@@ -212,10 +212,6 @@
       width: 100%;
       @include media-md {
         display: flex;
-        > div {
-          max-width: 50%;
-          flex-basis: 50%;
-        }
       }
     }
     .person-inner {
@@ -223,6 +219,7 @@
       flex-direction: column;
       justify-content: space-between;
       @include media-md {
+        @include column(12);
         flex-direction: row;
       }
     }
@@ -244,6 +241,7 @@
       color: $brand-primary;
       @include media-md {
         padding-left: 30px;
+        @include column(11);
       }
     }
     button {
