@@ -7,8 +7,7 @@
   }
 
   @include min-screen(770px) {
-    .site-nav,
-    .site-header {
+    .site-nav {
       top: 0;
     }
   }

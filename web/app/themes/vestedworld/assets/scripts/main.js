@@ -374,6 +374,7 @@ var VestedWorld = (function($) {
 
   function _showInvestorForm() {
     _showOverlay();
+    _scrollBody($('body'), 250, 0, 0); 
     $('.investor-form-container').addClass('-active');
     setTimeout(function() {
       $('.investor-form-container').addClass('-show');
