@@ -38,6 +38,7 @@
     }
   }
   .slide-item {
+    overflow: hidden;
     position: relative;
     h3.tab {
       background: $white;
@@ -45,11 +46,21 @@
     }
     img {
       width: 100%;
+      max-width: none;
+      min-width: 100%;
+      @include media-md {
+        top: 50%;
+        left: 50%;
+        width: auto;
+        min-height: 100%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
     }
+
     .slide-text {
       @include column(12);
       padding: #{$vertical-beat * 4} $mobile-global-padding #{$vertical-beat * 6};
-
       background: rgba($blue,1);
       color: $white;
       p.headline {
@@ -59,15 +70,25 @@
         text-align: right;
       }
       @include media-md {
-        position: absolute;
-        left: 0;
-        bottom: 0;
+        margin-top: 100px;
+        position: relative;
         background: rgba($blue,.85);
         padding: #{$vertical-beat * 6} $global-padding $global-padding;
         p.headline {
           font: 48px/48px $sans;
           margin: -6px 0 64px 0;
         }
+      }
+    }
+  }
+
+  // Just the headline slider
+  .headlines {
+    article {
+      @include media-md {
+        display: flex;
+        min-height: 80vh;
+        align-items: flex-end;
       }
     }
   }
