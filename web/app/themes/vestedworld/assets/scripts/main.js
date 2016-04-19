@@ -103,12 +103,16 @@ var VestedWorld = (function($) {
           application_phone: 'In case we need to call you'
         },
         submitHandler: function(form) {
+          $('.site-wrap').css('opacity', '.5');
+          $('body').append('<div class="loading"></div>');
           $.ajax({
             url: ajax_handler_url,
             method: 'post',
             dataType: 'json',
             data: $(form).serialize()
           }).done(function(response) {
+            $('.loading').remove();
+            $('.site-wrap').css('opacity', '1');
             if (response.success) {
               _feedbackMessage('Your application was submitted successfully!');
               form.reset();

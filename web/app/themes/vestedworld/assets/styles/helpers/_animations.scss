@@ -104,3 +104,9 @@ $cubic-ease2: cubic-bezier(0.165, 0.84, 0.44, 1);
     transform: scale(1);
   }
 }
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

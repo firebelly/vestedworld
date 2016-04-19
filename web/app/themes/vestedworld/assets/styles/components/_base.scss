@@ -76,7 +76,7 @@ address {
   transform: translateY(-100%);
   padding: #{$vertical-beat * 6};
   background: rgba($blue, .95);
-  transition: transform .35s ease-out;
+  transition: transform .2s ease-out;
   &.show-message {
     transform: translateY(0);
   }
