@@ -14,12 +14,12 @@
     margin: 0;
     padding: 0;
     bottom: 40px;
-    left: #{$mobile-column-width * 1};
     width: 200px;
     text-align: left;
+    left: $mobile-global-padding;
     @include media-md {
       bottom: 40px;
-      left: #{$column-width * 1};
+      left: $global-padding;
     }
     li {
       display: inline-block;
@@ -66,9 +66,6 @@
       p.headline {
         margin: 0 0 40px 0;
       }
-      .learn-more-wrap {
-        text-align: right;
-      }
       @include media-md {
         margin-top: 100px;
         position: relative;
@@ -78,6 +75,9 @@
           font: 48px/48px $sans;
           margin: -6px 0 64px 0;
         }
+        .learn-more-wrap {
+          text-align: right;
+        }
       }
     }
   }
@@ -85,11 +85,20 @@
   // Just the headline slider
   .headlines {
     article {
+      .slide-text {
+        padding-bottom: #{$vertical-beat * 12};
+      }
       @include media-md {
         display: flex;
         min-height: 80vh;
         align-items: flex-end;
+        .slide-text {
+          padding-bottom: $global-padding;
+        }
       }
+    }
+    .slick-dots {
+      bottom: #{$vertical-beat * 4};
     }
   }
 
@@ -306,11 +315,13 @@
     }
     .learn-more-wrap {
       margin-top: #{$vertical-beat * 12};
-      text-align: right;
     }
     @include media-md {
       min-height: 480px;
       padding: $global-padding;
+      .learn-more-wrap {
+        text-align: right;
+      }
     }
 
     .slick-dots {
