@@ -508,7 +508,8 @@ var VestedWorld = (function($) {
       arrows: false,
       dots: true,
       autoplaySpeed: 6000,
-      speed: 800
+      speed: 800,
+      adaptiveHeight: true
     });
   }
 
