@@ -1,0 +1,76 @@
+// News
+
+.news-filter {
+  background: $blue;
+  color: $white;
+  padding: #{$vertical-beat * 7} $mobile-global-padding;
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  .filter,
+  .search {
+    border: 2px solid $white;
+    padding: #{$vertical-beat * 1};
+    @include media-md {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  @include media-md {
+    h1 {
+      margin: 0;
+      width: 50%;
+      float: left;
+    }
+    padding: #{$vertical-beat * 7} $global-padding;
+  }
+}
+
+.article.post {
+  @include clearfix;
+  position: relative;
+  margin-bottom: #{$vertical-beat * 8};
+  .image-wrap {
+    @include media-md {
+      width: #{ $column-width * 11 };
+      float: right;
+    }
+  }
+  h1 {
+    color: $blue;
+  }
+  h3.article-category {
+    color: $blue;
+    margin-bottom: #{$vertical-beat * 1};
+  }
+  h3.tab {
+    top: #{ $vertical-beat * 8};
+    background: $blue;
+    color: $white;
+  }
+  .post-extended {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s;
+  }
+  &.active .post-extended {
+    max-height: 500px;
+  }
+  .article-body {
+    background: $white;
+    padding: #{$vertical-beat * 6} $mobile-global-padding;
+    @include media-md {
+      width: #{$column-width * 12};
+      padding: #{$vertical-beat * 8} $global-padding #{$vertical-beat * 8};
+      float: left;
+    }
+  }
+}
+
+.button.read-more {
+  border: 2px solid $gray;
+  margin-top: #{ $vertical-beat * 8 };
+}

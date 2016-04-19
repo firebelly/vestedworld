@@ -38,7 +38,7 @@ var VestedWorld = (function($) {
 
     _initNav();
     // _initSearch();
-    // _initLoadMore();
+    _initLoadMore();
     _initParallaxBackgrounds();
     _initGifPlay();
     _initPeopleModals();
@@ -135,7 +135,7 @@ var VestedWorld = (function($) {
   }
 
   function _feedbackMessage(message) {
-    
+
     $('body').append('<div class="flash-message"><h2>'+message+'</h2></div>');
 
     setTimeout(function(){
@@ -226,6 +226,17 @@ var VestedWorld = (function($) {
   }
 
   function _initLoadMore() {
+    $document.on('click', 'article.post a.read-more', function(e) {
+      e.preventDefault();
+      var $this = $(this);
+      var $article = $this.closest('.article.post');
+      $article.toggleClass('active');
+      if ($article.hasClass('active')) {
+        $this.text('Read Less');
+      } else {
+        $this.text('Read More');
+      }
+    });
     $document.on('click', '.load-more a', function(e) {
       e.preventDefault();
       var $load_more = $(this).closest('.load-more');
