@@ -13,6 +13,7 @@ var VestedWorld = (function($) {
       $sidebar,
       loadingTimer,
       page_at,
+      feedback_message_timer,
       ajax_handler_url = '/app/themes/vestedworld/lib/ajax-handler.php';
 
   function _init() {
@@ -134,7 +135,26 @@ var VestedWorld = (function($) {
   }
 
   function _feedbackMessage(message) {
-    alert(message);
+    
+    $('body').append('<div class="flash-message"><h2>'+message+'</h2></div>');
+
+    setTimeout(function(){
+      $('.flash-message').addClass('show-message');
+    }, 250);
+
+    if (feedback_message_timer) { clearTimeout(feedback_message_timer); }
+    feedback_message_timer = setTimeout(hideFeedbackMessage, 3000);
+
+    $('.flash-message').on('mouseenter', function() {
+      if (feedback_message_timer) { clearTimeout(feedback_message_timer); }
+    }).on('mouseleave', function() {
+      if (feedback_message_timer) { clearTimeout(feedback_message_timer); }
+      feedback_message_timer = setTimeout(hideFeedbackMessage, 1000);
+    });
+  }
+  function hideFeedbackMessage() {
+    $('.flash-message').removeClass('show-message');
+    setTimeout(function() { $('.flash-message').remove(); }, 250);
   }
 
   function _initSearch() {
@@ -368,6 +388,13 @@ var VestedWorld = (function($) {
 
       _showOverlay();
 
+      // Is this the only person in their group?
+      if (!$thisPerson.next('.person').length && !$thisPerson.prev('.person').length) {
+        $activeContainer.addClass('solo');
+      } else {
+        $activeContainer.removeClass('solo');
+      }
+
       $('.person.-active, .people-grid.-active').removeClass('-active');
       $activeDataContainer.empty();
       $thisPerson.addClass('-active');
@@ -424,6 +451,7 @@ var VestedWorld = (function($) {
 
   function _showOverlay() {
     if (!$('.global-overlay').length) {
+      $('body').addClass('overlay-open');
       $('<div class="global-overlay"></div>').appendTo($('body'));
       setTimeout(function() {
         $('.global-overlay').addClass('-active');
@@ -432,6 +460,7 @@ var VestedWorld = (function($) {
   }
 
   function _hideOverlay() {
+    $('body').removeClass('overlay-open');
     $('.global-overlay').removeClass('-active');
     setTimeout(function() {
       $('.global-overlay').remove();

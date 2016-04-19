@@ -48,7 +48,7 @@
     }
     .slide-text {
       @include column(12);
-      padding: #{$vertical-beat * 4} #{$mobile-column-width * 1} #{$vertical-beat * 6};
+      padding: #{$vertical-beat * 4} $mobile-global-padding #{$vertical-beat * 6};
 
       background: rgba($blue,1);
       color: $white;
@@ -63,7 +63,7 @@
         left: 0;
         bottom: 0;
         background: rgba($blue,.85);
-        padding: #{$vertical-beat * 6} #{$column-width * 1} #{$vertical-beat * 8};
+        padding: #{$vertical-beat * 6} $global-padding $global-padding;
         p.headline {
           font: 48px/48px $sans;
           margin: -6px 0 64px 0;
@@ -84,7 +84,7 @@
     background: $gray-lite;
     @include column(12);
     article {
-      margin: 0 #{$mobile-column-width * 1};
+      margin: 0 $mobile-global-padding;
       padding: #{$vertical-beat * 6} 0 #{$vertical-beat * 6} 0;
       border-top: 1px solid $gray-dark;
       position: relative;
@@ -109,19 +109,20 @@
     }
 
     @include media-md {
-      padding: #{$vertical-beat * 6} 0 0 #{$column-width * 1};
+      padding: #{$vertical-beat * 6} 0 0 0;
       &::before {
         left: 0;
         content: '';
         width: 31px;
         height: 1px;
-        bottom: 64px;
+        bottom: 0;
         position: absolute;
         background: $gray-dark;
       }
       article {
         margin-right: 0;
         border-top: none;
+        margin-left: $global-padding;
         border-bottom: 1px solid $gray-dark;
         padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/10} #{$vertical-beat * 8} #{$column-width * 2 * $num_columns/10};
         &:first-of-type {
@@ -145,10 +146,10 @@
     position: relative;
     background: $blue;
     color: $white;
-    padding: #{$vertical-beat * 6} #{$mobile-column-width} #{$vertical-beat * 8};
+    padding: #{$vertical-beat * 6} $mobile-global-padding #{$vertical-beat * 8};
     @include media-md {
       display: block;
-      padding: #{$vertical-beat * 6} #{$column-width * 1 * $num_columns/11} #{$vertical-beat * 8};
+      padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 8};
     }
     &.-mobile {
       color: $gray-dark;
@@ -211,7 +212,7 @@
       @include media-md {
         height: 80px;
         color: $white;
-        font: 32px/78px $sans;
+        font: 16px/78px $sans;
         border-color: $white;
         margin: #{$vertical-beat * 8} 0 0;
         &:hover {
@@ -222,6 +223,12 @@
             padding-right: #{$mobile-column-width - 4}; 
           }
         }
+      }
+      @include min-screen(960px) {
+        font-size: 22px;
+      }
+      @include min-screen(1195px) {
+        font-size: 32px;
       }
     }
   }
@@ -272,7 +279,7 @@
     color: $white;
     background: $blue-dark;
     position: relative;
-    padding: #{$vertical-beat * 4} #{$mobile-column-width * 1};
+    padding: $mobile-global-padding;
     h3 {
       margin-bottom: 0;
     }
@@ -282,18 +289,18 @@
     }
     @include media-md {
       min-height: 480px;
-      padding: #{$vertical-beat * 8} #{$column-width * 1 * $num_columns/11};
+      padding: $global-padding;
     }
 
     .slick-dots {
       left: 0;
       margin: 0;
-      bottom: 0;
       padding: 0;
       width: 200px;
       text-align: left;
+      bottom: #{$vertical-beat * 8};
       @include media-md {
-        bottom: -60px;
+        bottom: -#{$vertical-beat * 8};
       }
     }
   }

@@ -18,7 +18,7 @@
     <h3>Contact</h3>
     <ul>
       <li><a target="_blank" href="mailto:<?php echo get_option( 'contact_email' ); ?>"><?php echo get_option( 'contact_email' ); ?></a></li>
-      <li>+1 333 000 0000</li>
+      <li>+1 312 600 7684</li>
     </ul>
   </div>
   <div class="social">

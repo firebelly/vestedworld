@@ -52,13 +52,15 @@ h1,h2,h3,h4 {
 h1,.h1 {
   font: 32px/40px $sans;
   @include media-md {
-    font-size: 48px/48px;
+    font-size: 48px;
+    line-height: 48px;
   }
 }
 h2,.h2 {
   font: 24px/32px $sans;
   @include media-md {
-    font-size: 32px/40px;
+    font-size: 32px;
+    line-height: 40px;
   }
 }
 h3,.h3 {

@@ -61,14 +61,18 @@ function get_featured() {
           <h2><a href="{$link}">{$post->post_title}</a></h2>
           <p>{$excerpt}</p>
           <!--<a class="learn-more" href="{$link}">Learn More</a>-->
-
-          <div class="learn-more-wrap">
-            <a class="button learn-more" href="/{$type}/">All {$type}s</a>
-          </div>
        </article>
       </div>
 HTML;
   }
+
+  // Temporarily adding the link to the about page outside of the slide items
+  $output .= <<<HTML
+  <div class="learn-more-wrap">
+    <!--<a class="button learn-more" href="/{$type}/">All {$type}s</a> temporary override-->
+    <a class="button learn-more" href="/about-us/#team">Meet the team</a>
+  </div>
+HTML;
 
   return $output;
 }

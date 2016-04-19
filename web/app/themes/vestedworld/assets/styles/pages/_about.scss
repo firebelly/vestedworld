@@ -12,11 +12,11 @@
     font-weight: normal;
     @include small-caps();
     line-height: 25px;
-    left: #{$column-width * 2};
     background: $brand-primary;
+    left: $mobile-global-padding;
     @include media-md {
       left: 0;
-      top: 55px;
+      top: #{$vertical-beat * 8};
       transform-origin: top left;
       transform: rotate(-90deg) translateX(-100%);
     }
@@ -57,9 +57,9 @@
       z-index: 1;
       position: relative;
       background: $white;
-      padding: 48px #{$column-width * 2} 96px;
+      padding: 48px $mobile-global-padding 96px;
       @include media-md {
-        padding: 48px $column-width 96px;
+        padding: 48px $global-padding 96px;
         &::before {
           left: 0;
           height: 1px;
@@ -147,9 +147,9 @@
 
 // Team grid
 .people {
-  padding: 55px #{$column-width * 2};
+  padding: #{$vertical-beat * 8} $mobile-global-padding;
   @include media-md {
-    padding: 55px $column-width;
+    padding: #{$vertical-beat * 8} $global-padding;
   }
   .people-grid {
     margin: 0;
@@ -196,7 +196,7 @@
       height: 1px;
       width: 25px;
       content: '';
-      bottom: 55px;
+      bottom: #{$vertical-beat * 8};
       position: absolute;
       background: $gray-dark;
     }
@@ -308,6 +308,13 @@
       padding: 0 30px 23.809523776%;
     }
 
+    &:hover,
+    &:focus {
+      .person-image::before {
+        opacity: 0;
+      }
+    }
+
     .person-image {
       top: 0;
       left: 0;
@@ -320,15 +327,24 @@
         left: 0;
         right: 0;
         bottom: 0;
+        z-index: 1;
         content: '';
         position: absolute;
+        transition: opacity .35s ease-out;
         background: rgba($blue-dark, .75);
       }
+      .person-image-inner {
+        height: 100%;
+        position: relative;
+      }
       img {
-        width: 100%;
-        height: auto;
+        left: 50%;
+        width: auto;
+        max-width: none;
         min-width: 100%;
         min-height: 100%;
+        position: relative;
+        transform: translateX(-50%);
       }
     }
 
@@ -352,7 +368,7 @@
   display: none;
   position: absolute;
   background: $white;
-  margin-right: #{$column-width * 2};
+  margin-right: $mobile-global-padding;
   @include media-md {
     margin-right: $column-width;
   }
@@ -364,20 +380,29 @@
     display: none;
   }
   .person-deactivate {
-    top: 0;
+    top: -7px;
+    padding-left: 7px;
     position: absolute;
-    right: -$column-width;
-    transform: translateX(50%);
+    height: $mobile-global-padding;
+    width: $mobile-global-padding;
+    right: -$mobile-global-padding;
     @include media-md {
+      transform: translateX(50%);
       right: -#{$column-width / 2};
     }
   }
+
+  // If .solo, no need for nav
+  &.solo .post-nav {
+    display: none;
+  }
+
   .post-nav {
     top: 0;
     bottom: 0;
     position: absolute;
-    width: #{$column-width * 2};
-    right: -#{$column-width * 2};
+    width: $mobile-global-padding;
+    right: -$mobile-global-padding;
     > div {
       left: 50%;
       color: $white;
@@ -476,13 +501,20 @@
   .person-inner,
   .quote {
     overflow: hidden;
-    padding: 55px #{$column-width * 2} 0;
+    padding: #{$vertical-beat * 8} #{$column-width * 2} 0;
   }
   .callout {
     @extend .h1;
     color: $white;
+    font-size: 24px;
+    line-height: 1.333333333em;
     background: $brand-primary;
-    padding: 55px #{$column-width * 2};
+    padding: #{$vertical-beat * 8} $mobile-global-padding;
+    @include media-md {
+      font-size: 48px;
+      line-height: 48px;
+      padding: #{$vertical-beat * 8} $global-padding;
+    }
   }
   .quote {
     display: none;
@@ -494,12 +526,12 @@
     overflow: hidden;
     position: relative;
     background: $gray-lite;
-    padding: 55px #{$column-width * 2};
+    padding: #{$vertical-beat * 8} $mobile-global-padding;
     p:first-of-type {
       margin-top: 0;
     }
     @include media-md {
-      padding: 55px $column-width;
+      padding: #{$vertical-beat * 8} $global-padding;
     }
   }
   .bio-inner {
@@ -527,6 +559,7 @@
         right: 0;
         bottom: 0;
         z-index: 0;
+        height: auto;
         position: absolute;
       }
       img {
@@ -542,9 +575,9 @@
       }
     }
     .person-text {
-      padding: 32px #{$column-width * 2};
+      padding: #{$vertical-beat * 4} $mobile-global-padding;
       @include media-md {
-        padding: 55px #{$column-width * 2};
+        padding: #{$vertical-beat * 8} $global-padding;
       }
       h1 {
         margin: 0;

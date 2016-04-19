@@ -1,7 +1,7 @@
 // Sign Up Page
 
 form.application-form {
-  padding: #{$vertical-beat * 3} #{$column-width * 2} #{$vertical-beat * 5};
+  padding: $mobile-global-padding;
 
   fieldset {
     border: none;
@@ -34,9 +34,10 @@ form.application-form {
     letter-spacing: .2em;
   }
   h2 {
+    padding-right: 28px;
+    letter-spacing: .2em;
     font: 16px/24px $sans;
     text-transform: uppercase;
-    letter-spacing: .2em;
     margin-bottom: #{$vertical-beat * 3};
   }
   .actions {
@@ -78,9 +79,10 @@ form.application-form {
     }
   }
   @include media-md {
-    padding: #{$vertical-beat * 6} #{$column-width * 1 * 23/11} #{$vertical-beat * 8};
+    padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 8};
 
     h2 {
+      padding-right: 0;
       margin-bottom: #{$vertical-beat * 5};
     }
     p.required {
@@ -108,7 +110,7 @@ form.application-form {
     @include column(12);
     background: $blue;
     color: $white;
-    padding: #{$vertical-beat * 4} #{$mobile-column-width * 1} #{$vertical-beat * 6};
+    padding: #{$vertical-beat * 4} $mobile-global-padding #{$vertical-beat * 6};
     h3.tab {
       background: $white;
       color: $blue;
@@ -125,7 +127,7 @@ form.application-form {
         font: 32px/40px $sans;
         @extend %smooth;
       }
-      padding: #{$vertical-beat * 8} #{$column-width * 1} #{$vertical-beat * 8};
+      padding: #{$vertical-beat * 8} $global-padding #{$vertical-beat * 8};
     }
   }
 
@@ -160,9 +162,9 @@ form.application-form {
 
   // close button
   button.close {
+    top: 34px;
     position: absolute;
-    right: #{$column-width * 2};
-    top: #{$vertical-beat * 3};
+    right: $mobile-global-padding;
     .plus {
       &::before,
       &::after {
@@ -170,7 +172,7 @@ form.application-form {
       }
     }
     @include media-md {
-      top: 60px;
+      top: 51px;
       right: -$column-width;
       transform: translateX(50%);
       .plus {
@@ -182,8 +184,7 @@ form.application-form {
     }
   }
 }
+// If wordress admin bar
 .admin-bar .investor-form-container {
-  @include media-md {
-    top: 94px;
-  }
+  top: 94px;
 }
