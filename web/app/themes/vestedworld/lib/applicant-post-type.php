@@ -229,7 +229,7 @@ function new_applicant() {
       if (!empty($_POST['application_company']))
         $message .= 'Company: ' . $_POST['application_company'] . "\n";
       $message .= 'Accredited Investor: ' . $_POST['application_accredited'] . "\n";
-      $message .= "\nEdit in WordPress:\n" . get_edit_post_link($post_id, 'email') . "\n";
+      $message .= "\nEdit in WordPress:\n" . admin_url('post.php?post='.$post_id.'&action=edit') . "\n";
       wp_mail($notification_email, $subject, $message, $headers);
     }
 
