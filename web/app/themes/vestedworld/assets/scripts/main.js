@@ -290,7 +290,7 @@ var VestedWorld = (function($) {
         scrollRate = scrollRate - (parallaxImage.offsetTop);
 
         parallaxImage.element.css({
-          'transform': 'translate(-50%,' + (-70 + (scrollRate * speed)) + '%)'
+          'transform': 'translate3d(-50%,' + (-70 + (scrollRate * speed)) + '%, 0)'
         });
       });
     }
