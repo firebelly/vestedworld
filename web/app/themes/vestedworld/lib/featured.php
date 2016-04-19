@@ -58,7 +58,7 @@ function get_featured() {
       <div class="slide-item">
         <article>
           <h3>{$type}</h3>
-          <h2><a href="{$link}">{$post->post_title}</a></h2>
+          <h2>{$post->post_title}</h2>
           <p>{$excerpt}</p>
           <!--<a class="learn-more" href="{$link}">Learn More</a>-->
        </article>
