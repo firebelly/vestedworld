@@ -303,6 +303,7 @@ var VestedWorld = (function($) {
       var delayOffset = 0.75;
       $('.gif-to-play').each(function() {
         var $gif = $(this),
+            $gifParent = $gif.parent(),
             gifOffset = $gif.offset().top,
             gifSrc = $gif.attr('src'),
             fired;
@@ -311,27 +312,38 @@ var VestedWorld = (function($) {
 
         $(window).on('scroll', function() {
           if ($(window).scrollTop() + ($(window).height() * delayOffset) > gifOffset && !$gif.is('.in-view')) {
-            $gif.addClass('in-view');
-            $gif.attr('src', gifSrc);
-            fired = true;
+            showGifSrc($gif, gifSrc);
           }
         });
+
+        // When hovering over the parent article start the animation over
+        $gifParent.on('mouseenter', function() {
+          showGifSrc($gif, gifSrc);
+        });
       });
+
     }
 
-    function isGifInView(element, gifSrc) {
-      var $element = $(element),
-          elementOffsetTop = $element.offset().top;
+  }
 
-      if ($(window).scrollTop() + $(window).height() < elementOffsetTop) {
-        fired = false;
-      } else {
-        $element.addClass('in-view');
-        $element.attr('src', gifSrc);
-        fired = true;
-      }
+  function showGifSrc(gif, gifSrc) {
+    var $gif = gif;
+    $gif.addClass('in-view');
+    $gif.attr('src', gifSrc);
+    fired = true;
+  }
+
+  function isGifInView(element, gifSrc) {
+    var $element = $(element),
+        elementOffsetTop = $element.offset().top;
+
+    if ($(window).scrollTop() + $(window).height() < elementOffsetTop) {
+      fired = false;
+    } else {
+      $element.addClass('in-view');
+      $element.attr('src', gifSrc);
+      fired = true;
     }
-
   }
 
   function _initDropdownInvestorForm() {
