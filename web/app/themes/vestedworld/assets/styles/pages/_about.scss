@@ -282,9 +282,8 @@
     border-top: 1px solid $gray-dark;
   }
   > p {
+    @extend .h2;
     margin-top: 0;
-    font-size: 32px;
-    line-height: 40px;
     color: $brand-primary;
     @include media-md {
       width: 50%;
