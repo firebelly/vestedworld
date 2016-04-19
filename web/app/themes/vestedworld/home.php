@@ -8,23 +8,9 @@ $per_page = get_option('posts_per_page');
 $total_posts = $GLOBALS['wp_query']->found_posts;
 $total_pages = ($total_posts > 0) ? ceil($total_posts / $per_page) : 1;
 $page = get_page_by_path('/resources/news/'); // may use this down the line to pull editable metadata from page for og tags/etc
-?>
 
-<header class="news-filter">
-  <form action="<?= get_permalink(get_option('page_for_posts')) ?>" method="get">
-    <h1>News</h1>
-    <fieldset>
-      <div class="filter">
-        <label>Filter</label>
-        <?php wp_dropdown_categories(); ?>
-      </div>
-      <div class="search">
-        <label class="sr-only">Search</label>
-        <input type="text" name="s" placeholder="Search">
-      </div>
-    </fieldset>
-  </form>
-</header>
+include(locate_template('templates/news-header.php'));
+?>
 
 <?php if (!have_posts()) : ?>
   <div class="alert alert-warning">
