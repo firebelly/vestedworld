@@ -39,6 +39,18 @@
   }
 
   @include media-md {
+    top: 0;
+    width: 100%;
+    position: fixed;
     padding: 16px #{100% / 24 * 1} 16px 24px;
+  }
+}
+
+// WP admin bar
+.admin-bar {
+  .site-header {
+    @include media-md {
+      top: 32px;
+    }
   }
 }
