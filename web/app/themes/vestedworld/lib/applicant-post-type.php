@@ -193,7 +193,7 @@ function has_applied($email, $application_type='Sitewide Dropdown', $position_id
 
 function new_applicant() {
   $errors = [];
-  $notification_email = \Firebelly\SiteOptions\get_option('notification_email', 'nate@firebellydesign.com');
+  $notification_email = \Firebelly\SiteOptions\get_option('leads_notification_email', 'info@vestedworld.com');
   $application_type = $_POST['application_type'];
   $name = $_POST['application_first_name'] .' '. $_POST['application_last_name'];
 
