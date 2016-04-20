@@ -116,6 +116,9 @@ var VestedWorld = (function($) {
             if (response.success) {
               _feedbackMessage('Your application was submitted successfully!');
               form.reset();
+              if ($(form).parent('.investor-form-container')) {
+                _hideInvestorForm();
+              }
             } else {
               _feedbackMessage(response.data.message);
             }
@@ -125,6 +128,52 @@ var VestedWorld = (function($) {
         }
       });
     });
+  }
+
+  function _initDropdownInvestorForm() {
+    $('.site-header .sign-up').on('click', function(e) {
+      e.preventDefault();
+
+      if (!$('.investor-form-container').is('.-active')) {
+        _showInvestorForm();
+      } else {
+        _hideInvestorForm();
+      }
+    });
+
+    // Shut it down!
+    $document.on('click', '.global-overlay, .investor-form-container .close, .menu-toggle', function() {
+      if ($('.investor-form-container').is('.-active')) {
+        if ($(this).is('.menu-toggle')) {
+          $('.investor-form-container').removeClass('-show');
+          setTimeout(function() {
+           $('.investor-form-container').removeClass('-active');
+          }, 400);
+        } else {
+          _hideInvestorForm();
+        }
+      }
+    });
+  }
+
+  function _showInvestorForm() {
+    _showOverlay();
+    _scrollBody($('body'), 250, 0, 0); 
+    $('.investor-form-container').addClass('-active');
+    setTimeout(function() {
+      $('.investor-form-container').addClass('-show');
+    }, 50);
+    $('.investor-form-container form input:first').focus();
+  }
+
+  function _hideInvestorForm() {
+    $('.investor-form-container').removeClass('-show');
+    setTimeout(function() {
+      _hideOverlay();
+    }, 200);
+    setTimeout(function() {
+     $('.investor-form-container').removeClass('-active');
+    }, 400);
   }
 
   function _scrollBody(element, duration, delay, offset) {
@@ -359,51 +408,6 @@ var VestedWorld = (function($) {
       $element.attr('src', gifSrc);
       fired = true;
     }
-  }
-
-  function _initDropdownInvestorForm() {
-    $('.site-header .sign-up').on('click', function(e) {
-      e.preventDefault();
-
-      if (!$('.investor-form-container').is('.-active')) {
-        _showInvestorForm();
-      } else {
-        _hideInvestorForm();
-      }
-    });
-
-    // Shut it down!
-    $document.on('click', '.global-overlay, .investor-form-container .close, .menu-toggle', function() {
-      if ($('.investor-form-container').is('.-active')) {
-        if ($(this).is('.menu-toggle')) {
-          $('.investor-form-container').removeClass('-show');
-          setTimeout(function() {
-           $('.investor-form-container').removeClass('-active');
-          }, 400);
-        } else {
-          _hideInvestorForm();
-        }
-      }
-    });
-  }
-
-  function _showInvestorForm() {
-    _showOverlay();
-    _scrollBody($('body'), 250, 0, 0); 
-    $('.investor-form-container').addClass('-active');
-    setTimeout(function() {
-      $('.investor-form-container').addClass('-show');
-    }, 50);
-  }
-
-  function _hideInvestorForm() {
-    $('.investor-form-container').removeClass('-show');
-    setTimeout(function() {
-      _hideOverlay();
-    }, 200);
-    setTimeout(function() {
-     $('.investor-form-container').removeClass('-active');
-    }, 400);
   }
 
   function _initPeopleModals() {
