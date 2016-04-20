@@ -1,4 +1,6 @@
 set :stage, :staging
+set :domain, 'vestedworld.firebelly.co'
+set :application, 'vestedworld_staging'
 set :login, 'firebelly'
 
 # Simple Role Syntax
