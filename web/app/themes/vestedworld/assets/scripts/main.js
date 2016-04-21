@@ -39,7 +39,7 @@ var VestedWorld = (function($) {
     _initNav();
     // _initSearch();
     _initLoadMore();
-    _initParallaxBackgrounds();
+    // _initParallaxBackgrounds(); 
     _initGifPlay();
     _initPeopleModals();
     _initDropdownInvestorForm();
@@ -332,7 +332,7 @@ var VestedWorld = (function($) {
     // Performance techniques from http://kristerkari.github.io/adventures-in-webkit-land/blog/2013/08/30/fixing-a-parallax-scrolling-website-to-run-in-60-fps/
 
     var parallaxImages = [],
-        speed = 0.01;
+        speed = 0.1;
 
     $('.parallax-this').each(function(i) {
       var parallaxImage = {};
@@ -343,19 +343,25 @@ var VestedWorld = (function($) {
       parallaxImages.push(parallaxImage);
     });
 
+    // window.requestAnimationFrame(backgroundScroll);
+
     $(window).on('scroll', function() {
       window.requestAnimationFrame(backgroundScroll);
     });
 
     function backgroundScroll() {
-      $.each(parallaxImages, function(i, parallaxImage) {
-        var scrollRate = $(window).scrollTop();
-        // Subtract the top position of the parent from the scroll position
-        scrollRate = scrollRate - (parallaxImage.offsetTop);
 
-        parallaxImage.element.css({
-          'transform': 'translate3d(-50%,' + (-70 + (scrollRate * speed)) + '%, 0)'
-        });
+      $.each(parallaxImages, function(i, parallaxImage) {
+        var scrollPos = $(window).scrollTop();
+        // Subtract the top position of the parent from the scroll position
+        scrollRate = scrollPos - (parallaxImage.offsetTop);
+
+        if (scrollPos + $(window).height() > parallaxImage.offsetTop) {
+          parallaxImage.element.css({
+            'transform': 'translate3d(-50%,' + scrollRate * speed + '%, 0)'
+          });
+        }
+
       });
     }
 
