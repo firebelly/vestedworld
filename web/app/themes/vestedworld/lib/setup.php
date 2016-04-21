@@ -99,6 +99,7 @@ function display_sidebar() {
  * Theme assets
  */
 function assets() {
+  wp_enqueue_script('sage/modernizr', Assets\asset_path('scripts/modernizr.js'),[], null, true);
   wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), false, null);
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
