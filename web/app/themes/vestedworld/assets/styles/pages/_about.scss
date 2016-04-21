@@ -30,7 +30,6 @@
       height: 200px;
       overflow: hidden;
       position: relative;
-      background-attachment: fixed;
       background-size: cover;
       background-position: center center;
       img {
@@ -583,4 +582,11 @@
       }
     }
   }
+}
+
+// No-touch mod for fixed background
+.no-touch {
+ .page.about-us .about-section .image-wrap {
+    background-attachment: fixed;
+ }
 }
