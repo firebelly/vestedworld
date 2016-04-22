@@ -37,6 +37,7 @@ var VestedWorld = (function($) {
     $('main').fitVids();
 
     _initNav();
+    _initPageNav();
     // _initSearch();
     _initLoadMore();
     // _initParallaxBackgrounds(); 
@@ -272,6 +273,53 @@ var VestedWorld = (function($) {
     $('body, .menu-toggle').removeClass('menu-open');
     $('.site-nav').removeClass('-active');
     _hideOverlay();
+  }
+
+  function _initPageNav() {
+    // Is ther page-nav sections on the page?
+    if ($('.page-nav-section').length) {
+      var activeSectionIndex = 0,
+          pageNavSections = $('.page-nav-section'),
+          pageSectionTitles = $('.page-nav-title'),
+          $activeSection = $(pageNavSections[activeSectionIndex]),
+          $nextSection = $activeSection.next('.page-nav-section'),
+          pageNav = $('.site-wrap').append('<nav class="page-nav"><ul></ul><div class="top">top &gt;</div><div class="next-section">&lt; Next section</div></nav>'),
+          headerOffset = $('.site-header').outerHeight();
+
+      $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex + 1]).html());
+
+      $(window).on('scroll', function() {
+        var scrollPos = $(window).scrollTop();
+
+        if (scrollPos + headerOffset > $activeSection.offset().top + $activeSection.outerHeight() && activeSectionIndex < pageNavSections.length - 1) {        
+          $activeSection = $(pageNavSections[activeSectionIndex++]);
+          $nextSection = $(pageNavSections[activeSectionIndex]);
+          updatePageNav(activeSectionIndex);
+        } else if (activeSectionIndex >= pageNavSections.length) {
+          $('.page-nav .next-section').html('');
+        } else if (scrollPos < $activeSection.offset().top && activeSectionIndex !== 0) {
+          // activeSection = pageNavSections[activeSectionIndex--];
+          // $activeSection = $(activeSection);
+          // $nextSection = $activeSection.next('.page-nav-section');
+          // updatePageNav();
+          // console.log(activeSectionIndex);
+        }
+      });
+
+      // Go back to top
+      $document.on('click', '.page-nav .top', function() {
+        _scrollBody($('.page-nav-section:first'), 250);
+      });
+
+      $document.on('click', '.page-nav .next-section', function() {
+        _scrollBody($nextSection, 250);
+      });
+
+    } 
+
+    function updatePageNav(activeSectionIndex) {
+      $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex]).html());
+    }
   }
 
   function _injectSvgSprite() {
