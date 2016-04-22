@@ -535,7 +535,8 @@ var VestedWorld = (function($) {
       dots: true,
       autoplaySpeed: 6000,
       speed: 800,
-      adaptiveHeight: true
+      adaptiveHeight: true,
+      lazyLoad: 'ondemand'
     });
   }
 
