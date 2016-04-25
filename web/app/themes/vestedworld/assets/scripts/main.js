@@ -158,7 +158,7 @@ var VestedWorld = (function($) {
 
   function _showInvestorForm() {
     _showOverlay();
-    _scrollBody($('body'), 250, 0, 0); 
+    _scrollBody($('body'), 250, 0, 0);
     $('.investor-form-container').addClass('-active');
     setTimeout(function() {
       $('.investor-form-container').addClass('-show');
@@ -467,16 +467,18 @@ var VestedWorld = (function($) {
 
   function _nextPerson() {
     var $active = $('.people-grid.-active').find('.person.-active');
-    // find next or first person
+    // Find next or first person
     var $next = ($active.next('.person').length > 0) ? $active.next('.person') : $('.people-grid.-active .person:first');
+    if ($next[0] === $active[0]) { return; } // Just return if there's only one person
     $next.find('.person-activate').trigger('click');
     $('.active-person-container .person-data').addClass('enterRight');
   }
 
   function _prevPerson() {
     var $active = $('.people-grid.-active').find('.person.-active');
-    // find prev or last person
+    // Find prev or last person
     var $prev = ($active.prev('.person').length > 0) ? $active.prev('.person') : $('.people-grid.-active .person:last');
+    if ($prev[0] === $active[0]) { return; } // Just return if there's only one person
     $prev.find('.person-activate').trigger('click');
     $('.active-person-container .person-data').addClass('enterLeft');
   }
