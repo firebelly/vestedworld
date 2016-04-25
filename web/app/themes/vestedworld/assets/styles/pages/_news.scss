@@ -13,9 +13,32 @@
   .search {
     border: 2px solid $white;
     padding: #{$vertical-beat * 1};
+    font: 16px/24px $sans;
+    letter-spacing: .2em;
+    text-transform: uppercase;
     @include media-md {
       width: 50%;
       float: left;
+    }
+  }
+  .filter .select-wrapper {
+    width: 75%;
+    float: right;
+  }
+  .filter select,
+  .search input {
+    background: none;
+    border: none;
+    font: 16px/1 $sans;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    width: 100%;
+    outline: none;
+  }
+  .search input {
+    &::placeholder {
+      line-height: normal;
+      color: $white;
     }
   }
 
@@ -57,7 +80,7 @@
     transition: max-height 1s;
   }
   &.active .post-extended {
-    max-height: 500px;
+    max-height: 1500px;
   }
   .article-body {
     background: $white;

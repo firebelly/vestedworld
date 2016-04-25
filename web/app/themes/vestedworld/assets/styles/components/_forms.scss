@@ -27,15 +27,16 @@ label.error {
   padding: 0;
   position: relative;
   &:after {
+    top: 10px;
     right: 10px;
-    height: 8px;
-    width: 13px;
-    content: '';
-    bottom: 14px;
+    height: 10px;
+    width: 10px;
+    content: '^';
+    transform: rotate(180deg);
     position: absolute;
     pointer-events: none;
     // background: url("../images/icon-arrow-down-pink.svg") no-repeat right center;
-    background-size: 13px 8px;
+    // background-size: 13px 8px;
   }
 }
 .select-wrapper select {
@@ -46,6 +47,7 @@ label.error {
   background-color: transparent;
   background-image: none;
   -webkit-appearance: none;
+  width: 100%;
 }
 .select-wrapper select:focus {
   outline: none;

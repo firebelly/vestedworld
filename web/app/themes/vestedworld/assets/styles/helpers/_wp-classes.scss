@@ -20,11 +20,11 @@
   // Only float if not on an extra small device
   .alignleft {
     float: left;
-
+    margin: 0 10px 10px 0;
   }
   .alignright {
     float: right;
-
+    margin: 0 0 10px 10px;
   }
 }
 
