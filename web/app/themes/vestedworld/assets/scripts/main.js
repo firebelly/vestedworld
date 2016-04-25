@@ -11,6 +11,7 @@ var VestedWorld = (function($) {
       breakpoint_array = [480,1000,1200],
       $document,
       $sidebar,
+      headerOffset,
       loadingTimer,
       page_at,
       feedback_message_timer,
@@ -26,6 +27,13 @@ var VestedWorld = (function($) {
 
     // Set screen size vars
     _resize();
+
+    // Header offset w/wo wordpress admin bar
+    if ($('body').hasClass('admin-bar')) {
+      headerOffset = $('#wpadminbar').outerHeight() + $('.site-header').outerHeight();
+    } else {
+      headerOffset = $('.site-header').outerHeight();
+    }
 
     //initialize sliders
     _initSliders();
@@ -284,9 +292,11 @@ var VestedWorld = (function($) {
           $activeSection = $(pageNavSections[activeSectionIndex]),
           $nextSection = $activeSection.next('.page-nav-section'),
           pageNav = $('.site-wrap').append('<nav class="page-nav"><ul></ul><div class="top">top &gt;</div><div class="next-section">&lt; Next section</div></nav>'),
-          headerOffset = $('.site-header').outerHeight() + 1,
           sectionPositions = [],
           sectionHeights = [];
+
+      // Fix for header offset discrepency 
+      headerOffset = headerOffset + 1;
 
       // Start off with the next section text in next link
       $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex + 1]).html());
