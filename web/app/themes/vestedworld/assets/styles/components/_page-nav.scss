@@ -1,0 +1,113 @@
+// Page nav
+
+// wp admin bar push
+.admin-bar {
+  .page-nav {
+    top: 94px;
+  }
+}
+
+.page-nav {
+  right: 0;
+  top: 62px;
+  bottom: 0;
+  z-index: 1;
+  display: none;
+  position: fixed;
+  width: $column-width;
+  > div {
+    left: 50%;
+    cursor: pointer;
+    padding-top: 4px;
+    position: absolute;
+    white-space: nowrap;
+    color: $brand-primary;
+    @include small-caps();
+    background: $gray-lite;
+    transform-origin: top left;
+    transition: margin .1s ease-out;
+    transform: rotate(-90deg) translateY(-50%);
+    &:hover {
+      &.top {
+        margin-top: 4px;
+      }
+      &.next-section {
+        margin-bottom: 4px;
+      }
+    }
+    &.top {
+      top: 42px;
+    }
+    &.next-section {
+      bottom: 0;
+    }
+  }
+
+  @include media-md {
+    display: block;
+  }
+
+  ul {
+    left: 0;
+    top: 50%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    transform: translateY(-50%);
+    li {
+      margin: 2px 0;
+      display: block;
+      position: relative;
+      list-style-type: none;
+      a {
+        display: block;
+        padding: 12px 0;
+        &::before {
+          top: 50%;
+          left: 50%;
+          content: '';
+          width: 10px;
+          height: 10px;
+          position: absolute;
+          border-radius: 50%;
+          border: 1px solid $brand-primary;
+          transform: translate(-50%, -50%);
+          background: rgba($brand-primary, 0);
+          transition: background .2s ease-out;
+        }
+        &:hover {
+          &::before {
+            background: $brand-primary;
+          }
+          span {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+          }
+        }
+
+        // The hover text
+        span {
+          top: -2px;
+          opacity: 0;
+          right: 100%;
+          position: absolute;
+          white-space: nowrap;
+          pointer-events: none;
+          @include small-caps();
+          color: $brand-primary;
+          background: $gray-lite;
+          transform: translate(20%);
+          padding: 4px 10px 2px 10px;
+          transition: opacity .2s ease-out, transform .2s ease-out;
+        }
+      }
+      &.-active {
+        a::before {
+          background: rgba($brand-primary, 1);
+        }
+      }
+    }
+  }
+}
