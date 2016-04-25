@@ -11,6 +11,7 @@ var VestedWorld = (function($) {
       breakpoint_array = [480,1000,1200],
       $document,
       $sidebar,
+      headerOffset,
       loadingTimer,
       page_at,
       feedback_message_timer,
@@ -26,6 +27,13 @@ var VestedWorld = (function($) {
 
     // Set screen size vars
     _resize();
+
+    // Header offset w/wo wordpress admin bar
+    if ($('body').hasClass('admin-bar')) {
+      headerOffset = $('#wpadminbar').outerHeight() + $('.site-header').outerHeight();
+    } else {
+      headerOffset = $('.site-header').outerHeight();
+    }
 
     //initialize sliders
     _initSliders();
@@ -178,13 +186,14 @@ var VestedWorld = (function($) {
   }
 
   function _scrollBody(element, duration, delay, offset) {
-    if ($('#wpadminbar').length) {
-      offset = $('#wpadminbar').height() + offset;
+    if (offset === undefined) {
+      offset = headerOffset;
     }
+
     element.velocity('scroll', {
       duration: duration,
       delay: delay,
-      offset: -offset
+      offset: -offset,
     }, 'easeOutSine');
   }
 
@@ -284,9 +293,10 @@ var VestedWorld = (function($) {
           $activeSection = $(pageNavSections[activeSectionIndex]),
           $nextSection = $activeSection.next('.page-nav-section'),
           pageNav = $('.site-wrap').append('<nav class="page-nav"><ul></ul><div class="top">top &gt;</div><div class="next-section">&lt; Next section</div></nav>'),
-          headerOffset = $('.site-header').outerHeight() + 1,
-          sectionPositions = [],
-          sectionHeights = [];
+          sectionPositions = [];
+
+      // Fix for header offset discrepency 
+      headerOffset = headerOffset + 1;
 
       // Start off with the next section text in next link
       $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex + 1]).html());
@@ -301,14 +311,13 @@ var VestedWorld = (function($) {
 
       // Cache heights and positions
       for( var i = 0; i < pageNavSections.length; i++ ) {
-        var $element = $(pageNavSections[i]);
-        var height = $element.offset().top;
+        var $element = $(pageNavSections[i]),
+            height = $element.offset().top;
         sectionPositions.push(height);
-        sectionHeights.push($element.height());
       }
 
       // Start off with active section dot active
-      $navDots.eq( activeSectionIndex ).addClass( '-active' );
+      $navDots.eq(activeSectionIndex).addClass( '-active' );
 
       $(window).on('scroll', function(e) {
         var scrollPos = $(window).scrollTop() + headerOffset;
@@ -514,7 +523,7 @@ var VestedWorld = (function($) {
       $personData.clone().appendTo($activeDataContainer);
       $activeContainer.css('top', thisPersonOffset);
       $activeContainer.addClass('-active');
-      _scrollBody($activeContainer, 250, 0, 60);
+      _scrollBody($activeContainer, 250, 0, headerOffset + 64);
     });
 
     // Shut it down!
@@ -633,8 +642,8 @@ var VestedWorld = (function($) {
   return {
     init: _init,
     resize: _resize,
-    scrollBody: function(section, duration, delay) {
-      _scrollBody(section, duration, delay);
+    scrollBody: function(section, duration, delay, offset) {
+      _scrollBody(section, duration, delay, offset);
     }
   };
 
