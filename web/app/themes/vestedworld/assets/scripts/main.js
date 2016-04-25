@@ -37,6 +37,7 @@ var VestedWorld = (function($) {
     $('main').fitVids();
 
     _initNav();
+    _initPageNav();
     // _initSearch();
     _initLoadMore();
     // _initParallaxBackgrounds(); 
@@ -272,6 +273,79 @@ var VestedWorld = (function($) {
     $('body, .menu-toggle').removeClass('menu-open');
     $('.site-nav').removeClass('-active');
     _hideOverlay();
+  }
+
+  function _initPageNav() {
+    // Is ther page-nav sections on the page?
+    if ($('.page-nav-section').length) {
+      var activeSectionIndex = 0,
+          pageNavSections = $('.page-nav-section'),
+          pageSectionTitles = $('.page-nav-title'),
+          $activeSection = $(pageNavSections[activeSectionIndex]),
+          $nextSection = $activeSection.next('.page-nav-section'),
+          pageNav = $('.site-wrap').append('<nav class="page-nav"><ul></ul><div class="top">top &gt;</div><div class="next-section">&lt; Next section</div></nav>'),
+          headerOffset = $('.site-header').outerHeight() + 1,
+          sectionPositions = [],
+          sectionHeights = [];
+
+      // Start off with the next section text in next link
+      $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex + 1]).html());
+
+      // Build dots nav
+      pageNavSections.each(function() {
+        var thisId = $(this).attr('id'),
+            thisTitle = $(this).find('.page-nav-title').html();
+        $('.page-nav ul').append('<li><a href="#' + thisId + '" class="smoothscroll"><span>' + thisTitle + '</span></a></li>');
+      });
+      $navDots = $('.page-nav li');
+
+      // Cache heights and positions
+      for( var i = 0; i < pageNavSections.length; i++ ) {
+        var $element = $(pageNavSections[i]);
+        var height = $element.offset().top;
+        sectionPositions.push(height);
+        sectionHeights.push($element.height());
+      }
+
+      // Start off with active section dot active
+      $navDots.eq( activeSectionIndex ).addClass( '-active' );
+
+      $(window).on('scroll', function(e) {
+        var scrollPos = $(window).scrollTop() + headerOffset;
+
+        for( var i = 0; i < pageNavSections.length; i++ ) {
+          if(scrollPos > sectionPositions[i]) {
+            activeSectionIndex = i;
+            $('.page-nav li.-active').removeClass('-active');
+            $navDots.eq( activeSectionIndex ).addClass( '-active' );
+            updatePageNav(activeSectionIndex + 1);
+
+            if (activeSectionIndex < pageNavSections.length - 1) {
+              $nextSection = $(pageNavSections[activeSectionIndex + 1]);
+            } else {
+              $('.page-nav .next-section').html('');
+            }
+          } else {
+            activeSectionIndex = i;
+            $navDots.eq( activeSectionIndex ).removeClass( '-active' );
+          }
+        }
+      });
+
+      // Go back to top
+      $document.on('click', '.page-nav .top', function() {
+        _scrollBody($('.page-nav-section:first'), 250);
+      });
+      // Go to next section
+      $document.on('click', '.page-nav .next-section', function() {
+        _scrollBody($nextSection, 250);
+      });
+
+    } 
+
+    function updatePageNav(activeSectionIndex) {
+      $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex]).html());
+    }
   }
 
   function _injectSvgSprite() {
