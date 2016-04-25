@@ -284,25 +284,51 @@ var VestedWorld = (function($) {
           $activeSection = $(pageNavSections[activeSectionIndex]),
           $nextSection = $activeSection.next('.page-nav-section'),
           pageNav = $('.site-wrap').append('<nav class="page-nav"><ul></ul><div class="top">top &gt;</div><div class="next-section">&lt; Next section</div></nav>'),
-          headerOffset = $('.site-header').outerHeight();
+          headerOffset = $('.site-header').outerHeight() + 1,
+          sectionPositions = [],
+          sectionHeights = [];
 
+      // Start off with the next section text in next link
       $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex + 1]).html());
 
-      $(window).on('scroll', function() {
-        var scrollPos = $(window).scrollTop();
+      // Build dots nav
+      pageNavSections.each(function() {
+        var thisId = $(this).attr('id'),
+            thisTitle = $(this).find('.page-nav-title').html();
+        $('.page-nav ul').append('<li><a href="#' + thisId + '" class="smoothscroll"><span>' + thisTitle + '</span></a></li>');
+      });
+      $navDots = $('.page-nav li');
 
-        if (scrollPos + headerOffset > $activeSection.offset().top + $activeSection.outerHeight() && activeSectionIndex < pageNavSections.length - 1) {        
-          $activeSection = $(pageNavSections[activeSectionIndex++]);
-          $nextSection = $(pageNavSections[activeSectionIndex]);
-          updatePageNav(activeSectionIndex);
-        } else if (activeSectionIndex >= pageNavSections.length) {
-          $('.page-nav .next-section').html('');
-        } else if (scrollPos < $activeSection.offset().top && activeSectionIndex !== 0) {
-          // activeSection = pageNavSections[activeSectionIndex--];
-          // $activeSection = $(activeSection);
-          // $nextSection = $activeSection.next('.page-nav-section');
-          // updatePageNav();
-          // console.log(activeSectionIndex);
+      // Cache heights and positions
+      for( var i = 0; i < pageNavSections.length; i++ ) {
+        var $element = $(pageNavSections[i]);
+        var height = $element.offset().top;
+        sectionPositions.push(height);
+        sectionHeights.push($element.height());
+      }
+
+      // Start off with active section dot active
+      $navDots.eq( activeSectionIndex ).addClass( '-active' );
+
+      $(window).on('scroll', function(e) {
+        var scrollPos = $(window).scrollTop() + headerOffset;
+
+        for( var i = 0; i < pageNavSections.length; i++ ) {
+          if(scrollPos > sectionPositions[i]) {
+            activeSectionIndex = i;
+            $('.page-nav li.-active').removeClass('-active');
+            $navDots.eq( activeSectionIndex ).addClass( '-active' );
+            updatePageNav(activeSectionIndex + 1);
+
+            if (activeSectionIndex < pageNavSections.length - 1) {
+              $nextSection = $(pageNavSections[activeSectionIndex + 1]);
+            } else {
+              $('.page-nav .next-section').html('');
+            }
+          } else {
+            activeSectionIndex = i;
+            $navDots.eq( activeSectionIndex ).removeClass( '-active' );
+          }
         }
       });
 
@@ -310,7 +336,7 @@ var VestedWorld = (function($) {
       $document.on('click', '.page-nav .top', function() {
         _scrollBody($('.page-nav-section:first'), 250);
       });
-
+      // Go to next section
       $document.on('click', '.page-nav .next-section', function() {
         _scrollBody($nextSection, 250);
       });
