@@ -158,14 +158,14 @@ function get_headlines() {
   if (!$headline_posts) return false;
 
   foreach ($headline_posts as $post):
-    $thumb = get_the_post_thumbnail($post->ID, 'slide');
+    $thumb = \Firebelly\Media\get_post_thumbnail($post->ID, 'slide');
     $body = strip_tags($post->post_content);
     $links_to = get_permalink(get_post_meta($post->ID, '_cmb2_links_to', true));
 
     $output .= <<<HTML
        <div class="slide-item">
          <article>
-            {$thumb}
+            <img data-lazy="{$thumb}">
             <div class="slide-text">
               <h3 class="tab"><a href="{$links_to}">{$post->post_title}</a></h3>
               <p class="headline h2">{$body}</p>
