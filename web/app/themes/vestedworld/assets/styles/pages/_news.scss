@@ -16,13 +16,13 @@
     font: 16px/24px $sans;
     letter-spacing: .2em;
     text-transform: uppercase;
-    @include media-md {
+    @include min-screen($breakpoint-huge) {
       width: 50%;
       float: left;
     }
   }
   .filter .select-wrapper {
-    width: 75%;
+    width: 70%;
     float: right;
   }
   .filter select,
@@ -36,7 +36,7 @@
     outline: none;
   }
   .search {
-    margin-left: -1px;
+    margin-top: -1px;
       input {
       &::placeholder {
         line-height: normal;
@@ -46,6 +46,9 @@
   }
 
   @include media-md {
+    .search {
+      margin: 0 0 0 -1px;
+    }
     h1 {
       margin: 0;
       width: 50%;
