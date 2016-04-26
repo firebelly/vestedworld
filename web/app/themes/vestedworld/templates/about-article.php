@@ -11,7 +11,7 @@ $body = apply_filters('the_content', $page->post_content);
 
 ?>
 
-<article id="<?= $name ?>" class="about-section page-nav-section">
+<article id="<?= $name ?>" class="page-section page-nav-section">
 	<?php if ($thumb = \Firebelly\Media\get_post_thumbnail($page->ID, 'large')): ?>
 	  <div class="image-wrap parallax-parent" style="background-image:url('<?= $thumb ?>');"></div>
 	<?php endif; ?>

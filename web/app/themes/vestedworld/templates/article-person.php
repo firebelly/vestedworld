@@ -39,13 +39,16 @@ $body = apply_filters('the_content', $post->post_content);
           <header>      
             <h1><?= $post->post_title ?></h1>
           </header>
+          <?= !empty($callout) ? '<div class="callout">'.$callout.'</div>' : ''; ?>
           <button class="btn -white person-activate">Profile</button>
         </div>
       </div>
     <?php } ?>
   </div>
   <div class="bio">
-    <h1 class="section-title">Bio</h1>
+    <h1 class="section-title">
+      <?php if ($member_type == 'vested_angel') echo 'Q&A'; else if ($member_type == 'vested_advisor') echo 'Overview'; else echo 'Bio';  ?>
+    </h1>
     <div class="bio-inner">
       <div class="user-content">
         <?= $body ?>

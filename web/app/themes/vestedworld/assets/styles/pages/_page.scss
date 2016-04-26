@@ -1,0 +1,140 @@
+// General page styles
+
+.section-title {
+  top: 0;
+  z-index: 1;
+  height: 32px;
+  color: $white;
+  padding: 0 10px;
+  position: absolute;
+  font-weight: normal;
+  @include small-caps();
+  line-height: 32px;
+  background: $brand-primary;
+  left: $mobile-global-padding;
+  @include media-md {
+    left: 0;
+    top: #{$vertical-beat * 8};
+    transform-origin: top left;
+    transform: rotate(-90deg) translateX(-100%);
+  }
+}
+
+.page-section {
+  position: relative;
+  @include clearfix();
+
+  .image-wrap {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    img {
+      top: 0;
+      left: 50%;
+      width: auto;
+      height: 400px;
+      max-width: none;
+      position: absolute;
+      backface-visibility: hidden;
+      transition: transform 0s linear;
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    @include media-md {
+      height: 392px;
+      img {
+        height: auto;
+        min-width: 100%;
+        min-height: 900px;
+      }
+    }
+  }
+
+  .content {
+    z-index: 1;
+    position: relative;
+    background: $white;
+    padding: 48px $mobile-global-padding 96px;
+    @include media-md {
+      padding: 48px $global-padding 96px;
+      &::before {
+        left: 0;
+        height: 1px;
+        width: 25px;
+        content: '';
+        bottom: 120px;
+        position: absolute;
+        background: $gray-dark;
+      }
+    }
+  }
+
+  .summary {
+    h2 {
+      @extend .h1;
+      color: $brand-primary;
+    }
+    p {
+      @extend .h2;
+    }
+  }
+
+  .body {
+    margin-top: 6px;
+    padding-top: $vertical-beat * 2;
+    border-top: 1px solid $gray-dark;
+    h3 {
+      color: $brand-primary;
+    }
+    p {
+      font-size: 16px;
+      margin: 0 0 1.5em;
+      line-height: 1.5em;
+    }
+  }
+
+  @include media-md {
+    .summary {
+      @include column(12);
+      padding-right: $column-width;
+    }
+    .body {
+      @include column(11);
+      padding-right: $column-width;
+    }
+  }
+}
+
+// Intro section
+.page-section.intro-section {
+  h1 {
+    background: $white;
+    color: $brand-primary;
+  }
+
+  .content {
+    color: $white;
+    background: $brand-primary;
+    &::before {
+      background: $white;
+    }
+    p {
+      @extend %smooth;
+    }
+  }
+
+  .summary h2 {
+    color: $white;
+  }
+
+  .body {
+    border-color: $white;
+  }
+}
+
+section {
+  margin-top: 60px;
+  background: $white;
+}
