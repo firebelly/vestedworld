@@ -11,7 +11,7 @@
   }
   .filter,
   .search {
-    border: 2px solid $white;
+    border: 1px solid $white;
     padding: #{$vertical-beat * 1};
     font: 16px/24px $sans;
     letter-spacing: .2em;
@@ -35,10 +35,13 @@
     width: 100%;
     outline: none;
   }
-  .search input {
-    &::placeholder {
-      line-height: normal;
-      color: $white;
+  .search {
+    margin-left: -1px;
+      input {
+      &::placeholder {
+        line-height: normal;
+        color: $white;
+      }
     }
   }
 
@@ -94,7 +97,7 @@
 }
 
 .button.read-more {
-  border: 2px solid $gray;
+  border: 1px solid $gray;
   margin-top: #{ $vertical-beat * 8 };
 }
 

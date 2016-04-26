@@ -27,12 +27,12 @@ label.error {
   padding: 0;
   position: relative;
   &:after {
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 0;
     height: 10px;
     width: 10px;
-    content: '^';
-    transform: rotate(180deg);
+    content: '>';
+    transform: rotate(90deg);
     position: absolute;
     pointer-events: none;
     // background: url("../images/icon-arrow-down-pink.svg") no-repeat right center;

@@ -396,16 +396,18 @@ var VestedWorld = (function($) {
           success: function(data) {
             var $data = $(data);
             if (loadingTimer) { clearTimeout(loadingTimer); }
-            more_container.append($data).removeClass('loading');
+            $data.appendTo(more_container).hide().fadeIn();
+            more_container.removeClass('loading');
             $load_more.attr('data-page-at', page+1);
-
-            // Hide load more if last page
-            if ($load_more.attr('data-total-pages') <= page + 1) {
-                $load_more.addClass('hide');
-            }
+            _checkLoadMore();
           }
       });
     });
+  }
+
+  // Hide "Load More" if there are no more pages
+  function _checkLoadMore() {
+    $('.load-more').toggleClass('hide', parseInt($('.load-more').attr('data-page-at')) >= parseInt($('.load-more').attr('data-total-pages')));
   }
 
   function _initParallaxBackgrounds() {
