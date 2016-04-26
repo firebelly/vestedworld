@@ -63,7 +63,9 @@ foreach($pages as $page) {
   </section>
   <section class="page-section people board page-nav-section" id="advisory-board">
   	<h1 class="section-title page-nav-title">Advisory Board</h1>
-    <p>VestedWorld’s approach is influenced by a diverse team of leaders who uphold our values and support our mission to invest for the greatest global impact.</p>
+    <div class="people-grid-intro">    
+      <p>VestedWorld’s approach is influenced by a diverse team of leaders who uphold our values and support our mission to invest for the greatest global impact.</p>
+    </div>
   	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'board']); ?>
   </section>
 </div>

@@ -21,6 +21,7 @@
 }
 
 .page-section {
+  background: $white;
   position: relative;
   @include clearfix();
 
@@ -132,9 +133,4 @@
   .body {
     border-color: $white;
   }
-}
-
-section {
-  margin-top: 60px;
-  background: $white;
 }
