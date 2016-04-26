@@ -441,6 +441,7 @@ var VestedWorld = (function($) {
     $load_more.attr('data-category',cat).attr('data-s', s).attr('data-page-at', 0);
     $('.load-more-container').empty();
     $load_more.find('a').trigger('click');
+    _trackEvent('In-Page Interactions','Filter News, cat: '+cat+' search: '+s);
   }
 
   // Init js handling of News filter form
