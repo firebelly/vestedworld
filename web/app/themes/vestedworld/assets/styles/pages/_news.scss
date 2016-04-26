@@ -11,17 +11,22 @@
   }
   .filter,
   .search {
+    @include clearfix;
     border: 1px solid $white;
-    padding: #{$vertical-beat * 1};
     font: 16px/24px $sans;
     letter-spacing: .2em;
     text-transform: uppercase;
-    @include min-screen($breakpoint-huge) {
-      width: 50%;
-      float: left;
-    }
   }
+  .filter label {
+    display: block;
+    width: 28%;
+    float: left;
+    padding: #{$vertical-beat * 1};
+    border-right: 1px solid $white;
+  }
+
   .filter .select-wrapper {
+    padding: #{$vertical-beat * 1};
     width: 70%;
     float: right;
   }
@@ -36,6 +41,7 @@
     outline: none;
   }
   .search {
+    padding: #{$vertical-beat * 1};
     margin-top: -1px;
       input {
       &::placeholder {
@@ -46,9 +52,6 @@
   }
 
   @include media-md {
-    .search {
-      margin: 0 0 0 -1px;
-    }
     h1 {
       margin: 0;
       width: 50%;
@@ -56,6 +59,18 @@
     }
     padding: #{$vertical-beat * 7} $global-padding;
   }
+
+  @include min-screen($breakpoint-huge) {
+    .filter,
+    .search {
+      width: 50%;
+      float: left;
+    }
+    .search {
+      margin: 0 0 0 -1px;
+    }
+  }
+
 }
 
 .article.post {
