@@ -20,9 +20,8 @@ function is_ajax() {
  * AJAX load more posts
  */
 function load_more_posts() {
-  // news or projects?
-  $post_type = (!empty($_REQUEST['post_type']) && $_REQUEST['post_type']=='project') ? 'project' : 'news';
-  // get page offsets
+  $post_type = (!empty($_REQUEST['post_type'])) ? $_REQUEST['post_type'] : 'news';
+  // Get page offsets
   $page = !empty($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   $per_page = !empty($_REQUEST['per_page']) ? $_REQUEST['per_page'] : get_option('posts_per_page');
   $offset = ($page-1) * $per_page;
@@ -30,46 +29,34 @@ function load_more_posts() {
     'offset' => $offset,
     'posts_per_page' => $per_page,
   ];
-  if ($post_type == 'project') {
-    $args['post_type'] = 'project';
-  }
+
   // Filter by Category?
-  if (!empty($_REQUEST['project_category'])) {
-    if (strpos($_REQUEST['project_category'], ',') !== false) {
-      $cats = explode(',', $_REQUEST['project_category']);
-      $args['tax_query'] = array();
-      foreach($cats as $cat) {
-        array_push($args['tax_query'], array(
-          'taxonomy' => 'project_category',
-          'field'    => 'slug',
-          'terms'    => sanitize_title($cat),
-        ));
-      }
-    } else {
-      $args['tax_query'] = array(
-        array(
-          'taxonomy' => 'project_category',
-          'field'    => 'slug',
-          'terms'    => sanitize_title($_REQUEST['project_category']),
-        )
-      );
-    }
+  $args['category'] = !empty($_REQUEST['category']) ? (int)$_REQUEST['category'] : '';
+
+  // Search?
+  if (!empty($_REQUEST['s'])) {
+    $args['s'] = $_REQUEST['s'];
   }
 
+  // Count query for Load More updates (and wp_query likes 'cat' instead of 'category' wtf)
+  $count_query = new \WP_Query(array_merge($args, ['cat' => $args['category'], 'posts_per_page' => -1, 'fields' => 'ids']));
+  $total_pages = ($count_query->post_count > 0) ? ceil($count_query->post_count / $per_page) : 1;
+
+  // Actually pull posts
   $posts = get_posts($args);
 
   if ($posts):
+		ob_start();
     foreach ($posts as $post) {
-      // set local var for post type — avoiding using $post in global namespace
-      if ($post_type == 'project')
-        $project_post = $post;
-      else
-        $news_post = $post;
+      // Set local var for post — avoiding using $post in global namespace
+      $news_post = $post;
       include(locate_template('templates/article-'.$post_type.'.php'));
     }
+    $posts_html = ob_get_clean();
+    wp_send_json_success(['posts_html' => $posts_html, 'total_pages' => $total_pages]);
+  else:
+  	wp_send_json_success(['posts_html' => '<div class="alert alert-warning"><p>Sorry, no results were found.</p></div>', 'total_pages' => 0]);
   endif;
-
-  if (is_ajax()) die();
 }
 add_action( 'FB_AJAX_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
 add_action( 'FB_AJAX_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
