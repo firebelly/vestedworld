@@ -11,10 +11,17 @@ var VestedWorld = (function($) {
       breakpoint_array = [480,1000,1200],
       $document,
       $sidebar,
+      $load_more,
       headerOffset,
       loadingTimer,
       page_at,
       feedback_message_timer,
+      History = window.History,
+      State,
+      root_url = History.getRootUrl(),
+      relative_url,
+      original_url,
+      page_cache = {},
       ajax_handler_url = '/app/themes/vestedworld/lib/ajax-handler.php';
 
   function _init() {
@@ -23,6 +30,7 @@ var VestedWorld = (function($) {
 
     // Cache some common DOM queries
     $document = $(document);
+    $load_more = $('.load-more');
     $('body').addClass('loaded');
 
     // Set screen size vars
@@ -47,12 +55,15 @@ var VestedWorld = (function($) {
     _initNav();
     _initPageNav();
     // _initSearch();
+    _initReadMore();
     _initLoadMore();
-    // _initParallaxBackgrounds(); 
+    _initNewsFilter();
+    // _initParallaxBackgrounds();
     _initGifPlay();
     _initPeopleModals();
     _initDropdownInvestorForm();
     _initApplicationForms();
+    _initStateHandling();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -98,6 +109,45 @@ var VestedWorld = (function($) {
 
   } // end init()
 
+  // Bind to state changes and handle back/forward
+  function _initStateHandling() {
+    // Initial state
+    State = History.getState();
+    relative_url = '/' + State.url.replace(root_url,'');
+    original_url = State.url;
+
+    $(window).bind('statechange',function(){
+      State = History.getState();
+      relative_url = '/' + State.url.replace(root_url,'');
+
+      if (State.data.ignore_change) {
+        return;
+      }
+
+      if (relative_url.match(/^\/resources\/news\//)) {
+
+        // News filtering
+        _filterNews();
+
+      } else {
+
+        // URL isn't handled as a modal or in-page filtering
+        if (State.url !== original_url) {
+          // Just load URL if isn't original_url
+          location.href = State.url;
+        } else {
+          // Hide modals etc here if applicable...
+        }
+
+      }
+
+      // Track AJAX URL change in analytics
+      _trackPage();
+
+      // Update Facebook tags for any share buttons on the page
+      _updateOGTags();
+    });
+  }
   // AJAX Application form submissions
   function _initApplicationForms() {
     // Handle application form submissions
@@ -113,14 +163,14 @@ var VestedWorld = (function($) {
         },
         submitHandler: function(form) {
           $('.site-wrap').css('opacity', '.5');
-          $('body').append('<div class="loading"></div>');
+          _showLoading();
           $.ajax({
             url: ajax_handler_url,
             method: 'post',
             dataType: 'json',
             data: $(form).serialize()
           }).done(function(response) {
-            $('.loading').remove();
+            _hideLoading();
             $('.site-wrap').css('opacity', '1');
             if (response.success) {
               _feedbackMessage('Your application was submitted successfully!');
@@ -295,7 +345,7 @@ var VestedWorld = (function($) {
           pageNav = $('.site-wrap').append('<nav class="page-nav"><ul></ul><div class="top">top &gt;</div><div class="next-section">&lt; Next section</div></nav>'),
           sectionPositions = [];
 
-      // Fix for header offset discrepency 
+      // Fix for header offset discrepency
       headerOffset = headerOffset + 1;
 
       // Start off with the next section text in next link
@@ -350,7 +400,7 @@ var VestedWorld = (function($) {
         _scrollBody($nextSection, 250);
       });
 
-    } 
+    }
 
     function updatePageNav(activeSectionIndex) {
       $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex]).html());
@@ -361,18 +411,54 @@ var VestedWorld = (function($) {
     boomsvgloader.load('/app/themes/vestedworld/assets/svgs/build/svgs-defs.svg');
   }
 
-  function _initLoadMore() {
+  // Read More buttons on news posts
+  function _initReadMore() {
     $document.on('click', 'article.post a.read-more', function(e) {
       e.preventDefault();
       var $this = $(this);
-      var $article = $this.closest('.article.post');
-      $article.toggleClass('active');
-      if ($article.hasClass('active')) {
+      var $article = $this.closest('.article.post').toggleClass('more-active');
+      $article.find('.post-extended').slideToggle();
+      if ($article.hasClass('more-active')) {
         $this.text('Read Less');
       } else {
         $this.text('Read More');
       }
     });
+  }
+
+  // Extract params from URL
+  function _getParam(name) {
+    var match = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  }
+
+  // Filter News based on current URL
+  function _filterNews() {
+    var cat = _getParam('cat');
+    var s = _getParam('s');
+    $('select[name=cat]').val(cat);
+    $('input[name=s]').val(s);
+    $load_more.attr('data-category',cat).attr('data-s', s).attr('data-page-at', 0);
+    $('.load-more-container').empty();
+    $load_more.find('a').trigger('click');
+    _trackEvent('In-Page Interactions','Filter News, cat: '+cat+' search: '+s);
+  }
+
+  // Init js handling of News filter form
+  function _initNewsFilter() {
+    $document.on('submit', '.news-filter form', function(e) {
+      e.preventDefault();
+      var url = $('.news-filter form').attr('action') + '?' + $('.news-filter form').serialize();
+      History.pushState({}, 'News - Vested World', url);
+    });
+    $document.on('change', 'select[name=cat]', function(e) {
+      var url = $('.news-filter form').attr('action') + '?' + $('.news-filter form').serialize();
+      History.pushState({}, 'News - Vested World', url);
+    });
+  }
+
+  // Load More buttons on News listings
+  function _initLoadMore() {
     $document.on('click', '.load-more a', function(e) {
       e.preventDefault();
       var $load_more = $(this).closest('.load-more');
@@ -380,35 +466,60 @@ var VestedWorld = (function($) {
       var page = parseInt($load_more.attr('data-page-at'));
       var per_page = parseInt($load_more.attr('data-per-page'));
       var category = $load_more.attr('data-category');
+      var s = $load_more.attr('data-s');
       var more_container = $load_more.parents('section,main').find('.load-more-container');
-      loadingTimer = setTimeout(function() { more_container.addClass('loading'); }, 500);
-
+      loadingTimer = setTimeout(function() {
+        $('body').addClass('working');
+        _showLoading();
+      }, 250);
       $.ajax({
-          url: ajax_handler_url,
-          method: 'post',
-          data: {
-              action: 'load_more_posts',
-              post_type: post_type,
-              page: page+1,
-              per_page: per_page,
-              category: category
-          },
-          success: function(data) {
-            var $data = $(data);
-            if (loadingTimer) { clearTimeout(loadingTimer); }
-            more_container.append($data).removeClass('loading');
-            if (breakpoint_md) {
-              more_container.masonry('appended', $data, true);
-            }
-            $load_more.attr('data-page-at', page+1);
-
-            // Hide load more if last page
-            if ($load_more.attr('data-total-pages') <= page + 1) {
-                $load_more.addClass('hide');
-            }
-          }
+        url: ajax_handler_url,
+        method: 'get',
+        dataType: 'json',
+        data: {
+            action: 'load_more_posts',
+            post_type: post_type,
+            page: page+1,
+            per_page: per_page,
+            category: category,
+            s: s
+        }
+      }).done(function(response) {
+        if (response.success) {
+          var $data = $(response.data.posts_html);
+          if (loadingTimer) { clearTimeout(loadingTimer); }
+          $data.appendTo(more_container).hide().fadeIn();
+          _hideLoading();
+          $('body').removeClass('working');
+          $load_more.attr('data-page-at', page+1).attr('data-total-pages', response.data.total_pages);
+          _checkLoadMore();
+        }
       });
     });
+  }
+
+  function _showLoading() {
+    $('body').append('<div class="loading"></div>');
+  }
+  function _hideLoading() {
+    $('div.loading').remove();
+  }
+
+  // Hide "Load More" if there are no more pages
+  function _checkLoadMore() {
+    $('.load-more').toggleClass('hide', parseInt($('.load-more').attr('data-page-at')) >= parseInt($('.load-more').attr('data-total-pages')));
+  }
+
+  // Update og: tags after state change
+  function _updateOGTags() {
+    $('meta[property="og:url"]').attr('content', State.url);
+    $('meta[property="og:title"]').attr('content', document.title);
+    $('meta[property="og:type"]').attr('content', ($('body').is('.modal-active') ? 'article' : 'website') );
+    // If page has a hidden div with id="og-updates" extract these
+    if ($('#og-updates').length) {
+      $('meta[property="og:description"]').attr('content', $('#og-updates').attr('data-description'));
+      $('meta[property="og:image"]').attr('content', $('#og-updates').attr('data-image'));
+    }
   }
 
   function _initParallaxBackgrounds() {

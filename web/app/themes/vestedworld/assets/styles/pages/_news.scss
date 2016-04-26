@@ -11,18 +11,23 @@
   }
   .filter,
   .search {
-    border: 2px solid $white;
-    padding: #{$vertical-beat * 1};
+    @include clearfix;
+    border: 1px solid $white;
     font: 16px/24px $sans;
     letter-spacing: .2em;
     text-transform: uppercase;
-    @include media-md {
-      width: 50%;
-      float: left;
-    }
   }
+  .filter label {
+    display: block;
+    width: 28%;
+    float: left;
+    padding: #{$vertical-beat * 1};
+    border-right: 1px solid $white;
+  }
+
   .filter .select-wrapper {
-    width: 75%;
+    padding: #{$vertical-beat * 1};
+    width: 70%;
     float: right;
   }
   .filter select,
@@ -35,10 +40,14 @@
     width: 100%;
     outline: none;
   }
-  .search input {
-    &::placeholder {
-      line-height: normal;
-      color: $white;
+  .search {
+    padding: #{$vertical-beat * 1};
+    margin-top: -1px;
+      input {
+      &::placeholder {
+        line-height: normal;
+        color: $white;
+      }
     }
   }
 
@@ -50,6 +59,18 @@
     }
     padding: #{$vertical-beat * 7} $global-padding;
   }
+
+  @include min-screen($breakpoint-huge) {
+    .filter,
+    .search {
+      width: 50%;
+      float: left;
+    }
+    .search {
+      margin: 0 0 0 -1px;
+    }
+  }
+
 }
 
 .article.post {
@@ -75,12 +96,7 @@
     color: $white;
   }
   .post-extended {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 1s;
-  }
-  &.active .post-extended {
-    max-height: 1500px;
+    display: none;
   }
   .article-body {
     background: $white;
@@ -94,6 +110,57 @@
 }
 
 .button.read-more {
-  border: 2px solid $gray;
+  border: 1px solid $gray;
   margin-top: #{ $vertical-beat * 8 };
+}
+
+// Hide posts nav (googlebot spidering)
+.posts-navigation {
+  display: none;
+}
+
+body.working .load-more {
+  display: none;
+}
+.load-more {
+  width: 96px;
+  margin: 120px auto 20px;
+  a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    font: 11px/24px $sans;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: $blue;
+    text-align: center;
+    padding-top: 112px;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      display: block;
+      width: 96px;
+      height: 96px;
+      border: 2px solid $blue;
+      border-radius: 50%;
+    }
+    &::after {
+      transition: top .2s;
+      content: '>';
+      transform: rotate(90deg);
+      position: absolute;
+      top: 39px;
+      left: 42px;
+      font-size: 30px;
+      color: $blue;
+      @extend %smooth;
+    }
+    &:hover {
+      &::after {
+        top: 42px;
+      }
+    }
+  }
 }

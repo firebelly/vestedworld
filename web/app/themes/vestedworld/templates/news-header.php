@@ -4,7 +4,7 @@
     <fieldset>
       <div class="filter">
         <label>Filter</label>
-        <div class="select-wrapper"><?php wp_dropdown_categories(); ?></div>
+        <div class="select-wrapper"><?php wp_dropdown_categories(['show_option_none'=>'All']); ?></div>
       </div>
       <div class="search">
         <label class="sr-only">Search</label>
