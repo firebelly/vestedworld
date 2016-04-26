@@ -97,3 +97,51 @@
   border: 2px solid $gray;
   margin-top: #{ $vertical-beat * 8 };
 }
+
+// Hide posts nav (googlebot spidering)
+.posts-navigation {
+  display: none;
+}
+
+.load-more {
+  width: 96px;
+  margin: 120px auto 20px;
+  a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    font: 11px/24px $sans;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: $blue;
+    text-align: center;
+    padding-top: 112px;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      display: block;
+      width: 96px;
+      height: 96px;
+      border: 2px solid $blue;
+      border-radius: 50%;
+    }
+    &::after {
+      transition: top .2s;
+      content: '>';
+      transform: rotate(90deg);
+      position: absolute;
+      top: 39px;
+      left: 42px;
+      font-size: 30px;
+      color: $blue;
+      @extend %smooth;
+    }
+    &:hover {
+      &::after {
+        top: 42px;
+      }
+    }
+  }
+}

@@ -48,7 +48,7 @@ var VestedWorld = (function($) {
     _initPageNav();
     // _initSearch();
     _initLoadMore();
-    // _initParallaxBackgrounds(); 
+    // _initParallaxBackgrounds();
     _initGifPlay();
     _initPeopleModals();
     _initDropdownInvestorForm();
@@ -295,7 +295,7 @@ var VestedWorld = (function($) {
           pageNav = $('.site-wrap').append('<nav class="page-nav"><ul></ul><div class="top">top &gt;</div><div class="next-section">&lt; Next section</div></nav>'),
           sectionPositions = [];
 
-      // Fix for header offset discrepency 
+      // Fix for header offset discrepency
       headerOffset = headerOffset + 1;
 
       // Start off with the next section text in next link
@@ -350,7 +350,7 @@ var VestedWorld = (function($) {
         _scrollBody($nextSection, 250);
       });
 
-    } 
+    }
 
     function updatePageNav(activeSectionIndex) {
       $('.page-nav .next-section').html('&lt; ' + $(pageSectionTitles[activeSectionIndex]).html());
@@ -397,9 +397,6 @@ var VestedWorld = (function($) {
             var $data = $(data);
             if (loadingTimer) { clearTimeout(loadingTimer); }
             more_container.append($data).removeClass('loading');
-            if (breakpoint_md) {
-              more_container.masonry('appended', $data, true);
-            }
             $load_more.attr('data-page-at', page+1);
 
             // Hide load more if last page
