@@ -119,6 +119,9 @@
   display: none;
 }
 
+body.working .load-more {
+  display: none;
+}
 .load-more {
   width: 96px;
   margin: 120px auto 20px;

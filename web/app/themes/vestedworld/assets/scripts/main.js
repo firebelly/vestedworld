@@ -163,14 +163,14 @@ var VestedWorld = (function($) {
         },
         submitHandler: function(form) {
           $('.site-wrap').css('opacity', '.5');
-          $('body').append('<div class="loading"></div>');
+          _showLoading();
           $.ajax({
             url: ajax_handler_url,
             method: 'post',
             dataType: 'json',
             data: $(form).serialize()
           }).done(function(response) {
-            $('.loading').remove();
+            _hideLoading();
             $('.site-wrap').css('opacity', '1');
             if (response.success) {
               _feedbackMessage('Your application was submitted successfully!');
@@ -468,8 +468,10 @@ var VestedWorld = (function($) {
       var category = $load_more.attr('data-category');
       var s = $load_more.attr('data-s');
       var more_container = $load_more.parents('section,main').find('.load-more-container');
-      loadingTimer = setTimeout(function() { more_container.addClass('loading'); }, 500);
-
+      loadingTimer = setTimeout(function() {
+        $('body').addClass('working');
+        _showLoading();
+      }, 250);
       $.ajax({
         url: ajax_handler_url,
         method: 'get',
@@ -487,12 +489,20 @@ var VestedWorld = (function($) {
           var $data = $(response.data.posts_html);
           if (loadingTimer) { clearTimeout(loadingTimer); }
           $data.appendTo(more_container).hide().fadeIn();
-          more_container.removeClass('loading');
+          _hideLoading();
+          $('body').removeClass('working');
           $load_more.attr('data-page-at', page+1).attr('data-total-pages', response.data.total_pages);
           _checkLoadMore();
         }
       });
     });
+  }
+
+  function _showLoading() {
+    $('body').append('<div class="loading"></div>');
+  }
+  function _hideLoading() {
+    $('div.loading').remove();
   }
 
   // Hide "Load More" if there are no more pages
