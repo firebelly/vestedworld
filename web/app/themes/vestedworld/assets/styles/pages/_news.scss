@@ -78,12 +78,7 @@
     color: $white;
   }
   .post-extended {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 1s;
-  }
-  &.active .post-extended {
-    max-height: 1500px;
+    display: none;
   }
   .article-body {
     background: $white;

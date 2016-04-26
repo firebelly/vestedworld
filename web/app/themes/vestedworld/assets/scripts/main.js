@@ -365,9 +365,9 @@ var VestedWorld = (function($) {
     $document.on('click', 'article.post a.read-more', function(e) {
       e.preventDefault();
       var $this = $(this);
-      var $article = $this.closest('.article.post');
-      $article.toggleClass('active');
-      if ($article.hasClass('active')) {
+      var $article = $this.closest('.article.post').toggleClass('more-active');
+      $article.find('.post-extended').slideToggle();
+      if ($article.hasClass('more-active')) {
         $this.text('Read Less');
       } else {
         $this.text('Read More');
