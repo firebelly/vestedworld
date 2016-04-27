@@ -98,7 +98,7 @@ form.application-form {
     .btn-wrap {
       float: right;
       input[type=submit] {
-        width: auto; 
+        width: auto;
       }
     }
   }
@@ -125,7 +125,8 @@ form.application-form {
       }
       p {
         font: 32px/40px $sans;
-        @extend %smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       padding: #{$vertical-beat * 8} $global-padding #{$vertical-beat * 8};
     }
