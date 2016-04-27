@@ -12,18 +12,10 @@
     }
 
     .user-content {
-      h1, h2, h3, h4, h5, h6 {
+      h1, h2, h3, h4 {
       }
 
       img {
-      }
-
-      ul, ol {
-        padding-left: 0;
-        li {
-          font-size: 16px;
-          line-height: 1.5em;
-        }
       }
 
       figure, figure:first-child {
@@ -39,11 +31,6 @@
       }
 
       blockquote {
-        padding: 20px 0;
-        p {
-          font-size: 24px;
-          margin-bottom: 0;
-        }
       }
     }
   }

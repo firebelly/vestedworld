@@ -15,7 +15,7 @@ $featured_image = \Firebelly\Media\get_post_thumbnail($news_post->ID, 'large');
       <?php if ($category): ?><h3 class="article-category"><?= $category->name; ?></h3><?php endif; ?>
       <h1 class="article-title"><?php if (!is_single()) echo '<a href="'.get_the_permalink($news_post).'">' ?><?= $news_post->post_title ?><?php if (!is_single()) echo '</a>' ?></h1>
     </header>
-    <div class="entry-content">
+    <div class="entry-content user-content">
       <?php if (is_single()): ?>
         <?= apply_filters('the_content', $news_post->post_content) ?>
       <?php else:
