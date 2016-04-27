@@ -3,28 +3,26 @@
 .user-content {
   @include clearfix;
 
-  h1,h2,h3,h4,h5,h6 {
-
-  }
-
-  p {
-
-  }
-
-  a {
-
-  }
+  h1,h2,h3,h4 {}
+  p {}
+  a {}
 
   ol,
   ul {
+    margin: 1em 0;
     padding-left: 1.2em;
+  }
+  ul {
     li {
-      list-style: disc;
-      ol,
-      ul {
-
+      list-style: none;
+      position: relative;
+      &::before {
+        content: '·';
+        position: absolute;
+        top: 0;
+        left: -1.2em;
       }
-    }
+  }
   }
 
   hr {
@@ -43,6 +41,5 @@
   strong {
     font-weight: bold;
   }
-
 
 }

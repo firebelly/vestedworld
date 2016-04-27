@@ -96,6 +96,7 @@
     color: $white;
   }
   .post-extended {
+    @include clearfix;
     display: none;
   }
   .article-body {

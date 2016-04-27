@@ -39,7 +39,7 @@ use Roots\Sage\Wrapper;
     ?>
     <?php if (WP_ENV === 'development'): ?>
     <script id="__bs_script__">//<![CDATA[
-        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.12.3.js'><\/script>".replace("HOST", location.hostname));
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.12.5.js'><\/script>".replace("HOST", location.hostname));
     //]]></script>
     <?php endif; ?>
     <div class="investor-form-container"><button class="plus-button close"><div class="plus"></div></button><?php $application_type = ''; include(locate_template('templates/investor-form.php')); ?></div>
