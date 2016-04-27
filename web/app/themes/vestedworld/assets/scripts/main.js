@@ -64,6 +64,7 @@ var VestedWorld = (function($) {
     _initDropdownInvestorForm();
     _initApplicationForms();
     _initStateHandling();
+    _initFaqs();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -104,6 +105,7 @@ var VestedWorld = (function($) {
     $(window).load(function() {
       if (window.location.hash) {
         _scrollBody($(window.location.hash));
+
       }
     });
 
@@ -187,6 +189,16 @@ var VestedWorld = (function($) {
         }
       });
     });
+  }
+
+  // FAQ behavior
+  function _initFaqs() {
+    $document.on('click', '.faq-list a', function(e) {
+      e.preventDefault();
+      var $li = $(this).parents('li:first');
+      $li.toggleClass('active');
+    });
+
   }
 
   function _initDropdownInvestorForm() {
@@ -335,7 +347,7 @@ var VestedWorld = (function($) {
   }
 
   function _initPageNav() {
-    // Is ther page-nav sections on the page?
+    // Is there page-nav sections on the page?
     if ($('.page-nav-section').length) {
       var activeSectionIndex = 0,
           pageNavSections = $('.page-nav-section'),

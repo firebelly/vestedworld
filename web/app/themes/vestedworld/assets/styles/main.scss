@@ -31,10 +31,11 @@
 @import "pages/home";
 @import "pages/about";
 @import "pages/community";
+@import "pages/faqs";
 @import "pages/news";
 @import "pages/sign-up";
 @import "pages/single-post";
 @import "pages/search-results";
 
 // WP specifics
-@import 'helpers/wp-classes';
+@import "helpers/wp-classes";

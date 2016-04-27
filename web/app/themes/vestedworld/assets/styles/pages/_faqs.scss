@@ -1,0 +1,98 @@
+// FAQs Page
+
+.page.faqs {
+
+  header.page-header {
+    color: $blue;
+    padding: #{$vertical-beat * 7} $mobile-global-padding #{$vertical-beat * 4};
+    @include media-md {
+      padding: #{$vertical-beat * 7} $global-padding #{$vertical-beat * 12};
+    }
+  }
+  .site-main {
+    background: $white;
+  }
+
+  ul.faq-list,
+  ul.faq-categories {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul.faq-categories {
+    section {
+      @include clearfix;
+      padding: 0 $mobile-global-padding 0 $mobile-global-padding;
+      position: relative;
+      h3.tab {
+        background: $blue;
+      }
+      @include media-md {
+        h3.tab {
+          top: 0;
+        }
+        padding: 0 $global-padding;
+      }
+    }
+  }
+  ul.faq-list {
+    border-top: 1px solid $gray;
+    >li {
+      @include clearfix;
+      position: relative;
+      padding: #{$vertical-beat * 3} 0;
+      border-bottom: 1px solid $gray-lite;
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+    h2 {
+      @include column(10, 21);
+      a {
+        color: $blue;
+        text-decoration: underline;
+      }
+      .icon {
+        display: none;
+      }
+    }
+    h3 {
+      text-transform: none;
+      letter-spacing: 0;
+      color: $blue;
+      margin-bottom: 0;
+      +ul {
+        margin-top: 0;
+      }
+    }
+    .faq-answer {
+      @include column(10,21);
+      height: 0;
+      overflow: hidden;
+      > p {
+        margin-top: 0;
+      }
+    }
+    li.active {
+      .faq-answer {
+        height: auto;
+      }
+    }
+
+    @include media-md {
+      .faq-answer {
+        padding-left: #{$column-width * 1};
+      }
+      h2 {
+        padding-right: #{$column-width * 2};
+        .icon {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 32px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

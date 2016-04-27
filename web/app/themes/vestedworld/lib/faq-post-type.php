@@ -56,7 +56,7 @@ function post_type() {
 add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
 
 // Register custom taxonomy for post type
-register_taxonomy( 'faq_cat', 
+register_taxonomy( 'faq_cat',
   array('faq'),
   array('hierarchical' => true, // if this is true, it acts like categories
     'labels' => array(
@@ -71,12 +71,12 @@ register_taxonomy( 'faq_cat',
       'add_new_item' => 'Add New FAQ Category',
       'new_item_name' => 'New FAQ Category',
     ),
-    'show_admin_column' => true, 
+    'show_admin_column' => true,
     'show_ui' => true,
     'query_var' => true,
-    'rewrite' => array( 
-      'slug' => 'faqs/category', 
-      'with_front' => false 
+    'rewrite' => array(
+      'slug' => 'faqs/category',
+      'with_front' => false
     ),
   )
 );
@@ -159,15 +159,15 @@ function shortcode($atts) {
   if (!$faq_posts) return false;
 
   $output .= '<ul class="faq-list">';
-
+  $i = 0;
   foreach ($faq_posts as $post):
+    $i++;
     $question = $post->post_title;
     $answer = apply_filters('the_content', $post->post_content);
     $output .= <<<HTML
       <li>
-        <h2 class="answer-toggle">{$question}</h4>
-        <button class="answer-toggle">&gt;</button>
-        <div class="faq-answer user-content">{$answer}</div>
+        <h2><a href="#answer-{$category}-{$i}">{$question} <span class="icon">&gt;</span></a></h2>
+        <div id="answer-{$category}-{$i}" class="faq-answer user-content">{$answer}</div>
       </li>
 HTML;
   endforeach;
