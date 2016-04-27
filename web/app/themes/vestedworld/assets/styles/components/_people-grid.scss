@@ -9,6 +9,15 @@
   @include media-md {
     margin-top: #{$vertical-beat * 8};
     padding: #{$vertical-beat * 8} $global-padding;
+    &::before {
+      left: 0;
+      height: 1px;
+      width: 32px;
+      content: '';
+      position: absolute;
+      background: $gray-dark;
+      bottom: #{$vertical-beat * 8};
+    }
   }
   .people-grid {
     margin: 0;
