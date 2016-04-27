@@ -88,7 +88,7 @@
   }
 
   // change back to $breakpoint-nav
-  @include min-screen($breakpoint-md) {
+  @include min-screen($breakpoint-nav) {
     top: auto;
     display: none;
   }
@@ -111,7 +111,7 @@
     transform: translateX(0);
   }
 
-  @include min-screen($breakpoint-md) {
+  @include min-screen($breakpoint-nav) {
     top: auto;
     right: auto;
     margin: 0;
@@ -140,13 +140,13 @@
       }
     }
 
-    @include min-screen($breakpoint-md) {
+    @include min-screen($breakpoint-nav) {
       top: 72px;
       right: 30px;
     }
 
     // Change back to $breakpoint-nav
-    @include min-screen($breakpoint-md) {
+    @include min-screen($breakpoint-nav) {
       display: none;
     }
   }
@@ -192,14 +192,14 @@
       color: $gray-lite;
     }
 
-    @include min-screen($breakpoint-md) {
+    @include min-screen($breakpoint-nav) {
       li {
         line-height: 30px;
       }
     }
 
     // change back to $breakpoint-nav
-    @include min-screen($breakpoint-md) {
+    @include min-screen($breakpoint-nav) {
       padding: 0;
       float: left;
 
@@ -250,11 +250,10 @@
     text-align: left;
     padding: 20px 32px;
 
-    @include min-screen($breakpoint-md) {
-      right: 0;
-      padding: 0;
-      bottom: 0;
-      position: absolute;
+    @include min-screen($breakpoint-nav) {
+      float: left;
+      padding: 3px 0;
+      margin-left: 15px;
     }
 
     // Sign Up button is styled differently
@@ -262,14 +261,15 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: .15em;
-      padding: 4px 6px;
-      border: 1px solid $blue;
+      padding: 6px 6px 4px;
+      border: 1px solid $brand-primary;
       text-decoration: none;
       transition: all .2s;
-      color: $blue;
+      background: $brand-primary;
+      color: $white;
       &:hover {
-        background: $blue;
-        color: $gray-lite;
+        background: $white;
+        color: $blue;
       }
     }
 
