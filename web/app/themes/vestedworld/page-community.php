@@ -48,7 +48,7 @@ $body = apply_filters('the_content', $post->post_content);
     <h1 class="section-title page-nav-title">VestedAdvisors</h1>
     <div class="people-grid-intro">    
       <p>VestedAdvisors are experienced professionals and enterprises who provide strategic, operational and financial advice to help our portfolio companies succeed.</p>
-      <a href="/sign-up" class="btn -blue section-link">Become a VestedAdvisor</a>
+      <a href="/sign-up-advisors" class="btn -blue section-link">Become a VestedAdvisor</a>
     </div>
     <?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'vested_advisor']); ?>
   </section>

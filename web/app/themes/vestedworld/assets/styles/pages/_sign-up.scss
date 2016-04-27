@@ -90,11 +90,14 @@ form.application-form {
       float: left;
     }
     .checkboxes {
-      padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 8};
+      padding: #{$vertical-beat * 3} 0 0;
       label {
         width: 50%;
         float: left;
       }
+    }
+    .actions {
+      margin-top: #{$vertical-beat * 8};
     }
     .btn-wrap {
       float: right;

@@ -77,10 +77,22 @@ namespace Firebelly\PostTypes\Pages;
      'fields'        => array(
        // General page fields
        array(
+         'name' => 'Application promt',
+         'desc' => 'Example: Become a VestedAngel',
+         'id'   => $prefix . 'application_prompt',
+         'type' => 'text',
+       ),
+       array(
          'name' => 'Application Type',
          'desc' => 'Used to differentiate applicant submissions',
          'id'   => $prefix . 'application_type',
          'type' => 'text',
+       ),
+       array(
+        'name' => 'Hide accredited investor field?',
+        'desc' => 'Should the form display the accredited/unaccredited investor checkboxes?',
+        'id'   => $prefix . 'application_investor_checkboxes',
+        'type' => 'checkbox',
        ),
      ),
    );
@@ -89,7 +101,7 @@ namespace Firebelly\PostTypes\Pages;
    return $meta_boxes;
  }
  add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
-
+ 
 /**
  * Hide editor on home page -- dont need it.
  * adapted from: https://gist.github.com/ramseyp/4060095

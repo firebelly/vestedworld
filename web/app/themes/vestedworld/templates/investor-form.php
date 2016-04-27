@@ -6,7 +6,7 @@ if (empty($application_type)) {
 ?>
 <form action="<?= admin_url('admin-ajax.php') ?>" class="application-form" method="post" enctype="multipart/form-data" novalidate>
 
-  <h2>Become A VestedAngel</h2>
+  <h2><?= $application_prompt ?></h2>
 
   <fieldset class="contact-details">
     <div><label class="sr-only">First Name (Required)</label><input type="text" name="application_first_name" placeholder="First Name*" required></div>
@@ -17,10 +17,15 @@ if (empty($application_type)) {
   </fieldset>
 
   <fieldset>
-    <div class="checkboxes">
-      <label><input type="radio" name="application_accredited" value="yes"> I am an Accredited Investor</label>
-      <label><input type="radio" name="application_accredited" value="no"> I am not an Accredited Investor</label>
-    </div>
+
+    <?php if ($hide_investor_fields === 'on') { ?>
+      <input type="hidden" name="application_accredited" value="n/a">
+    <?php } else { ?>
+      <div class="checkboxes">
+        <label><input type="radio" name="application_accredited" value="yes"> I am an Accredited Investor</label>
+        <label><input type="radio" name="application_accredited" value="no"> I am not an Accredited Investor</label>
+      </div>
+    <?php } ?>
 
     <input type="hidden" name="application_type" value="<?= $application_type ?>">
     <input name="action" type="hidden" value="application_submission">
