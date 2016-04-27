@@ -434,7 +434,7 @@ var VestedWorld = (function($) {
 
   // Filter News based on current URL
   function _filterNews() {
-    var cat = _getParam('cat');
+    var cat = _getParam('cat') || -1;
     var s = _getParam('s');
     $('select[name=cat]').val(cat);
     $('input[name=s]').val(s);
