@@ -39,7 +39,7 @@
           background: rgba($blue-dark, .1);
           .person-image-inner {
             position: relative;
-            padding: $mobile-global-padding;
+            padding: $global-padding $mobile-global-padding $mobile-global-padding;
             img {
               top: auto;
               left: auto;
@@ -53,17 +53,9 @@
           }
 
           @include media-md {
-            height: 0;
-            padding-bottom: 56.8181818%;
             .person-image-inner {
-              padding: 0;
-              position: absolute;
-              img {
-                top: 50%;
-                left: 50%;
-                position: absolute;
-                transform: translate(-50%, -50%);
-              }
+              text-align: center;
+              padding: $global-padding;
             }
           }
         }
