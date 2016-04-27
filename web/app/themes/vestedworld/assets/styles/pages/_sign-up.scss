@@ -21,6 +21,7 @@ form.application-form {
         background: lighten($gray-lite, 5);
       }
       &:focus {
+        outline-offset: initial;
         outline: 1px solid $brand-primary;
       }
       &.error {
@@ -105,7 +106,7 @@ form.application-form {
 
 }
 
-.page.sign-up {
+.page-template-sign-up {
   .page-content {
     @include column(12);
     background: $blue;
