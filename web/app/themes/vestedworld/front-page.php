@@ -26,18 +26,18 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
   <section class="what-we-do">
     <h3 class="tab">What We Do</h3>
     <article>
-      <img src="<?= Roots\Sage\Assets\asset_path('images/Target.gif?'.time().'') ?>" alt="Target" class="gif-to-play">
+      <img data-src="<?= Roots\Sage\Assets\asset_path('images/Target.gif?'.time().'') ?>" alt="Target" class="gif-to-play">
       <h2>Target</h2>
       <p><?= $target ?></p>
       <!-- <a href="/about-us/#" class="learn-more">Learn More</a> -->
     </article>
     <article>
-      <img src="<?= Roots\Sage\Assets\asset_path('images/Connect.gif?'.time().'') ?>" alt="Connect" class="gif-to-play">
+      <img data-src="<?= Roots\Sage\Assets\asset_path('images/Connect.gif?'.time().'') ?>" alt="Connect" class="gif-to-play">
       <h2>Connect</h2>
       <p><?= $connect ?></p>
     </article>
     <article>
-      <img src="<?= Roots\Sage\Assets\asset_path('images/Invest.gif?'.time().'') ?>" alt="Invest" class="gif-to-play">
+      <img data-src="<?= Roots\Sage\Assets\asset_path('images/Invest.gif?'.time().'') ?>" alt="Invest" class="gif-to-play">
       <h2>Invest</h2>
       <p><?= $invest ?></p>
     </article>
