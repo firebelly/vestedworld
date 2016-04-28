@@ -64,12 +64,13 @@
       background: rgba($blue,1);
       color: $white;
       p.headline {
+        @extend %smooth;
         margin: 0 0 40px 0;
       }
       @include media-md {
         margin-top: 100px;
         position: relative;
-        background: rgba($blue,.85);
+        background: rgba($blue-alt,.85);
         padding: #{$vertical-beat * 6} $global-padding $global-padding;
         p.headline {
           font: 48px/48px $sans;
@@ -173,14 +174,19 @@
   }
   .join {
     display: none;
-    position: relative;
-    background: $blue;
     color: $white;
+    position: relative;
+    background: $brand-primary;
     padding: #{$vertical-beat * 6} $mobile-global-padding #{$vertical-beat * 8};
     @include media-md {
       display: block;
       padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 8};
     }
+
+    h2, p, a {
+      @extend %smooth;
+    }
+
     &.-mobile {
       color: $gray-dark;
       display: block;
@@ -307,9 +313,13 @@
 
   .featured {
     color: $white;
-    background: $blue-dark;
+    @extend %smooth;
     position: relative;
+    background: $blue-dark;
     padding: $mobile-global-padding;
+    .tab {
+      -webkit-font-smoothing: initial;
+    }
     h3 {
       margin-bottom: 0;
     }

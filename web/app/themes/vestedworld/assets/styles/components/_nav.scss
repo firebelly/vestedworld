@@ -251,7 +251,7 @@
     padding: 20px 32px;
 
     @include min-screen($breakpoint-nav) {
-      float: left;
+      float: right;
       padding: 3px 0;
       margin-left: 15px;
     }
@@ -266,9 +266,9 @@
       text-decoration: none;
       transition: all .2s;
       background: $brand-primary;
-      color: $white;
+      color: $gray-lite;
       &:hover {
-        background: $white;
+        background: $gray-lite;
         color: $blue;
       }
     }

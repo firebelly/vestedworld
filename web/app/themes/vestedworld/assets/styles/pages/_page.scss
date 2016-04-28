@@ -6,6 +6,7 @@
   height: 32px;
   color: $white;
   padding: 0 10px;
+  @extend %smooth;
   position: absolute;
   font-weight: normal;
   @include small-caps();
@@ -110,9 +111,12 @@
 
 // Intro section
 .page-section.intro-section {
-  h1 {
+  @extend %smooth;
+
+  .section-title {
     background: $white;
     color: $brand-primary;
+    -webkit-font-smoothing: initial;
   }
 
   .content {

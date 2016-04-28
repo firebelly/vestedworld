@@ -227,6 +227,7 @@
     // State change animations
     &.exitRight {
       .callout-inner,
+      .callout,
       .person-text h1,
       .person-text h2 {
         animation: exitRight .5s forwards;
@@ -237,6 +238,7 @@
     }
     &.exitLeft {
       .callout-inner,
+      .callout,
       .person-text h1,
       .person-text h2 {
         animation: exitLeft .5s forwards;
@@ -247,6 +249,7 @@
     }
     &.enterRight {
       .callout-inner,
+      .callout,
       .person-text h1,
       .person-text h2 {
         opacity: 0;
@@ -262,6 +265,7 @@
     }
     &.enterLeft {
       .callout-inner,
+      .callout,
       .person-text h1,
       .person-text h2 {
         opacity: 0;
