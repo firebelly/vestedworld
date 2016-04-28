@@ -156,8 +156,81 @@
     padding: 32px;
     @include clearfix;
 
+    .menu-item-has-children {
+      position: relative;
+      > a {
+        padding-right: 20px;      
+        &::before {
+          top: 13px;
+          right: 2px;
+          content: "^";
+          line-height: 1em;
+          position: absolute;
+          transform: rotate(180deg);
+        }
+      }
+      &:hover {
+        > .sub-menu {
+          display: block;
+        }
+      }
+
+      @include min-screen($breakpoint-nav) {
+        > a {
+          &::before {
+            top: -2px;
+          }
+        }
+      }
+    }
+
     .sub-menu {
-      display: none;
+      padding: 0 0 #{$vertical-beat * 2};
+      li {
+        border: none;
+        a {
+          padding-left: 2em;
+          position: relative;
+          transition: background .2s ease-out, color .2s ease-out;
+          &::before {
+            left: 0;
+            top: 23px;
+            width: 1em;
+            content: '';
+            height: 1px;
+            position: absolute; 
+            background: $brand-primary;
+            transition: background .2s ease-out;
+          }
+          &:hover {
+            color: $white;
+            background: $brand-primary;
+            &::before {
+              background: $white;
+            }
+          }
+        }
+      }
+
+      @include min-screen($breakpoint-nav) {
+        left: 0;
+        top: 100%;
+        display: none;
+        padding-top: 16px;
+        position: absolute;
+        li {
+          display: block;
+          margin-left: 0;
+          a {
+            display: block;
+            background: $white;
+            padding: #{$vertical-beat * 2} #{$vertical-beat * 4};
+            &::before {
+              display: none; 
+            }
+          }
+        }
+      }
     }
 
     li {
