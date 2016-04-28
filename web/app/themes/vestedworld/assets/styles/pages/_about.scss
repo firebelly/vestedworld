@@ -104,6 +104,9 @@
       padding-bottom: 0;
       .person-image-inner {
         position: static;
+        &::before {
+          display: none;
+        }
       }
       img {
         top: auto;

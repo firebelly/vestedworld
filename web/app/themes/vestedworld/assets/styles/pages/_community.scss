@@ -46,6 +46,9 @@
           .person-image-inner {
             position: relative;
             padding: $global-padding $mobile-global-padding $mobile-global-padding;
+            &::before {
+              display: none;
+            }
             img {
               top: auto;
               left: auto;
