@@ -26,6 +26,9 @@
     },
     "boomsvgloader": {
       "main": "./dist/js/boomsvgloader.js"
+    },
+    "slick-carousel": {
+      "main": ["slick/slick.min.js", "slick/slick.css"]
     }
   }
 }
