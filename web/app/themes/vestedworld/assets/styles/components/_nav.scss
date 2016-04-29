@@ -216,7 +216,7 @@
         left: 0;
         top: 100%;
         display: none;
-        padding-top: 16px;
+        padding-top: 18px;
         position: absolute;
         li {
           display: block;
@@ -285,11 +285,11 @@
         &:first-of-type {
           margin-left: 0;
         }
-        &.active a {
+        &.active > a {
+          color: $gray-lite;
           &::after {
             transform: scaleY(1);
           }
-          color: $gray-lite;
         }
       }
 
