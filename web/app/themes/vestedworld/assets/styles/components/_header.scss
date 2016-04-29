@@ -1,11 +1,11 @@
 // Header
 
 .site-header {
+  height: 64px;
   z-index: 2000;
   @include clearfix;
   position: relative;
   padding: 16px 0 16px $mobile-global-padding;
-  height: 62px;
   background: $gray-lite;
 
   .logo {
