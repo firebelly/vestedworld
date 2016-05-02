@@ -3,6 +3,9 @@
 if (empty($application_type)) {
   $application_type = 'General Sign Up';
 }
+if (empty($application_prompt)) {
+  $application_prompt = 'Become a VestedAngel';
+}
 ?>
 <form action="<?= admin_url('admin-ajax.php') ?>" class="application-form" method="post" enctype="multipart/form-data" novalidate>
 
@@ -18,7 +21,7 @@ if (empty($application_type)) {
 
   <fieldset>
 
-    <?php if ($hide_investor_fields === 'on') { ?>
+    <?php if (!empty($hide_investor_fields)) { ?>
       <input type="hidden" name="application_accredited" value="n/a">
     <?php } else { ?>
       <div class="checkboxes">
