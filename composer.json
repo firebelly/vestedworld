@@ -45,7 +45,6 @@
     "wpackagist-plugin/intuitive-custom-post-order": "*",
     "wpackagist-plugin/cmb2": ">=2.0.2",
     "wpackagist-plugin/akismet": ">=3.1.1",
-    "wpackagist-plugin/redirection": ">=2.3.16",
     "wpackagist-plugin/google-sitemap-generator": ">=4.0.8",
     "wpackagist-plugin/regenerate-thumbnails": "2.2.6"
   },
