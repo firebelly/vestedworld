@@ -28,6 +28,7 @@ $firebelly_includes = [
   'lib/cmb2-custom-fields.php',        // Custom CMB2
   'lib/person-post-type.php',          // People
   'lib/faq-post-type.php',             // FAQs
+  'lib/glossary-post-type.php',        // Glossaries
   'lib/headline-post-type.php',        // Headlines
   'lib/applicant-post-type.php',       // Applicants
   //'lib/company-post-type.php',       // Companies
