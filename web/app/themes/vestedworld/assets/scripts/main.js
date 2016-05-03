@@ -335,6 +335,9 @@ var VestedWorld = (function($) {
         if ($(this).is('.sign-up')) {
           $('body, .menu-toggle').removeClass('menu-open');
           $('.site-nav').removeClass('-active');
+        } else if ($(this).parent('li').is('.no-link')) {
+          // Do nothing man!
+          console.log('hey!');
         } else {
           _hideMobileNav();
         }
