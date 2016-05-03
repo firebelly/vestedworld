@@ -133,21 +133,25 @@
 }
 
 .resource-filter {
-  @include media-md {
-    @include column(10);
-  }
-
   @include clearfix();
+
   label, select {
     float: left;
-    color: $brand-primary;
-    @include small-caps();
     font-size: 16px;
+    color: $brand-primary;
+    text-transform: uppercase;
     padding: #{$vertical-beat * 1};
     border: 1px solid $brand-primary;
   }
   select {
     border-left: none;
     padding-right: 34px;
+  }
+
+  @include media-md {
+    @include column(10);
+    label, select {
+      letter-spacing: .2em;
+    }
   }
 }
