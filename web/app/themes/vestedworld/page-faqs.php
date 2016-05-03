@@ -1,13 +1,30 @@
-<header class="page-header">
-	<h1>FAQs</h1>
-</header>
-
-<ul class="faq-categories">
 <?php
 $faq_cats = get_terms('faq_cat');
+?>
+
+<header class="page-header">
+	<h1>FAQs</h1>
+  <div class="resource-filter">
+    
+    <label for="category">Category</label>
+    <div class="select-wrapper">    
+      <select id="category" name="category" class="filter-select">
+        <option value="all" selected>All</option>
+        <?php
+        foreach($faq_cats as $cat) {
+          echo "<option value=\"{$cat->slug}\">{$cat->name}</option>";
+        }
+        ?>
+      </select>
+    </div>
+  </div>
+</header>
+
+<ul class="faq-categories" id="all">
+<?php
 foreach($faq_cats as $cat) {
-	echo "<li><section data-category=\"{$cat->slug}\">";
-	echo '<h3 class="tab">' . $cat->name . '</h3>';
+	echo "<li><section id=\"{$cat->slug}\" data-category=\"{$cat->slug}\" class=\"sticky-section\">";
+	echo '<h3 class="tab sticky-title">' . $cat->name . '</h3>';
 	echo do_shortcode("[faqs category=\"{$cat->slug}\"]");
 	echo "</section></li>";
 }

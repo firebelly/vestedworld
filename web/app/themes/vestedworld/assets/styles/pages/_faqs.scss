@@ -4,9 +4,16 @@
 
   header.page-header {
     color: $blue;
+    @include clearfix();
     padding: #{$vertical-beat * 7} $mobile-global-padding #{$vertical-beat * 4};
+
     @include media-md {
-      padding: #{$vertical-beat * 7} $global-padding #{$vertical-beat * 12};
+      padding: #{$vertical-beat * 8} $global-padding #{$vertical-beat * 8};
+
+      h1 {
+        margin-bottom: 0;
+        @include column(12);
+      }
     }
   }
   .site-main {
@@ -20,16 +27,42 @@
     list-style: none;
   }
   ul.faq-categories {
+    > li {
+      margin-bottom: #{$vertical-beat * 8};
+    }
     section {
       @include clearfix;
-      padding: 0 $mobile-global-padding 0 $mobile-global-padding;
       position: relative;
+      padding: 32px $mobile-global-padding 0 $mobile-global-padding;
       h3.tab {
+        top: 0;
+        z-index: 1;
+        margin-bottom: 0;
         background: $blue;
+        position: absolute;
+        display: inline-block;
+        left: $mobile-global-padding;
       }
+      &.inView {
+        h3.tab {
+          position: fixed;
+        }
+      }
+
       @include media-md {
+        &::after {
+          left: 0;
+          bottom: 0;
+          content: "";
+          height: 1px;
+          background: $gray;
+          position: absolute;
+          width: #{$vertical-beat * 4};
+        }
         h3.tab {
           top: 0;
+          left: auto;
+          right: 100%;
         }
         padding: 0 $global-padding;
       }
@@ -37,6 +70,8 @@
   }
   ul.faq-list {
     border-top: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+
     >li {
       @include clearfix;
       position: relative;
@@ -94,5 +129,24 @@
         }
       }
     }
+  }
+}
+
+.resource-filter {
+  @include media-md {
+    @include column(10);
+  }
+
+  @include clearfix();
+  label, select {
+    float: left;
+    color: $brand-primary;
+    @include small-caps();
+    padding: #{$vertical-beat * 1};
+    border: 1px solid $brand-primary;
+  }
+  select {
+    border-left: none;
+    padding-right: 34px;
   }
 }
