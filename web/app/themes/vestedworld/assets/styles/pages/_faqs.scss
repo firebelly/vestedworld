@@ -27,6 +27,7 @@
     list-style: none;
   }
   ul.faq-categories {
+    padding-bottom: #{$vertical-beat * 8};
     > li {
       margin-bottom: #{$vertical-beat * 8};
     }
