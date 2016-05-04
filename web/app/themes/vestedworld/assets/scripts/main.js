@@ -48,6 +48,7 @@ var VestedWorld = (function($) {
     // Fit them vids!
     $('main').fitVids();
 
+    _initAccordions();
     _initLazyLoadImages();
     _initNav();
     _initPageNav();
@@ -190,16 +191,28 @@ var VestedWorld = (function($) {
 
   // FAQ behavior
   function _initFaqs() {
-    $document.on('click', '.faq-list a', function(e) {
-      e.preventDefault();
-      var $li = $(this).parents('li:first');
-      $li.toggleClass('active');
-    });
-
     // Filter list
     $('.filter-select').change(function(){ 
       var targetSection = "#" + $(this).val();
       _scrollBody($(targetSection), 250, 0);
+    });
+  }
+
+  function _initAccordions() {
+    var time = 350;
+    $('.accordion-trigger').on('click', function(e) {
+      e.preventDefault();
+      var $thisGroup = $(this).closest('.accordion'),
+          $thisItem = $(this).closest('.accordion-item');
+      if ($thisItem.is('.active')) {
+        $thisItem.removeClass('active');
+        $thisItem.find('.accordion-content').velocity("slideUp", { duration: time });
+      } else {
+        $thisGroup.find('.accordion-item.active .accordion-content').velocity("slideUp", { duration: time });
+        $thisGroup.find('.accordion-item.active').removeClass('active');
+        $thisItem.find('.accordion-content').velocity("slideDown", { duration: time });
+        $thisItem.addClass('active');
+      }
     });
   }
 
