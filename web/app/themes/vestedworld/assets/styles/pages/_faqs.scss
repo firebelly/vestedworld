@@ -22,7 +22,12 @@
   .more-questions {
     padding: $mobile-global-padding;
     a {
+      transition: .2s ease-out;
       text-decoration: underline;
+      &:hover,
+      &:focus {
+        color: $brand-primary;
+      }
     }
 
     @include media-md {
