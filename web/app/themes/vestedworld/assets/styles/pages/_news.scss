@@ -14,7 +14,6 @@
     @include clearfix;
     border: 1px solid $white;
     font: 16px/24px $sans;
-    letter-spacing: .2em;
     text-transform: uppercase;
   }
   .filter label {
@@ -35,7 +34,6 @@
     background: none;
     border: none;
     font: 16px/1 $sans;
-    letter-spacing: .2em;
     text-transform: uppercase;
     width: 100%;
     outline: none;
@@ -56,6 +54,12 @@
       margin: 0;
       width: 50%;
       float: left;
+    }
+    .filter,
+    .filter select,
+    .search,
+    .search input {
+      letter-spacing: .2em;
     }
     padding: #{$vertical-beat * 7} $global-padding;
   }

@@ -3,12 +3,12 @@
 // wp admin bar push
 .admin-bar {
   .site-nav {
-    top: 32px;
+    top: 46px;
   }
 
   @include min-screen(770px) {
     .site-nav {
-      top: 0;
+      top: 32px;
     }
   }
 
@@ -17,9 +17,6 @@
       top: 0;
     }
   }
-}
-
-#menu-main-nav {
 }
 
 // mobile menu toggle
@@ -87,7 +84,6 @@
     }
   }
 
-  // change back to $breakpoint-nav
   @include min-screen($breakpoint-nav) {
     top: auto;
     display: none;
@@ -145,7 +141,6 @@
       right: 30px;
     }
 
-    // Change back to $breakpoint-nav
     @include min-screen($breakpoint-nav) {
       display: none;
     }
@@ -153,8 +148,8 @@
 
   .nav {
     margin: 0;
-    padding: 32px;
     @include clearfix;
+    padding: 0 0 $mobile-global-padding;
 
     .menu-item-has-children {
       position: relative;
@@ -162,11 +157,11 @@
         padding-right: 20px;      
         &::before {
           top: 13px;
-          right: 2px;
           content: "^";
           line-height: 1em;
           position: absolute;
           transform: rotate(180deg);
+          right: #{$mobile-global-padding};
         }
       }
       &:hover {
@@ -179,13 +174,15 @@
         > a {
           &::before {
             top: -2px;
+            right: 6px;
           }
         }
       }
     }
 
     .sub-menu {
-      padding: 0 0 #{$vertical-beat * 2};
+      display: none;
+      padding: 0 #{$mobile-global-padding} #{$vertical-beat * 2};
       li {
         border: none;
         a {
@@ -194,7 +191,7 @@
           transition: background .2s ease-out, color .2s ease-out;
           &::before {
             left: 0;
-            top: 23px;
+            top: 31px;
             width: 1em;
             content: '';
             height: 1px;
@@ -203,10 +200,19 @@
             transition: background .2s ease-out;
           }
           &:hover {
-            color: $white;
+            color: $gray-lite;
             background: $brand-primary;
             &::before {
-              background: $white;
+              background: $gray-lite;
+            }
+          }
+        }
+        &.active {
+          a {
+            color: $gray-lite;
+            background: $brand-primary;
+            &::before {
+              background: $gray-lite;
             }
           }
         }
@@ -215,15 +221,14 @@
       @include min-screen($breakpoint-nav) {
         left: 0;
         top: 100%;
-        display: none;
-        padding-top: 18px;
+        padding: 18px 0 0;
         position: absolute;
         li {
           display: block;
           margin-left: 0;
           a {
             display: block;
-            background: $white;
+            background: $gray-lite;
             padding: #{$vertical-beat * 2} #{$vertical-beat * 4};
             &::before {
               display: none; 
@@ -234,9 +239,8 @@
     }
 
     li {
-      margin-top: 5px;
+      position: relative;
       transition: padding .2s ease-out;
-      border-bottom: 1px solid $brand-primary;
       &:first-of-type {
         margin-top: 0;
       }
@@ -247,45 +251,56 @@
       }
     }
 
+    > li {
+      &::after {
+        height: 1px;
+        content: '';
+        bottom: -1px;
+        position: absolute;
+        background: $brand-primary;
+        left: #{$mobile-global-padding};
+        right: #{$mobile-global-padding};
+      }
+    }
+
     a {
       color: $blue;
-      padding: 16px 0;
-      text-align: left;
+      height: 64px;
       display: block;
+      text-align: left;
+      line-height: 64px;
       position: relative;
       text-decoration: none;
-      vertical-align: middle;
-      line-height: 1;
       transition: color .2s;
+      vertical-align: middle;
+      padding: 0 $mobile-global-padding;
     }
 
     // Highlight current page
-    li.current-menu-item a {
+    li.active > a {
       background: $blue;
       color: $gray-lite;
     }
 
     @include min-screen($breakpoint-nav) {
-      li {
-        line-height: 30px;
-      }
-    }
-
-    // change back to $breakpoint-nav
-    @include min-screen($breakpoint-nav) {
       padding: 0;
       float: left;
 
       li {
+        line-height: 30px;
         border-bottom: none;
         display: inline-block;
         margin-top: 0;
         margin-left: 15px;
         vertical-align: bottom;
+        &::after {
+          display: none;
+        }
         &:first-of-type {
           margin-left: 0;
         }
         &.active > a {
+          background: none;
           color: $gray-lite;
           &::after {
             transform: scaleY(1);
@@ -294,7 +309,9 @@
       }
 
       a {
+        height: auto;
         padding: 2px;
+        line-height: 1em;
         display: inline-block;
         &:hover, &:focus {
           &::after {

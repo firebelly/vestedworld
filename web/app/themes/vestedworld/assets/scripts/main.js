@@ -8,13 +8,14 @@ var VestedWorld = (function($) {
       breakpoint_sm = false,
       breakpoint_md = false,
       breakpoint_lg = false,
-      breakpoint_array = [480,1000,1200],
+      breakpoint_array = [480,768,1200],
       $document,
       $sidebar,
       $load_more,
       headerOffset,
       loadingTimer,
       page_at,
+      wpAdminBar = false,
       feedback_message_timer,
       History = window.History,
       State,
@@ -36,12 +37,7 @@ var VestedWorld = (function($) {
     // Set screen size vars
     _resize();
 
-    // Header offset w/wo wordpress admin bar
-    if ($('body').hasClass('admin-bar')) {
-      headerOffset = $('#wpadminbar').outerHeight() + $('.site-header').outerHeight();
-    } else {
-      headerOffset = $('.site-header').outerHeight();
-    }
+    _setHeaderOffset();
 
     //initialize sliders
     _initSliders();
@@ -52,11 +48,13 @@ var VestedWorld = (function($) {
     // Fit them vids!
     $('main').fitVids();
 
+    _initAccordions();
     _initLazyLoadImages();
     _initNav();
     _initPageNav();
     // _initSearch();
     _initReadMore();
+    _initStickySections();
     _initLoadMore();
     _initNewsFilter();
     // _initParallaxBackgrounds();
@@ -65,6 +63,7 @@ var VestedWorld = (function($) {
     _initDropdownInvestorForm();
     _initApplicationForms();
     _initStateHandling();
+    _initFaqs();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -187,6 +186,33 @@ var VestedWorld = (function($) {
           });
         }
       });
+    });
+  }
+
+  // FAQ behavior
+  function _initFaqs() {
+    // Filter list
+    $('.filter-select').change(function(){ 
+      var targetSection = "#" + $(this).val();
+      _scrollBody($(targetSection), 250, 0);
+    });
+  }
+
+  function _initAccordions() {
+    var time = 350;
+    $('.accordion-trigger').on('click', function(e) {
+      e.preventDefault();
+      var $thisGroup = $(this).closest('.accordion'),
+          $thisItem = $(this).closest('.accordion-item');
+      if ($thisItem.is('.active')) {
+        $thisItem.removeClass('active');
+        $thisItem.find('.accordion-content').velocity("slideUp", { duration: time });
+      } else {
+        $thisGroup.find('.accordion-item.active .accordion-content').velocity("slideUp", { duration: time });
+        $thisGroup.find('.accordion-item.active').removeClass('active');
+        $thisItem.find('.accordion-content').velocity("slideDown", { duration: time });
+        $thisItem.addClass('active');
+      }
     });
   }
 
@@ -322,6 +348,9 @@ var VestedWorld = (function($) {
         if ($(this).is('.sign-up')) {
           $('body, .menu-toggle').removeClass('menu-open');
           $('.site-nav').removeClass('-active');
+        } else if ($(this).parent('li').is('.no-link')) {
+          // Do nothing man!
+          console.log('hey!');
         } else {
           _hideMobileNav();
         }
@@ -465,6 +494,45 @@ var VestedWorld = (function($) {
       var url = $('.news-filter form').attr('action') + '?' + $('.news-filter form').serialize();
       History.pushState({}, 'News - Vested World', url);
     });
+  }
+
+  function _initStickySections() {
+
+    // ¿Hay sticky sections?
+    if ($('.sticky-section').length) {
+
+      $('.sticky-section').each(function(i) {
+        var $thisSection = $(this),
+            thisTitleWidth;
+
+        // Set the section title width depending on breakpoint
+        function setTitleWidth() {
+          if (breakpoint_md === true) {
+            thisTitleWidth = $thisSection.find('.sticky-title').outerWidth();
+          } else {
+            thisTitleWidth = 32;
+          }          
+        }
+
+        setTitleWidth();
+        $(window).on('resize', function() {
+          setTitleWidth();
+        });
+
+        $(window).on('scroll', function() {
+          var scrollPos = $(window).scrollTop();
+
+          if (!$thisSection.is('.inView') && scrollPos + headerOffset >= $thisSection.offset().top && scrollPos + headerOffset + thisTitleWidth <= $thisSection.offset().top + $thisSection.outerHeight()) {
+            $thisSection.removeClass('stick-to-bottom').addClass('inView');
+          } else if ($thisSection.is('.inView') && scrollPos + headerOffset + thisTitleWidth > $thisSection.offset().top + $thisSection.outerHeight()) {
+            $thisSection.removeClass('inView').addClass('stick-to-bottom');
+          } else if ($thisSection.is('.inView') && scrollPos + headerOffset <= $thisSection.offset().top) {
+            $thisSection.removeClass('inView');
+          }
+        });
+      });
+
+    }
   }
 
   // Load More buttons on News listings
@@ -752,6 +820,22 @@ var VestedWorld = (function($) {
     breakpoint_sm = (screenWidth > breakpoint_array[0]);
     breakpoint_md = (screenWidth > breakpoint_array[1]);
     breakpoint_lg = (screenWidth > breakpoint_array[2]);
+
+    _setHeaderOffset();
+  }
+
+  // Header offset w/wo wordpress admin bar
+  function _setHeaderOffset() {
+    if (breakpoint_md === true) {
+      if ($('body').hasClass('admin-bar')) {
+        wpAdminBar = true;
+        headerOffset = $('#wpadminbar').outerHeight() + $('.site-header').outerHeight();
+      } else {
+        headerOffset = $('.site-header').outerHeight();
+      }
+    } else {
+      headerOffset = 0;
+    }
   }
 
   // Called on scroll

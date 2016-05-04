@@ -1,5 +1,18 @@
 // General page styles
 
+.page {
+  header.page-header {
+    color: $blue;
+    padding: #{$vertical-beat * 7} $mobile-global-padding #{$vertical-beat * 4};
+    @include media-md {
+      padding: #{$vertical-beat * 7} $global-padding #{$vertical-beat * 12};
+    }
+  }
+  .site-main {
+    background: $white;
+  }
+}
+
 .section-title {
   top: 0;
   z-index: 1;

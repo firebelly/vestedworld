@@ -118,6 +118,7 @@ address {
   @include media-md {
     display: block;
   }
+  height: 32px;
   background: $gray-dark;
   color: $white;
   @include small-caps;
