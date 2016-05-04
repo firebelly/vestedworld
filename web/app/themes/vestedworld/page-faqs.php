@@ -20,7 +20,7 @@ $faq_cats = get_terms('faq_cat');
   </div>
 </header>
 
-<ul class="faq-categories" id="all">
+<ul class="faq-sections resource-categories" id="all">
 <?php
 foreach($faq_cats as $cat) {
 	echo "<li><section id=\"{$cat->slug}\" data-category=\"{$cat->slug}\" class=\"sticky-section\">";

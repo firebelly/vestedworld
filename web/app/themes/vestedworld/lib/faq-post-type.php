@@ -158,7 +158,7 @@ function shortcode($atts) {
   $faq_posts = get_posts($args);
   if (!$faq_posts) return false;
 
-  $output .= '<ul class="faq-list accordion">';
+  $output .= '<ul class="resource-list accordion">';
   $i = 0;
   foreach ($faq_posts as $post):
     $i++;
@@ -167,7 +167,7 @@ function shortcode($atts) {
     $output .= <<<HTML
       <li class="accordion-item">
         <h2><a href="#answer-{$category}-{$i}" class="accordion-trigger">{$question} <svg class="icon icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg><svg class="icon icon-close" role="img"><use xlink:href="#icon-close"></use></svg></a></h2>
-        <div id="answer-{$category}-{$i}" class="faq-answer accordion-content user-content">{$answer}</div>
+        <div id="answer-{$category}-{$i}" class="item-content accordion-content user-content">{$answer}</div>
       </li>
 HTML;
   endforeach;
