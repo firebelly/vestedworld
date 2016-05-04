@@ -91,32 +91,58 @@ add_action('manage_posts_custom_column',  __NAMESPACE__ . '\custom_columns');
 function metaboxes( array $meta_boxes ) {
   $prefix = '_cmb2_'; // Start with underscore to hide from custom fields list
 
-  // $meta_boxes['company_details'] = array(
-  //   'id'            => 'company_details',
-  //   'title'         => __( 'Company Details', 'cmb2' ),
-  //   'object_types'  => array( 'company', ), // Post type
-  //   'context'       => 'normal',
-  //   'priority'      => 'high',
-  //   'show_names'    => true, // Show field names on the left
-  //   'fields'        => array(
-  //     array(
-  //       'name' => 'Title',
-  //       'desc' => 'e.g. Co-Founder',
-  //       'id'   => $prefix . 'title',
-  //       'type' => 'text_medium',
-  //     ),   
-  //   ),
-  // );
+  $meta_boxes['company_details'] = array(
+    'id'            => 'company_details',
+    'title'         => __( 'Company Details', 'cmb2' ),
+    'object_types'  => array( 'company', ), // Post type
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'    => true, // Show field names on the left
+    'fields'        => array(
+      array(
+        'name' => 'Headquarters',
+        'desc' => 'e.g. Nairobi, Kenya',
+        'id'   => $prefix . 'headquarters',
+        'type' => 'text_medium',
+      ),
+      array(
+        'name' => 'Website',
+        'id'   => $prefix . 'website',
+        'type' => 'text_url',
+      ),
+      array(
+        'name' => 'Industry',
+        'desc' => 'e.g. Manufacturing (Automotive)',
+        'id'   => $prefix . 'industry',
+        'type' => 'text_medium',
+      ),
+      array(
+        'name' => 'Callout Text',
+        'desc' => 'A callout quote or summary',
+        'id'   => $prefix . 'callout',
+        'type' => 'wysiwyg',
+      ),
+      array(
+        'name' => 'News Links',
+        'desc' => 'List of related news links',
+        'id'   => $prefix . 'news_links',
+        'type' => 'wysiwyg',
+      ),
+      array(
+        'name' => 'Video Links',
+        'desc' => 'List of related Vimeo videos (one per line)',
+        'id'   => $prefix . 'video_links',
+        'type' => 'textarea',
+      ),
+    ),
+  );
 
   return $meta_boxes;
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 
-
-
-
 /**
- * Get Peop;e
+ * Get Companies
  */
 function get_companies() {
   $output = '';
@@ -130,16 +156,14 @@ function get_companies() {
   $company_posts = get_posts($args);
   if (!$company_posts) return false;
 
-  $output = '<ul class="companies-grid">';
-
+  $output = '<ul class="grid-items companies">';
+  ob_start();
   foreach ( $company_posts as $post ):
-    $output .= '<li class="company">';
-    ob_start();
+    echo '<li class="grid-item company">';
     include(locate_template('templates/article-company.php'));
-    $output .= ob_get_clean();
-    $output .= '</li>';
+    echo '</li>';
   endforeach;
-
+  $output .= ob_get_clean();
   $output .= '</ul>';
 
   return $output;
