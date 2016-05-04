@@ -55,7 +55,7 @@ namespace Firebelly\PostTypes\Pages;
          'name' => 'Headline',
          'desc' => 'Headline on the left',
          'id'   => $prefix . 'headline',
-         'type' => 'text',
+         'type' => 'textarea',
        ),
        array(
          'name' => 'Summary',
@@ -101,7 +101,7 @@ namespace Firebelly\PostTypes\Pages;
    return $meta_boxes;
  }
  add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
- 
+
 /**
  * Hide editor on home page -- dont need it.
  * adapted from: https://gist.github.com/ramseyp/4060095
