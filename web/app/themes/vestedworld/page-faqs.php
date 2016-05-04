@@ -30,3 +30,4 @@ foreach($faq_cats as $cat) {
 }
 ?>
 </ul>
+<h2 class="more-questions">Still have questions? <a target="_blank" href="mailto:<?php echo get_option( 'contact_email' ); ?>">Email us</a>.</h2>

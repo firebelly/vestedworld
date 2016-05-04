@@ -1,5 +1,18 @@
 // FAQs Page
 
 .page.faqs {
+  ul.faq-sections.resource-categories {
+    padding-bottom: 0;
+  }
 
+  .more-questions {
+    padding: $mobile-global-padding;
+    a {
+      text-decoration: underline;
+    }
+
+    @include media-md {
+      padding: $global-padding;
+    }
+  } 
 }
