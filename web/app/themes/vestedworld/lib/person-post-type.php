@@ -128,21 +128,21 @@ function metaboxes( array $meta_boxes ) {
         'desc' => 'e.g. Co-Founder',
         'id'   => $prefix . 'title',
         'type' => 'text_medium',
-      ),      
+      ),
       array(
         'name' => 'Subtitle',
         'desc' => 'e.g. Chief Executive Officer',
         'id'   => $prefix . 'subtitle',
         'type' => 'text_medium',
-      ),     
+      ),
       array(
         'name' => 'Quote',
         'desc' => 'A quote associated with a management team member',
         'id'   => $prefix . 'quote',
         'type' => 'wysiwyg',
-      ),     
+      ),
       array(
-        'name' => 'Callout text',
+        'name' => 'Callout Text',
         'desc' => 'A callout quote or summary for the full bio view',
         'id'   => $prefix . 'callout',
         'type' => 'wysiwyg',
@@ -153,9 +153,6 @@ function metaboxes( array $meta_boxes ) {
   return $meta_boxes;
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
-
-
-
 
 /**
  * Get People
@@ -179,10 +176,10 @@ function get_people($options=[]) {
   $person_posts = get_posts($args);
   if (!$person_posts) return false;
 
-  $output = '<ul class="people-grid">';
+  $output = '<ul class="grid-items people">';
 
   foreach ( $person_posts as $post ):
-    $output .= '<li class="person">';
+    $output .= '<li class="grid-item person">';
     ob_start();
     include(locate_template('templates/article-person.php'));
     $output .= ob_get_clean();

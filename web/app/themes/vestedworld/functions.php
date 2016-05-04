@@ -31,7 +31,7 @@ $firebelly_includes = [
   'lib/glossary-post-type.php',        // Glossaries
   'lib/headline-post-type.php',        // Headlines
   'lib/applicant-post-type.php',       // Applicants
-  //'lib/company-post-type.php',       // Companies
+  'lib/company-post-type.php',         // Companies
   //'lib/country-post-type.php',       // Countries
   'lib/featured.php',                  // Featured Post Capability
   'lib/page-meta-boxes.php',           // Various tweaks for pages
