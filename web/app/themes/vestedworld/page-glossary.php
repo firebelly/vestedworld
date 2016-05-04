@@ -1,8 +1,5 @@
 <header class="page-header">
   <h1>Glossary</h1>
-  <header class="page-header">
-    <h1>FAQs</h1>
-
     <?php
     $glossary_posts = get_posts([
       'numberposts' => -1,
@@ -33,8 +30,6 @@
     </div>
 
     <?php } ?>
-
-  </header>
 </header>
 
 <?php
