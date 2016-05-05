@@ -1,37 +1,3 @@
-<header class="page-header">
-  <h1>Glossary</h1>
-    <?php
-    $glossary_posts = get_posts([
-      'numberposts' => -1,
-      'post_type' => 'glossary',
-      'orderby' => 'title',
-    ]);
-
-    if ($glossary_posts) { ?>
-
-    <div class="resource-filter">
-      
-      <label for="category">Category</label>
-      <div class="select-wrapper">    
-        <select id="category" name="category" class="filter-select">
-          <option value="all" selected>All</option>
-          <?php
-
-          $glossary_sections = [];
-          foreach (range('a','z') as $letter) {
-            $glossary_sections[$letter] = '';
-            echo "<option value=\"{$letter}\">{$letter}</option>";
-          }
-
-          ?>
-
-        </select>
-      </div>
-    </div>
-
-    <?php } ?>
-</header>
-
 <?php
 $glossary_posts = get_posts([
   'numberposts' => -1,
@@ -41,6 +7,9 @@ $glossary_posts = get_posts([
 if (!$glossary_posts):
 ?>
 
+  <header class="page-header">
+    <h1>Glossary</h1>
+  </header>
   <div class="alert alert-warning">
     <p>No terms found.</p>
   </div>
@@ -66,6 +35,35 @@ else:
 HTML;
   endforeach;
 ?>
+
+<header class="page-header">
+  <h1>Glossary</h1>
+    <?php
+
+    if ($glossary_posts) { ?>
+
+    <div class="resource-filter">
+      
+      <label for="category">Letter</label>
+      <div class="select-wrapper">    
+        <select id="category" name="category" class="filter-select">
+          <option value="all" selected>All</option>
+          <?php
+
+          foreach($glossary_sections as $letter => $section_html) {
+            if (!empty($section_html)) {
+              echo "<option value=\"{$letter}\">{$letter}</option>";
+            }
+          }
+
+          ?>
+
+        </select>
+      </div>
+    </div>
+
+    <?php } ?>
+</header>
 
   <ul class="glossary-sections resource-categories accordion">
   <?php
