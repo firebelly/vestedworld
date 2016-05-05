@@ -166,6 +166,7 @@
     float: left;
     height: 42px;
     font-size: 16px;
+    letter-spacing: .2em;
     color: $brand-primary;
     text-transform: uppercase;
     padding: #{$vertical-beat * 1};
@@ -178,10 +179,13 @@
   }
 
   @include media-md {
-    @include column(10);
     label, select {
-      letter-spacing: .2em;
+      font-size: 14px;
     }
+  }
+
+  @include media-lg {
+    @include column(10);
     select {
       max-width: none;
     }

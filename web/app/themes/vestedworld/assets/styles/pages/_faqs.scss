@@ -2,19 +2,6 @@
 
 .page.faqs {
 
-  .resource-filter {
-    @include media-md {
-      label, select {
-        letter-spacing: 0;
-      }
-    }
-    @include min-screen(1070px) {
-      label, select {
-        letter-spacing: .2em;
-      }
-    }
-  }
-
   ul.faq-sections.resource-categories {
     padding-bottom: 0;
   }
