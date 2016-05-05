@@ -27,6 +27,17 @@ label.error {
   padding: 0;
   position: relative;
   display: inline-block;
+  &::before {
+    top: 1px  ;
+    right: 1px;
+    z-index: 0;
+    bottom: 1px;
+    content: '';
+    width: 50px;
+    position: absolute;
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba($white,0), rgba($white,1) 40%);
+  }
   &:after {
     top: 18px;
     right: 10px;
