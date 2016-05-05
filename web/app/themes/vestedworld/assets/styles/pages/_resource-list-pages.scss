@@ -150,8 +150,6 @@
       }
       h2 {
         padding-right: #{$column-width * 2};
-        .icon {
-          top: 13px;
           right: 32px;
         }
       }
@@ -172,6 +170,7 @@
     border: 1px solid $brand-primary;
   }
   select {
+    max-width: 140px;
     border-left: none;
     padding-right: 34px;
   }
@@ -180,6 +179,9 @@
     @include column(10);
     label, select {
       letter-spacing: .2em;
+    }
+    select {
+      max-width: none;
     }
   }
 }
