@@ -59,7 +59,7 @@ var VestedWorld = (function($) {
     _initNewsFilter();
     // _initParallaxBackgrounds();
     _initGifPlay();
-    _initPeopleModals();
+    _initItemGrid();
     _initDropdownInvestorForm();
     _initApplicationForms();
     _initStateHandling();
@@ -70,25 +70,25 @@ var VestedWorld = (function($) {
       if (e.keyCode === 27) {
         _hideSearch();
         _hideMobileNav();
-        _closePerson();
+        _closeGridItem();
         _hideInvestorForm();
       }
     });
 
-    // People/post nav arrow handlers
+    // Grid item nav arrow handlers
     // Next
     $(document).keydown(function(e) {
       if (e.keyCode === 39) {
-        if ($('.person.-active').length) {
-          _nextPerson();
+        if ($('.grid-item.-active').length) {
+          _nextGridItem();
         }
       }
     });
     // Previous
     $(document).keydown(function(e) {
       if (e.keyCode === 37) {
-        if ($('.person.-active').length) {
-          _prevPerson();
+        if ($('.grid-item.-active').length) {
+          _prevGridItem();
         }
       }
     });
@@ -688,77 +688,77 @@ var VestedWorld = (function($) {
     }
   }
 
-  function _initPeopleModals() {
-    $('.person-activate').on('click', function(e) {
-      var $activeContainer = $('.active-person-container'),
-          $activeDataContainer = $activeContainer.find('.person-data-container'),
-          $thisPerson = $(this).closest('.person'),
-          $personData = $thisPerson.find('.person-data'),
-          thisPersonOffset = -(($('.people-sections').offset().top) - ($thisPerson.offset().top));
+  function _initItemGrid() {
+    $('.grid-item-activate').on('click', function(e) {
+      var $activeContainer = $('.active-grid-item-container'),
+          $activeDataContainer = $activeContainer.find('.item-data-container'),
+          $thisItem = $(this).closest('.grid-item'),
+          $itemData = $thisItem.find('.grid-item-data'),
+          thisItemOffset = $thisItem.offset().top;
 
       _showOverlay();
 
-      // Is this the only person in their group?
-      if (!$thisPerson.next('.person').length && !$thisPerson.prev('.person').length) {
+      // Is this the only item in their group?
+      if (!$thisItem.next('.grid-item').length && !$thisItem.prev('.grid-item').length) {
         $activeContainer.addClass('solo');
       } else {
         $activeContainer.removeClass('solo');
       }
 
-      $('.person.-active, .people-grid.-active').removeClass('-active');
+      $('.grid-item.-active, .grid-items.-active').removeClass('-active');
       $activeDataContainer.empty();
-      $thisPerson.addClass('-active');
-      $thisPerson.closest('.people-grid').addClass('-active');
-      $personData.clone().appendTo($activeDataContainer);
-      $activeContainer.css('top', thisPersonOffset);
+      $thisItem.addClass('-active');
+      $thisItem.closest('.grid-items').addClass('-active');
+      $itemData.clone().appendTo($activeDataContainer);
+      $activeContainer.css('top', thisItemOffset);
       $activeContainer.addClass('-active');
       _scrollBody($activeContainer, 250, 0, headerOffset + 64);
     });
 
     // Shut it down!
-    $('html, body').on('click', '.person-deactivate', function(e) {
-      _closePerson();
+    $('html, body').on('click', '.grid-item-deactivate', function(e) {
+      _closeGridItem();
       _hideOverlay();
     });
     // Close if user clicks outside modal
     $('html, body').on('click', '.global-overlay', function() {
-      if($('.active-person-container').is('.-active')) {
-        _closePerson();
+      if($('.active-grid-item-container').is('.-active')) {
+        _closeGridItem();
       }
     });
 
-    // People Grid navigation
-    $('.next-person').on('click', function(e) {
-      $('.active-person-container .person-data').addClass('exitLeft');
+    // Item Grid navigation
+    $('.next-item').on('click', function(e) {
+      $('.active-grid-item-container .grid-item-data').addClass('exitLeft');
       setTimeout(function() {
-        _nextPerson();
+        _nextGridItem();
       }, 200);
     });
-    $('.previous-person').on('click', function(e) {
-      $('.active-person-container .person-data').addClass('exitRight');
+    $('.previous-item').on('click', function(e) {
+      $('.active-grid-item-container .grid-item-data').addClass('exitRight');
       setTimeout(function() {
-        _prevPerson();
+        _prevGridItem();
       }, 200);
     });
 
   }
 
-  function _nextPerson() {
-    var $active = $('.people-grid.-active').find('.person.-active');
-    // Find next or first person
-    var $next = ($active.next('.person').length > 0) ? $active.next('.person') : $('.people-grid.-active .person:first');
-    if ($next[0] === $active[0]) { return; } // Just return if there's only one person
-    $next.find('.person-activate').trigger('click');
-    $('.active-person-container .person-data').addClass('enterRight');
+  function _nextGridItem() {
+    var $active = $('.grid-items.-active').find('.grid-item.-active');
+    // Find next or first item
+    var $next = ($active.next('.grid-item').length > 0) ? $active.next('.grid-item') : $('.grid-items.-active .grid-item:first');
+    if ($next[0] === $active[0]) { return; } // Just return if there's only one item
+    $next.find('.grid-item-activate').trigger('click');
+    $('.active-grid-item-container .grid-item-data').addClass('enterRight');
   }
 
-  function _prevPerson() {
-    var $active = $('.people-grid.-active').find('.person.-active');
-    // Find prev or last person
-    var $prev = ($active.prev('.person').length > 0) ? $active.prev('.person') : $('.people-grid.-active .person:last');
-    if ($prev[0] === $active[0]) { return; } // Just return if there's only one person
-    $prev.find('.person-activate').trigger('click');
-    $('.active-person-container .person-data').addClass('enterLeft');
+  function _prevGridItem() {
+    var $active = $('.grid-items.-active').find('.grid-item.-active');
+    // Find prev or last item
+    var $prev = ($active.prev('.grid-item').length > 0) ? $active.prev('.grid-item') : $('.grid-items.-active .grid-item:last');
+    if ($prev[0] === $active[0]) { return; } // Just return if there's only one item
+    $prev.find('.grid-item-activate').trigger('click');
+    $('.active-grid-item-container .grid-item-data').addClass('enterLeft');
   }
 
   function _showOverlay() {
@@ -779,14 +779,14 @@ var VestedWorld = (function($) {
     }, 250);
   }
 
-  function _closePerson() {
-    var $activeContainer = $('.active-person-container'),
-        $activeDataContainer = $('.person-data-container');
+  function _closeGridItem() {
+    var $activeContainer = $('.active-grid-item-container'),
+        $activeDataContainer = $('.item-data-container');
 
     _hideOverlay();
     $activeContainer.removeClass('-active');
-    $('.person.-active').removeClass('-active');
-    $('.person-grid.-active').removeClass('-active');
+    $('.grid-item.-active').removeClass('-active');
+    $('.grid-items.-active').removeClass('-active');
     $activeDataContainer.empty();
   }
 

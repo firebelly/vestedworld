@@ -1,9 +1,9 @@
 // Community Page
 
 .page.community {
-  .active-person-container {
-    .person-data {
-      .person-text {
+  .active-grid-item-container {
+    .grid-item-data {
+      .grid-item-text {
         @include media-md {
           padding-top: #{$vertical-beat * 4};
         }
@@ -39,11 +39,11 @@
 
       // Advisors
       &.vested_advisor {
-        .person-image {
+        .grid-item-image {
           padding: 0;
           height: auto;
           background: rgba($blue-dark, .1);
-          .person-image-inner {
+          .grid-item-image-inner {
             position: relative;
             padding: $global-padding $mobile-global-padding $mobile-global-padding;
             &::before {
@@ -62,7 +62,7 @@
           }
 
           @include media-md {
-            .person-image-inner {
+            .grid-item-image-inner {
               text-align: center;
               padding: $global-padding;
             }
@@ -75,9 +75,9 @@
 
 // Advisors
 .people.vestedadvisors {
-  .person-image {
+  .grid-item-image {
     background: rgba($blue-dark, .1);
-    .person-image-inner {
+    .grid-item-image-inner {
       img {
         top: 50%;
         height: auto;

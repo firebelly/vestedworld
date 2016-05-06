@@ -45,11 +45,11 @@ $body = apply_filters('the_content', $post->post_content);
       </div>
     <?php } ?>
   </div>
-  <div class="bio">
+  <div class="grid-item-body">
     <h1 class="section-title">
       <?php if ($member_type == 'vested_angel') echo 'Q&A'; else if ($member_type == 'vested_advisor') echo 'Overview'; else echo 'Bio';  ?>
     </h1>
-    <div class="bio-inner">
+    <div class="body-inner">
       <div class="user-content">
         <?= $body ?>
       </div>

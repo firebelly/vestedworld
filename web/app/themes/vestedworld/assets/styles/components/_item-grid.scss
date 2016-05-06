@@ -4,7 +4,7 @@
   position: relative;
 }
 
-.grid-wrap {
+.grid-section {
   padding: #{$vertical-beat * 8} $mobile-global-padding;
   @include media-md {
     margin-top: #{$vertical-beat * 8};
@@ -32,7 +32,7 @@
     h1 {
       @extend .h2;
     }
-    .bio {
+    .grid-item-body {
       display: none;
     }
   }
@@ -181,11 +181,11 @@
   }
 
   // If .solo, no need for nav
-  &.solo .post-nav {
+  &.solo .grid-nav {
     display: none;
   }
 
-  .post-nav {
+  .grid-nav {
     top: 0;
     bottom: 0;
     position: absolute;
@@ -200,10 +200,10 @@
       @include small-caps();
       transform-origin: top left;
       transform: rotate(-90deg) translateY(-50%);
-      &.previous-post {
+      &.previous-item {
         top: 196px;
       }
-      &.next-post {
+      &.next-item {
         bottom: 0;
       }
     }
@@ -226,7 +226,7 @@
       .grid-item-text h2 {
         animation: exitRight .5s forwards;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         animation: exitRight .5s forwards .1s;
       }
     }
@@ -237,7 +237,7 @@
       .grid-item-text h2 {
         animation: exitLeft .5s forwards;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         animation: exitLeft .5s forwards .1s;
       }
     }
@@ -249,7 +249,7 @@
         opacity: 0;
         animation: enterRight $cubic-ease1 .6s forwards .1s;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         opacity: 0;
         animation: enterRight $cubic-ease1 .6s forwards .25s;
       }
@@ -265,13 +265,20 @@
         opacity: 0;
         animation: enterLeft $cubic-ease1 .6s forwards .1s;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         opacity: 0;
         animation: enterLeft $cubic-ease1 .6s forwards .25s;
       }
       .grid-item-image-inner {
         animation: zoomInFade .5s forwards;
       }
+    }
+  }
+  .-left,
+  .grid-item-body {
+    @include media-md {
+      max-width: 50%;
+      flex-basis: 50%;
     }
   }
   .grid-item-inner {
@@ -301,7 +308,7 @@
       padding: #{$vertical-beat * 8} $global-padding;
     }
   }
-  .bio-inner {
+  .body-inner {
     overflow: hidden;
   }
 

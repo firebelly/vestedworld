@@ -176,7 +176,7 @@ function get_people($options=[]) {
   $person_posts = get_posts($args);
   if (!$person_posts) return false;
 
-  $output = '<ul class="grid-items people">';
+  $output = '<ul class="grid-items people-grid">';
 
   foreach ( $person_posts as $post ):
     $output .= '<li class="grid-item person">';
