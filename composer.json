@@ -46,7 +46,8 @@
     "wpackagist-plugin/cmb2": ">=2.0.2",
     "wpackagist-plugin/akismet": ">=3.1.1",
     "wpackagist-plugin/google-sitemap-generator": ">=4.0.8",
-    "wpackagist-plugin/regenerate-thumbnails": ">=2.2.6"
+    "wpackagist-plugin/regenerate-thumbnails": ">=2.2.6",
+    "wpackagist-plugin/update-from-bottom": ">=1.0.3"
   },
   "extra": {
     "installer-paths": {

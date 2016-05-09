@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b15fd7962cdaf2ccfb3e6cf35c529272",
-    "content-hash": "7c4573a335b718fb32e026c1a12f589f",
+    "hash": "f8af8c9341727f848913208d919374a7",
+    "content-hash": "0f1e0cb58bcdb1d459991e4ae5a328e7",
     "packages": [
         {
             "name": "composer/installers",
@@ -443,6 +443,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/regenerate-thumbnails/"
+        },
+        {
+            "name": "wpackagist-plugin/update-from-bottom",
+            "version": "1.0.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/update-from-bottom/",
+                "reference": "tags/1.0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/update-from-bottom.1.0.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/update-from-bottom/"
         },
         {
             "name": "wpackagist-plugin/wordpress-importer",
