@@ -178,6 +178,20 @@
     padding-right: 34px;
   }
 
+  .select-wrapper {
+    &::before {
+      top: 1px  ;
+      right: 1px;
+      z-index: 0;
+      bottom: 1px;
+      content: '';
+      width: 50px;
+      position: absolute;
+      pointer-events: none;
+      background-image: linear-gradient(to right, rgba($white,0), rgba($white,1) 40%);
+    }
+  }
+
   @include media-md {
     label, select {
       font-size: 14px;
