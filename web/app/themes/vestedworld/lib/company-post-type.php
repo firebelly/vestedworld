@@ -157,6 +157,38 @@ function metaboxes( array $meta_boxes ) {
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 
 /**
+ * Parse video_links on save
+ */
+function parse_video_links($post_id, $post='') {
+  $video_links = get_post_meta($post_id, '_cmb2_video_links', true);
+  $video_links_parsed = '';
+  if ($video_links) {
+    $video_lines = explode(PHP_EOL, trim($video_links));
+    foreach ($video_lines as $line) {
+      // Extract vimeo video ID and pull large thumbnail from API
+      $vimeo_url = trim($line);
+      $img_url = '';
+      if (preg_match('/vimeo.com\/(\d+)/', $line, $m)) {
+        $img_id = $m[1];
+        $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $img_id . '.php'));
+        $img_url = $hash[0]['thumbnail_large'];
+      }
+
+      // If we found an image, show link to video and build new_lines
+      if ($img_url) {
+        $video_links_parsed .= $vimeo_url.'::'.$img_url."\n";
+      }
+    }
+    // Store parsed links in hidden post meta field
+    if ($video_links_parsed) {
+      update_post_meta($post_id, '_cmb2_video_links_parsed', $video_links_parsed);
+    }
+  }
+}
+add_action('save_post_company', __NAMESPACE__ . '\\parse_video_links', 20, 2);
+
+
+/**
  * Get Companies
  */
 function get_companies() {

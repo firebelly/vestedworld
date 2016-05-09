@@ -5,7 +5,7 @@ $industry = get_post_meta($post->ID, '_cmb2_industry', true);
 $website = get_post_meta($post->ID, '_cmb2_website', true);
 $callout = get_post_meta($post->ID, '_cmb2_callout', true);
 
-$video_links = get_post_meta($post->ID, '_cmb2_video_links', true);
+$video_links_parsed = get_post_meta($post->ID, '_cmb2_video_links_parsed', true);
 $image_slideshow = get_post_meta($post->ID, '_cmb2_image_slideshow', true);
 
 $body = apply_filters('the_content', $post->post_content);
@@ -51,52 +51,37 @@ $body = apply_filters('the_content', $post->post_content);
             <div class="callout"><?= $callout ?></div>
           <?php endif; ?>
 
-          <?php
-            if ($image_slideshow) {
-              echo '<ul class="images">';
-              foreach ((array)$image_slideshow as $attachment_id => $attachment_url) {
-                $large = wp_get_attachment_image_src($attachment_id, 'large');
-                $medium = wp_get_attachment_image_src($attachment_id, 'medium');
-                if ($large && $medium) {
-                  echo '<li><a href="'.$large[0].'"><img src="'.$medium[0].'"></a></li>';
-                }
-              }
-              echo '</ul>';
-            }
-          ?>
 
-          <?php
-            if ($video_links) {
-              echo '<ul class="videos">';
-              $video_lines = explode(PHP_EOL, trim($video_links));
-              $new_video_links = '';
-              foreach ($video_lines as $line) {
-                // Have we already "cached" vimeo API calls to get thumbnail?
-                if (strpos($line, '::') > 0) {
-                  list($vimeo_url,$img_url) = explode('::', $line);
-                } else {
-                  // Extract vimeo video ID and pull large thumbnail from API
-                  $vimeo_url = trim($line);
-                  if (preg_match('/vimeo.com\/(\d+)/', $line, $m)) {
-                    $img_id = $m[1];
-                    $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $img_id . '.php'));
-                    $img_url = $hash[0]['thumbnail_large'];
+          <?php if (!empty($image_slideshow) || !empty($video_links)): ?>
+          <div class="grid-text-group">
+            <h3 class="tab">Multimedia</h3>
+            <?php
+              if ($image_slideshow) {
+                echo '<ul class="images">';
+                foreach ((array)$image_slideshow as $attachment_id => $attachment_url) {
+                  $large = wp_get_attachment_image_src($attachment_id, 'large');
+                  $medium = wp_get_attachment_image_src($attachment_id, 'medium');
+                  if ($large && $medium) {
+                    echo '<li><a href="'.$large[0].'"><img src="'.$medium[0].'"></a></li>';
                   }
                 }
-                // If we found an image, show link to video and build new_lines
-                if ($img_url) {
-                  $new_video_links .= $vimeo_url.'::'.$img_url."\n";
+                echo '</ul>';
+              }
+            ?>
+
+            <?php
+              if ($video_links_parsed) {
+                echo '<ul class="videos">';
+                $video_lines = explode(PHP_EOL, trim($video_links_parsed));
+                foreach ($video_lines as $line) {
+                  list($vimeo_url,$img_url) = explode('::', $line);
                   echo '<li><a href="'.$vimeo_url.'"><img src="'.$img_url.'"></a></li>';
                 }
+                echo '</ul>';
               }
-              // If we changed lines, store post meta w/ parsed vimeo thumbnails to avoid multiple API calls
-              if ($new_video_links != $video_lines) {
-                echo '<textarea>'.$new_video_links.'</textarea>';
-                update_post_meta($post->ID, '_cmb2_video_links', $new_video_links);
-              }
-              echo '</ul>';
-            }
-          ?>
+            ?>
+          </div><!-- END .grid-text-group -->
+          <?php endif; ?>
         </div>
       </div>
   </div>
