@@ -159,8 +159,8 @@ add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 /**
  * Parse video_links on save
  */
-function parse_video_links($post_id, $post='') {
-  $video_links = get_post_meta($post_id, '_cmb2_video_links', true);
+function parse_video_links($post_id, $post, $update) {
+  $video_links = !empty($_POST['_cmb2_video_links']) ? $_POST['_cmb2_video_links'] : '';
   $video_links_parsed = '';
   if ($video_links) {
     $video_lines = explode(PHP_EOL, trim($video_links));
@@ -185,7 +185,7 @@ function parse_video_links($post_id, $post='') {
     }
   }
 }
-add_action('save_post_company', __NAMESPACE__ . '\\parse_video_links', 20, 2);
+add_action('save_post_company', __NAMESPACE__ . '\\parse_video_links', 10, 3);
 
 
 /**
