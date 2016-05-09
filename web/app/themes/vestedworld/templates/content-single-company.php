@@ -1,5 +1,5 @@
 <?php
-$photo = get_the_post_thumbnail($post->ID, 'medium');
+$photo = get_the_post_thumbnail($post->ID, 'grid-large');
 $headquarters = get_post_meta($post->ID, '_cmb2_headquarters', true);
 $industry = get_post_meta($post->ID, '_cmb2_industry', true);
 $website = get_post_meta($post->ID, '_cmb2_website', true);
@@ -60,7 +60,7 @@ $body = apply_filters('the_content', $post->post_content);
                 echo '<ul class="images">';
                 foreach ((array)$image_slideshow as $attachment_id => $attachment_url) {
                   $large = wp_get_attachment_image_src($attachment_id, 'large');
-                  $medium = wp_get_attachment_image_src($attachment_id, 'medium');
+                  $medium = wp_get_attachment_image_src($attachment_id, 'grid-thumb');
                   if ($large && $medium) {
                     echo '<li><a href="'.$large[0].'"><img src="'.$medium[0].'"></a></li>';
                   }

@@ -1,5 +1,5 @@
 <?php
-$photo = get_the_post_thumbnail($post->ID, 'medium');
+$photo = get_the_post_thumbnail($post->ID, 'grid-thumb');
 $headquarters = get_post_meta( $post->ID, '_cmb2_headquarters', true );
 $callout = get_post_meta( $post->ID, '_cmb2_callout', true );
 $body = apply_filters('the_content', $post->post_content);

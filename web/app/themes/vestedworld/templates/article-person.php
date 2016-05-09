@@ -1,5 +1,5 @@
 <?php
-$photo = get_the_post_thumbnail($post->ID, 'medium');
+$photo = get_the_post_thumbnail($post->ID, 'grid-thumb');
 $title = get_post_meta( $post->ID, '_cmb2_title', true );
 $subtitle = get_post_meta( $post->ID, '_cmb2_subtitle', true );
 $member_type = get_post_meta( $post->ID, '_cmb2_member_type', true );

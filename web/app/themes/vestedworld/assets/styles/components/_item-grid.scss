@@ -124,10 +124,8 @@
     }
     img {
       left: 50%;
-      width: auto;
-      max-width: none;
-      min-width: 100%;
-      min-height: 100%;
+      width: 100%;
+      height: auto;
       position: relative;
       transform: translateX(-50%);
     }

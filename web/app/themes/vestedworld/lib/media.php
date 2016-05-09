@@ -5,8 +5,9 @@
 
 namespace Firebelly\Media;
 
-// image size for popout thumbs
-add_image_size( 'popout-thumb', 250, 300, ['center', 'top'] );
+// Image sizes for grid items
+add_image_size( 'grid-thumb', 600, 430, ['center', 'top'] );
+add_image_size( 'grid-large', 1200, 700, ['center', 'top'] );
 
 /**
  * Get thumbnail image for post
