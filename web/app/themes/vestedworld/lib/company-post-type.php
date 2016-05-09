@@ -121,18 +121,33 @@ function metaboxes( array $meta_boxes ) {
         'desc' => 'A callout quote or summary',
         'id'   => $prefix . 'callout',
         'type' => 'wysiwyg',
+        'options' => array(
+          'textarea_rows' => 8,
+        ),
+      ),
+      array(
+        'name' => 'Video Links',
+        'desc' => 'List of related Vimeo video URLs (e.g. https://vimeo.com/106786952 — one per line)',
+        'id'   => $prefix . 'video_links',
+        'type' => 'textarea',
+        'options' => array(
+          'textarea_cols' => 8,
+        ),
+      ),
+      array(
+        'name' => 'Image Slideshow',
+        // 'desc' => 'List of related Vimeo video URLs (e.g. https://vimeo.com/106786952 — one per line)',
+        'id'   => $prefix . 'image_slideshow',
+        'type' => 'file_list',
       ),
       array(
         'name' => 'News Links',
         'desc' => 'List of related news links',
         'id'   => $prefix . 'news_links',
         'type' => 'wysiwyg',
-      ),
-      array(
-        'name' => 'Video Links',
-        'desc' => 'List of related Vimeo videos (one per line)',
-        'id'   => $prefix . 'video_links',
-        'type' => 'textarea',
+        'options' => array(
+          'textarea_rows' => 8,
+        ),
       ),
     ),
   );
