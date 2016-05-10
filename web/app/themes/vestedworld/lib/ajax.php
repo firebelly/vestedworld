@@ -66,11 +66,6 @@ add_action( 'FB_AJAX_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts
  */
 function load_post_modal() {
 
-  global $collection;
-  if (!isset($collection)) {
-    $collection = \Firebelly\Collections\get_active_collection();
-  }
-
   if(!empty($_REQUEST['post_url'])) {
     $post_id = url_to_postid($_REQUEST['post_url']);
     if ($post_id) {
