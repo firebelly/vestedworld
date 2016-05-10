@@ -205,3 +205,61 @@
     }
   }
 }
+
+.post-feedback {
+  padding: #{$global-padding / 2};
+  background: rgba($gray-lite, .5);
+  margin-top: #{$vertical-beat * 8};
+  &.user-already-voted {
+    display: none;
+  }
+  &.rating-chosen {
+    .feedback-prompt,
+    .post-ratings-trigger {
+      display: none;
+    }
+  }
+  .feedback-prompt {
+    margin: 0;
+    opacity: 1;
+    margin-right: 10px;
+    transform: scaleY(1);
+    display: inline-block;
+    transition: opacity .2s ease-out, transform .2s ease-out;
+  }
+  .post-ratings-trigger {
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+    background: rgba($gray-lite, 0);
+    transition: background .1s ease-out;
+    &:hover {
+      background: rgba($gray-lite, 1);
+    }
+    img {
+      opacity: 0;
+      width: 30px;
+      height: 24px;
+      vertical-align: bottom;
+    }
+  }
+  .post-ratings-word {
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    position: absolute;
+    pointer-events: none;
+    color: $brand-primary;
+  }
+  .post-ratings-text {
+    display: none!important; // overriding plugin styles
+  }
+  .post-ratings {
+    width: auto;
+    display: inline-block;
+    a {
+      color: $brand-primary;
+    }
+  }
+}
