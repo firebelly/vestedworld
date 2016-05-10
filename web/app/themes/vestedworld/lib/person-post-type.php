@@ -72,8 +72,8 @@ function get_member_type_array() {
 function edit_columns($columns){
   $columns = array(
     'cb' => '<input type="checkbox" />',
-    '_cmb2_member_type' => 'Type',
     'title' => 'Name',
+    '_cmb2_member_type' => 'Type',
     '_cmb2_title' => 'Title',
     '_cmb2_subtitle' => 'Subtitle',
     'content' => 'Bio',
