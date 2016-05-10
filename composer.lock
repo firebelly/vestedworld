@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f8af8c9341727f848913208d919374a7",
-    "content-hash": "0f1e0cb58bcdb1d459991e4ae5a328e7",
+    "hash": "abf5023f4757acff0e207035242420e1",
+    "content-hash": "3398152d3f063a8cbd71bfea15c98c85",
     "packages": [
         {
             "name": "composer/installers",
@@ -483,6 +483,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wordpress-importer/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-postratings",
+            "version": "1.83.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-postratings/",
+                "reference": "tags/1.83.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-postratings.1.83.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-postratings/"
         }
     ],
     "packages-dev": [],
