@@ -28,9 +28,7 @@ $featured_image = \Firebelly\Media\get_post_thumbnail($post->ID, 'large');
   <button class="grid-item-deactivate grid-item-toggle plus-button close"><div class="plus"></div></button>
   <div class="grid-item-content">
     <h1 class="section-title">Profile</h1>
-    <div class="item-data-container">
-
-    </div>
+    <div class="item-data-container"></div>
   </div>
 </div>
 

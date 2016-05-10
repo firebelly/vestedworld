@@ -221,9 +221,9 @@ var VestedWorld = (function($) {
         // Has this post already been rated?
         if (!$(this).find('.post-ratings img').length) {
           $(this).addClass('user-already-voted');
-        }  
+        }
       });
-      
+
       // Display the text in place of the img
       $('.post-ratings img').each(function() {
         var ratingText = $(this).attr('alt');
@@ -231,7 +231,7 @@ var VestedWorld = (function($) {
         $(this).after('<span class="post-ratings-word">' + ratingText + '</span>');
       });
 
-    }    
+    }
 
     // Toggle a class when someone chooses a rating
     $document.on('click', '.post-ratings img', function() {
@@ -391,7 +391,6 @@ var VestedWorld = (function($) {
           $('.site-nav').removeClass('-active');
         } else if ($(this).parent('li').is('.no-link')) {
           // Do nothing man!
-          console.log('hey!');
         } else {
           _hideMobileNav();
         }
@@ -596,7 +595,7 @@ var VestedWorld = (function($) {
   // Function to update document title after state change
   function _updateTitle() {
     var title = '';
-    if ($('.active-grid-item-container.-active').length) {
+    if ($('.active-grid-item-container.-active [data-page-title]').length) {
       title = $('.active-grid-item-container [data-page-title]').first().attr('data-page-title');
     } else {
       title = original_page_title;
@@ -785,7 +784,7 @@ var VestedWorld = (function($) {
       if (window.location.hash && $(window.location.hash).length) {
         var url = $(window.location.hash).attr('data-page-url');
         History.replaceState({ignore_change: true}, null, '##');
-        original_url = root_url + '/community/';
+        original_url = root_url + 'community/';
         History.replaceState({}, document.title, original_url);
         setTimeout(History.pushState({}, '', url), 150);
       }
