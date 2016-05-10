@@ -8,7 +8,7 @@ $callout = get_post_meta( $post->ID, '_cmb2_callout', true );
 $body = apply_filters('the_content', $post->post_content);
 ?>
 
-<article id="<?= $post->post_name ?>" class="grid-item-data <?= $member_type ?>">
+<article id="<?= $post->post_name ?>" class="grid-item-data <?= $member_type ?>" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
   <div class="-left">
     <?php if ($member_type == 'management') { ?>
       <div class="grid-item-inner">
@@ -40,7 +40,7 @@ $body = apply_filters('the_content', $post->post_content);
             <h1><?= $post->post_title ?></h1>
           </header>
           <?= !empty($callout) ? '<div class="callout">'.$callout.'</div>' : ''; ?>
-          <button class="btn -white grid-item-activate">Profile</button>
+          <a class="btn -white grid-item-activate" href="<?= get_permalink($post) ?>">Profile</a>
         </div>
       </div>
     <?php } ?>

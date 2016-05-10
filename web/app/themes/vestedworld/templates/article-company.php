@@ -5,7 +5,7 @@ $callout = get_post_meta( $post->ID, '_cmb2_callout', true );
 $body = apply_filters('the_content', $post->post_content);
 ?>
 
-<article id="<?= $post->post_name ?>" class="grid-item-data">
+<article id="<?= $post->post_name ?>" class="grid-item-data modal" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
   <div class="-left">
       <div class="grid-item-inner">
         <div class="grid-item-image">
@@ -17,21 +17,9 @@ $body = apply_filters('the_content', $post->post_content);
           <header>
             <h1><?= $post->post_title ?></h1>
           </header>
-          <?= !empty($callout) ? '<div class="callout">'.$callout.'</div>' : ''; ?>
-          <!-- todo: style headquarter in grid-item -->
           <?= !empty($headquarters) ? '<div class="headquarters">'.$headquarters.'</div>' : ''; ?>
-          <button class="btn -white grid-item-activate">Profile</button>
+          <a class="btn -gray grid-item-activate" href="<?= get_permalink($post) ?>">Profile</a>
         </div>
       </div>
-  </div>
-  <div class="bio">
-    <h1 class="section-title">
-    foo
-    </h1>
-    <div class="bio-inner">
-      <div class="user-content">
-        <?= $body ?>
-      </div>
-    </div>
   </div>
 </article>

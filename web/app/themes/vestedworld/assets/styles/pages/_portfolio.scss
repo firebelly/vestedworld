@@ -1,6 +1,14 @@
 // Portfolio Page
 
+// Single Company
 .single.company {
+  ul.stats {
+    margin: 0;
+    padding: 0;
+    li {
+
+    }
+  }
   .-left {
     @include column(11);
   }
@@ -16,6 +24,17 @@
     @include media-md {
       padding: #{$vertical-beat * 4} #{$column-width * 1 * $num_columns/11};
     }
+  }
+}
+.grid-item {
+  .headquarters {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    color: $gray-dark;
+    font: 11px/24px $sans;
+    letter-spacing: .2em;
+    text-transform: uppercase;
   }
 }
 

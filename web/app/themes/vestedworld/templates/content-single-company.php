@@ -20,33 +20,34 @@ $body = apply_filters('the_content', $post->post_content);
             <?= $photo ?>
           </div>
         </div>
-        <div class="grid-item-text grid-text-group">
-          <h3 class="tab">Overview</h3>
+        <div class="grid-item-text">
+          <div class="grid-text-group">
+            <h3 class="tab">Overview</h3>
 
-          <ul class="stats">
-            <li><h3>Company Name</h3><?= $post->post_title ?></li>
+            <ul class="stats">
+              <li><h3>Company Name</h3><?= $post->post_title ?></li>
 
-            <?php if (!empty($headquarters)): ?>
-              <li>
-                <h3>Headquarters</h3>
-                <?= $headquarters ?>
-              </li>
-            <?php endif; ?>
+              <?php if (!empty($headquarters)): ?>
+                <li>
+                  <h3>Headquarters</h3>
+                  <?= $headquarters ?>
+                </li>
+              <?php endif; ?>
 
-            <?php if (!empty($website)): ?>
-              <li>
-                <h3>Website</h3>
-                <?= $website ?>
-              </li>
-            <?php endif; ?>
+              <?php if (!empty($website)): ?>
+                <li>
+                  <h3>Website</h3>
+                  <?= $website ?>
+                </li>
+              <?php endif; ?>
 
-            <?php if (!empty($industry)): ?>
-              <li>
-                <h3>Industry</h3>
-                <?= $industry ?>
-              </li>
-            <?php endif; ?>
-          </ul>
+              <?php if (!empty($industry)): ?>
+                <li>
+                  <h3>Industry</h3>
+                  <?= $industry ?>
+                </li>
+              <?php endif; ?>
+            </ul>
 
           <?php if(!empty($callout)): ?>
             <div class="callout"><?= $callout ?></div>
@@ -91,7 +92,7 @@ $body = apply_filters('the_content', $post->post_content);
         </div><!-- END .grid-text-group -->
         <?php endif; ?>
 
-      </div>
+      </div><!-- END .grid-item-text -->
   </div>
   <div class="grid-item-body">
     <h1 class="section-title">Key Information</h1>

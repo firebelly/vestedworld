@@ -22,6 +22,7 @@ var VestedWorld = (function($) {
       root_url = History.getRootUrl(),
       relative_url,
       original_url,
+      original_page_title = document.title,
       page_cache = {},
       ajax_handler_url = '/app/themes/vestedworld/lib/ajax-handler.php';
 
@@ -68,10 +69,14 @@ var VestedWorld = (function($) {
     // Esc handlers
     $(document).keyup(function(e) {
       if (e.keyCode === 27) {
-        _hideSearch();
-        _hideMobileNav();
-        _closeGridItem();
-        _hideInvestorForm();
+        if ($('.active-grid-item-container.-active').length) {
+          History.pushState({}, document.title, original_url);
+        } else {
+          _hideSearch();
+          _hideMobileNav();
+          _closeGridItem();
+          _hideInvestorForm();
+        }
       }
     });
 
@@ -124,7 +129,16 @@ var VestedWorld = (function($) {
         return;
       }
 
-      if (relative_url.match(/^\/resources\/news\//)) {
+      if (State.url !== original_url && relative_url.match(/^\/(company|person|\d{0,4})\//)) {
+
+        // Standard post modals
+        if (page_cache[encodeURIComponent(State.url)]) {
+          _showGridItem();
+        } else {
+          _loadGridItem();
+        }
+
+      } else if (relative_url.match(/^\/resources\/news\//)) {
 
         // News filtering
         _filterNews();
@@ -136,7 +150,9 @@ var VestedWorld = (function($) {
           // Just load URL if isn't original_url
           location.href = State.url;
         } else {
-          // Hide modals etc here if applicable...
+          // Hide modals etc
+          _closeGridItem();
+          _hideOverlay();
         }
 
       }
@@ -192,7 +208,7 @@ var VestedWorld = (function($) {
   // FAQ behavior
   function _initFaqs() {
     // Filter list
-    $('.filter-select').change(function(){ 
+    $('.filter-select').change(function(){
       var targetSection = "#" + $(this).val();
       _scrollBody($(targetSection), 250, 0);
     });
@@ -488,11 +504,11 @@ var VestedWorld = (function($) {
     $document.on('submit', '.news-filter form', function(e) {
       e.preventDefault();
       var url = $('.news-filter form').attr('action') + '?' + $('.news-filter form').serialize();
-      History.pushState({}, 'News - Vested World', url);
+      History.pushState({}, 'News - VestedWorld', url);
     });
     $document.on('change', 'select[name=cat]', function(e) {
       var url = $('.news-filter form').attr('action') + '?' + $('.news-filter form').serialize();
-      History.pushState({}, 'News - Vested World', url);
+      History.pushState({}, 'News - VestedWorld', url);
     });
   }
 
@@ -511,7 +527,7 @@ var VestedWorld = (function($) {
             thisTitleWidth = $thisSection.find('.sticky-title').outerWidth();
           } else {
             thisTitleWidth = 32;
-          }          
+          }
         }
 
         setTitleWidth();
@@ -533,6 +549,42 @@ var VestedWorld = (function($) {
       });
 
     }
+  }
+
+  // Load AJAX content to show in a modal & store in page_cache array
+  function _loadGridItem() {
+    $.ajax({
+      url: ajax_handler_url,
+      method: 'get',
+      dataType: 'html',
+      data: {
+        'action': 'load_post_modal',
+        'post_url': State.url
+      },
+      success: function(response) {
+        page_cache[encodeURIComponent(State.url)] = $.parseHTML(response);
+        _showGridItem();
+      }
+    });
+  }
+
+  // Function to update document title after state change
+  function _updateTitle() {
+    var title = '';
+    if ($('.active-grid-item-container.-active').length) {
+      title = $('.active-grid-item-container [data-page-title]').first().attr('data-page-title');
+    } else {
+      title = original_page_title;
+    }
+    if (title === '') {
+      title = 'VestedWorld';
+    } else if (!title.match(/VestedWorld/)) {
+      title = title + ' – VestedWorld';
+    }
+    document.title = title;
+    try {
+      document.getElementsByTagName('title')[0].innerHTML = document.title.replace('<','&lt;').replace('>','&gt;').replace(' & ',' &amp; ');
+    } catch (Exception) {}
   }
 
   // Load More buttons on News listings
@@ -689,13 +741,67 @@ var VestedWorld = (function($) {
   }
 
   function _initItemGrid() {
-    $('.grid-item-activate').on('click', function(e) {
+    // People have single post data included in initial grid items
+    $('.grid-item.person article').each(function() {
+      page_cache[encodeURIComponent($(this).attr('data-page-url'))] = $(this).clone();
+    });
+
+    // Use statechange to handle modals
+    $document.on('click', '.grid-item-activate', function(e) {
+      var $target = $(e.target);
+      if (!$target.is('.no-ajaxy')) {
+        e.preventDefault();
+        History.pushState({}, '', $(this).attr('href') || $(this).attr('data-page-url'));
+      }
+    });
+
+    // Initial post?
+    $(window).load(function() {
+      if (window.location.hash && $(window.location.hash).length) {
+        var url = $(window.location.hash).attr('data-page-url');
+        History.replaceState({ignore_change: true}, null, '##');
+        original_url = root_url + '/community/';
+        History.replaceState({}, document.title, original_url);
+        setTimeout(History.pushState({}, '', url), 150);
+      }
+    });
+
+    // Shut it down!
+    $('html, body').on('click', '.grid-item-deactivate', function(e) {
+      History.pushState({}, '', original_url);
+    });
+    // Close if user clicks outside modal
+    $('html, body').on('click', '.global-overlay', function() {
+      if($('.active-grid-item-container').is('.-active')) {
+        History.pushState({}, '', original_url);
+      }
+    });
+
+    // Item Grid navigation
+    $document.on('click', '.next-item', function(e) {
+      $('.active-grid-item-container .grid-item-data').addClass('exitLeft');
+      setTimeout(function() {
+        _nextGridItem();
+      }, 200);
+    });
+    $document.on('click', '.previous-item', function(e) {
+      $('.active-grid-item-container .grid-item-data').addClass('exitRight');
+      setTimeout(function() {
+        _prevGridItem();
+      }, 200);
+    });
+
+  }
+
+  function _showGridItem() {
+    var $activeArticle = $('article[data-page-url="' + State.url + '"]');
+    if ($activeArticle.length) {
       var $activeContainer = $('.active-grid-item-container'),
           $activeDataContainer = $activeContainer.find('.item-data-container'),
-          $thisItem = $(this).closest('.grid-item'),
-          $itemData = $thisItem.find('.grid-item-data'),
+          $thisItem = $activeArticle.closest('.grid-item'),
           thisItemOffset = $thisItem.offset().top;
 
+      $itemData = $(page_cache[encodeURIComponent(State.url)]);
       _showOverlay();
 
       // Is this the only item in their group?
@@ -713,34 +819,12 @@ var VestedWorld = (function($) {
       $activeContainer.css('top', thisItemOffset);
       $activeContainer.addClass('-active');
       _scrollBody($activeContainer, 250, 0, headerOffset + 64);
-    });
 
-    // Shut it down!
-    $('html, body').on('click', '.grid-item-deactivate', function(e) {
-      _closeGridItem();
-      _hideOverlay();
-    });
-    // Close if user clicks outside modal
-    $('html, body').on('click', '.global-overlay', function() {
-      if($('.active-grid-item-container').is('.-active')) {
-        _closeGridItem();
-      }
-    });
-
-    // Item Grid navigation
-    $('.next-item').on('click', function(e) {
-      $('.active-grid-item-container .grid-item-data').addClass('exitLeft');
-      setTimeout(function() {
-        _nextGridItem();
-      }, 200);
-    });
-    $('.previous-item').on('click', function(e) {
-      $('.active-grid-item-container .grid-item-data').addClass('exitRight');
-      setTimeout(function() {
-        _prevGridItem();
-      }, 200);
-    });
-
+      // Track page view
+      _trackPage();
+      // Update document title
+      _updateTitle();
+    }
   }
 
   function _nextGridItem() {
@@ -792,12 +876,16 @@ var VestedWorld = (function($) {
 
   // Track ajax pages in Analytics
   function _trackPage() {
-    if (typeof ga !== 'undefined') { ga('send', 'pageview', document.location.href); }
+    if (typeof ga !== 'undefined') {
+      ga('send', 'pageview', location.pathname);
+    }
   }
 
   // Track events in Analytics
   function _trackEvent(category, action) {
-    if (typeof ga !== 'undefined') { ga('send', 'event', category, action); }
+    if (typeof ga !== 'undefined') {
+      ga('send', 'event', category, action);
+    }
   }
 
   //Initialize Slick Sliders
