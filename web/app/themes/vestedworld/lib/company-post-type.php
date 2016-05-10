@@ -203,7 +203,7 @@ function get_companies() {
   $company_posts = get_posts($args);
   if (!$company_posts) return false;
 
-  $output = '<ul class="grid-items companies">';
+  $output = '<ul class="grid-items companies-grid">';
   ob_start();
   foreach ( $company_posts as $post ):
     echo '<li class="grid-item company">';
