@@ -1,8 +1,6 @@
 <?php
 $photo = get_the_post_thumbnail($post->ID, 'grid-thumb');
 $headquarters = get_post_meta( $post->ID, '_cmb2_headquarters', true );
-$callout = get_post_meta( $post->ID, '_cmb2_callout', true );
-$body = apply_filters('the_content', $post->post_content);
 ?>
 
 <article id="<?= $post->post_name ?>" class="grid-item-data modal" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">

@@ -12,7 +12,7 @@ $image_slideshow = get_post_meta($post->ID, '_cmb2_image_slideshow', true);
 $body = apply_filters('the_content', $post->post_content);
 ?>
 
-<article id="<?= $post->post_name ?>" class="grid-item-data single company active-grid-item-container -active">
+<article id="<?= $post->post_name ?>" class="grid-item-data single company active-grid-item-container -active" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
   <div class="-left">
       <div class="grid-item-inner">
         <div class="grid-item-image">
