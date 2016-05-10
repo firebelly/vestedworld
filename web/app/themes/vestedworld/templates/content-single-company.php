@@ -5,13 +5,14 @@ $industry = get_post_meta($post->ID, '_cmb2_industry', true);
 $website = get_post_meta($post->ID, '_cmb2_website', true);
 $callout = get_post_meta($post->ID, '_cmb2_callout', true);
 
+$news_links = get_post_meta($post->ID, '_cmb2_news_links', true);
 $video_links_parsed = get_post_meta($post->ID, '_cmb2_video_links_parsed', true);
 $image_slideshow = get_post_meta($post->ID, '_cmb2_image_slideshow', true);
 
 $body = apply_filters('the_content', $post->post_content);
 ?>
 
-<article id="<?= $post->post_name ?>" class="grid-item-data">
+<article id="<?= $post->post_name ?>" class="grid-item-data single company active-grid-item-container -active">
   <div class="-left">
       <div class="grid-item-inner">
         <div class="grid-item-image">
@@ -19,7 +20,7 @@ $body = apply_filters('the_content', $post->post_content);
             <?= $photo ?>
           </div>
         </div>
-        <div class="grid-item-text">
+        <div class="grid-item-text grid-text-group">
           <h3 class="tab">Overview</h3>
 
           <ul class="stats">
@@ -50,10 +51,10 @@ $body = apply_filters('the_content', $post->post_content);
           <?php if(!empty($callout)): ?>
             <div class="callout"><?= $callout ?></div>
           <?php endif; ?>
+        </div><!-- END .grid-text-group -->
 
-
-          <?php if (!empty($image_slideshow) || !empty($video_links)): ?>
-          <div class="grid-text-group">
+        <?php if (!empty($image_slideshow) || !empty($video_links)): ?>
+        <div class="grid-text-group">
             <h3 class="tab">Multimedia</h3>
             <?php
               if ($image_slideshow) {
@@ -80,9 +81,16 @@ $body = apply_filters('the_content', $post->post_content);
                 echo '</ul>';
               }
             ?>
-          </div><!-- END .grid-text-group -->
-          <?php endif; ?>
-        </div>
+        </div><!-- END .grid-text-group -->
+        <?php endif; ?>
+
+        <?php if ($news_links): ?>
+        <div class="grid-text-group">
+          <h3 class="tab">News</h3>
+          <?= apply_filters('the_content', $news_links) ?>
+        </div><!-- END .grid-text-group -->
+        <?php endif; ?>
+
       </div>
   </div>
   <div class="grid-item-body">

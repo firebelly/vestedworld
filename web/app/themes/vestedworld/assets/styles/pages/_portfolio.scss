@@ -1,0 +1,22 @@
+// Portfolio Page
+
+.single.company {
+  .-left {
+    @include column(11);
+  }
+  .grid-item-body {
+    @include column(11);
+    @include media-md {
+      padding: #{$vertical-beat * 4} #{$column-width * 1};
+    }
+  }
+  .grid-text-group {
+    @include clearfix;
+    position: relative;
+    @include media-md {
+      padding: #{$vertical-beat * 4} #{$column-width * 1 * $num_columns/11};
+    }
+  }
+}
+
+.page.portfolio {}
