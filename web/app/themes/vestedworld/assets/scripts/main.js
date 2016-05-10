@@ -196,6 +196,31 @@ var VestedWorld = (function($) {
       var targetSection = "#" + $(this).val();
       _scrollBody($(targetSection), 250, 0);
     });
+
+    // Feedback behavior
+    if ($('.post-feedback').length) {
+      var postFeedback = $('.post-feedback');
+
+      postFeedback.each(function() {
+        // Has this post already been rated?
+        if (!$(this).find('.post-ratings img').length) {
+          $(this).addClass('user-already-voted');
+        }  
+      });
+      
+      // Display the text in place of the img
+      $('.post-ratings img').each(function() {
+        var ratingText = $(this).attr('alt');
+        $(this).wrap('<span class="post-ratings-trigger">');
+        $(this).after('<span class="post-ratings-word">' + ratingText + '</span>');
+      });
+
+    }    
+
+    // Toggle a class when someone chooses a rating
+    $document.on('click', '.post-ratings img', function() {
+      $(this).closest('.post-feedback').addClass('rating-chosen');
+    });
   }
 
   function _initAccordions() {
