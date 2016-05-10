@@ -215,11 +215,7 @@
   }
   &.rating-chosen {
     .feedback-prompt,
-    .post-ratings-word {
-      display: none;
-    }
-    .thumbs-rating-up,
-    .thumbs-rating-down {
+    .post-ratings-trigger {
       display: none;
     }
   }
