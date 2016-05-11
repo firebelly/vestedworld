@@ -109,7 +109,8 @@ form.application-form {
 
 }
 
-.page-template-sign-up {
+.page-template-sign-up,
+body.thank-you {
   .page-content {
     @include column(12);
     background: $blue;
