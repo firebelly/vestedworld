@@ -4,6 +4,7 @@
  */
 
 namespace Firebelly\PostTypes\Applicant;
+use \DrewM\MailChimp\MailChimp;
 
 // Register Custom Post Type
 function post_type() {
@@ -238,17 +239,18 @@ function new_applicant() {
     wp_mail($_POST['application_email'], 'Thank you for your interest in VestedWorld', $applicant_message, ['From: VestedWorld <info@vestedworld.com>']);
 
     // Subscribe to Mailchimp list
-    try {
-     $api_key = "69100207c4d61d99068724bc8293a4db-us12";
-     $list_id = "d2c37ba554";
-     require(ROOT_DIR.'/vendor/mailchimp/mailchimp/src/Mailchimp.php');
-     $Mailchimp = new Mailchimp( $api_key );
-     $Mailchimp_Lists = new Mailchimp_Lists( $Mailchimp );
-     $subscriber = $Mailchimp_Lists->subscribe( $list_id, array( 'email' => htmlentities($_POST['application_email']) ) );
-    } catch (Exception $e) {
-      var_dump($e->getMessage());
-    }
-
+    $api_key = "69100207c4d61d99068724bc8293a4db-us12";
+    $list_id = "d2c37ba554";
+    $MailChimp = new MailChimp($api_key);
+    $result = $MailChimp->post("lists/$list_id/members", [
+                'email_address' => $_POST['application_email'],
+                'status'        => 'subscribed',
+              ]);
+    // if ($MailChimp->success()) {
+    //   ... if we care to do anything
+    // } else {
+    //   echo $MailChimp->getLastError();
+    // }
 
   } else {
     $errors[] = 'Error inserting post';

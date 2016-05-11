@@ -49,7 +49,7 @@
     "wpackagist-plugin/regenerate-thumbnails": ">=2.2.6",
     "wpackagist-plugin/update-from-bottom": ">=1.0.3",
     "wpackagist-plugin/wp-postratings": ">=1.83.1",
-    "mailchimp/mailchimp": "2.0.6"
+    "drewm/mailchimp-api": ">=2.2"
   },
   "extra": {
     "installer-paths": {
