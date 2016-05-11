@@ -38,7 +38,8 @@
       }
 
       // Advisors
-      &.vested_advisor {
+      &.image-is-logo {
+        border:10px solid red;
         .grid-item-image {
           padding: 0;
           height: auto;
@@ -74,8 +75,8 @@
 }
 
 // Advisors
-.people.vestedadvisors {
-  .grid-item-image {
+.people {
+  .image-is-logo .grid-item-image {
     background: rgba($blue-dark, .1);
     .grid-item-image-inner {
       img {

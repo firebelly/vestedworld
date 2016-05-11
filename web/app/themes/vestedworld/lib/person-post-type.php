@@ -124,6 +124,12 @@ function metaboxes( array $meta_boxes ) {
         'options' => get_member_type_array(),
       ),
       array(
+        'name' => 'Image is a logo?',
+        'desc' => 'If checked, will style the featured image as a logo',
+        'id'   => $prefix . 'image_is_logo',
+        'type' => 'checkbox',
+      ),
+      array(
         'name' => 'Title',
         'desc' => 'e.g. Co-Founder',
         'id'   => $prefix . 'title',

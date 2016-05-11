@@ -1,14 +1,15 @@
 <?php
 $photo = get_the_post_thumbnail($post->ID, 'grid-thumb');
-$title = get_post_meta( $post->ID, '_cmb2_title', true );
-$subtitle = get_post_meta( $post->ID, '_cmb2_subtitle', true );
-$member_type = get_post_meta( $post->ID, '_cmb2_member_type', true );
-$quote = get_post_meta( $post->ID, '_cmb2_quote', true );
-$callout = get_post_meta( $post->ID, '_cmb2_callout', true );
+$title = get_post_meta($post->ID, '_cmb2_title', true);
+$subtitle = get_post_meta($post->ID, '_cmb2_subtitle', true);
+$member_type = get_post_meta($post->ID, '_cmb2_member_type', true);
+$quote = get_post_meta($post->ID, '_cmb2_quote', true);
+$callout = get_post_meta($post->ID, '_cmb2_callout', true);
+$image_is_logo = get_post_meta($post->ID, '_cmb2_image_is_logo', true) ? 'image-is-logo' : '';
 $body = apply_filters('the_content', $post->post_content);
 ?>
 
-<article id="<?= $post->post_name ?>" class="grid-item-data <?= $member_type ?>" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
+<article id="<?= $post->post_name ?>" class="grid-item-data <?= $image_is_logo ?> <?= $member_type ?>" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
   <div class="-left">
     <?php if ($member_type == 'management') { ?>
       <div class="grid-item-inner">
