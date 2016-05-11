@@ -237,6 +237,19 @@ function new_applicant() {
     $applicant_message = "Thank you for your interest in VestedWorld. We’ll be in touch soon with next steps for joining our community.";
     wp_mail($_POST['application_email'], 'Thank you for your interest in VestedWorld', $applicant_message, ['From: VestedWorld <info@vestedworld.com>']);
 
+    // Subscribe to Mailchimp list
+    try {
+     $api_key = "69100207c4d61d99068724bc8293a4db-us12";
+     $list_id = "d2c37ba554";
+     require(ROOT_DIR.'/vendor/mailchimp/mailchimp/src/Mailchimp.php');
+     $Mailchimp = new Mailchimp( $api_key );
+     $Mailchimp_Lists = new Mailchimp_Lists( $Mailchimp );
+     $subscriber = $Mailchimp_Lists->subscribe( $list_id, array( 'email' => htmlentities($_POST['application_email']) ) );
+    } catch (Exception $e) {
+      var_dump($e->getMessage());
+    }
+
+
   } else {
     $errors[] = 'Error inserting post';
   }
