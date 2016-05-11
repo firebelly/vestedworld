@@ -787,18 +787,22 @@ var VestedWorld = (function($) {
         History.replaceState({ignore_change: true}, null, '##');
         original_url = root_url + 'community/';
         History.replaceState({}, document.title, original_url);
-        // History.pushState({}, '', url);
+        History.pushState({}, '', url);
       }
     });
 
     // Shut it down!
     $('html, body').on('click', '.grid-item-deactivate', function(e) {
-      History.pushState({}, '', original_url);
+      if (!$('body').hasClass('single')) {
+        History.pushState({}, '', original_url);
+      }
     });
     // Close if user clicks outside modal
     $('html, body').on('click', '.global-overlay', function() {
       if($('.active-grid-item-container').is('.-active')) {
-        History.pushState({}, '', original_url);
+        if (!$('body').hasClass('single')) {
+          History.pushState({}, '', original_url);
+        }
       }
     });
 

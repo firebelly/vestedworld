@@ -49,7 +49,7 @@ $body = apply_filters('the_content', $post->post_content);
         </ul>
 
         <?php if(!empty($callout)): ?>
-          <div class="callout"><?= $callout ?></div>
+          <blockquote class="callout"><p><?= strip_tags($callout) ?></p></blockquote>
         <?php endif; ?>
       </div><!-- END .grid-item-text -->
 

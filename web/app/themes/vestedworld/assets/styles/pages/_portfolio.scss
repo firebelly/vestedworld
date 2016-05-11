@@ -1,27 +1,58 @@
 // Portfolio Page
 
+.page.portfolio {}
+
 // Single Company
-.page.single-company .single.company{
-  // .-left {
-  //   @include column(11);
-  // }
-  // .grid-item-body {
-  //   @include column(11);
-  //   @include media-md {
-  //     padding: #{$vertical-beat * 4} #{$column-width * 1};
-  //   }
-  // }
+body.single-company {
+  // Faux overlay styling
+  .site-wrap {
+    background: rgba($overlay-color,.9);
+    padding: #{$vertical-beat * 8} 0;
+  }
+  // We don't want position: absolute
+  .active-grid-item-container {
+    position: relative;
+  }
 }
 
-.grid-text-group {
-  @include clearfix;
-  position: relative;
-  @include media-md {
-    padding: #{$vertical-beat * 4} #{$column-width * 1 * $num_columns/11};
+// Single company styles
+article.single.company {
+  .grid-item-text {
+    ul.stats {
+      @include clearfix;
+      border-bottom: 1px solid $gray-lite;
+      margin: 0 0 #{$vertical-beat * 6};
+      padding: 0;
+      color: $blue;
+      h3 {
+        margin: 0;
+        font: 11px/24px $sans;
+        color: $gray-dark;
+      }
+      li {
+        border-top: 1px solid $gray-lite;
+        width: 50%;
+        float: left;
+        padding: #{$vertical-beat * 4} 0;
+        &:nth-child(2n) {
+          border-left: 1px solid $gray-lite;
+          padding-left: 30px;
+        }
+      }
+    }
+    .callout {
+      &,p {
+        margin: 0;
+        padding: 0;
+      }
+      font: 48px/48px $sans;
+      color: $blue;
+    }
   }
 }
 
 .grid-item {
+  // Hide title on company thumb
   &.company {
     h1 {
       display: none;
@@ -33,6 +64,7 @@
       }
     }
   }
+  // Headquarters shows on Company thumbs at bottom right
   .headquarters {
     position: absolute;
     bottom: 30px;
@@ -43,5 +75,3 @@
     text-transform: uppercase;
   }
 }
-
-.page.portfolio {}
