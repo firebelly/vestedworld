@@ -10,11 +10,9 @@ var VestedWorld = (function($) {
       breakpoint_lg = false,
       breakpoint_array = [480,768,1200],
       $document,
-      $sidebar,
       $load_more,
       headerOffset,
       loadingTimer,
-      page_at,
       wpAdminBar = false,
       feedback_message_timer,
       History = window.History,
@@ -159,6 +157,9 @@ var VestedWorld = (function($) {
 
       // Track AJAX URL change in analytics
       _trackPage();
+
+      // Update document title
+      _updateTitle();
 
       // Update Facebook tags for any share buttons on the page
       _updateOGTags();
@@ -547,7 +548,7 @@ var VestedWorld = (function($) {
 
         // Set the section title width depending on breakpoint
         function setTitleWidth() {
-          if (breakpoint_md === true) {
+          if (breakpoint_md) {
             thisTitleWidth = $thisSection.find('.sticky-title').outerWidth();
           } else {
             thisTitleWidth = 32;
@@ -615,7 +616,6 @@ var VestedWorld = (function($) {
   function _initLoadMore() {
     $document.on('click', '.load-more a', function(e) {
       e.preventDefault();
-      var $load_more = $(this).closest('.load-more');
       var post_type = $load_more.attr('data-post-type') ? $load_more.attr('data-post-type') : 'news';
       var page = parseInt($load_more.attr('data-page-at'));
       var per_page = parseInt($load_more.attr('data-per-page'));
@@ -652,6 +652,7 @@ var VestedWorld = (function($) {
     });
   }
 
+  // Loading spinner
   function _showLoading() {
     $('body').append('<div class="loading"></div>');
   }
@@ -786,7 +787,7 @@ var VestedWorld = (function($) {
         History.replaceState({ignore_change: true}, null, '##');
         original_url = root_url + 'community/';
         History.replaceState({}, document.title, original_url);
-        setTimeout(History.pushState({}, '', url), 150);
+        // History.pushState({}, '', url);
       }
     });
 
@@ -844,10 +845,6 @@ var VestedWorld = (function($) {
       $activeContainer.addClass('-active');
       _scrollBody($activeContainer, 250, 0, headerOffset + 64);
 
-      // Track page view
-      _trackPage();
-      // Update document title
-      _updateTitle();
     }
   }
 
@@ -938,7 +935,7 @@ var VestedWorld = (function($) {
 
   // Header offset w/wo wordpress admin bar
   function _setHeaderOffset() {
-    if (breakpoint_md === true) {
+    if (breakpoint_md) {
       if ($('body').hasClass('admin-bar')) {
         wpAdminBar = true;
         headerOffset = $('#wpadminbar').outerHeight() + $('.site-header').outerHeight();
@@ -950,18 +947,10 @@ var VestedWorld = (function($) {
     }
   }
 
-  // Called on scroll
-  // function _scroll(dir) {
-  //   var wintop = $(window).scrollTop();
-  // }
-
   // Public functions
   return {
     init: _init,
-    resize: _resize,
-    scrollBody: function(section, duration, delay, offset) {
-      _scrollBody(section, duration, delay, offset);
-    }
+    resize: _resize
   };
 
 })(jQuery);
