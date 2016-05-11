@@ -3,7 +3,7 @@ $photo = get_the_post_thumbnail($post->ID, 'grid-thumb');
 $headquarters = get_post_meta( $post->ID, '_cmb2_headquarters', true );
 ?>
 
-<article id="<?= $post->post_name ?>" class="grid-item-data modal" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
+<article id="<?= $post->post_name ?>" class="grid-item-data modal image-is-logo" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
   <div class="-left">
       <div class="grid-item-inner">
         <div class="grid-item-image">

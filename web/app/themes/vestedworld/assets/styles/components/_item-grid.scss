@@ -221,6 +221,8 @@
       .callout-inner,
       .callout,
       .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
       .grid-item-text h2 {
         animation: exitRight .5s forwards;
       }
@@ -232,6 +234,8 @@
       .callout-inner,
       .callout,
       .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
       .grid-item-text h2 {
         animation: exitLeft .5s forwards;
       }
@@ -243,6 +247,8 @@
       .callout-inner,
       .callout,
       .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
       .grid-item-text h2 {
         opacity: 0;
         animation: enterRight $cubic-ease1 .6s forwards .1s;
@@ -259,6 +265,8 @@
       .callout-inner,
       .callout,
       .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
       .grid-item-text h2 {
         opacity: 0;
         animation: enterLeft $cubic-ease1 .6s forwards .1s;
@@ -353,9 +361,10 @@
     }
   }
   .grid-item-text {
+    position: relative;
     padding: #{$vertical-beat * 4} $mobile-global-padding;
     @include media-md {
-      padding: #{$vertical-beat * 8} $global-padding;
+      padding: #{$vertical-beat * 4} $global-padding;
     }
     h1 {
       margin: 0;

@@ -1,32 +1,38 @@
 // Portfolio Page
 
 // Single Company
-.single.company {
-  ul.stats {
-    margin: 0;
-    padding: 0;
-    li {
+.page.single-company .single.company{
+  // .-left {
+  //   @include column(11);
+  // }
+  // .grid-item-body {
+  //   @include column(11);
+  //   @include media-md {
+  //     padding: #{$vertical-beat * 4} #{$column-width * 1};
+  //   }
+  // }
+}
 
-    }
-  }
-  .-left {
-    @include column(11);
-  }
-  .grid-item-body {
-    @include column(11);
-    @include media-md {
-      padding: #{$vertical-beat * 4} #{$column-width * 1};
-    }
-  }
-  .grid-text-group {
-    @include clearfix;
-    position: relative;
-    @include media-md {
-      padding: #{$vertical-beat * 4} #{$column-width * 1 * $num_columns/11};
-    }
+.grid-text-group {
+  @include clearfix;
+  position: relative;
+  @include media-md {
+    padding: #{$vertical-beat * 4} #{$column-width * 1 * $num_columns/11};
   }
 }
+
 .grid-item {
+  &.company {
+    h1 {
+      display: none;
+    }
+    .grid-item-image {
+      background: $gray-lite;
+      &::before {
+        background: none;
+      }
+    }
+  }
   .headquarters {
     position: absolute;
     bottom: 30px;
