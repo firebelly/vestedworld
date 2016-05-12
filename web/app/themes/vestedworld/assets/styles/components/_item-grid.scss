@@ -156,7 +156,7 @@
   background: $white;
   margin-right: $mobile-global-padding;
   @include media-md {
-    margin-right: $column-width;
+    margin-right: #{$global-padding * 2};
   }
   &.-active {
     display: block;
@@ -174,7 +174,7 @@
     right: -$mobile-global-padding;
     @include media-md {
       transform: translateX(50%);
-      right: -#{$column-width / 2};
+      right: -#{$global-padding / 2};
     }
   }
 
@@ -207,8 +207,8 @@
     }
 
     @include media-md {
-      width: $column-width;
-      right: -$column-width;
+      width: $global-padding;
+      right: -$global-padding;
     }
   }
   .grid-item-data {
