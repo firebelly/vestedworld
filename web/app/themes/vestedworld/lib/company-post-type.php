@@ -172,11 +172,12 @@ function parse_video_links($post_id, $post, $update) {
         $img_id = $m[1];
         $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $img_id . '.php'));
         $img_url = $hash[0]['thumbnail_large'];
+        $title = $hash[0]['title'];
       }
 
       // If we found an image, show link to video and build new_lines
       if ($img_url) {
-        $video_links_parsed .= $vimeo_url.'::'.$img_url."\n";
+        $video_links_parsed .= $vimeo_url.'¶'.$img_url.'¶'.$title."\n";
       }
     }
     // Store parsed links in hidden post meta field

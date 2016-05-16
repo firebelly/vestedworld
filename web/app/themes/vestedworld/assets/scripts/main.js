@@ -849,6 +849,10 @@ var VestedWorld = (function($) {
       $activeContainer.addClass('-active');
       _scrollBody($activeContainer, 250, 0, headerOffset + 64);
 
+      $activeDataContainer.find('.slider-mini img:first').imagesLoaded(function(i) {
+        _initSliders();
+      });
+
     }
   }
 
@@ -915,7 +919,8 @@ var VestedWorld = (function($) {
 
   //Initialize Slick Sliders
   function _initSliders(){
-    $('.slider').slick({
+    // Homepage slider
+    $('.slider:not(.slick-initialized)').slick({
       slide: '.slide-item',
       autoplay: true,
       arrows: false,
@@ -924,6 +929,24 @@ var VestedWorld = (function($) {
       speed: 800,
       adaptiveHeight: true,
       lazyLoad: 'ondemand'
+    });
+    // Mini sliders (internal pages)
+    $('.slider-mini:not(.slick-initialized)').on('init', function(event, slick) {
+      // Add a caption div on init
+      var caption = $(slick.$slides[0]).find('img').attr('title') || '';
+      slick.$caption = $('<div class="slick-caption">'+caption+'</div>').appendTo(slick.$slider);
+      console.log(slick.$slider.find('a'));
+      slick.$slider.find('a').swipebox();
+    }).slick({
+      slide: '.slide-item',
+      arrows: false,
+      dots: true,
+      speed: 800,
+      adaptiveHeight: true
+    }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+      // Set caption to next slide's img.title
+      var caption = $(slick.$slides[nextSlide]).find('img').attr('title');
+      slick.$caption.text(caption);
     });
   }
 
@@ -954,7 +977,8 @@ var VestedWorld = (function($) {
   // Public functions
   return {
     init: _init,
-    resize: _resize
+    resize: _resize,
+    initSliders: _initSliders
   };
 
 })(jQuery);

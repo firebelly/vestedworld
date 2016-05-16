@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+// bower:scss
+// endbower
+
 // Reset
 @import "vendor/normalize";
 
@@ -26,6 +29,7 @@
 @import "components/forms";
 @import "components/footer";
 @import "components/item-grid";
+@import "components/sliders";
 
 // Pages
 @import "pages/page";

@@ -36,7 +36,7 @@ $body = apply_filters('the_content', $post->post_content);
           <?php if (!empty($website)): ?>
             <li>
               <h3>Website</h3>
-              <?= $website ?>
+              <a target="_blank" href="<?= $website ?>"><?= parse_url($website, PHP_URL_HOST); ?></a>
             </li>
           <?php endif; ?>
 
@@ -58,27 +58,32 @@ $body = apply_filters('the_content', $post->post_content);
           <h3 class="tab">Multimedia</h3>
           <?php
             if ($image_slideshow) {
-              echo '<ul class="images">';
+              echo '<div class="images slider-mini">';
               foreach ((array)$image_slideshow as $attachment_id => $attachment_url) {
-                $large = wp_get_attachment_image_src($attachment_id, 'large');
                 $medium = wp_get_attachment_image_src($attachment_id, 'grid-thumb');
-                if ($large && $medium) {
-                  echo '<li><a href="'.$large[0].'"><img src="'.$medium[0].'"></a></li>';
+                if ($medium) {
+                  $caption = get_post_field('post_excerpt', $attachment_id);
+                  $large = wp_get_attachment_image_src($attachment_id, 'large');
+                  if ($large):
+                    echo '<div class="slide-item"><a rel="gallery" href="'.$large[0].'"><img src="'.$medium[0].'" title="'.$caption.'"></a></div>';
+                  else:
+                    echo '<div class="slide-item"><img src="'.$medium[0].'" title="'.$caption.'"></div>';
+                  endif;
                 }
               }
-              echo '</ul>';
+              echo '</div>';
             }
           ?>
 
           <?php
             if ($video_links_parsed) {
-              echo '<ul class="videos">';
+              echo '<div class="videos slider-mini">';
               $video_lines = explode(PHP_EOL, trim($video_links_parsed));
               foreach ($video_lines as $line) {
-                list($vimeo_url,$img_url) = explode('::', $line);
-                echo '<li><a href="'.$vimeo_url.'"><img src="'.$img_url.'"></a></li>';
+                list($vimeo_url,$img_url,$title) = explode('¶', $line);
+                echo '<div class="slide-item"><a href="'.$vimeo_url.'"><img src="'.$img_url.'" title="'.$title.'"></a></div class="slide-item">';
               }
-              echo '</ul>';
+              echo '</div>';
             }
           ?>
       </div><!-- END .grid-item-text -->
