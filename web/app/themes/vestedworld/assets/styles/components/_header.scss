@@ -42,7 +42,7 @@
     top: 0;
     width: 100%;
     position: fixed;
-    padding: 16px #{100% / 24 * 1} 16px 24px;
+    padding: 16px $global-padding 16px 24px;
   }
 }
 

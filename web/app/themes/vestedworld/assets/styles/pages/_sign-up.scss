@@ -109,7 +109,8 @@ form.application-form {
 
 }
 
-.page-template-sign-up {
+.page-template-sign-up,
+body.thank-you {
   .page-content {
     @include column(12);
     background: $blue;
@@ -161,8 +162,8 @@ form.application-form {
     transform: translateY(0);
   }
   @include media-md {
+    right: $global-padding;
     width: #{100% / 24 * 11};
-    right: #{100% / 24 * 1};
   }
 
   // close button
@@ -178,8 +179,8 @@ form.application-form {
     }
     @include media-md {
       top: 51px;
-      right: -$column-width;
       transform: translateX(50%);
+      right: -#{$global-padding / 2};
       .plus {
         &::before,
         &::after {

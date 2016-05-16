@@ -48,7 +48,8 @@
     "wpackagist-plugin/google-sitemap-generator": ">=4.0.8",
     "wpackagist-plugin/regenerate-thumbnails": ">=2.2.6",
     "wpackagist-plugin/update-from-bottom": ">=1.0.3",
-    "wpackagist-plugin/wp-postratings": ">=1.83.1"
+    "wpackagist-plugin/wp-postratings": ">=1.83.1",
+    "drewm/mailchimp-api": ">=2.2"
   },
   "extra": {
     "installer-paths": {

@@ -26,6 +26,7 @@ if (file_exists($env_config)) {
 /**
  * URLs
  */
+define('ROOT_DIR', $root_dir);
 define('WP_HOME', getenv('WP_HOME'));
 define('WP_SITEURL', getenv('WP_SITEURL'));
 

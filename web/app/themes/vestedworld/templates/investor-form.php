@@ -6,16 +6,18 @@ if (empty($application_type)) {
 if (empty($application_prompt)) {
   $application_prompt = 'Become a VestedAngel';
 }
+
 ?>
-<form action="<?= admin_url('admin-ajax.php') ?>" class="application-form" method="post" enctype="multipart/form-data" novalidate>
+
+<form class="application-form" method="post" enctype="multipart/form-data" novalidate>
 
   <h2><?= $application_prompt ?></h2>
 
   <fieldset class="contact-details">
-    <div><label class="sr-only">First Name (Required)</label><input type="text" name="application_first_name" placeholder="First Name*" required></div>
-    <div><label class="sr-only">Last Name (Required)</label><input type="text" name="application_last_name" placeholder="Last Name*" required></div>
-    <div><label class="sr-only">Email Address (Required)</label><input type="email" name="application_email" placeholder="Email Address*" required></div>
-    <div><label class="sr-only">Phone Number (Required)</label><input type="tel" name="application_phone" placeholder="Phone Number*" required></div>
+    <div><label class="sr-only">First Name (Required)</label><input type="text" name="application_first_name" id="application_first_name" placeholder="First Name*" required></div>
+    <div><label class="sr-only">Last Name (Required)</label><input type="text" name="application_last_name" id="application_last_name" placeholder="Last Name*" required></div>
+    <div><label class="sr-only">Email Address (Required)</label><input type="email" name="application_email" id="application_email" placeholder="Email Address*" required></div>
+    <div><label class="sr-only">Phone Number (Required)</label><input type="tel" name="application_phone" id="application_phone" placeholder="Phone Number*" required></div>
     <div><label class="sr-only">Company</label><input type="text" name="application_company" placeholder="Company"></div>
   </fieldset>
 
