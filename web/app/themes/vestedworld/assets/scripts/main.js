@@ -66,6 +66,9 @@ var VestedWorld = (function($) {
 
     // Esc handlers
     $(document).keyup(function(e) {
+      if ($('#swipebox-overlay').length) {
+        return;
+      }
       if (e.keyCode === 27) {
         if ($('.active-grid-item-container.-active').length) {
           History.pushState({}, document.title, original_url);
@@ -147,6 +150,7 @@ var VestedWorld = (function($) {
         if (State.url !== original_url) {
           // Just load URL if isn't original_url
           location.href = State.url;
+          return;
         } else {
           // Hide modals etc
           _closeGridItem();
@@ -935,13 +939,11 @@ var VestedWorld = (function($) {
       // Add a caption div on init
       var caption = $(slick.$slides[0]).find('img').attr('title') || '';
       slick.$caption = $('<div class="slick-caption">'+caption+'</div>').appendTo(slick.$slider);
-      console.log(slick.$slider.find('a'));
-      slick.$slider.find('a').swipebox();
+      $('a.lightbox').swipebox();
     }).slick({
       slide: '.slide-item',
       arrows: false,
       dots: true,
-      speed: 800,
       adaptiveHeight: true
     }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
       // Set caption to next slide's img.title

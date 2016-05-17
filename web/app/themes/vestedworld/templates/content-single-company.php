@@ -65,7 +65,7 @@ $body = apply_filters('the_content', $post->post_content);
                   $caption = get_post_field('post_excerpt', $attachment_id);
                   $large = wp_get_attachment_image_src($attachment_id, 'large');
                   if ($large):
-                    echo '<div class="slide-item"><a rel="gallery" href="'.$large[0].'"><img src="'.$medium[0].'" title="'.$caption.'"></a></div>';
+                    echo '<div class="slide-item"><a class="lightbox" rel="gallery" href="'.$large[0].'"><img src="'.$medium[0].'" title="'.$caption.'"></a></div>';
                   else:
                     echo '<div class="slide-item"><img src="'.$medium[0].'" title="'.$caption.'"></div>';
                   endif;
@@ -81,7 +81,7 @@ $body = apply_filters('the_content', $post->post_content);
               $video_lines = explode(PHP_EOL, trim($video_links_parsed));
               foreach ($video_lines as $line) {
                 list($vimeo_url,$img_url,$title) = explode('¶', $line);
-                echo '<div class="slide-item"><a href="'.$vimeo_url.'"><img src="'.$img_url.'" title="'.$title.'"></a></div class="slide-item">';
+                echo '<div class="slide-item"><a class="lightbox" href="'.$vimeo_url.'"><img src="'.$img_url.'" title="'.$title.'"></a></div class="slide-item">';
               }
               echo '</div>';
             }
