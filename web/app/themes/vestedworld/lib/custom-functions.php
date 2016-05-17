@@ -106,3 +106,20 @@ function get_page_blocks($post) {
   }
   return $output;
 }
+
+
+function get_query_string( $atts ) {
+  extract(shortcode_atts(array(
+       'param' => '',
+       'default_value' => '',
+    ), $atts));
+
+  if (!empty($_GET[$param])) {
+    return $_GET[$param];
+  } else if (empty($_GET[$param]) && !empty($default_value)) {
+    return $default_value;
+  } else {
+    return '';
+  }
+}
+add_shortcode( 'querystring', __NAMESPACE__ .'\get_query_string' );

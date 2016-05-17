@@ -97,6 +97,25 @@ namespace Firebelly\PostTypes\Pages;
      ),
    );
 
+   $meta_boxes['page_thankyou'] = array(
+     'id'            => 'page_thankyou',
+     'title'         => __( 'Follow-up form', 'cmb2' ),
+     'object_types'  => array( 'page', ), // Post type
+     'context'       => 'normal',
+     'show_on'       => array( 'key' => 'page-template', 'value' => 'page-thank-you.php'),
+     'priority'      => 'high',
+     'show_names'    => true, // Show field names on the left
+     'fields'        => array(
+       // General page fields
+       array(
+         'name' => 'Follow-up Form ID',
+         'desc' => 'Find the form ID in the forms panel',
+         'id'   => $prefix . 'form_id',
+         'type' => 'text',
+       ),
+     ),
+   );
+
 
    return $meta_boxes;
  }
