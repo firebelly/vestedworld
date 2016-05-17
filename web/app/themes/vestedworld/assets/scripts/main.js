@@ -946,6 +946,7 @@ var VestedWorld = (function($) {
       // Add a caption div on init
       var caption = $(slick.$slides[0]).find('img').attr('title') || '';
       slick.$caption = $('<div class="slick-caption">'+caption+'</div>').appendTo(slick.$slider);
+      // autoplayVideos seems to not work when there are > 1 videos: https://github.com/brutaldesign/swipebox/issues/149
       $('a.lightbox').swipebox({autoplayVideos: true});
     }).slick({
       slide: '.slide-item',
