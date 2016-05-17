@@ -32,7 +32,7 @@ $firebelly_includes = [
   'lib/headline-post-type.php',        // Headlines
   'lib/applicant-post-type.php',       // Applicants
   'lib/company-post-type.php',         // Companies
-  //'lib/country-post-type.php',       // Countries
+  'lib/country-post-type.php',         // Countries
   'lib/featured.php',                  // Featured Post Capability
   'lib/page-meta-boxes.php',           // Various tweaks for pages
   'lib/site-options.php',              // Site Options page with CMB2 fields
