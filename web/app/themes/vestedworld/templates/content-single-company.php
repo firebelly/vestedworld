@@ -91,7 +91,9 @@ $body = apply_filters('the_content', $post->post_content);
       <?php if ($news_links): ?>
       <div class="grid-item-text">
         <h3 class="tab">News</h3>
-        <?= apply_filters('the_content', $news_links) ?>
+        <div class="user-content">
+          <?= apply_filters('the_content', $news_links) ?>
+        </div>
       </div><!-- END .grid-item-text -->
       <?php endif; ?>
     </div><!-- END .grid-item-inner -->
