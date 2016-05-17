@@ -57,31 +57,30 @@ $body = apply_filters('the_content', $post->post_content);
       <div class="grid-item-text">
           <h3 class="tab">Multimedia</h3>
           <?php
-            if ($image_slideshow) {
-              echo '<div class="images slider-mini">';
-              foreach ((array)$image_slideshow as $attachment_id => $attachment_url) {
-                $medium = wp_get_attachment_image_src($attachment_id, 'grid-thumb');
-                if ($medium) {
-                  $caption = get_post_field('post_excerpt', $attachment_id);
-                  $large = wp_get_attachment_image_src($attachment_id, 'large');
-                  if ($large):
-                    echo '<div class="slide-item"><a class="lightbox" rel="gallery" href="'.$large[0].'"><img src="'.$medium[0].'" title="'.$caption.'"></a></div>';
-                  else:
-                    echo '<div class="slide-item"><img src="'.$medium[0].'" title="'.$caption.'"></div>';
-                  endif;
-                }
-              }
-              echo '</div>';
-            }
-          ?>
-
-          <?php
             if ($video_links_parsed) {
               echo '<div class="videos slider-mini">';
               $video_lines = explode(PHP_EOL, trim($video_links_parsed));
               foreach ($video_lines as $line) {
                 list($vimeo_url,$img_url,$title) = explode('¶', $line);
-                echo '<div class="slide-item"><a class="lightbox" href="'.$vimeo_url.'"><img src="'.$img_url.'" title="'.$title.'"></a></div class="slide-item">';
+                echo '<div class="slide-item"><a class="lightbox" href="'.$vimeo_url.'" title="'.$title.'"><img src="'.$img_url.'" title="'.$title.'"><span>Watch Video</span></a></div class="slide-item">';
+              }
+              echo '</div>';
+            }
+          ?>
+          <?php
+            if ($image_slideshow) {
+              echo '<div class="images slider-mini">';
+              foreach ((array)$image_slideshow as $attachment_id => $attachment_url) {
+                $medium = wp_get_attachment_image_src($attachment_id, 'grid-thumb');
+                if ($medium) {
+                  $title = get_post_field('post_excerpt', $attachment_id);
+                  $large = wp_get_attachment_image_src($attachment_id, 'large');
+                  if ($large):
+                    echo '<div class="slide-item"><a class="lightbox" rel="gallery" href="'.$large[0].'" title="'.$title.'"><img src="'.$medium[0].'" title="'.$title.'"></a></div>';
+                  else:
+                    echo '<div class="slide-item"><img src="'.$medium[0].'" title="'.$caption.'"></div>';
+                  endif;
+                }
               }
               echo '</div>';
             }

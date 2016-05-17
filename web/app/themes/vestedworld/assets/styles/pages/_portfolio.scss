@@ -15,6 +15,39 @@ body.single-company {
   }
 }
 
+// Video (>) overlay
+.videos .slide-item a {
+  img {
+  }
+  display: block;
+  position: relative;
+  span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: $white;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    margin: -60px 0 0 -50px;
+    @include small-caps;
+    &::before {
+      content: '>';
+      font: 32px/95px $sans;
+      text-indent: 5px;
+      @extend %smooth;
+      display: block;
+      width: 100px;
+      height: 100px;
+      color: $white;
+      border: 2px solid $white;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+  }
+}
+
 // Single company styles
 article.single.company {
   .grid-item-text {
@@ -70,8 +103,6 @@ article.single.company {
     bottom: 30px;
     right: 30px;
     color: $gray-dark;
-    font: 11px/24px $sans;
-    letter-spacing: .2em;
-    text-transform: uppercase;
+    @include small-caps;
   }
 }

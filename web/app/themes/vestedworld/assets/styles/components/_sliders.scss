@@ -23,9 +23,7 @@
     position: absolute;
     bottom: -28px;
     right: 0;
-    font: 11px/16px $sans;
-    text-transform: uppercase;
-    letter-spacing: .2em;
+    @include small-caps;
     color: $gray-dark;
   }
 }

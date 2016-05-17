@@ -134,9 +134,7 @@ body.working .load-more {
     display: block;
     position: relative;
     text-decoration: none;
-    font: 11px/24px $sans;
-    text-transform: uppercase;
-    letter-spacing: .2em;
+    @include small-caps;
     color: $blue;
     text-align: center;
     padding-top: 112px;

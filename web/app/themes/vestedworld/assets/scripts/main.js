@@ -113,6 +113,13 @@ var VestedWorld = (function($) {
       }
     });
 
+    // Close Swipebox on overlay click
+    $document.on('click', '#swipebox-overlay', function(e) {
+      if (!$(e.target).is('img')) {
+        $('#swipebox-close').trigger('click');
+      }
+    });
+
   } // end init()
 
   // Bind to state changes and handle back/forward
@@ -939,7 +946,7 @@ var VestedWorld = (function($) {
       // Add a caption div on init
       var caption = $(slick.$slides[0]).find('img').attr('title') || '';
       slick.$caption = $('<div class="slick-caption">'+caption+'</div>').appendTo(slick.$slider);
-      $('a.lightbox').swipebox();
+      $('a.lightbox').swipebox({autoplayVideos: true});
     }).slick({
       slide: '.slide-item',
       arrows: false,
