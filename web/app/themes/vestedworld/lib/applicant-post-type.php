@@ -54,7 +54,7 @@ function post_type() {
   register_post_type( 'applicant', $args );
 
 }
-add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
+// add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
 
 /**
  * Add capabilities to control permissions of Post Type via roles

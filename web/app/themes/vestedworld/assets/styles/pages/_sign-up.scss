@@ -1,114 +1,5 @@
 // Sign Up Page
 
-form.application-form {
-  padding: $mobile-global-padding;
-
-  fieldset {
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-  .contact-details {
-    input {
-      // height: #{$vertical-beat * 6};
-      background: $gray-lite;
-      padding: #{$vertical-beat * 2};
-      border: none;
-      width: 100%;
-      margin-bottom: #{$vertical-beat * 1};
-      transition: background .1s ease-out, outline .1s ease-out;
-      &:hover {
-        background: lighten($gray-lite, 5);
-      }
-      &:focus {
-        outline-offset: initial;
-        outline: 1px solid $brand-primary;
-      }
-      &.error {
-        margin-bottom: 0;
-      }
-    }
-  }
-  .required {
-    font: 11px/24px $sans;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-  }
-  h2 {
-    padding-right: 28px;
-    letter-spacing: .2em;
-    font: 16px/24px $sans;
-    text-transform: uppercase;
-    margin-bottom: #{$vertical-beat * 3};
-  }
-  .actions {
-    @include clearfix();
-  }
-  .checkboxes {
-    @include clearfix();
-    padding: #{$vertical-beat * 2} 0;
-    label {
-      display: block;
-      margin-top: 10px;
-      position: relative;
-      padding-left: 20px;
-      input {
-        top: 4px;
-        left: 0;
-        position: absolute;
-      }
-    }
-  }
-  .btn-wrap {
-    padding: 0;
-    float: left;
-    input[type=submit] {
-      width: 100%;
-      border: none;
-      background: none;
-      line-height: 1.5em;
-      @include small-caps();
-      font-size: 16px;
-      padding: 6px 50px 4px 10px;
-      &:focus {
-        outline: none;
-        background: lighten($gray-lite, 5);
-      }
-      &:focus:hover {
-        background: none;
-      }
-    }
-  }
-  @include media-md {
-    padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 8};
-
-    h2 {
-      padding-right: 0;
-      margin-bottom: #{$vertical-beat * 5};
-    }
-    p.required {
-      float: left;
-    }
-    .checkboxes {
-      padding: #{$vertical-beat * 3} 0 0;
-      label {
-        width: 50%;
-        float: left;
-      }
-    }
-    .actions {
-      margin-top: #{$vertical-beat * 8};
-    }
-    .btn-wrap {
-      float: right;
-      input[type=submit] {
-        width: auto;
-      }
-    }
-  }
-
-}
-
 .page-template-sign-up,
 body.thank-you {
   .page-content {
@@ -138,9 +29,12 @@ body.thank-you {
   }
 
   .form-content {
-    @include column(11);
     background: $white;
-
+    @include column(11);
+    padding: $mobile-global-padding;
+    @include media-md {
+      padding: $global-padding;
+    }
   }
 }
 
@@ -154,6 +48,7 @@ body.thank-you {
   background: $white;
   position: absolute;
   transform: translateY(-100%);
+  padding: $mobile-global-padding;
   transition: transform .3s ease-out;
   &.-active {
     display: block;
@@ -164,6 +59,7 @@ body.thank-you {
   @include media-md {
     right: $global-padding;
     width: #{100% / 24 * 11};
+    padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 8};
   }
 
   // close button
@@ -188,6 +84,78 @@ body.thank-you {
         }
       }
     }
+  }
+
+  // The form itself
+  form {
+
+    label {
+      position: absolute;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+      padding:0;
+      border:0;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+    }
+    .gfield_radio {
+      label {
+        clip: initial;
+        width: auto;
+        height: auto;
+        position: relative;
+      }
+    }
+    .required {
+      font: 11px/24px $sans;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+    }
+    h2, h3 {
+      padding-right: 28px;
+      letter-spacing: .2em;
+      font: 16px/24px $sans;
+      text-transform: uppercase;
+      margin-bottom: #{$vertical-beat * 3};
+    }
+    .gfield_radio {
+      @include clearfix();
+      padding: #{$vertical-beat * 2} 0;
+      li {
+        margin-top: 10px;
+        position: relative;
+      }
+      label {
+        display: block;
+        position: relative;
+        padding-left: 20px;
+      }
+      input {
+        top: 4px;
+        left: 0;
+        position: absolute;
+      }
+    }
+
+    @include media-md {
+
+      h2 {
+        padding-right: 0;
+        margin-bottom: #{$vertical-beat * 5};
+      }
+      .gfield_radio {
+        padding: #{$vertical-beat * 3} 0 0;
+        li {
+          width: 50%;
+          float: left;
+          &:first-of-type {
+            padding-right: 20px;
+          }
+        }
+      }
+    }
+
   }
 }
 // If wordress admin bar
