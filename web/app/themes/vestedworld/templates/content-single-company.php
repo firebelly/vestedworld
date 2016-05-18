@@ -1,4 +1,5 @@
 <?php
+// Single Company
 $photo = get_the_post_thumbnail($post->ID, 'grid-large');
 $headquarters = get_post_meta($post->ID, '_cmb2_headquarters', true);
 $industry = get_post_meta($post->ID, '_cmb2_industry', true);
@@ -17,6 +18,7 @@ $body = apply_filters('the_content', $post->post_content);
     <div class="grid-item-inner">
       <div class="grid-item-image">
         <div class="grid-item-image-inner">
+          <h1 class="section-title">Company</h1>
           <?= $photo ?>
         </div>
       </div>
