@@ -102,7 +102,7 @@ function metaboxes( array $meta_boxes ) {
     'fields'        => array(
       array(
         'name' => 'Timeline',
-        'id'   => 'timeline',
+        'id'   => $prefix . 'timeline',
         'type' => 'timeline_date',
         'repeatable' => true,
       ),
