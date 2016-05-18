@@ -41,13 +41,22 @@ $workforce_percent_industry = get_post_meta($post->ID, '_cmb2_workforce_percent_
           <?= $photo ?>
         </div>
       </div>
+
       <div class="intro-text">
         <?= $body ?>
       </div>
+
+      <?php if ($timeline): ?>
       <div class="grid-item-text">
         <h3 class="tab">Timeline</h3>
-
+        <dl class="timeline">
+          <?php foreach($timeline as $timeline_date): ?>
+            <dt><?= $timeline_date['date_title'] ?></dt>
+            <dd><?= $timeline_date['date_description'] ?></dd>
+          <?php endforeach; ?>
+        </dl>
       </div><!-- END .grid-item-text -->
+      <?php endif; ?>
 
       <?php if ($news_links): ?>
       <div class="grid-item-text">
