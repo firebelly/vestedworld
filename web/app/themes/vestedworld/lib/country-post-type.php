@@ -95,15 +95,14 @@ function metaboxes( array $meta_boxes ) {
   $meta_boxes['country_details'] = array(
     'id'            => 'country_details',
     'title'         => __( 'Details', 'cmb2' ),
-    'object_types'  => array( 'country', ), // Post type
+    'object_types'  => array( 'country', ),
     'context'       => 'normal',
     'priority'      => 'high',
-    'show_names'    => true, // Show field names on the left
+    'show_names'    => true,
     'fields'        => array(
       array(
         'name' => 'Timeline',
         'id'   => 'timeline',
-        // 'description' => 'e.g. 1963 or 4,000 B.C.—250 B.C.',
         'type' => 'timeline_date',
         'repeatable' => true,
       ),
@@ -123,11 +122,17 @@ function metaboxes( array $meta_boxes ) {
   $meta_boxes['country_overview'] = array(
     'id'            => 'country_overview',
     'title'         => __( 'Overview', 'cmb2' ),
-    'object_types'  => array( 'country', ), // Post type
+    'object_types'  => array( 'country', ),
     'context'       => 'normal',
     'priority'      => 'high',
-    'show_names'    => true, // Show field names on the left
+    'show_names'    => true,
     'fields'        => array(
+      array(
+        'name' => 'Intro Text',
+        'id'   => $prefix . 'economic_outlook_intro',
+        'type' => 'wysiwyg',
+        'options' => [ 'textarea_rows' => 6 ],
+      ),
       array(
         'name' => 'Current Population',
         'desc' => 'in millions, e.g. 41.6',
@@ -167,11 +172,17 @@ function metaboxes( array $meta_boxes ) {
   $meta_boxes['country_economic_outlook'] = array(
     'id'            => 'country_economic_outlook',
     'title'         => __( 'Economic Outlook', 'cmb2' ),
-    'object_types'  => array( 'country', ), // Post type
+    'object_types'  => array( 'country', ),
     'context'       => 'normal',
     'priority'      => 'high',
-    'show_names'    => true, // Show field names on the left
+    'show_names'    => true,
     'fields'        => array(
+      array(
+        'name' => 'Intro Text',
+        'id'   => $prefix . 'economic_outlook_intro',
+        'type' => 'wysiwyg',
+        'options' => [ 'textarea_rows' => 6 ],
+      ),
       array(
         'name' => 'Gross GDP',
         'desc' => 'in billions, e.g. 63.1',
@@ -219,6 +230,54 @@ function metaboxes( array $meta_boxes ) {
         'desc' => 'e.g. Kenyan Shilling (KES)',
         'id'   => $prefix . 'currency_description',
         'type' => 'text_medium',
+      ),
+    ),
+  );
+
+  // Key Sectors
+  $meta_boxes['country_key_sectors'] = array(
+    'id'            => 'country_key_sectors',
+    'title'         => __( 'Key Sectors', 'cmb2' ),
+    'object_types'  => array( 'country', ),
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'    => true,
+    'fields'        => array(
+      array(
+        'name' => 'Intro Text',
+        'id'   => $prefix . 'key_sectors_intro',
+        'type' => 'wysiwyg',
+        'options' => [ 'textarea_rows' => 6 ],
+      ),
+      array(
+        'name' => 'Agriculture % of GDP',
+        'id'   => $prefix . 'gdp_percent_agriculture',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'Service % of GDP',
+        'id'   => $prefix . 'gdp_percent_service',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'Industry % of GDP',
+        'id'   => $prefix . 'gdp_percent_industry',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'Agriculture % of Workforce',
+        'id'   => $prefix . 'workforce_percent_agriculture',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'Service % of Workforce',
+        'id'   => $prefix . 'workforce_percent_service',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'Industry % of Workforce',
+        'id'   => $prefix . 'workforce_percent_industry',
+        'type' => 'text_small',
       ),
     ),
   );
