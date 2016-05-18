@@ -28,7 +28,6 @@ $featured_image = \Firebelly\Media\get_post_thumbnail($post->ID, 'large');
   </div>
   <button class="grid-item-deactivate grid-item-toggle plus-button close"><div class="plus"></div></button>
   <div class="grid-item-content">
-    <h1 class="section-title">Company</h1>
     <div class="item-data-container"></div>
   </div>
 </div>

@@ -19,7 +19,7 @@
   height: 32px;
   color: $white;
   padding: 0 10px;
-  @extend %smooth;
+  // @extend %smooth;
   position: absolute;
   font-weight: normal;
   @include small-caps();
