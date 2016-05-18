@@ -42,7 +42,7 @@
   .slick-list {
     max-width: 600px;
   }
-  h1 {
+  h1:not(.section-title) {
     margin-bottom: .25em;
     color: $brand-primary;
   }
