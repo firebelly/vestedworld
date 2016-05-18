@@ -129,7 +129,7 @@ function metaboxes( array $meta_boxes ) {
     'fields'        => array(
       array(
         'name' => 'Intro Text',
-        'id'   => $prefix . 'economic_outlook_intro',
+        'id'   => $prefix . 'country_overview_intro',
         'type' => 'wysiwyg',
         'options' => [ 'textarea_rows' => 6 ],
       ),
