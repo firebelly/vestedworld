@@ -3,6 +3,8 @@
 $close_link = '/';
 if ($post->post_type == 'company') {
 	$close_link = '/portfolio/';
+} elseif ($post->post_type == 'country') {
+	$close_link = '/resources/countries/';
 } elseif ($post->post_type == 'person') {
   $close_link = '/community/';
 }

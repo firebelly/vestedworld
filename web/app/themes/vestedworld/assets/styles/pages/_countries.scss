@@ -1,0 +1,30 @@
+// Countries Page
+
+// Single Country
+body.single-country {
+  // todo: consolidate these for all single pages...
+
+  // Faux overlay styling
+  .site-wrap {
+    background: rgba($overlay-color,.9);
+    padding: #{$vertical-beat * 8} 0;
+  }
+  // We don't want position: absolute
+  .active-grid-item-container {
+    position: relative;
+  }
+}
+
+// Single country styles
+article.single.country {
+  .intro-text {
+    background: $blue;
+    color: $white;
+  }
+}
+
+.grid-item {
+  &.country {
+    // grid overrides? probably ok to delete this
+  }
+}
