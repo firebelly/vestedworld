@@ -132,6 +132,15 @@ fieldset {
 
 // Follow-up form
 .follow-up-form {
+  .address_state {
+    &::after {
+      top: 25px;
+    }
+    &:focus {
+      background: rgba($gray-lite,.5);
+    }
+  }
+
   .ginput_container_address {
 
     @include media-md {
@@ -171,7 +180,8 @@ fieldset {
 }
 
 // Custom select styles
-.select-wrapper {
+.select-wrapper,
+.address_state {
   margin: 0;
   padding: 0;
   position: relative;
@@ -187,18 +197,18 @@ fieldset {
     pointer-events: none;
     transform: rotate(90deg);
   }
-}
-.select-wrapper select {
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  padding-right: 20px;
-  padding-right: 18px;
-  background-color: transparent;
-  background-image: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-.select-wrapper select:focus {
-  outline: none;
+
+  select {
+    box-shadow: none;
+    border-radius: 0;
+    -moz-appearance: none;
+    background-image: none;
+    -webkit-appearance: none;
+    padding: 13px 18px 13px 13px;
+    background-color: transparent;
+    border: 1px solid $brand-primary;
+    &:focus {
+      outline: none;
+    }
+  }
 }
