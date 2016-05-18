@@ -19,7 +19,7 @@ $body = apply_filters('the_content', $post->post_content);
             <h2><?= !empty($title) ? '<span class="title">'.$title.'</span>' : ''; ?><br>
             <?= !empty($subtitle) ? '<span class="sub-title">'.$subtitle.'</span>' : ''; ?></h2>
           </header>
-          <button class="btn grid-item-activate">Profile</button>
+          <a class="btn grid-item-activate" href="<?= get_permalink($post) ?>">Profile</a>
         </div>
         <div class="grid-item-image">
           <div class="grid-item-image-inner">
