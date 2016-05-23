@@ -42,10 +42,6 @@
   .slick-list {
     max-width: 600px;
   }
-  h1:not(.section-title) {
-    margin-bottom: .25em;
-    color: $brand-primary;
-  }
   h2 {
     margin: 0;
     @include small-caps();
@@ -163,6 +159,12 @@
   }
   &.-active {
     display: block;
+    .grid-item-data {
+      h1:not(.section-title) {
+        margin-bottom: .25em;
+        color: $brand-primary;
+      }
+    }
   }
 
   .grid-item-activate {
