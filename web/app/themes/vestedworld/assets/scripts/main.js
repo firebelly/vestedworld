@@ -661,6 +661,7 @@ var VestedWorld = (function($) {
         }
       });
     });
+    _checkLoadMore();
   }
 
   // Loading spinner
