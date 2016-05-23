@@ -30,6 +30,40 @@ $gdp_percent_industry = get_post_meta($post->ID, '_cmb2_gdp_percent_industry', t
 $workforce_percent_agriculture = get_post_meta($post->ID, '_cmb2_workforce_percent_agriculture', true);
 $workforce_percent_service = get_post_meta($post->ID, '_cmb2_workforce_percent_service', true);
 $workforce_percent_industry = get_post_meta($post->ID, '_cmb2_workforce_percent_industry', true);
+
+// Clean up fields, removing $ and any other random characters
+foreach ([
+  'population',
+  'median_age',
+  'poverty',
+  'workforce_participation',
+  'income_level_classification',
+
+  'economic_outlook_intro',
+  'gross_gdp',
+  'per_capita_gdp',
+  'inflation',
+  'foreign_direct_investments',
+  'ease_of_doing_business_ranking',
+  'world_corruption_ranking',
+  'average_exchange_rate',
+
+  'key_sectors_intro',
+  'gdp_percent_agriculture',
+  'gdp_percent_service',
+  'gdp_percent_industry',
+  'workforce_percent_agriculture',
+  'workforce_percent_service',
+  'workforce_percent_industry',
+  ] as $clean_me) {
+  // Remove any chars not a digit, comma, period, or slash
+  $$clean_me = preg_replace('/[^\d\.,\/]/', '', $$clean_me);
+}
+
+// format numbers
+$foreign_direct_investments = number_format($foreign_direct_investments);
+$per_capita_gdp = number_format($per_capita_gdp);
+
 ?>
 
 <article id="<?= $post->post_name ?>" class="grid-item-data single country" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
