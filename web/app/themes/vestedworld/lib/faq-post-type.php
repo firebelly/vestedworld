@@ -182,3 +182,8 @@ HTML;
 
   return $output;
 }
+
+// Remove WP-Ratings columns for pages
+remove_action('manage_pages_custom_column', 'add_postratings_column_content');
+remove_filter('manage_pages_columns', 'add_postratings_column');
+remove_filter('manage_edit-page_sortable_columns', 'sort_postratings_column');
