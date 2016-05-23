@@ -83,6 +83,9 @@
   position: relative;
   margin-bottom: #{$vertical-beat * 8};
   .image-wrap {
+    img {
+      width: 100%;
+    }
     @include media-md {
       width: #{ $column-width * 11 };
       float: right;
