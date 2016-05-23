@@ -100,7 +100,7 @@ function cmb2_custom_sortables() {
 <script type='text/javascript'>
   jQuery(document).ready(function($) {
     // sortable timeline_dates
-    jQuery('#timeline_repeat').sortable({ items: '.cmb-row' })
+    jQuery('#_cmb2_timeline_repeat').sortable({ items: '.cmb-row' })
   });
 </script>
 <?php
