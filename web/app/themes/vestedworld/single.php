@@ -4,7 +4,9 @@ $close_link = '/';
 if ($post->post_type == 'company') {
 	$close_link = '/portfolio/';
 } elseif ($post->post_type == 'country') {
-	$close_link = '/resources/countries/';
+	$close_link = '/resources/country-profiles/';
+} elseif ($post->post_type == 'industry') {
+	$close_link = '/resources/industry-profiles/';
 } elseif ($post->post_type == 'person') {
   $close_link = '/community/';
 }

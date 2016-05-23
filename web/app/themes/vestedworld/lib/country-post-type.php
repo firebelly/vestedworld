@@ -146,11 +146,13 @@ function metaboxes( array $meta_boxes ) {
       ),
       array(
         'name' => 'Poverty',
+        'desc' => 'percentage, e.g. 43.4',
         'id'   => $prefix . 'poverty',
         'type' => 'text_small',
       ),
       array(
         'name' => 'Workforce Participation',
+        'desc' => 'percentage, e.g. 67.4',
         'id'   => $prefix . 'workforce_participation',
         'type' => 'text_small',
       ),
@@ -191,13 +193,13 @@ function metaboxes( array $meta_boxes ) {
       ),
       array(
         'name' => 'Per Capita GDP',
-        'desc' => 'e.g. $3,300',
+        'desc' => 'e.g. 3300',
         'id'   => $prefix . 'per_capita_gdp',
         'type' => 'text_small',
       ),
       array(
         'name' => 'Inflation',
-        'desc' => 'e.g. 6.4%',
+        'desc' => 'percentage, e.g. 6.4',
         'id'   => $prefix . 'inflation',
         'type' => 'text_small',
       ),
@@ -291,7 +293,7 @@ add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 
 
 /**
- * Get Peop;e
+ * Get Countries
  */
 function get_countries() {
   $output = '';
