@@ -17,10 +17,85 @@ body.single-country {
 
 // Single country styles
 article.single.country {
+  .section-title {
+    color: $blue;
+    background: $white;
+  }
   .intro-text {
     background: $blue;
     color: $white;
+    h2 {
+      @extend .h1;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-bottom: #{$vertical-beat * 4};
+      @extend %smooth;
+      @include media-md {
+        margin-bottom: #{$vertical-beat * 6};
+      }
+    }
   }
+  .-left {
+    background: $gray-lite;
+  }
+  .grid-item-body {
+    background: $white;
+    .tab {
+      color: $white;
+    }
+  }
+  .timeline {
+    display: flex;
+    flex-flow: row wrap;
+    border-bottom: 1px solid $gray-dark;
+    padding-bottom: #{$vertical-beat * 2};
+    dt {
+      @extend .h2;
+      flex: 0 1 22%;
+      color: $blue;
+      border-right: 1px solid $blue;
+      position: relative;
+      clear: left;
+      min-height: 70px;
+      padding-bottom: #{$vertical-beat * 5};
+      &:last-of-type::before,
+      &:first-of-type::before {
+        display: block;
+        position: absolute;
+        content: '';
+        height: 20px;
+        width: 20px;
+        background: $gray-lite;
+        top: 0;
+        right: -10px;
+      }
+      &:last-of-type {
+        padding: 0;
+        &::before {
+          top: 20px;
+          height: calc(100% - 20px);
+        }
+      }
+      &::after {
+        display: block;
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        background: $gray-lite;
+        top: 15px;
+        right: -4px;
+        border: 1px solid $blue;
+        border-radius: 50%;
+      }
+    }
+    dd {
+      margin: 0;
+      flex: 0 1 77%;
+      padding: 4px 0 #{$vertical-beat * 5} $global-padding;
+    }
+  }
+
 }
 
 .grid-item {

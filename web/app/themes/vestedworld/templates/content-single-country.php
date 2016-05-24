@@ -79,7 +79,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
         </div>
       </div>
 
-      <div class="intro-text">
+      <div class="grid-item-text intro-text">
         <?= $body ?>
       </div>
 

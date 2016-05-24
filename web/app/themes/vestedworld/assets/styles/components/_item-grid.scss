@@ -306,8 +306,8 @@
     h1 {
       color: $white;
     }
-    h2,
-    h3 {
+    h2:not(.tab),
+    h3:not(.tab) {
       color: $blue;
       margin-bottom: 0;
       @include small-caps();
