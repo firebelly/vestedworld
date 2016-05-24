@@ -8,11 +8,12 @@ $news_links = get_post_meta($post->ID, '_cmb2_news_links', true);
 
 $country_overview_intro = get_post_meta($post->ID, '_cmb2_country_overview_intro', true);
 $population = get_post_meta($post->ID, '_cmb2_population', true);
+$projected_population = get_post_meta($post->ID, '_cmb2_projected_population', true);
 $median_age = get_post_meta($post->ID, '_cmb2_median_age', true);
 $poverty = get_post_meta($post->ID, '_cmb2_poverty', true);
+$poverty_label = get_post_meta($post->ID, '_cmb2_poverty_label', true);
 $workforce_participation = get_post_meta($post->ID, '_cmb2_workforce_participation', true);
 $income_level_classification = get_post_meta($post->ID, '_cmb2_income_level_classification', true);
-
 $economic_outlook_intro = get_post_meta($post->ID, '_cmb2_economic_outlook_intro', true);
 $gross_gdp = get_post_meta($post->ID, '_cmb2_gross_gdp', true);
 $per_capita_gdp = get_post_meta($post->ID, '_cmb2_per_capita_gdp', true);
@@ -34,10 +35,10 @@ $workforce_percent_industry = get_post_meta($post->ID, '_cmb2_workforce_percent_
 // Clean up fields, removing $ and any other random characters
 foreach ([
   'population',
+  'projected_population',
   'median_age',
   'poverty',
   'workforce_participation',
-  'income_level_classification',
 
   'economic_outlook_intro',
   'gross_gdp',
@@ -46,7 +47,6 @@ foreach ([
   'foreign_direct_investments',
   'ease_of_doing_business_ranking',
   'world_corruption_ranking',
-  'average_exchange_rate',
 
   'key_sectors_intro',
   'gdp_percent_agriculture',
@@ -60,9 +60,12 @@ foreach ([
   $$clean_me = preg_replace('/[^\d\.,\/]/', '', $$clean_me);
 }
 
-// format numbers
+// Format numbers e.g. 3300 -> 3,300
 $foreign_direct_investments = number_format($foreign_direct_investments);
 $per_capita_gdp = number_format($per_capita_gdp);
+
+// Wrap currency name in tag for styling (e.g. 99.73 KES -> 99.73 <span>KES</span>)
+$average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_exchange_rate);
 
 ?>
 
@@ -106,44 +109,67 @@ $per_capita_gdp = number_format($per_capita_gdp);
   <div class="grid-item-body">
     <div class="body-inner">
 
-      <h3 class="tab">Overview</h3>
-      <div class="user-content">
-        <?= apply_filters('the_content', $country_overview_intro) ?>
-      </div>
-      <div class="country-overview-stats">
-        population: <?= $population ?><br>
-        median_age: <?= $median_age ?><br>
-        poverty: <?= $poverty ?><br>
-        workforce_participation: <?= $workforce_participation ?><br>
-        income_level_classification: <?= $income_level_classification ?><br>
+      <div class="grid-text-group">
+        <h3 class="tab">Overview</h3>
+        <div class="user-content">
+          <?= apply_filters('the_content', $country_overview_intro) ?>
+        </div>
+        <div class="country-overview-stats">
+        <div class="population-chart">
+          <div class="circle-chart">
+            <span class="chart" data-value="<?= $population ?>" data-value2="<?= $projected_population ?>"></span>
+          </div>
+
+          <div class="stat-num"><?= $population ?>M</div>
+          <div class="stat-label" data-source="World Bank">Current Population</div>
+          <div class="stat-num"><?= $population ?>M</div>
+          <div class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</div>
+        </div>
+        <div class="median-age">
+          <div class="stat-num"><?= $median_age ?></div>
+          <div class="stat-label" data-source="CIA World Fact Book">Median Age</div>
+        </div>
+        <div class="poverty-chart">
+          <span class="chart" data-value="<?= $poverty ?>"></span>
+          <div class="stat-num"><?= $poverty ?>% <p><?= $poverty_label ?><p></div>
+          <div class="stat-label" data-source="CIA World Fact Book">Median Age</div>
+        </div>
+          poverty: <?= $poverty ?><br>
+          workforce_participation: <?= $workforce_participation ?><br>
+          income_level_classification: <?= $income_level_classification ?><br>
+        </div>
       </div>
 
-      <h3 class="tab">Outlook</h3>
-      <div class="user-content">
-        <?= apply_filters('the_content', $economic_outlook_intro) ?>
-      </div>
-      <div class="country-overview-stats">
-        gross_gdp: <?= $gross_gdp ?><br>
-        per_capita_gdp: <?= $per_capita_gdp ?><br>
-        inflation: <?= $inflation ?><br>
-        foreign_direct_investments: <?= $foreign_direct_investments ?><br>
-        ease_of_doing_business_ranking: <?= $ease_of_doing_business_ranking ?><br>
-        world_corruption_ranking: <?= $world_corruption_ranking ?><br>
-        average_exchange_rate: <?= $average_exchange_rate ?><br>
-        currency_description: <?= $currency_description ?><br>
+      <div class="grid-text-group">
+        <h3 class="tab">Outlook</h3>
+        <div class="user-content">
+          <?= apply_filters('the_content', $economic_outlook_intro) ?>
+        </div>
+        <div class="outlook-stats">
+          gross_gdp: <?= $gross_gdp ?><br>
+          per_capita_gdp: <?= $per_capita_gdp ?><br>
+          inflation: <?= $inflation ?><br>
+          foreign_direct_investments: <?= $foreign_direct_investments ?><br>
+          ease_of_doing_business_ranking: <?= $ease_of_doing_business_ranking ?><br>
+          world_corruption_ranking: <?= $world_corruption_ranking ?><br>
+          average_exchange_rate: <?= $average_exchange_rate ?><br>
+          currency_description: <?= $currency_description ?><br>
+        </div>
       </div>
 
-      <h3 class="tab">Key Sectors</h3>
-      <div class="user-content">
-        <?= apply_filters('the_content', $key_sectors_intro) ?>
-      </div>
-      <div class="country-overview-stats">
-        gdp_percent_agriculture: <?= $gdp_percent_agriculture ?><br>
-        gdp_percent_service: <?= $gdp_percent_service ?><br>
-        gdp_percent_industry: <?= $gdp_percent_industry ?><br>
-        workforce_percent_agriculture: <?= $workforce_percent_agriculture ?><br>
-        workforce_percent_service: <?= $workforce_percent_service ?><br>
-        workforce_percent_industry: <?= $workforce_percent_industry ?><br>
+      <div class="grid-text-group">
+        <h3 class="tab">Key Sectors</h3>
+        <div class="user-content">
+          <?= apply_filters('the_content', $key_sectors_intro) ?>
+        </div>
+        <div class="key-sector-stats">
+          gdp_percent_agriculture: <?= $gdp_percent_agriculture ?><br>
+          gdp_percent_service: <?= $gdp_percent_service ?><br>
+          gdp_percent_industry: <?= $gdp_percent_industry ?><br>
+          workforce_percent_agriculture: <?= $workforce_percent_agriculture ?><br>
+          workforce_percent_service: <?= $workforce_percent_service ?><br>
+          workforce_percent_industry: <?= $workforce_percent_industry ?><br>
+        </div>
       </div>
 
     </div><!-- END .body-inner -->

@@ -140,6 +140,12 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
+        'name' => 'Projected Population by 2050',
+        'desc' => 'in millions, e.g. 80.1',
+        'id'   => $prefix . 'projected_population',
+        'type' => 'text_small',
+      ),
+      array(
         'name' => 'Median Age',
         'id'   => $prefix . 'median_age',
         'type' => 'text_small',
@@ -148,6 +154,12 @@ function metaboxes( array $meta_boxes ) {
         'name' => 'Poverty',
         'desc' => 'percentage, e.g. 43.4',
         'id'   => $prefix . 'poverty',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'Poverty Label',
+        'desc' => 'e.g. Poverty (2012)',
+        'id'   => $prefix . 'poverty_label',
         'type' => 'text_small',
       ),
       array(
@@ -223,7 +235,7 @@ function metaboxes( array $meta_boxes ) {
       ),
       array(
         'name' => 'Average Exchange Rate for previous year',
-        'desc' => 'e.g. 99.73',
+        'desc' => 'e.g. 99.73 KES',
         'id'   => $prefix . 'average_exchange_rate',
         'type' => 'text_small',
       ),
@@ -288,8 +300,6 @@ function metaboxes( array $meta_boxes ) {
   return $meta_boxes;
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
-
-
 
 
 /**
