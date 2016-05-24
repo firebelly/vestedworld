@@ -799,7 +799,8 @@ var VestedWorld = (function($) {
         History.replaceState({ignore_change: true}, null, '##');
         original_url = root_url + 'community/';
         History.replaceState({}, document.title, original_url);
-        History.pushState({}, '', url);
+        setTimeout(function() { History.pushState({}, '', url); }, 250);
+
       }
     });
 
