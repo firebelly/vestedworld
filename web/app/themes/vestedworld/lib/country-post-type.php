@@ -6,6 +6,14 @@
 namespace Firebelly\PostTypes\Country;
 use Firebelly\Utils;
 
+function get_income_levels() {
+  return [
+    'low'           => 'Low',
+    'lower_middle'  => 'Lower Middle',
+    'higher_middle' => 'Higher Middle',
+    'high'          => 'High',
+  ];
+}
 
 /**
  * Register Custom Post Type
@@ -160,7 +168,7 @@ function metaboxes( array $meta_boxes ) {
         'name' => 'Poverty Label',
         'desc' => 'e.g. Poverty (2012)',
         'id'   => $prefix . 'poverty_label',
-        'type' => 'text_small',
+        'type' => 'text',
       ),
       array(
         'name' => 'Workforce Participation',
@@ -172,12 +180,7 @@ function metaboxes( array $meta_boxes ) {
         'name' => 'Income Level Classification',
         'id'   => $prefix . 'income_level_classification',
         'type' => 'radio_inline',
-        'options' => array(
-            'low' => 'Low',
-            'lower_middle'   => 'Lower Middle',
-            'higher_middle'   => 'Higher Middle',
-            'high'   => 'High',
-        ),
+        'options' => get_income_levels()
       ),
     ),
   );

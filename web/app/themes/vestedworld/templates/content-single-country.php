@@ -34,27 +34,25 @@ $workforce_percent_industry = get_post_meta($post->ID, '_cmb2_workforce_percent_
 
 // Clean up fields, removing $ and any other random characters
 foreach ([
-  'population',
-  'projected_population',
-  'median_age',
-  'poverty',
-  'workforce_participation',
+    'population',
+    'projected_population',
+    'median_age',
+    'poverty',
+    'workforce_participation',
 
-  'economic_outlook_intro',
-  'gross_gdp',
-  'per_capita_gdp',
-  'inflation',
-  'foreign_direct_investments',
-  'ease_of_doing_business_ranking',
-  'world_corruption_ranking',
+    'gross_gdp',
+    'per_capita_gdp',
+    'inflation',
+    'foreign_direct_investments',
+    'ease_of_doing_business_ranking',
+    'world_corruption_ranking',
 
-  'key_sectors_intro',
-  'gdp_percent_agriculture',
-  'gdp_percent_service',
-  'gdp_percent_industry',
-  'workforce_percent_agriculture',
-  'workforce_percent_service',
-  'workforce_percent_industry',
+    'gdp_percent_agriculture',
+    'gdp_percent_service',
+    'gdp_percent_industry',
+    'workforce_percent_agriculture',
+    'workforce_percent_service',
+    'workforce_percent_industry',
   ] as $clean_me) {
   // Remove any chars not a digit, comma, period, or slash
   $$clean_me = preg_replace('/[^\d\.,\/]/', '', $$clean_me);
@@ -112,37 +110,55 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
       <div class="grid-text-group">
         <h3 class="tab">Overview</h3>
         <div class="user-content">
+          <h3>Demographic + Economic Overview</h3>
           <?= apply_filters('the_content', $country_overview_intro) ?>
         </div>
         <div class="country-overview-stats">
-        <div class="population-chart">
-          <div class="circle-chart">
-            <span class="chart" data-value="<?= $population ?>" data-value2="<?= $projected_population ?>"></span>
-          </div>
+          <div class="row">
+            <div class="population-chart">
+              <div class="circle-chart">
+                <span class="chart" data-value="<?= $population ?>" data-value2="<?= $projected_population ?>"></span>
+              </div>
 
-          <div class="stat-num"><?= $population ?>M</div>
-          <div class="stat-label" data-source="World Bank">Current Population</div>
-          <div class="stat-num"><?= $population ?>M</div>
-          <div class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</div>
-        </div>
-        <div class="median-age">
-          <div class="stat-num"><?= $median_age ?></div>
-          <div class="stat-label" data-source="CIA World Fact Book">Median Age</div>
-        </div>
-        <div class="poverty-chart">
-          <span class="chart" data-value="<?= $poverty ?>"></span>
-          <div class="stat-num"><?= $poverty ?>% <p><?= $poverty_label ?><p></div>
-          <div class="stat-label" data-source="CIA World Fact Book">Median Age</div>
-        </div>
-          poverty: <?= $poverty ?><br>
-          workforce_participation: <?= $workforce_participation ?><br>
-          income_level_classification: <?= $income_level_classification ?><br>
+              <div class="stat-num dark"><?= $population ?>M</div>
+              <div class="stat-label" data-source="World Bank">Current Population</div>
+              <div class="stat-num"><?= $projected_population ?>M</div>
+              <div class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</div>
+            </div>
+            <div class="median-age">
+              <div class="stat-num"><?= $median_age ?></div>
+              <div class="stat-label" data-source="CIA World Fact Book">Median Age</div>
+            </div>
+          </div><!-- END .row -->
+          <div class="row">
+            <div class="poverty-chart">
+              <span class="chart" data-value="<?= $poverty ?>"></span>
+              <div class="stat-num"><?= $poverty ?>%</div>
+              <div class="stat-label" data-source="CIA World Fact Book"><?= $poverty_label ?></div>
+            </div>
+            <div class="workforce-chart">
+              <span class="chart" data-value="<?= $workforce_participation ?>"></span>
+              <div class="stat-num"><?= $workforce_participation ?>%</div>
+              <div class="stat-label" data-source="World Bank">Workforce Participation</div>
+            </div>
+          </div><!-- END .row -->
+          <div class="income-level-classification">
+            <ul class="row">
+              <li class="stat-label" data-source="World Bank">Income Level Classification:</li>
+              <?php
+              foreach (\Firebelly\PostTypes\Country\get_income_levels() as $value=>$display) {
+                echo '<li' . ($value==$income_level_classification ? ' class="active"' : '') . '>' . $display . '</li>';
+              }
+              ?>
+            </ul>
+          </div>
         </div>
       </div>
 
       <div class="grid-text-group">
         <h3 class="tab">Outlook</h3>
         <div class="user-content">
+          <h3>Economic Outlook</h3>
           <?= apply_filters('the_content', $economic_outlook_intro) ?>
         </div>
         <div class="outlook-stats">
@@ -160,6 +176,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
       <div class="grid-text-group">
         <h3 class="tab">Key Sectors</h3>
         <div class="user-content">
+          <h3>Key Sectors</h3>
           <?= apply_filters('the_content', $key_sectors_intro) ?>
         </div>
         <div class="key-sector-stats">
