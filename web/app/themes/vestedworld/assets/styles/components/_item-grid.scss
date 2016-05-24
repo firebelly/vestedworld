@@ -1,10 +1,10 @@
-// People grid
+// General item grids (people, companies, etc)
 
-.people-sections {
+.page-sections {
   position: relative;
 }
 
-.people {
+.grid-section {
   padding: #{$vertical-beat * 8} $mobile-global-padding;
   @include media-md {
     margin-top: #{$vertical-beat * 8};
@@ -19,7 +19,7 @@
       bottom: #{$vertical-beat * 8};
     }
   }
-  .people-grid {
+  .grid-items {
     margin: 0;
     padding: 0;
     @include clearfix();
@@ -28,152 +28,151 @@
       flex-wrap: wrap;
     }
   }
-  .person {
+  .grid-item {
     h1 {
       @extend .h2;
     }
-    .bio {
+    .grid-item-body {
       display: none;
     }
   }
 }
 
-.person-data {
-  h1 {
-    margin-bottom: .25em;
-    color: $brand-primary;
+.grid-item-data {
+  .slick-list {
+    max-width: 600px;
   }
   h2 {
     margin: 0;
     @include small-caps();
     line-height: 1.5em;
   }
-  .person-image {
+  .grid-image {
     img {
       vertical-align: top;
     }
   }
 }
 
-.people:not(.management) {
-  .people-grid {
-    padding-top: 30px;
-    border-top: 1px solid $gray-dark;
-  }
-  .people-grid-intro {
-    @include clearfix();
-    > p {
-      @extend .h2;
-      margin-top: 0;
-      color: $brand-primary;
-      @include media-md {
-        width: 50%;
-      }
-    }
-
-    .section-link {
-      display: inline-block;
-      margin-bottom: $vertical-beat * 4;
-      @include media-md {
-        float: right;
-        margin: #{-$vertical-beat * 9} 0 #{$vertical-beat * 8};
-      }
-    }
-  }
-  .person {
-    height: 0;
-    overflow: hidden;
-    min-height: 200px;
-    position: relative;
-    outline: 1px solid $white;
-    padding: 0 30px 71.4285714%;
+.grid-intro {
+  @include clearfix();
+  > p {
+    @extend .h2;
+    margin-top: 0;
+    color: $brand-primary;
     @include media-md {
-      max-width: 50%;
-      flex-basis: 50%;
-      padding: 0 30px 35.7142857%;
+      width: 50%;
     }
-    @include media-lg {
-      max-width: 100% * 1 / 3;
-      flex-basis: 100% * 1 / 3;
-      padding: 0 30px 23.809523776%;
-    }
+  }
 
-    &:hover,
-    &:focus {
-      .person-image::before {
-        opacity: 0;
-      }
+  .section-link {
+    display: inline-block;
+    margin-bottom: $vertical-beat * 4;
+    @include media-md {
+      float: right;
+      margin: #{-$vertical-beat * 9} 0 #{$vertical-beat * 8};
     }
+  }
+}
+.grid-item {
+  height: 0;
+  overflow: hidden;
+  min-height: 200px;
+  position: relative;
+  outline: 1px solid $white;
+  padding: 0 30px 71.4285714%;
+  @include media-md {
+    max-width: 50%;
+    flex-basis: 50%;
+    padding: 0 30px 35.7142857%;
+  }
+  @include media-lg {
+    max-width: 33.3%;
+    flex-basis: 33.3%;
+    padding: 0 30px 23.809523776%;
+  }
 
-    .person-image {
+  &:hover,
+  &:focus {
+    .grid-item-image::before {
+      opacity: 0;
+    }
+  }
+
+  .grid-item-image {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    position: absolute;
+    &::before {
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 0;
+      z-index: 1;
+      content: '';
       position: absolute;
-      &::before {
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-        content: '';
-        position: absolute;
-        transition: opacity .35s ease-out;
-        background: rgba($blue-dark, .75);
-      }
-      .person-image-inner {
-        height: 100%;
-        position: relative;
-      }
-      img {
-        left: 50%;
-        width: auto;
-        max-width: none;
-        min-width: 100%;
-        min-height: 100%;
-        position: relative;
-        transform: translateX(-50%);
-      }
+      transition: opacity .35s ease-out;
+      background: rgba($blue-dark, .75);
     }
-
-    h1 {
-      color: $white;
-      margin-top: 30px;
+    .grid-item-image-inner {
+      height: 100%;
       position: relative;
     }
-
-    .callout {
-      display: none;
+    img {
+      left: 50%;
+      width: auto;
+      max-width: none;
+      min-width: 100%;
+      min-height: 100%;
+      position: relative;
+      transform: translateX(-50%);
     }
+  }
 
-    .person-activate {
-      left: 30px;
-      bottom: 30px;
-      position: absolute;
-    }
+  h1 {
+    color: $white;
+    margin-top: 30px;
+    position: relative;
+  }
+
+  .callout {
+    display: none;
+  }
+
+  .grid-item-activate {
+    left: 30px;
+    bottom: 30px;
+    position: absolute;
   }
 }
 
-// Active Person Container
-.active-person-container {
+// Active Grid Container
+.active-grid-item-container {
   z-index: 10;
   display: none;
   position: absolute;
   background: $white;
   margin-right: $mobile-global-padding;
   @include media-md {
-    margin-right: $column-width;
+    margin-right: #{$global-padding * 2};
   }
   &.-active {
     display: block;
+    .grid-item-data {
+      h1:not(.section-title) {
+        margin-bottom: .25em;
+        color: $brand-primary;
+      }
+    }
   }
 
-  .person-activate {
+  .grid-item-activate {
     display: none;
   }
-  .person-deactivate {
+  .grid-item-deactivate {
     top: -7px;
     padding-left: 7px;
     position: absolute;
@@ -182,16 +181,16 @@
     right: -$mobile-global-padding;
     @include media-md {
       transform: translateX(50%);
-      right: -#{$column-width / 2};
+      right: -#{$global-padding / 2};
     }
   }
 
   // If .solo, no need for nav
-  &.solo .post-nav {
+  &.solo .grid-nav {
     display: none;
   }
 
-  .post-nav {
+  .grid-nav {
     top: 0;
     bottom: 0;
     position: absolute;
@@ -206,20 +205,20 @@
       @include small-caps();
       transform-origin: top left;
       transform: rotate(-90deg) translateY(-50%);
-      &.previous-person {
+      &.previous-item {
         top: 196px;
       }
-      &.next-person {
+      &.next-item {
         bottom: 0;
       }
     }
 
     @include media-md {
-      width: $column-width;
-      right: -$column-width;
+      width: $global-padding;
+      right: -$global-padding;
     }
   }
-  .person-data {
+  .grid-item-data {
     @include media-md {
       display: flex;
     }
@@ -228,93 +227,78 @@
     &.exitRight {
       .callout-inner,
       .callout,
-      .person-text h1,
-      .person-text h2 {
+      .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
+      .grid-item-text h2 {
         animation: exitRight .5s forwards;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         animation: exitRight .5s forwards .1s;
       }
     }
     &.exitLeft {
       .callout-inner,
       .callout,
-      .person-text h1,
-      .person-text h2 {
+      .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
+      .grid-item-text h2 {
         animation: exitLeft .5s forwards;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         animation: exitLeft .5s forwards .1s;
       }
     }
     &.enterRight {
       .callout-inner,
       .callout,
-      .person-text h1,
-      .person-text h2 {
+      .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
+      .grid-item-text h2 {
         opacity: 0;
         animation: enterRight $cubic-ease1 .6s forwards .1s;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         opacity: 0;
-        animation: enterRight $cubic-ease1 .6s forwards .25s; 
+        animation: enterRight $cubic-ease1 .6s forwards .25s;
       }
-      .person-image-inner {
+      .grid-item-image-inner {
         animation: zoomInFade .5s forwards;
       }
     }
     &.enterLeft {
       .callout-inner,
       .callout,
-      .person-text h1,
-      .person-text h2 {
+      .grid-item-text h1,
+      .grid-item-text div,
+      .grid-item-text ul,
+      .grid-item-text h2 {
         opacity: 0;
         animation: enterLeft $cubic-ease1 .6s forwards .1s;
       }
-      .bio-inner .user-content {
+      .body-inner .user-content {
         opacity: 0;
-        animation: enterLeft $cubic-ease1 .6s forwards .25s; 
+        animation: enterLeft $cubic-ease1 .6s forwards .25s;
       }
-      .person-image-inner {
+      .grid-item-image-inner {
         animation: zoomInFade .5s forwards;
       }
     }
   }
   .-left,
-  .bio {
+  .grid-item-body {
     @include media-md {
       max-width: 50%;
       flex-basis: 50%;
     }
   }
-  .quote {
-    overflow: hidden;
-    padding: #{$vertical-beat * 8} #{$column-width * 2} 0;
-  }
-  .person-inner {
+  .grid-item-inner {
     padding: 0;
     overflow: hidden;
   }
-  .callout {
-    @extend .h1;
-    color: $white;
-    font-size: 24px;
-    line-height: 1.333333333em;
-    background: $brand-primary;
-    padding: #{$vertical-beat * 8} $mobile-global-padding;
-    @include media-md {
-      font-size: 48px;
-      line-height: 48px;
-      padding: #{$vertical-beat * 8} $global-padding;
-    }
-  }
-  .quote {
-    display: none;
-  }
-  .person-text header {
-    overflow: hidden;
-  }
-  .bio {
+  .grid-item-body {
     overflow: hidden;
     position: relative;
     background: $gray-lite;
@@ -337,21 +321,21 @@
       padding: #{$vertical-beat * 8} $global-padding;
     }
   }
-  .bio-inner {
+  .body-inner {
     overflow: hidden;
   }
 
-  .person {
+  .grid-item {
     outline: none;
   }
-  .person-image {
+  .grid-item-image {
     height: 0;
     width: 100%;
     overflow: hidden;
     position: relative;
     background: $blue-dark;
     padding-bottom: 56.8181818%;
-    .person-image-inner {
+    .grid-item-image-inner {
       top: 0;
       left: 0;
       right: 0;
@@ -383,10 +367,11 @@
     transform: translate(-50%, -50%);
     }
   }
-  .person-text {
+  .grid-item-text {
+    position: relative;
     padding: #{$vertical-beat * 4} $mobile-global-padding;
     @include media-md {
-      padding: #{$vertical-beat * 8} $global-padding;
+      padding: #{$vertical-beat * 4} $global-padding;
     }
     h1 {
       margin: 0;

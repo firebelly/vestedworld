@@ -36,9 +36,9 @@
     "php": ">=5.5",
     "composer/installers": "~1.0.12",
     "vlucas/phpdotenv": "^2.0.1",
-    "johnpbloch/wordpress": "4.5.1",
+    "johnpbloch/wordpress": ">=4.5.1",
     "roots/soil": ">=3.0.0",
-    "wpackagist-plugin/duplicate-post": "2.6",
+    "wpackagist-plugin/duplicate-post": ">=2.6",
     "wpackagist-plugin/limit-login-attempts" : "*",
     "wpackagist-plugin/wordpress-importer" : "*",
     "wpackagist-plugin/redirection": ">=2.3.16",
@@ -46,7 +46,10 @@
     "wpackagist-plugin/cmb2": ">=2.0.2",
     "wpackagist-plugin/akismet": ">=3.1.1",
     "wpackagist-plugin/google-sitemap-generator": ">=4.0.8",
-    "wpackagist-plugin/regenerate-thumbnails": "2.2.6"
+    "wpackagist-plugin/regenerate-thumbnails": ">=2.2.6",
+    "wpackagist-plugin/update-from-bottom": ">=1.0.3",
+    "wpackagist-plugin/wp-postratings": ">=1.83.1",
+    "drewm/mailchimp-api": ">=2.2"
   },
   "extra": {
     "installer-paths": {

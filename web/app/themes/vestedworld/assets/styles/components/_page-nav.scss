@@ -14,7 +14,7 @@
   z-index: 1;
   display: none;
   position: fixed;
-  width: $column-width;
+  width: $global-padding;
   > div {
     left: 50%;
     cursor: pointer;

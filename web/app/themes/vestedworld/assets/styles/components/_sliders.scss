@@ -1,0 +1,81 @@
+// Slick Slider
+
+.slick-slider {
+  margin: 0;
+  padding: 0;
+}
+.slider-mini {
+  width: 100%;
+  margin-bottom: 40px;
+  .slick-dots {
+    text-align: left;
+    margin-left: -10px;
+    li {
+      &.slick-active button::before {
+        background: $gray-dark;
+      }
+      button:before {
+        border-color: $gray-dark;
+      }
+    }
+  }
+  .slick-caption {
+    position: absolute;
+    bottom: -28px;
+    right: 0;
+    @include small-caps;
+    color: $gray-dark;
+  }
+}
+.slick-dots {
+  position: absolute;
+  bottom: -45px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  li {
+    position: relative;
+    display: inline-block;
+    &.slick-active button::before {
+      background: $white;
+    }
+
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+    button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+      &:hover,
+      &:focus {
+        outline: none;
+        &:before {
+          opacity: 1;
+        }
+      }
+      &:before {
+        content: '';
+        border-radius: 50%;
+        display: block;
+        height: 8px;
+        width: 8px;
+        border: 1px solid $white;
+        opacity: 1;
+      }
+    }
+  }
+}

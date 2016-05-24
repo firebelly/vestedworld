@@ -72,8 +72,8 @@ function get_member_type_array() {
 function edit_columns($columns){
   $columns = array(
     'cb' => '<input type="checkbox" />',
-    '_cmb2_member_type' => 'Type',
     'title' => 'Name',
+    '_cmb2_member_type' => 'Type',
     '_cmb2_title' => 'Title',
     '_cmb2_subtitle' => 'Subtitle',
     'content' => 'Bio',
@@ -124,25 +124,31 @@ function metaboxes( array $meta_boxes ) {
         'options' => get_member_type_array(),
       ),
       array(
+        'name' => 'Image is a logo?',
+        'desc' => 'If checked, will style the featured image as a logo',
+        'id'   => $prefix . 'image_is_logo',
+        'type' => 'checkbox',
+      ),
+      array(
         'name' => 'Title',
         'desc' => 'e.g. Co-Founder',
         'id'   => $prefix . 'title',
         'type' => 'text_medium',
-      ),      
+      ),
       array(
         'name' => 'Subtitle',
         'desc' => 'e.g. Chief Executive Officer',
         'id'   => $prefix . 'subtitle',
         'type' => 'text_medium',
-      ),     
+      ),
       array(
         'name' => 'Quote',
         'desc' => 'A quote associated with a management team member',
         'id'   => $prefix . 'quote',
         'type' => 'wysiwyg',
-      ),     
+      ),
       array(
-        'name' => 'Callout text',
+        'name' => 'Callout Text',
         'desc' => 'A callout quote or summary for the full bio view',
         'id'   => $prefix . 'callout',
         'type' => 'wysiwyg',
@@ -153,9 +159,6 @@ function metaboxes( array $meta_boxes ) {
   return $meta_boxes;
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
-
-
-
 
 /**
  * Get People
@@ -179,10 +182,10 @@ function get_people($options=[]) {
   $person_posts = get_posts($args);
   if (!$person_posts) return false;
 
-  $output = '<ul class="people-grid">';
+  $output = '<ul class="grid-items people-grid">';
 
   foreach ( $person_posts as $post ):
-    $output .= '<li class="person">';
+    $output .= '<li class="grid-item person">';
     ob_start();
     include(locate_template('templates/article-person.php'));
     $output .= ob_get_clean();

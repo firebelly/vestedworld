@@ -18,7 +18,8 @@
     "slick-carousel": "~1.4.1",
     "fastclick": "~1.0.6",
     "jquery-validation": "^1.15.0",
-    "boomsvgloader": "^0.0.2"
+    "boomsvgloader": "^0.0.2",
+    "swipebox": "^1.4.4"
   },
   "overrides": {
     "modernizr": {
@@ -28,7 +29,10 @@
       "main": "./dist/js/boomsvgloader.js"
     },
     "slick-carousel": {
-      "main": ["slick/slick.min.js", "slick/slick.css"]
+      "main": [
+        "slick/slick.min.js",
+        "slick/slick.css"
+      ]
     }
   }
 }

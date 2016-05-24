@@ -201,7 +201,7 @@
           }
           &:hover {
             color: $gray-lite;
-            background: $brand-primary;
+            background: $gray-dark;
             &::before {
               background: $gray-lite;
             }
@@ -210,7 +210,7 @@
         &.active {
           a {
             color: $gray-lite;
-            background: $brand-primary;
+            background: $gray-dark;
             &::before {
               background: $gray-lite;
             }

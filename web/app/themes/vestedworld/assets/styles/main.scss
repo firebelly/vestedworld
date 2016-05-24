@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+// bower:scss
+// endbower
+
 // Reset
 @import "vendor/normalize";
 
@@ -25,13 +28,17 @@
 @import "components/search";
 @import "components/forms";
 @import "components/footer";
-@import "components/people-grid";
+@import "components/item-grid";
+@import "components/sliders";
+@import "components/lightbox";
 
 // Pages
 @import "pages/page";
 @import "pages/home";
 @import "pages/about";
 @import "pages/community";
+@import "pages/portfolio";
+@import "pages/countries";
 @import "pages/resource-list-pages";
 @import "pages/faqs";
 @import "pages/glossary";

@@ -2,17 +2,175 @@
 
 // Form element base styles
 input {
+  width: 100%;
+  border: none;
   border-radius: 0;
+  background: $gray-lite;
+  padding: #{$vertical-beat * 2};
+  margin-bottom: #{$vertical-beat * 1};
+  transition: background .1s ease-out, outline .1s ease-out;
+  &:hover {
+    background: lighten($gray-lite, 5);
+  }
+  &:not([type=radio]):focus {
+    outline-offset: initial;
+    outline: 1px solid $brand-primary;
+  }
+  &.error {
+    margin-bottom: 0;
+  }
+}
+
+input[type=radio],
+input[type=checkbox] {
+  width: auto;
+  display: inline-block;
+  &:focus {
+    outline: none;
+    + label {
+      background: rgba($gray-lite,.5);
+    }
+  }
+}
+
+input[type=radio] {
+  margin-right: 4px;
+}
+
+input[type=submit] {
+  max-width: 100%;
+  white-space: normal;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hidden-label {
+  > label {
+    @extend .sr-only;
+  }
+}
+.hidden-child-labels {
+  label:not(.gfield_label) {
+    @extend .sr-only;
+  }
+}
+
+// Gravity Form styles
+.gform_wrapper {
+
+  .gform_footer {
+    padding-top: 40px;
+    position: relative;
+    @include clearfix();
+    &::before {
+      top: 0;
+      left: 0;
+      position: absolute;
+      white-space: nowrap;
+      content: '* Required';
+      @include small-caps();
+    }
+  }
+
+  @include media-md {
+    .gform_footer {
+      margin-top: #{$vertical-beat * 8};
+    }
+  }
+
+  @include min-screen(1068px) {
+    .gform_footer {
+      padding-top: 0;
+      padding-left: 50px;
+    }
+    input[type=submit] {
+      width: auto;
+      float: right;
+    }
+  }
+}
+
+.gfield {
+  margin-bottom: #{$vertical-beat * 2};
+  ul {
+    padding-left: 1em;
+  }
+  &.parent-field {
+    margin-bottom: 0;
+  }
+  &.sub-field {
+    ul {
+      padding-left: 2em;
+      margin-bottom: #{$vertical-beat * 2};
+    }
+  }
+}
+
+.gform_fields,
+.gfield_radio {
+  margin: 0;
+  padding: 0;
+}
+.gsection_title {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.gform_button {
+  @extend .btn.-blue;
+  width: auto;
+  background: none;
+  display: inline-block;
+}
+
+.gform_ajax_spinner {
+  display: none!important;
+}
+
+// Follow-up form
+.follow-up-form {
+  .address_state {
+    &::after {
+      top: 25px;
+    }
+    &:focus {
+      background: rgba($gray-lite,.5);
+    }
+  }
+
+  .ginput_container_address {
+
+    @include media-md {
+      input {
+        width: auto;
+        margin-right: 1em;
+        display: inline-block;
+      }
+    }
+  }
+
+  .gform_footer {
+    &::before {
+      display: none;
+    }
+  }
 }
 
 // Error styles
-input.error {
+.validation_error {
+  margin-bottom: #{$vertical-beat * 4};
+}
+
+.gfield_error input {
   outline: 1px solid $brand-primary;
 }
-input.error {
+.gfield_error input {
   margin-bottom: 0;
 }
-label.error {
+.gfield_error .validation_message {
   color: $white;
   display: block;
   background: $brand-primary;
@@ -22,7 +180,8 @@ label.error {
 }
 
 // Custom select styles
-.select-wrapper {
+.select-wrapper,
+.address_state {
   margin: 0;
   padding: 0;
   position: relative;
@@ -38,18 +197,18 @@ label.error {
     pointer-events: none;
     transform: rotate(90deg);
   }
-}
-.select-wrapper select {
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  padding-right: 20px;
-  padding-right: 18px;
-  background-color: transparent;
-  background-image: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-.select-wrapper select:focus {
-  outline: none;
+
+  select {
+    box-shadow: none;
+    border-radius: 0;
+    -moz-appearance: none;
+    background-image: none;
+    -webkit-appearance: none;
+    padding: 13px 18px 13px 13px;
+    background-color: transparent;
+    border: 1px solid $brand-primary;
+    &:focus {
+      outline: none;
+    }
+  }
 }

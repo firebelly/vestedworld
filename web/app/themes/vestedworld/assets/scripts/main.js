@@ -10,11 +10,9 @@ var VestedWorld = (function($) {
       breakpoint_lg = false,
       breakpoint_array = [480,768,1200],
       $document,
-      $sidebar,
       $load_more,
       headerOffset,
       loadingTimer,
-      page_at,
       wpAdminBar = false,
       feedback_message_timer,
       History = window.History,
@@ -22,6 +20,7 @@ var VestedWorld = (function($) {
       root_url = History.getRootUrl(),
       relative_url,
       original_url,
+      original_page_title = document.title,
       page_cache = {},
       ajax_handler_url = '/app/themes/vestedworld/lib/ajax-handler.php';
 
@@ -59,7 +58,7 @@ var VestedWorld = (function($) {
     _initNewsFilter();
     // _initParallaxBackgrounds();
     _initGifPlay();
-    _initPeopleModals();
+    _initItemGrid();
     _initDropdownInvestorForm();
     _initApplicationForms();
     _initStateHandling();
@@ -67,28 +66,35 @@ var VestedWorld = (function($) {
 
     // Esc handlers
     $(document).keyup(function(e) {
+      if ($('#swipebox-overlay').length) {
+        return;
+      }
       if (e.keyCode === 27) {
-        _hideSearch();
-        _hideMobileNav();
-        _closePerson();
-        _hideInvestorForm();
+        if ($('.active-grid-item-container.-active').length) {
+          History.pushState({}, document.title, original_url);
+        } else {
+          _hideSearch();
+          _hideMobileNav();
+          _closeGridItem();
+          _hideInvestorForm();
+        }
       }
     });
 
-    // People/post nav arrow handlers
+    // Grid item nav arrow handlers
     // Next
     $(document).keydown(function(e) {
       if (e.keyCode === 39) {
-        if ($('.person.-active').length) {
-          _nextPerson();
+        if ($('.grid-item.-active').length) {
+          _nextGridItem();
         }
       }
     });
     // Previous
     $(document).keydown(function(e) {
       if (e.keyCode === 37) {
-        if ($('.person.-active').length) {
-          _prevPerson();
+        if ($('.grid-item.-active').length) {
+          _prevGridItem();
         }
       }
     });
@@ -104,6 +110,13 @@ var VestedWorld = (function($) {
     $(window).load(function() {
       if (window.location.hash) {
         _scrollBody($(window.location.hash));
+      }
+    });
+
+    // Close Swipebox on overlay click
+    $document.on('click', '#swipebox-overlay', function(e) {
+      if (!$(e.target).is('img')) {
+        $('#swipebox-close').trigger('click');
       }
     });
 
@@ -124,7 +137,16 @@ var VestedWorld = (function($) {
         return;
       }
 
-      if (relative_url.match(/^\/resources\/news\//)) {
+      if (State.url !== original_url && relative_url.match(/^\/(company|person|\d{0,4})\//)) {
+
+        // Standard post modals
+        if (page_cache[encodeURIComponent(State.url)]) {
+          _showGridItem();
+        } else {
+          _loadGridItem();
+        }
+
+      } else if (relative_url.match(/^\/resources\/news\//)) {
 
         // News filtering
         _filterNews();
@@ -135,14 +157,20 @@ var VestedWorld = (function($) {
         if (State.url !== original_url) {
           // Just load URL if isn't original_url
           location.href = State.url;
+          return;
         } else {
-          // Hide modals etc here if applicable...
+          // Hide modals etc
+          _closeGridItem();
+          _hideOverlay();
         }
 
       }
 
       // Track AJAX URL change in analytics
       _trackPage();
+
+      // Update document title
+      _updateTitle();
 
       // Update Facebook tags for any share buttons on the page
       _updateOGTags();
@@ -192,9 +220,34 @@ var VestedWorld = (function($) {
   // FAQ behavior
   function _initFaqs() {
     // Filter list
-    $('.filter-select').change(function(){ 
+    $('.filter-select').change(function(){
       var targetSection = "#" + $(this).val();
       _scrollBody($(targetSection), 250, 0);
+    });
+
+    // Feedback behavior
+    if ($('.post-feedback').length) {
+      var postFeedback = $('.post-feedback');
+
+      postFeedback.each(function() {
+        // Has this post already been rated?
+        if (!$(this).find('.post-ratings img').length) {
+          $(this).addClass('user-already-voted');
+        }
+      });
+
+      // Display the text in place of the img
+      $('.post-ratings img').each(function() {
+        var ratingText = $(this).attr('alt');
+        $(this).wrap('<span class="post-ratings-trigger">');
+        $(this).after('<span class="post-ratings-word">' + ratingText + '</span>');
+      });
+
+    }
+
+    // Toggle a class when someone chooses a rating
+    $document.on('click', '.post-ratings img', function() {
+      $(this).closest('.post-feedback').addClass('rating-chosen');
     });
   }
 
@@ -350,7 +403,6 @@ var VestedWorld = (function($) {
           $('.site-nav').removeClass('-active');
         } else if ($(this).parent('li').is('.no-link')) {
           // Do nothing man!
-          console.log('hey!');
         } else {
           _hideMobileNav();
         }
@@ -488,11 +540,11 @@ var VestedWorld = (function($) {
     $document.on('submit', '.news-filter form', function(e) {
       e.preventDefault();
       var url = $('.news-filter form').attr('action') + '?' + $('.news-filter form').serialize();
-      History.pushState({}, 'News - Vested World', url);
+      History.pushState({}, 'News - VestedWorld', url);
     });
     $document.on('change', 'select[name=cat]', function(e) {
       var url = $('.news-filter form').attr('action') + '?' + $('.news-filter form').serialize();
-      History.pushState({}, 'News - Vested World', url);
+      History.pushState({}, 'News - VestedWorld', url);
     });
   }
 
@@ -507,11 +559,11 @@ var VestedWorld = (function($) {
 
         // Set the section title width depending on breakpoint
         function setTitleWidth() {
-          if (breakpoint_md === true) {
+          if (breakpoint_md) {
             thisTitleWidth = $thisSection.find('.sticky-title').outerWidth();
           } else {
             thisTitleWidth = 32;
-          }          
+          }
         }
 
         setTitleWidth();
@@ -535,11 +587,46 @@ var VestedWorld = (function($) {
     }
   }
 
+  // Load AJAX content to show in a modal & store in page_cache array
+  function _loadGridItem() {
+    $.ajax({
+      url: ajax_handler_url,
+      method: 'get',
+      dataType: 'html',
+      data: {
+        'action': 'load_post_modal',
+        'post_url': State.url
+      },
+      success: function(response) {
+        page_cache[encodeURIComponent(State.url)] = $.parseHTML(response);
+        _showGridItem();
+      }
+    });
+  }
+
+  // Function to update document title after state change
+  function _updateTitle() {
+    var title = '';
+    if ($('.active-grid-item-container.-active [data-page-title]').length) {
+      title = $('.active-grid-item-container [data-page-title]').first().attr('data-page-title');
+    } else {
+      title = original_page_title;
+    }
+    if (title === '') {
+      title = 'VestedWorld';
+    } else if (!title.match(/VestedWorld/)) {
+      title = title + ' – VestedWorld';
+    }
+    document.title = title;
+    try {
+      document.getElementsByTagName('title')[0].innerHTML = document.title.replace('<','&lt;').replace('>','&gt;').replace(' & ',' &amp; ');
+    } catch (Exception) {}
+  }
+
   // Load More buttons on News listings
   function _initLoadMore() {
     $document.on('click', '.load-more a', function(e) {
       e.preventDefault();
-      var $load_more = $(this).closest('.load-more');
       var post_type = $load_more.attr('data-post-type') ? $load_more.attr('data-post-type') : 'news';
       var page = parseInt($load_more.attr('data-page-at'));
       var per_page = parseInt($load_more.attr('data-per-page'));
@@ -574,8 +661,10 @@ var VestedWorld = (function($) {
         }
       });
     });
+    _checkLoadMore();
   }
 
+  // Loading spinner
   function _showLoading() {
     $('body').append('<div class="loading"></div>');
   }
@@ -688,77 +777,113 @@ var VestedWorld = (function($) {
     }
   }
 
-  function _initPeopleModals() {
-    $('.person-activate').on('click', function(e) {
-      var $activeContainer = $('.active-person-container'),
-          $activeDataContainer = $activeContainer.find('.person-data-container'),
-          $thisPerson = $(this).closest('.person'),
-          $personData = $thisPerson.find('.person-data'),
-          thisPersonOffset = -(($('.people-sections').offset().top) - ($thisPerson.offset().top));
+  function _initItemGrid() {
+    // People have single post data included in initial grid items
+    $('.grid-item.person article').each(function() {
+      page_cache[encodeURIComponent($(this).attr('data-page-url'))] = $(this).clone();
+    });
 
+    // Use statechange to handle modals
+    $document.on('click', '.grid-item-activate', function(e) {
+      var $target = $(e.target);
+      if (!$target.is('.no-ajaxy')) {
+        e.preventDefault();
+        History.pushState({}, '', $(this).attr('href') || $(this).attr('data-page-url'));
+      }
+    });
+
+    // Initial post?
+    $(window).load(function() {
+      if (window.location.hash && $(window.location.hash).length) {
+        var url = $(window.location.hash).attr('data-page-url');
+        History.replaceState({ignore_change: true}, null, '##');
+        original_url = root_url + 'community/';
+        History.replaceState({}, document.title, original_url);
+        History.pushState({}, '', url);
+      }
+    });
+
+    // Shut it down!
+    $('html, body').on('click', '.grid-item-deactivate', function(e) {
+      if (!$('body').hasClass('single')) {
+        History.pushState({}, '', original_url);
+      }
+    });
+    // Close if user clicks outside modal
+    $('html, body').on('click', '.global-overlay', function() {
+      if($('.active-grid-item-container').is('.-active')) {
+        if (!$('body').hasClass('single')) {
+          History.pushState({}, '', original_url);
+        }
+      }
+    });
+
+    // Item Grid navigation
+    $document.on('click', '.next-item', function(e) {
+      $('.active-grid-item-container .grid-item-data').addClass('exitLeft');
+      setTimeout(function() {
+        _nextGridItem();
+      }, 200);
+    });
+    $document.on('click', '.previous-item', function(e) {
+      $('.active-grid-item-container .grid-item-data').addClass('exitRight');
+      setTimeout(function() {
+        _prevGridItem();
+      }, 200);
+    });
+
+  }
+
+  function _showGridItem() {
+    var $activeArticle = $('article[data-page-url="' + State.url + '"]');
+    if ($activeArticle.length) {
+      var $activeContainer = $('.active-grid-item-container'),
+          $activeDataContainer = $activeContainer.find('.item-data-container'),
+          $thisItem = $activeArticle.closest('.grid-item'),
+          thisItemOffset = $thisItem.offset().top;
+
+      $itemData = $(page_cache[encodeURIComponent(State.url)]);
       _showOverlay();
 
-      // Is this the only person in their group?
-      if (!$thisPerson.next('.person').length && !$thisPerson.prev('.person').length) {
+      // Is this the only item in their group?
+      if (!$thisItem.next('.grid-item').length && !$thisItem.prev('.grid-item').length) {
         $activeContainer.addClass('solo');
       } else {
         $activeContainer.removeClass('solo');
       }
 
-      $('.person.-active, .people-grid.-active').removeClass('-active');
+      $('.grid-item.-active, .grid-items.-active').removeClass('-active');
       $activeDataContainer.empty();
-      $thisPerson.addClass('-active');
-      $thisPerson.closest('.people-grid').addClass('-active');
-      $personData.clone().appendTo($activeDataContainer);
-      $activeContainer.css('top', thisPersonOffset);
+      $thisItem.addClass('-active');
+      $thisItem.closest('.grid-items').addClass('-active');
+      $itemData.clone().appendTo($activeDataContainer);
+      $activeContainer.css('top', thisItemOffset);
       $activeContainer.addClass('-active');
       _scrollBody($activeContainer, 250, 0, headerOffset + 64);
-    });
 
-    // Shut it down!
-    $('html, body').on('click', '.person-deactivate', function(e) {
-      _closePerson();
-      _hideOverlay();
-    });
-    // Close if user clicks outside modal
-    $('html, body').on('click', '.global-overlay', function() {
-      if($('.active-person-container').is('.-active')) {
-        _closePerson();
-      }
-    });
+      $activeDataContainer.find('.slider-mini img:first').imagesLoaded(function(i) {
+        _initSliders();
+      });
 
-    // People Grid navigation
-    $('.next-person').on('click', function(e) {
-      $('.active-person-container .person-data').addClass('exitLeft');
-      setTimeout(function() {
-        _nextPerson();
-      }, 200);
-    });
-    $('.previous-person').on('click', function(e) {
-      $('.active-person-container .person-data').addClass('exitRight');
-      setTimeout(function() {
-        _prevPerson();
-      }, 200);
-    });
-
+    }
   }
 
-  function _nextPerson() {
-    var $active = $('.people-grid.-active').find('.person.-active');
-    // Find next or first person
-    var $next = ($active.next('.person').length > 0) ? $active.next('.person') : $('.people-grid.-active .person:first');
-    if ($next[0] === $active[0]) { return; } // Just return if there's only one person
-    $next.find('.person-activate').trigger('click');
-    $('.active-person-container .person-data').addClass('enterRight');
+  function _nextGridItem() {
+    var $active = $('.grid-items.-active').find('.grid-item.-active');
+    // Find next or first item
+    var $next = ($active.next('.grid-item').length > 0) ? $active.next('.grid-item') : $('.grid-items.-active .grid-item:first');
+    if ($next[0] === $active[0]) { return; } // Just return if there's only one item
+    $next.find('.grid-item-activate').trigger('click');
+    $('.active-grid-item-container .grid-item-data').addClass('enterRight');
   }
 
-  function _prevPerson() {
-    var $active = $('.people-grid.-active').find('.person.-active');
-    // Find prev or last person
-    var $prev = ($active.prev('.person').length > 0) ? $active.prev('.person') : $('.people-grid.-active .person:last');
-    if ($prev[0] === $active[0]) { return; } // Just return if there's only one person
-    $prev.find('.person-activate').trigger('click');
-    $('.active-person-container .person-data').addClass('enterLeft');
+  function _prevGridItem() {
+    var $active = $('.grid-items.-active').find('.grid-item.-active');
+    // Find prev or last item
+    var $prev = ($active.prev('.grid-item').length > 0) ? $active.prev('.grid-item') : $('.grid-items.-active .grid-item:last');
+    if ($prev[0] === $active[0]) { return; } // Just return if there's only one item
+    $prev.find('.grid-item-activate').trigger('click');
+    $('.active-grid-item-container .grid-item-data').addClass('enterLeft');
   }
 
   function _showOverlay() {
@@ -779,30 +904,35 @@ var VestedWorld = (function($) {
     }, 250);
   }
 
-  function _closePerson() {
-    var $activeContainer = $('.active-person-container'),
-        $activeDataContainer = $('.person-data-container');
+  function _closeGridItem() {
+    var $activeContainer = $('.active-grid-item-container'),
+        $activeDataContainer = $('.item-data-container');
 
     _hideOverlay();
     $activeContainer.removeClass('-active');
-    $('.person.-active').removeClass('-active');
-    $('.person-grid.-active').removeClass('-active');
+    $('.grid-item.-active').removeClass('-active');
+    $('.grid-items.-active').removeClass('-active');
     $activeDataContainer.empty();
   }
 
   // Track ajax pages in Analytics
   function _trackPage() {
-    if (typeof ga !== 'undefined') { ga('send', 'pageview', document.location.href); }
+    if (typeof ga !== 'undefined') {
+      ga('send', 'pageview', location.pathname);
+    }
   }
 
   // Track events in Analytics
   function _trackEvent(category, action) {
-    if (typeof ga !== 'undefined') { ga('send', 'event', category, action); }
+    if (typeof ga !== 'undefined') {
+      ga('send', 'event', category, action);
+    }
   }
 
   //Initialize Slick Sliders
   function _initSliders(){
-    $('.slider').slick({
+    // Homepage slider
+    $('.slider:not(.slick-initialized)').slick({
       slide: '.slide-item',
       autoplay: true,
       arrows: false,
@@ -811,6 +941,23 @@ var VestedWorld = (function($) {
       speed: 800,
       adaptiveHeight: true,
       lazyLoad: 'ondemand'
+    });
+    // Mini sliders (internal pages)
+    $('.slider-mini:not(.slick-initialized)').on('init', function(event, slick) {
+      // Add a caption div on init
+      var caption = $(slick.$slides[0]).find('img').attr('title') || '';
+      slick.$caption = $('<div class="slick-caption">'+caption+'</div>').appendTo(slick.$slider);
+      // autoplayVideos seems to not work when there are > 1 videos: https://github.com/brutaldesign/swipebox/issues/149
+      $('a.lightbox').swipebox({autoplayVideos: true});
+    }).slick({
+      slide: '.slide-item',
+      arrows: false,
+      dots: true,
+      adaptiveHeight: true
+    }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+      // Set caption to next slide's img.title
+      var caption = $(slick.$slides[nextSlide]).find('img').attr('title');
+      slick.$caption.text(caption);
     });
   }
 
@@ -826,7 +973,7 @@ var VestedWorld = (function($) {
 
   // Header offset w/wo wordpress admin bar
   function _setHeaderOffset() {
-    if (breakpoint_md === true) {
+    if (breakpoint_md) {
       if ($('body').hasClass('admin-bar')) {
         wpAdminBar = true;
         headerOffset = $('#wpadminbar').outerHeight() + $('.site-header').outerHeight();
@@ -838,18 +985,11 @@ var VestedWorld = (function($) {
     }
   }
 
-  // Called on scroll
-  // function _scroll(dir) {
-  //   var wintop = $(window).scrollTop();
-  // }
-
   // Public functions
   return {
     init: _init,
     resize: _resize,
-    scrollBody: function(section, duration, delay, offset) {
-      _scrollBody(section, duration, delay, offset);
-    }
+    initSliders: _initSliders
   };
 
 })(jQuery);

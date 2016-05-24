@@ -19,6 +19,7 @@ header('Pragma: no-cache');
 $action = esc_attr(trim($_REQUEST['action']));
 $allowed_actions = array(
     'load_more_posts',
+    'load_post_modal',
     'application_submission',
 );
 if (in_array($action, $allowed_actions)){

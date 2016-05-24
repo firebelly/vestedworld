@@ -1,6 +1,6 @@
 <footer class="site-footer" role="contentinfo">
   <div class="footer-logo">
-    <h2 class="tab">Contact</h2>
+    <h2 class="tab -gray">Contact</h2>
     <svg class="icon icon-vestedworld" role="img"><title><?php bloginfo('name'); ?></title><use xlink:href="#icon-vestedworld"></use></svg>
   </div>
   <div class="office">

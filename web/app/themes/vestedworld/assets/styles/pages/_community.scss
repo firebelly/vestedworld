@@ -1,13 +1,9 @@
 // Community Page
 
 .page.community {
-  .active-person-container {
-    .person-data {
-      .person-text {
-        @include media-md {
-          padding-top: #{$vertical-beat * 4};
-        }
-
+  .active-grid-item-container {
+    .grid-item-data {
+      .grid-item-text {
         h1 {
           border-bottom: 1px solid $gray;
           margin-bottom: #{$vertical-beat * 4};
@@ -37,55 +33,56 @@
         }
       }
 
-      // Advisors
-      &.vested_advisor {
-        .person-image {
-          padding: 0;
-          height: auto;
-          background: rgba($blue-dark, .1);
-          .person-image-inner {
-            position: relative;
-            padding: $global-padding $mobile-global-padding $mobile-global-padding;
-            &::before {
-              display: none;
-            }
-            img {
-              top: auto;
-              left: auto;
-              height: auto;
-              min-width: 1px;
-              min-height: 1px;
-              transform: none;
-              max-width: 200px;
-              position: relative;
-            }
-          }
+    }
+  }
+}
 
-          @include media-md {
-            .person-image-inner {
-              text-align: center;
-              padding: $global-padding;
-            }
-          }
+// Image-is-logo single post styling
+.active-grid-item-container {
+  .grid-item-data.image-is-logo {
+    .grid-item-image {
+      padding: 0;
+      height: auto;
+      background: rgba($blue-dark, .1);
+      .grid-item-image-inner {
+        position: relative;
+        padding: $global-padding $mobile-global-padding $mobile-global-padding;
+        &::before {
+          display: none;
+        }
+        img {
+          top: auto;
+          left: auto;
+          height: auto;
+          min-width: 1px;
+          min-height: 1px;
+          transform: none;
+          max-width: 200px;
+          position: relative;
+        }
+      }
+
+      @include media-md {
+        .grid-item-image-inner {
+          text-align: center;
+          padding: $global-padding;
         }
       }
     }
   }
 }
 
-// Advisors
-.people.vestedadvisors {
-  .person-image {
-    background: rgba($blue-dark, .1);
-    .person-image-inner {
-      img {
-        top: 50%;
-        height: auto;
-        min-width: 1px;
-        min-height: 1px;
-        max-width: 200px;
-        transform: translate(-50%, -50%);
-      }
+// Image-is-logo listing styling
+.image-is-logo .grid-item-image {
+  background: rgba($blue-dark, .1);
+  .grid-item-image-inner {
+    img {
+      top: 50%;
+      height: auto;
+      min-width: 1px;
+      min-height: 1px;
+      max-width: 200px;
+      transform: translate(-50%, -50%);
     }
   }
 }

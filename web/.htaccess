@@ -4,6 +4,7 @@ RewriteEngine On
 RewriteBase /
 # about us sub-pages redirect to glom-page /about-us/#whatever
 RewriteRule ^about-us/([\w\-]+)/$ /about-us/#$1 [R=302,NE,L]
+RewriteRule ^person/([\w\-]+)/$ /community/#$1 [R=302,NE,L]
 </IfModule>
 # END Firebelly
 
@@ -33,4 +34,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
+
 # END WordPress

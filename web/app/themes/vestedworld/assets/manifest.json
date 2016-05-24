@@ -13,6 +13,9 @@
       "files": [
         "styles/main.scss"
       ],
+      "vendor": [
+        "bower_components/swipebox/src/css/swipebox.css"
+      ],
       "main": true
     },
     "jquery.js": {

@@ -24,7 +24,7 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
 
   <!-- what-we-do -->
   <section class="what-we-do">
-    <h3 class="tab">What We Do</h3>
+    <h3 class="tab -gray">What We Do</h3>
     <article>
       <img data-src="<?= Roots\Sage\Assets\asset_path('images/Target.gif?'.time().'') ?>" alt="Target" class="gif-to-play">
       <h2>Target</h2>

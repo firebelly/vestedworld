@@ -4,6 +4,7 @@
  */
 
 namespace Firebelly\PostTypes\Applicant;
+use \DrewM\MailChimp\MailChimp;
 
 // Register Custom Post Type
 function post_type() {
@@ -53,7 +54,7 @@ function post_type() {
   register_post_type( 'applicant', $args );
 
 }
-add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
+// add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
 
 /**
  * Add capabilities to control permissions of Post Type via roles
@@ -236,6 +237,20 @@ function new_applicant() {
     // Send quick receipt email to applicant
     $applicant_message = "Thank you for your interest in VestedWorld. We’ll be in touch soon with next steps for joining our community.";
     wp_mail($_POST['application_email'], 'Thank you for your interest in VestedWorld', $applicant_message, ['From: VestedWorld <info@vestedworld.com>']);
+
+    // Subscribe to Mailchimp list
+    $api_key = "69100207c4d61d99068724bc8293a4db-us12";
+    $list_id = "d2c37ba554";
+    $MailChimp = new MailChimp($api_key);
+    $result = $MailChimp->post("lists/$list_id/members", [
+                'email_address' => $_POST['application_email'],
+                'status'        => 'subscribed',
+              ]);
+    // if ($MailChimp->success()) {
+    //   ... if we care to do anything
+    // } else {
+    //   echo $MailChimp->getLastError();
+    // }
 
   } else {
     $errors[] = 'Error inserting post';

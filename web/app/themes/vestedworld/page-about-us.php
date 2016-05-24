@@ -40,30 +40,30 @@ foreach($pages as $page) {
 
 ?>
 
-<div class="people-sections" id="team">
-  <div class="active-person-container">
-    <div class="post-nav">
-      <div class="previous-person">Previous profile &gt;</div>
-      <div class="next-person">&lt; Next profile</div>
-    </div>
-    <button class="person-deactivate person-toggle plus-button close"><div class="plus"></div></button>
-    <div class="bio-content">
-      <h1 class="section-title">Profile</h1>
-      <div class="person-data-container">
+<div class="active-grid-item-container active-person">
+  <div class="grid-nav">
+    <div class="previous-item">Previous profile &gt;</div>
+    <div class="next-item">&lt; Next profile</div>
+  </div>
+  <button class="grid-item-deactivate grid-item-toggle plus-button close"><div class="plus"></div></button>
+  <div class="bio-content">
+    <h1 class="section-title">Profile</h1>
+    <div class="item-data-container">
 
-      </div>
     </div>
   </div>
+</div>
 
-  <section class="page-section people management page-nav-section" id="management">
+<div class="people-sections" id="team">
+  <section class="page-section grid-section people management page-nav-section" id="management">
   	<h1 class="section-title page-nav-title">Management</h1>
     <div class="management-container">
     	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'management']); ?>
     </div>
   </section>
-  <section class="page-section people board page-nav-section" id="advisory-board">
+  <section class="page-section grid-section people board page-nav-section" id="advisory-board">
   	<h1 class="section-title page-nav-title">Advisory Board</h1>
-    <div class="people-grid-intro">    
+    <div class="grid-intro">    
       <p>VestedWorld’s approach is influenced by a diverse team of leaders who uphold our values and support our mission to invest for the greatest global impact.</p>
     </div>
   	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'board']); ?>

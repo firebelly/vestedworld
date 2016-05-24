@@ -15,10 +15,24 @@
     }
   }
 
+  .grid-items {
+    border-top: 1px solid $gray-dark;
+  }
+
   .person {
     width: 100%;
-    padding-right: $column-width;
+    height: auto;
+    outline: none;
+    max-width: none;
+    padding-left: 0;
+    flex-basis: 100%;
+    padding-bottom: 0;
     border-top: 1px solid $gray-dark;
+    @include media-md {
+      max-width: none;
+      flex-basis: 100%;
+      padding-right: $column-width;
+    }
     &:first-of-type {
       border-top: none;
     }
@@ -28,7 +42,13 @@
         display: flex;
       }
     }
-    .person-inner {
+    .grid-item-data {
+      h1 {
+        margin-top: 0;
+        color: $brand-primary;
+      }
+    }
+    .grid-item-inner {
       display: flex;
       flex-direction: column;
       @include min-screen(860px) {
@@ -36,7 +56,7 @@
         flex-direction: row;
       }
     }
-    .person-text {
+    .grid-item-text {
       order: 1;
       min-width: 150px;
       position: relative;
@@ -57,17 +77,32 @@
         @include column(11);
       }
     }
-    button {
+    .grid-item-activate {
       left: 0;
       bottom: 30px;
       position: absolute;
     }
-    .person-image {
+    .grid-item-image {
       order: 0;
+      top: auto;
+      left: auto;
+      right: auto;
       width: 100%;
+      bottom: auto;
       text-align: left;
       padding-top: 30px;
+      position: relative;
       align-self: flex-end;
+      img {
+        left: auto;
+        min-width: 1px;
+        min-height: 1px;
+        transform: none;
+        vertical-align: top;
+      }
+      &::before {
+        display: none;
+      }
       @include min-screen(860px) {
         order: 1;
         width: auto;
@@ -85,24 +120,62 @@
   }
 }
 
-// Active person mods for management
-.active-person-container {
-  .person-data.management {
-    .person-inner {
+// Top-boarder for grids that ain't the management team
+.people:not(.management) {
+  .grid-items {
+    padding-top: 30px;
+    border-top: 1px solid $gray-dark;
+  }
+}
+
+// Active person mods
+.active-grid-item-container.active-person {
+
+  .quote {
+    overflow: hidden;
+    padding: #{$vertical-beat * 8} #{$column-width * 2} 0;
+  }
+  .person-inner {
+    padding: 0;
+    overflow: hidden;
+  }
+  .callout {
+    @extend .h1;
+    color: $white;
+    font-size: 24px;
+    line-height: 1.333333333em;
+    background: $brand-primary;
+    padding: #{$vertical-beat * 8} $mobile-global-padding;
+    @include media-md {
+      font-size: 48px;
+      line-height: 48px;
+      padding: #{$vertical-beat * 8} $global-padding;
+    }
+  }
+  .quote {
+    display: none;
+  }
+  .person-text header {
+    overflow: hidden;
+  }
+
+  // And for management
+  .grid-item-data.management {
+    .grid-item-inner {
       background: $white;
       padding: #{$vertical-beat * 8} #{$column-width * 2} 0;
     }
     .-left {
       background: $brand-primary;
     }
-    .person-text {
+    .grid-item-text {
       padding: 0;
     }
-    .person-image {
+    .grid-item-image {
       height: auto;
       background: none;
       padding-bottom: 0;
-      .person-image-inner {
+      .grid-item-image-inner {
         position: static;
         &::before {
           display: none;
@@ -115,6 +188,7 @@
         bottom: auto;
         transform: none;
         position: relative;
+        vertical-align: top;
       }
     }
   }

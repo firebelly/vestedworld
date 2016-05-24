@@ -106,7 +106,7 @@ address {
 
 .site-wrap {
   @include media-md {
-    padding: 0 $column-width 0 0;
+    padding: 0 $global-padding 0 0;
   }
 }
 .content {
@@ -119,7 +119,7 @@ address {
     display: block;
   }
   height: 32px;
-  background: $gray-dark;
+  background: $blue;
   color: $white;
   @include small-caps;
   line-height: 1;
@@ -128,6 +128,10 @@ address {
   &.-white {
     background: $white;
     color: $gray-dark;
+  }
+  &.-gray {
+    background: $gray-dark;
+    color: $white;
   }
   &.-bluetxt {
     color: $blue;

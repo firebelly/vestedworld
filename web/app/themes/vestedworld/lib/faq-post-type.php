@@ -92,11 +92,12 @@ function edit_columns($columns){
     'cb' => '<input type="checkbox" />',
     'title' => 'Question',
     'content' => 'Answer',
-    'taxonomy-faq_cat' => 'Category',
+    'taxonomy-faq_cat' => 'Category'
   );
   return $columns;
 }
 add_filter('manage_faq_posts_columns', __NAMESPACE__ . '\edit_columns');
+
 
 function custom_columns($column){
   global $post;
@@ -164,10 +165,16 @@ function shortcode($atts) {
     $i++;
     $question = $post->post_title;
     $answer = apply_filters('the_content', $post->post_content);
+    // if (function_exists('thumbs_rating_getlink')) { $feedback = thumbs_rating_getlink($post->ID); } else { $feedback = ""; }
+    if(function_exists('the_ratings')) { $feedback = the_ratings('div', $post->ID, false); }
     $output .= <<<HTML
       <li class="accordion-item">
         <h2><a href="#answer-{$category}-{$i}" class="accordion-trigger">{$question} <svg class="icon icon-arrow-right" role="img"><use xlink:href="#icon-arrow-right"></use></svg><svg class="icon icon-close" role="img"><use xlink:href="#icon-close"></use></svg></a></h2>
-        <div id="answer-{$category}-{$i}" class="item-content accordion-content user-content">{$answer}</div>
+        <div id="answer-{$category}-{$i}" class="item-content accordion-content user-content">{$answer}
+          <div class="post-feedback"><p class="feedback-prompt">Was this information helpful?</p>
+          {$feedback}
+        </div>
+        </div>
       </li>
 HTML;
   endforeach;
@@ -175,3 +182,8 @@ HTML;
 
   return $output;
 }
+
+// Remove WP-Ratings columns for pages
+remove_action('manage_pages_custom_column', 'add_postratings_column_content');
+remove_filter('manage_pages_columns', 'add_postratings_column');
+remove_filter('manage_edit-page_sortable_columns', 'sort_postratings_column');
