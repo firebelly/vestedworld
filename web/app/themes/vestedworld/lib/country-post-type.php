@@ -213,6 +213,36 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
+        'name' => 'GDP Growth Percentage',
+        'desc' => 'e.g. 5.4',
+        'id'   => $prefix . 'gdp_growth',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 1 Percentage',
+        'desc' => 'e.g. 3.4 (used for chart on single Country pages)',
+        'id'   => $prefix . 'gdp_growth_comparison_1',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 1 Label',
+        'desc' => 'e.g. Sub-Saharan Africa',
+        'id'   => $prefix . 'gdp_growth_comparison_1_label',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 2 Percentage',
+        'desc' => 'e.g. 2.4',
+        'id'   => $prefix . 'gdp_growth_comparison_2',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 2 Label',
+        'desc' => 'e.g. World',
+        'id'   => $prefix . 'gdp_growth_comparison_2_label',
+        'type' => 'text_small',
+      ),
+      array(
         'name' => 'Inflation',
         'desc' => 'percentage, e.g. 6.4',
         'id'   => $prefix . 'inflation',

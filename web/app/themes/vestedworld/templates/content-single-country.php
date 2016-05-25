@@ -17,6 +17,13 @@ $income_level_classification = get_post_meta($post->ID, '_cmb2_income_level_clas
 $economic_outlook_intro = get_post_meta($post->ID, '_cmb2_economic_outlook_intro', true);
 $gross_gdp = get_post_meta($post->ID, '_cmb2_gross_gdp', true);
 $per_capita_gdp = get_post_meta($post->ID, '_cmb2_per_capita_gdp', true);
+
+$gdp_growth = get_post_meta($post->ID, '_cmb2_gdp_growth', true);
+$gdp_growth_comparison_1 = get_post_meta($post->ID, '_cmb2_gdp_growth_comparison_1', true);
+$gdp_growth_comparison_1_label = get_post_meta($post->ID, '_cmb2_gdp_growth_comparison_1_label', true);
+$gdp_growth_comparison_2 = get_post_meta($post->ID, '_cmb2_gdp_growth_comparison_2', true);
+$gdp_growth_comparison_2_label = get_post_meta($post->ID, '_cmb2_gdp_growth_comparison_2_label', true);
+
 $inflation = get_post_meta($post->ID, '_cmb2_inflation', true);
 $foreign_direct_investments = get_post_meta($post->ID, '_cmb2_foreign_direct_investments', true);
 $ease_of_doing_business_ranking = get_post_meta($post->ID, '_cmb2_ease_of_doing_business_ranking', true);
@@ -32,7 +39,7 @@ $workforce_percent_agriculture = get_post_meta($post->ID, '_cmb2_workforce_perce
 $workforce_percent_service = get_post_meta($post->ID, '_cmb2_workforce_percent_service', true);
 $workforce_percent_industry = get_post_meta($post->ID, '_cmb2_workforce_percent_industry', true);
 
-// Clean up fields, removing $ and any other random characters
+// Clean up numeric fields, removing $ and any other random characters
 foreach ([
     'population',
     'projected_population',
@@ -42,6 +49,9 @@ foreach ([
 
     'gross_gdp',
     'per_capita_gdp',
+    'gdp_growth',
+    'gdp_growth_comparison_1',
+    'gdp_growth_comparison_2',
     'inflation',
     'foreign_direct_investments',
     'ease_of_doing_business_ranking',
@@ -120,26 +130,26 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
                 <span class="chart" data-value="<?= $population ?>" data-value2="<?= $projected_population ?>"></span>
               </div>
 
-              <div class="stat-num dark"><?= $population ?>M</div>
-              <div class="stat-label" data-source="World Bank">Current Population</div>
-              <div class="stat-num"><?= $projected_population ?>M</div>
-              <div class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</div>
+              <span class="stat-num dark"><?= $population ?>M</span>
+              <span class="stat-label" data-source="World Bank">Current Population</span>
+              <span class="stat-num"><?= $projected_population ?>M</span>
+              <span class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</span>
             </div>
             <div class="median-age">
-              <div class="stat-num"><?= $median_age ?></div>
-              <div class="stat-label" data-source="CIA World Fact Book">Median Age</div>
+              <span class="stat-num"><?= $median_age ?></span>
+              <span class="stat-label" data-source="CIA World Fact Book">Median Age</span>
             </div>
           </div><!-- END .row -->
           <div class="row">
             <div class="poverty-chart">
               <span class="chart" data-value="<?= $poverty ?>"></span>
-              <div class="stat-num"><?= $poverty ?>%</div>
-              <div class="stat-label" data-source="CIA World Fact Book"><?= $poverty_label ?></div>
+              <span class="stat-num"><?= $poverty ?>%</span>
+              <span class="stat-label" data-source="CIA World Fact Book"><?= $poverty_label ?></span>
             </div>
             <div class="workforce-chart">
               <span class="chart" data-value="<?= $workforce_participation ?>"></span>
-              <div class="stat-num"><?= $workforce_participation ?>%</div>
-              <div class="stat-label" data-source="World Bank">Workforce Participation</div>
+              <span class="stat-num"><?= $workforce_participation ?>%</span>
+              <span class="stat-label" data-source="World Bank">Workforce Participation</span>
             </div>
           </div><!-- END .row -->
           <div class="income-level-classification">
@@ -162,10 +172,55 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
           <?= apply_filters('the_content', $economic_outlook_intro) ?>
         </div>
         <div class="outlook-stats">
-          gross_gdp: <?= $gross_gdp ?><br>
-          per_capita_gdp: <?= $per_capita_gdp ?><br>
-          inflation: <?= $inflation ?><br>
-          foreign_direct_investments: <?= $foreign_direct_investments ?><br>
+          <div class="row">
+            <div class="gross-gdp">
+              <div class="inner-row">
+                <span class="stat-num">$<?= $gross_gdp ?>B</span>
+                <span class="stat-label" data-source="CIA World Fact Book">Gross<br> GDP</span>
+              </div>
+            </div>
+            <div class="per-capita-gdp">
+              <div class="inner-row">
+                <span class="stat-num">$<?= $per_capita_gdp ?></span>
+                <span class="stat-label" data-source="World Bank">Per Capita<br> GDP</span>
+              </div>
+            </div>
+          </div><!-- END .row -->
+
+          <div class="row">
+            <div class="gdp-growth-chart">
+              <div class="inner-row">
+                <div class="stat-label" data-source="World Bank">GDP Growth Chart Comparison</div>
+                <span class="chart" data-value="<?= $gdp_growth ?>" data-value2="<?= $gdp_growth_comparison_1 ?>" data-value3="<?= $gdp_growth_comparison_2 ?>"></span>
+              </div>
+            </div>
+            <div class="gdp-growth-labels">
+              <span class="stat-num"><?= $gdp_growth ?>%</span>
+              <span class="stat-label"><?= $post->post_title ?></span>
+
+              <span class="stat-num"><?= $gdp_growth_comparison_1 ?>%</span>
+              <span class="stat-label"><?= $gdp_growth_comparison_1_label ?></span>
+
+              <span class="stat-num"><?= $gdp_growth_comparison_2 ?>%</span>
+              <span class="stat-label"><?= $gdp_growth_comparison_2_label ?></span>
+            </div>
+          </div><!-- END .row -->
+
+          <div class="row">
+            <div class="inflation">
+              <div class="inner-row">
+                <span class="stat-num"><?= $inflation ?>%</span>
+                <span class="stat-label" data-source="CIA World Fact Book">Inflation</span>
+              </div>
+            </div>
+            <div class="per-capita-gdp">
+              <div class="inner-row">
+                <span class="stat-num">$<?= $foreign_direct_investments ?>M</span>
+                <span class="stat-label" data-source="World Bank">Foreign Direct Investments</span>
+              </div>
+            </div>
+          </div><!-- END .row -->
+
           ease_of_doing_business_ranking: <?= $ease_of_doing_business_ranking ?><br>
           world_corruption_ranking: <?= $world_corruption_ranking ?><br>
           average_exchange_rate: <?= $average_exchange_rate ?><br>
