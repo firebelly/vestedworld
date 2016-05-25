@@ -122,6 +122,31 @@ namespace Firebelly\PostTypes\Pages;
      ),
    );
 
+   $meta_boxes['page_general_form'] = array(
+     'id'            => 'page_general_form',
+     'title'         => __( 'General form page', 'cmb2' ),
+     'object_types'  => array( 'page', ), // Post type
+     'context'       => 'normal',
+     'show_on'       => array( 'key' => 'page-template', 'value' => 'templates/general-form-page.php'),
+     'priority'      => 'high',
+     'show_names'    => true, // Show field names on the left
+     'fields'        => array(
+       // General page fields
+       array(
+         'name' => 'Form intro text',
+         'desc' => 'Introductory text to the form',
+         'id'   => $prefix . 'form_intro',
+         'type' => 'wysiwyg',
+       ),
+       array(
+         'name' => 'Form ID',
+         'desc' => 'Find the form ID in the forms panel',
+         'id'   => $prefix . 'form_id',
+         'type' => 'text',
+       ),
+     ),
+   );
+
 
    return $meta_boxes;
  }
