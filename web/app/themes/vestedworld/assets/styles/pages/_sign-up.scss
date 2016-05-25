@@ -1,18 +1,29 @@
 // Sign Up Page
 
 .page-template-sign-up,
-.page-template-page-thank-you {
+.page-template-page-thank-you,
+.page-template-general-form-page {
   .page-content {
     @include column(12);
     background: $blue;
     color: $white;
-    padding: #{$vertical-beat * 4} $mobile-global-padding #{$vertical-beat * 6};
+    padding: #{$vertical-beat * 8} $mobile-global-padding #{$vertical-beat * 6};
     h3.tab {
-      background: $white;
+      top: 0;
+      left: 0;
       color: $blue;
+      display: block;
+      background: $white;
+      position: absolute;
+      padding-left: $mobile-global-padding;
+    }
+    p {
+      margin-top: 0;
     }
     @include media-md {
       h3.tab {
+        left: auto;
+        padding-left: 16px;
         top: #{$vertical-beat * 8};
       }
       h2 {

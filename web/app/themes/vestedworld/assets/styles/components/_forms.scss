@@ -1,9 +1,11 @@
 // Forms
 
 // Form element base styles
-input {
+input,
+textarea {
   width: 100%;
   border: none;
+  max-width: 100%;
   border-radius: 0;
   background: $gray-lite;
   padding: #{$vertical-beat * 2};
@@ -110,20 +112,40 @@ fieldset {
   }
 }
 
+.ginput_container_textarea {
+  textarea {
+    margin-bottom: 0;
+  }
+}
+
 .gform_fields,
 .gfield_radio {
   margin: 0;
   padding: 0;
 }
+.gfield_radio {
+  input[type=text] {
+    width: auto;
+    display: inline-block;
+  }
+}
+.gsection {
+  margin-top: #{$vertical-beat * 4};
+}
 .gsection_title {
   font-size: 16px;
   line-height: 1.5em;
+  border-bottom: 1px solid $gray-lite;
 }
 .gform_button {
   @extend .btn.-blue;
   width: auto;
   background: none;
   display: inline-block;
+}
+.ginput_counter,
+.gfield_description {
+  font-size: 12px;
 }
 
 .gform_ajax_spinner {
@@ -132,6 +154,17 @@ fieldset {
 
 // Follow-up form
 .follow-up-form {
+
+  .gsection {
+    margin-top: #{$vertical-beat * 2};
+  }
+
+  .gsection_title {
+    font-size: 16px;
+    line-height: 1.5em;
+    border-bottom: none;
+  }
+
   .address_state {
     &::after {
       top: 25px;
