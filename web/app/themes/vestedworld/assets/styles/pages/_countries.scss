@@ -107,18 +107,15 @@ article.single.country {
       padding: #{$vertical-beat * 5} $global-padding;
     }
   }
-  // Country Overview
-  .country-overview-stats {
-    border-top: 1px solid $gray-lite;
-    border-bottom: 1px solid $gray-lite;
-    margin: #{$vertical-beat * 2} 0;
-  }
+
+  // General stat styles
   .row {
     display: flex;
     flex-flow: row nowrap;
     border-bottom: 1px solid $gray-lite;
   }
   .stat-num {
+    display: block;
     @extend .h2;
     color: $blue;
     &.dark {
@@ -126,8 +123,16 @@ article.single.country {
     }
   }
   .stat-label {
+    display: block;
     @include small-caps;
     line-height: 1.45;
+  }
+
+  // Country Overview
+  .country-overview-stats {
+    border-top: 1px solid $gray-lite;
+    border-bottom: 1px solid $gray-lite;
+    margin: #{$vertical-beat * 2} 0;
   }
   .population-chart {
     flex: 0 1 77.7%;
@@ -153,6 +158,7 @@ article.single.country {
     border-right: 1px solid $gray-lite;
   }
   .workforce-chart {
+    padding: #{$vertical-beat * 3} $mobile-global-padding;
   }
   .income-level-classification {
     .stat-label {
@@ -195,8 +201,42 @@ article.single.country {
         }
       }
     }
+  } // .income-level-classification
+
+  // Economic Outlook
+  .outlook-stats {
+    border-top: 1px solid $gray-lite;
+    border-bottom: 1px solid $gray-lite;
+    margin: #{$vertical-beat * 2} 0;
   }
-}
+  .inner-row {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .gross-gdp,
+  .per-capita-gdp {
+    padding: #{$vertical-beat * 3} 0;
+    flex: 0 1 50%;
+    .stat-num {
+      flex: 0 1 44%;
+    }
+    .stat-label {
+      flex: 0 1 auto;
+      padding-top: 5px;
+    }
+  }
+  .gross-gdp {
+    padding-left: 0;
+  }
+  .per-capita-gdp {
+    padding-left: $mobile-global-padding;
+    .stat-num {
+      flex: 0 1 55%;
+    }
+    border-left: 1px solid $gray-lite;
+  }
+
+} // article.single.country
 
 .grid-item {
   &.country {
