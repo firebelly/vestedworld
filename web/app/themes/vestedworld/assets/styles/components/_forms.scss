@@ -133,6 +133,7 @@ fieldset {
   margin-top: #{$vertical-beat * 4};
 }
 .gsection_title {
+  @include small-caps();
   font-size: 16px;
   line-height: 1.5em;
   border-bottom: 1px solid $gray-lite;
@@ -161,8 +162,10 @@ fieldset {
 
   .gsection_title {
     font-size: 16px;
+    letter-spacing: 0;
     line-height: 1.5em;
     border-bottom: none;
+    text-transform: none;
   }
 
   .address_state {
