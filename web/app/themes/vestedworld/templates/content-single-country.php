@@ -72,6 +72,10 @@ foreach ([
 $foreign_direct_investments = number_format($foreign_direct_investments);
 $per_capita_gdp = number_format($per_capita_gdp);
 
+// Split number/number stats
+$ease_of_doing_business_ranking_arr = explode('/', $ease_of_doing_business_ranking);
+$world_corruption_ranking_arr = explode('/', $world_corruption_ranking);
+
 // Wrap currency name in tag for styling (e.g. 99.73 KES -> 99.73 <span>KES</span>)
 $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_exchange_rate);
 
@@ -172,14 +176,14 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
           <?= apply_filters('the_content', $economic_outlook_intro) ?>
         </div>
         <div class="outlook-stats">
-          <div class="row">
-            <div class="gross-gdp">
+          <div class="row half-width-row">
+            <div class="gross-gdp stat-row">
               <div class="inner-row">
                 <span class="stat-num">$<?= $gross_gdp ?>B</span>
                 <span class="stat-label" data-source="CIA World Fact Book">Gross<br> GDP</span>
               </div>
             </div>
-            <div class="per-capita-gdp">
+            <div class="per-capita-gdp stat-row">
               <div class="inner-row">
                 <span class="stat-num">$<?= $per_capita_gdp ?></span>
                 <span class="stat-label" data-source="World Bank">Per Capita<br> GDP</span>
@@ -195,34 +199,84 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
               </div>
             </div>
             <div class="gdp-growth-labels">
-              <span class="stat-num"><?= $gdp_growth ?>%</span>
-              <span class="stat-label"><?= $post->post_title ?></span>
+              <div class="inner-row">
+                <span class="stat-num stat1"><?= $gdp_growth ?>%</span>
+                <span class="stat-label"><?= $post->post_title ?></span>
+              </div>
 
-              <span class="stat-num"><?= $gdp_growth_comparison_1 ?>%</span>
-              <span class="stat-label"><?= $gdp_growth_comparison_1_label ?></span>
+              <div class="inner-row">
+                <span class="stat-num stat2"><?= $gdp_growth_comparison_1 ?>%</span>
+                <span class="stat-label"><?= $gdp_growth_comparison_1_label ?></span>
+              </div>
 
-              <span class="stat-num"><?= $gdp_growth_comparison_2 ?>%</span>
-              <span class="stat-label"><?= $gdp_growth_comparison_2_label ?></span>
+              <div class="inner-row">
+                <span class="stat-num stat3"><?= $gdp_growth_comparison_2 ?>%</span>
+                <span class="stat-label"><?= $gdp_growth_comparison_2_label ?></span>
+              </div>
             </div>
           </div><!-- END .row -->
 
-          <div class="row">
-            <div class="inflation">
+          <div class="row half-width-row">
+            <div class="inflation stat-row">
               <div class="inner-row">
                 <span class="stat-num"><?= $inflation ?>%</span>
                 <span class="stat-label" data-source="CIA World Fact Book">Inflation</span>
               </div>
             </div>
-            <div class="per-capita-gdp">
+            <div class="foreign-direct-investments stat-row">
               <div class="inner-row">
                 <span class="stat-num">$<?= $foreign_direct_investments ?>M</span>
-                <span class="stat-label" data-source="World Bank">Foreign Direct Investments</span>
+                <span class="stat-label" data-source="World Bank">Foreign Direct<br> Investments</span>
               </div>
             </div>
           </div><!-- END .row -->
 
-          ease_of_doing_business_ranking: <?= $ease_of_doing_business_ranking ?><br>
-          world_corruption_ranking: <?= $world_corruption_ranking ?><br>
+          <div class="row half-width-row">
+            <div class="inflation stat-row">
+              <div class="inner-row">
+                <span class="stat-num overnumber">
+                  <span class="num1"><?= $ease_of_doing_business_ranking_arr[0] ?></span>
+                  <i>/</i>
+                  <span class="num2"><?= $ease_of_doing_business_ranking_arr[1] ?></span>
+                </span>
+                <span class="stat-label" data-source="World Bank">Ease of Doing Business Ranking</span>
+              </div>
+            </div>
+            <div class="foreign-direct-investments stat-row">
+              <div class="inner-row">
+                <span class="stat-num overnumber">
+                  <span class="num1"><?= $world_corruption_ranking_arr[0] ?></span>
+                  <i>/</i>
+                  <span class="num2"><?= $world_corruption_ranking_arr[1] ?></span>
+                </span>
+                <span class="stat-label" data-source="Transparency International">World Corruption Ranking</span>
+              </div>
+            </div>
+          </div><!-- END .row -->
+
+          <div class="row half-width-row">
+            <div class="inflation stat-row">
+              <div class="inner-row">
+                <span class="stat-num overnumber">
+                  <span class="num1"><?= $ease_of_doing_business_ranking_arr[0] ?></span>
+                  <i>/</i>
+                  <span class="num2"><?= $ease_of_doing_business_ranking_arr[1] ?></span>
+                </span>
+                <span class="stat-label" data-source="World Bank">Ease of Doing Business Ranking</span>
+              </div>
+            </div>
+            <div class="foreign-direct-investments stat-row">
+              <div class="inner-row">
+                <span class="stat-num overnumber">
+                  <span class="num1"><?= $world_corruption_ranking_arr[0] ?></span>
+                  <i>/</i>
+                  <span class="num2"><?= $world_corruption_ranking_arr[1] ?></span>
+                </span>
+                <span class="stat-label" data-source="Transparency International">World Corruption Ranking</span>
+              </div>
+            </div>
+          </div><!-- END .row -->
+
           average_exchange_rate: <?= $average_exchange_rate ?><br>
           currency_description: <?= $currency_description ?><br>
         </div>

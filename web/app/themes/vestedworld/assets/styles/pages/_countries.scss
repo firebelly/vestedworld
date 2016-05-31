@@ -213,27 +213,74 @@ article.single.country {
     display: flex;
     flex-flow: row wrap;
   }
-  .gross-gdp,
-  .per-capita-gdp {
+  .half-width-row {
+    .stat-row {
+      padding: #{$vertical-beat * 3} 0;
+      flex: 0 1 50%;
+      .stat-num {
+        flex: 0 1 44%;
+      }
+      .stat-label {
+        flex: 0 1 auto;
+        padding-top: 5px;
+      }
+      &:nth-child(1) {
+        padding-left: 0;
+      }
+      &:nth-child(2) {
+        padding-left: $mobile-global-padding;
+        .stat-num {
+          flex: 0 1 55%;
+        }
+        border-left: 1px solid $gray-lite;
+      }
+    }
+  }
+  .gdp-growth-chart,
+  .gdp-growth-labels {
     padding: #{$vertical-beat * 3} 0;
     flex: 0 1 50%;
-    .stat-num {
-      flex: 0 1 44%;
-    }
-    .stat-label {
-      flex: 0 1 auto;
-      padding-top: 5px;
-    }
   }
-  .gross-gdp {
-    padding-left: 0;
-  }
-  .per-capita-gdp {
+  .gdp-growth-labels {
     padding-left: $mobile-global-padding;
+    .inner-row {
+      border-bottom: 1px solid $gray-lite;
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 10px;
+      }
+    }
     .stat-num {
       flex: 0 1 55%;
     }
-    border-left: 1px solid $gray-lite;
+    .stat-label {
+      padding-top: 5px;
+      flex: 0 1 45%;
+    }
+  }
+
+  .gross-gdp,
+  .per-capita-gdp {}
+  .inflation,
+  .foreign-direct-investments {}
+
+  .overnumber {
+    position: relative;
+    font: 16px/24px $sans;
+    min-height: 50px;
+    i {
+      display: none;
+    }
+    .num1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .num2 {
+      position: absolute;
+      bottom: 0;
+      left: 50px;
+    }
   }
 
 } // article.single.country
