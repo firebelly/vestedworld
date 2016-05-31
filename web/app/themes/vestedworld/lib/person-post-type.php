@@ -196,3 +196,24 @@ function get_people($options=[]) {
 
   return $output;
 }
+
+// Redirect people posts to proper landing page
+function single_person_redirect() {
+  if (is_single()) {
+    global $post;
+
+    $post_id = $post->ID;
+    if (!empty($post_id) && $post->post_type == 'person') {
+      $type = get_post_meta($post_id, '_cmb2_member_type', true);
+      if ($type) {
+        if (preg_match('/(management)|(board)/i', $type)) {
+          wp_redirect('/about-us/#'.$post->post_name, 301);
+        } else {
+          wp_redirect('/community/#'.$post->post_name, 301);
+          exit();
+        }
+      }
+    }
+  }
+}
+add_action('template_redirect', __NAMESPACE__ . '\single_person_redirect');
