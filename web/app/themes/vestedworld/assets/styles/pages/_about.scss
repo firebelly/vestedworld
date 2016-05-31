@@ -38,10 +38,12 @@
     &:nth-of-type(odd) {
       @include media-md {
         padding-left: 30px;
+        border-left: 1px solid $gray-dark;
       }
     }
     &:first-of-type {
       border-top: none;
+      border-left: none;
 
       .grid-item-inner {
         @include min-screen(860px) {
