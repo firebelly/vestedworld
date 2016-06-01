@@ -1,0 +1,44 @@
+.donut-inner .ct-series-a .ct-slice-donut {
+  stroke: $gray;
+}
+.ct-series-a .ct-bar,
+.ct-series-a .ct-line,
+.ct-series-a .ct-point,
+.ct-series-a .ct-slice-donut {
+  stroke: $blue;
+}
+.ct-series-a .ct-area,
+.ct-series-a .ct-slice-pie {
+  fill: $blue;
+}
+.stat-num.ct-series-a {
+  color: $blue;
+}
+
+.ct-series-b .ct-bar,
+.ct-series-b .ct-line,
+.ct-series-b .ct-point,
+.ct-series-b .ct-slice-donut {
+  stroke: $blue-dark;
+}
+.ct-series-b .ct-area,
+.ct-series-b .ct-slice-pie {
+  fill: $blue-dark;
+}
+.stat-num.ct-series-b {
+  color: $blue-dark;
+}
+
+.ct-series-c .ct-bar,
+.ct-series-c .ct-line,
+.ct-series-c .ct-point,
+.ct-series-c .ct-slice-donut {
+  stroke: $gray;
+}
+.ct-series-c .ct-area,
+.ct-series-c .ct-slice-pie {
+  fill: $gray;
+}
+.stat-num.ct-series-c {
+  color: $gray;
+}

@@ -120,6 +120,42 @@ var VestedWorld = (function($) {
       }
     });
 
+    // Pie charts
+    $('.ct-chart.pie-chart').each(function() {
+      var numArr = $(this).closest('.chart-row').find('.stat-num').map(function() {
+          return parseInt($(this).text().replace('%',''));
+        }).get();
+      new Chartist.Pie(this, { series: numArr }, { showLabel: false });
+    });
+
+    $('.donut-inner').each(function() {
+      new Chartist.Pie(this, { series: [1] }, {
+        donut: true,
+        donutWidth: 1,
+        chartPadding: 8,
+        showLabel: false
+      });
+    });
+    $('.donut-chart').each(function() {
+      var numArr = $(this).closest('.chart-row').find('.stat-num').map(function() {
+          return parseInt($(this).text().replace('%',''));
+        }).get();
+      new Chartist.Pie(this, { series: numArr }, {
+        donut: true,
+        donutWidth: 8,
+        showLabel: false,
+        total: $(this).attr('data-total')
+      });
+    });
+    $('.donut-chart-stacked').each(function() {
+      new Chartist.Pie(this, { series: [{ className: $(this).attr('data-class'), data: [$(this).attr('data-value')] }] }, {
+        donut: true,
+        donutWidth: 8,
+        showLabel: false,
+        total: $(this).attr('data-total')
+      });
+    });
+
   } // end init()
 
   // Bind to state changes and handle back/forward

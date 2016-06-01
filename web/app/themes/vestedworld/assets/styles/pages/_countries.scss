@@ -15,6 +15,33 @@ body.single-country {
   }
 }
 
+.stat-num {
+  color: $blue;
+  display: block;
+  @extend .h2;
+  &.dark {
+    color: $blue-dark;
+  }
+}
+.inner-row {
+  .chart {
+    flex: 0 1 33.333%;
+    position: relative;
+    .ct-chart {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .chart-labels {
+    flex: 0 1 66.666%;
+  }
+}
+
 // Single country styles
 article.single.country {
   .section-title {
@@ -114,14 +141,6 @@ article.single.country {
     flex-flow: row nowrap;
     border-bottom: 1px solid $gray-lite;
   }
-  .stat-num {
-    display: block;
-    @extend .h2;
-    color: $blue;
-    &.dark {
-      color: $blue-dark;
-    }
-  }
   .stat-label {
     display: block;
     @include small-caps;
@@ -148,17 +167,14 @@ article.single.country {
   }
   .poverty-chart,
   .workforce-chart {
-    padding: #{$vertical-beat * 3} 0;
+    padding: #{$vertical-beat * 3} $mobile-global-padding #{$vertical-beat * 3} 0;
     flex: 0 1 50%;
-    .circle-graph {
-      // width: ;
-    }
   }
   .poverty-chart {
     border-right: 1px solid $gray-lite;
   }
   .workforce-chart {
-    padding: #{$vertical-beat * 3} $mobile-global-padding;
+    padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 3} $mobile-global-padding;
   }
   .income-level-classification {
     .stat-label {
@@ -206,7 +222,6 @@ article.single.country {
   // Economic Outlook
   .outlook-stats {
     border-top: 1px solid $gray-lite;
-    border-bottom: 1px solid $gray-lite;
     margin: #{$vertical-beat * 2} 0;
   }
   .inner-row {
@@ -221,18 +236,21 @@ article.single.country {
         flex: 0 1 44%;
       }
       .stat-label {
-        flex: 0 1 auto;
-        padding-top: 5px;
+        flex: 0 1 56%;
+        padding: 5px 10px 0 0;
       }
       &:nth-child(1) {
         padding-left: 0;
       }
       &:nth-child(2) {
+        border-left: 1px solid $gray-lite;
         padding-left: $mobile-global-padding;
         .stat-num {
           flex: 0 1 55%;
         }
-        border-left: 1px solid $gray-lite;
+        .stat-label {
+          flex: 0 1 45%;
+        }
       }
     }
   }
@@ -241,13 +259,26 @@ article.single.country {
     padding: #{$vertical-beat * 3} 0;
     flex: 0 1 50%;
   }
+  .gdp-growth-chart {
+    .inner-row {
+      .chart-labels,
+      .chart {
+        flex: 0 1 50%;
+        height: 140px;
+      }
+    }
+  }
   .gdp-growth-labels {
     padding-left: $mobile-global-padding;
     .inner-row {
       border-bottom: 1px solid $gray-lite;
+      padding: $vertical-beat 0;
+      &:first-child {
+        padding-top: 0;
+      }
       &:last-child {
         border-bottom: none;
-        padding-bottom: 10px;
+        padding-bottom: 0;
       }
     }
     .stat-num {
@@ -264,10 +295,11 @@ article.single.country {
   .inflation,
   .foreign-direct-investments {}
 
-  .overnumber {
+  .ratio {
     position: relative;
     font: 16px/24px $sans;
-    min-height: 50px;
+    letter-spacing: .15em;
+    height: 50px;
     i {
       display: none;
     }
@@ -275,18 +307,86 @@ article.single.country {
       position: absolute;
       top: 0;
       left: 0;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 25px;
+        left: 10px;
+        border-top: 1px solid $gray;
+        width: 50px;
+        transform: rotate(-52deg);
+      }
     }
     .num2 {
       position: absolute;
       bottom: 0;
-      left: 50px;
+      left: 45px;
     }
   }
 
-} // article.single.country
-
-.grid-item {
-  &.country {
-    // grid overrides? probably ok to delete this
+  .average-exchange-rate {
+    color: $blue;
+    @extend .h2;
+    .currency {
+      font: 16px/24px $sans;
+      letter-spacing: .2em;
+    }
+    .exchange-rate-comparison {
+      i {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        text-indent: -9999em;
+        &::after {
+          content: '';
+          position: absolute;
+          top: 20px;
+          left: -5px;
+          border-top: 1px solid $gray;
+          width: 50px;
+          transform: rotate(-52deg);
+        }
+      }
+    }
   }
-}
+  .half-width-row .stat-row.exchange-rate-details {
+    border-left: none;
+  }
+
+  // Key Sectors
+  .key-sector-stats {
+    border-top: 1px solid $gray-lite;
+    margin: #{$vertical-beat * 2} 0;
+    .stat-row:nth-child(1) {
+      padding-right: $mobile-global-padding;
+    }
+    .chart {
+      @include clearfix;
+      @include min-screen('1200px') {
+        .pie-label {
+          width: 44%;
+          float: left;
+        }
+        .pie-chart {
+          width: 56%;
+          float: left;
+        }
+      }
+    }
+    .inner-row {
+      border-bottom: 1px solid $gray-lite;
+      padding: $vertical-beat 0;
+      &:first-child {
+        padding-top: 0;
+      }
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+  }
+
+
+} // article.single.country

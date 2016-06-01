@@ -76,8 +76,8 @@ $per_capita_gdp = number_format($per_capita_gdp);
 $ease_of_doing_business_ranking_arr = explode('/', $ease_of_doing_business_ranking);
 $world_corruption_ranking_arr = explode('/', $world_corruption_ranking);
 
-// Wrap currency name in tag for styling (e.g. 99.73 KES -> 99.73 <span>KES</span>)
-$average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_exchange_rate);
+// Wrap currency name in tag for styling (e.g. 99.73 KES -> 99.73 <span class="currency">KES</span>)
+$average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</span>', $average_exchange_rate);
 
 ?>
 
@@ -129,15 +129,20 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
         </div>
         <div class="country-overview-stats">
           <div class="row">
-            <div class="population-chart">
-              <div class="circle-chart">
-                <span class="chart" data-value="<?= $population ?>" data-value2="<?= $projected_population ?>"></span>
+            <div class="population-chart chart-row">
+              <div class="inner-row">
+                <div class="chart">
+                  <div class="ct-chart donut-inner"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $projected_population ?>" data-class="ct-series-b"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $population ?>" data-class="ct-series-a"></div>
+                </div>
+                <div class="chart-label">
+                  <span class="stat-num ct-series-a"><?= $population ?>M</span>
+                  <span class="stat-label" data-source="World Bank">Current Population</span>
+                  <span class="stat-num ct-series-b"><?= $projected_population ?>M</span>
+                  <span class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</span>
+                </div>
               </div>
-
-              <span class="stat-num dark"><?= $population ?>M</span>
-              <span class="stat-label" data-source="World Bank">Current Population</span>
-              <span class="stat-num"><?= $projected_population ?>M</span>
-              <span class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</span>
             </div>
             <div class="median-age">
               <span class="stat-num"><?= $median_age ?></span>
@@ -145,15 +150,29 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
             </div>
           </div><!-- END .row -->
           <div class="row">
-            <div class="poverty-chart">
-              <span class="chart" data-value="<?= $poverty ?>"></span>
-              <span class="stat-num"><?= $poverty ?>%</span>
-              <span class="stat-label" data-source="CIA World Fact Book"><?= $poverty_label ?></span>
+            <div class="poverty-chart chart-row">
+              <div class="inner-row">
+                <div class="chart">
+                  <div class="ct-chart donut-inner"></div>
+                  <div class="ct-chart donut-chart" data-total="100"></div>
+                </div>
+                <div class="chart-labels">
+                  <span class="stat-num"><?= $poverty ?>%</span>
+                  <span class="stat-label" data-source="CIA World Fact Book"><?= $poverty_label ?></span>
+                </div>
+              </div>
             </div>
-            <div class="workforce-chart">
-              <span class="chart" data-value="<?= $workforce_participation ?>"></span>
-              <span class="stat-num"><?= $workforce_participation ?>%</span>
-              <span class="stat-label" data-source="World Bank">Workforce Participation</span>
+            <div class="workforce-chart chart-row">
+              <div class="inner-row">
+                <div class="chart">
+                  <div class="ct-chart donut-inner"></div>
+                  <div class="ct-chart donut-chart" data-total="100"></div>
+                </div>
+                <div class="chart-labels">
+                  <span class="stat-num"><?= $workforce_participation ?>%</span>
+                  <span class="stat-label" data-source="World Bank">Workforce Participation</span>
+                </div>
+              </div>
             </div>
           </div><!-- END .row -->
           <div class="income-level-classification">
@@ -166,8 +185,8 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
               ?>
             </ul>
           </div>
-        </div>
-      </div>
+        </div><!-- END .country-overview-stats -->
+      </div><!-- END .grid-text-group -->
 
       <div class="grid-text-group">
         <h3 class="tab">Outlook</h3>
@@ -191,26 +210,33 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
             </div>
           </div><!-- END .row -->
 
-          <div class="row">
+          <div class="row chart-row">
             <div class="gdp-growth-chart">
               <div class="inner-row">
-                <div class="stat-label" data-source="World Bank">GDP Growth Chart Comparison</div>
-                <span class="chart" data-value="<?= $gdp_growth ?>" data-value2="<?= $gdp_growth_comparison_1 ?>" data-value3="<?= $gdp_growth_comparison_2 ?>"></span>
+                <div class="chart-labels">
+                  <div class="stat-label" data-source="World Bank">GDP Growth Chart Comparison</div>
+                </div>
+                <div class="chart">
+                  <div class="ct-chart donut-inner"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth ?>" data-class="ct-series-a"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_1 ?>" data-class="ct-series-b"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_2 ?>" data-class="ct-series-c"></div>
+                </div>
               </div>
             </div>
             <div class="gdp-growth-labels">
               <div class="inner-row">
-                <span class="stat-num stat1"><?= $gdp_growth ?>%</span>
+                <span class="stat-num ct-series-a"><?= $gdp_growth ?>%</span>
                 <span class="stat-label"><?= $post->post_title ?></span>
               </div>
 
               <div class="inner-row">
-                <span class="stat-num stat2"><?= $gdp_growth_comparison_1 ?>%</span>
+                <span class="stat-num ct-series-b"><?= $gdp_growth_comparison_1 ?>%</span>
                 <span class="stat-label"><?= $gdp_growth_comparison_1_label ?></span>
               </div>
 
               <div class="inner-row">
-                <span class="stat-num stat3"><?= $gdp_growth_comparison_2 ?>%</span>
+                <span class="stat-num ct-series-c"><?= $gdp_growth_comparison_2 ?>%</span>
                 <span class="stat-label"><?= $gdp_growth_comparison_2_label ?></span>
               </div>
             </div>
@@ -234,7 +260,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
           <div class="row half-width-row">
             <div class="inflation stat-row">
               <div class="inner-row">
-                <span class="stat-num overnumber">
+                <span class="stat-num ratio">
                   <span class="num1"><?= $ease_of_doing_business_ranking_arr[0] ?></span>
                   <i>/</i>
                   <span class="num2"><?= $ease_of_doing_business_ranking_arr[1] ?></span>
@@ -244,7 +270,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
             </div>
             <div class="foreign-direct-investments stat-row">
               <div class="inner-row">
-                <span class="stat-num overnumber">
+                <span class="stat-num ratio">
                   <span class="num1"><?= $world_corruption_ranking_arr[0] ?></span>
                   <i>/</i>
                   <span class="num2"><?= $world_corruption_ranking_arr[1] ?></span>
@@ -255,32 +281,22 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
           </div><!-- END .row -->
 
           <div class="row half-width-row">
-            <div class="inflation stat-row">
+            <div class="average-exchange-rate stat-row">
               <div class="inner-row">
-                <span class="stat-num overnumber">
-                  <span class="num1"><?= $ease_of_doing_business_ranking_arr[0] ?></span>
+                <span class="exchange-rate-comparison">
+                  <?= $average_exchange_rate ?>
                   <i>/</i>
-                  <span class="num2"><?= $ease_of_doing_business_ranking_arr[1] ?></span>
+                  $1 <span class="currency">USD</span>
                 </span>
-                <span class="stat-label" data-source="World Bank">Ease of Doing Business Ranking</span>
               </div>
             </div>
-            <div class="foreign-direct-investments stat-row">
-              <div class="inner-row">
-                <span class="stat-num overnumber">
-                  <span class="num1"><?= $world_corruption_ranking_arr[0] ?></span>
-                  <i>/</i>
-                  <span class="num2"><?= $world_corruption_ranking_arr[1] ?></span>
-                </span>
-                <span class="stat-label" data-source="Transparency International">World Corruption Ranking</span>
-              </div>
+            <div class="exchange-rate-details stat-row">
+              <span class="stat-label" data-source="CIA World Fact Book">2015 Average Exchange Rate</span>
+              <span class="stat-label" data-source="Transparency International">Currency: <?= $currency_description ?></span>
             </div>
           </div><!-- END .row -->
-
-          average_exchange_rate: <?= $average_exchange_rate ?><br>
-          currency_description: <?= $currency_description ?><br>
-        </div>
-      </div>
+        </div><!-- END .outlook-stats -->
+      </div><!-- END .grid-text-group -->
 
       <div class="grid-text-group">
         <h3 class="tab">Key Sectors</h3>
@@ -288,15 +304,49 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span>$1</span>', $average_e
           <h3>Key Sectors</h3>
           <?= apply_filters('the_content', $key_sectors_intro) ?>
         </div>
-        <div class="key-sector-stats">
-          gdp_percent_agriculture: <?= $gdp_percent_agriculture ?><br>
-          gdp_percent_service: <?= $gdp_percent_service ?><br>
-          gdp_percent_industry: <?= $gdp_percent_industry ?><br>
-          workforce_percent_agriculture: <?= $workforce_percent_agriculture ?><br>
-          workforce_percent_service: <?= $workforce_percent_service ?><br>
-          workforce_percent_industry: <?= $workforce_percent_industry ?><br>
-        </div>
-      </div>
+
+        <div class="row half-width-row key-sector-stats">
+          <div class="gdp-by-sector stat-row chart-row">
+            <div class="chart">
+              <div class="pie-label">GDP by Sector</div>
+              <div class="pie-chart ct-chart"></div>
+            </div>
+
+            <div class="inner-row">
+              <span class="stat-num ct-series-a"><?= $gdp_percent_agriculture ?>%</span>
+              <span class="stat-label">Agriculture</span>
+            </div>
+            <div class="inner-row">
+              <span class="stat-num ct-series-b"><?= $gdp_percent_service ?>%</span>
+              <span class="stat-label">Service</span>
+            </div>
+            <div class="inner-row">
+              <span class="stat-num ct-series-c"><?= $gdp_percent_industry ?>%</span>
+              <span class="stat-label">Industry</span>
+            </div>
+          </div>
+
+          <div class="workforce-by-sector stat-row chart-row">
+            <div class="chart">
+              <div class="pie-label">Workforce by Sector</div>
+              <div class="pie-chart ct-chart"></div>
+            </div>
+
+            <div class="inner-row">
+              <span class="stat-num ct-series-a"><?= $workforce_percent_agriculture ?>%</span>
+              <span class="stat-label">Agriculture</span>
+            </div>
+            <div class="inner-row">
+              <span class="stat-num ct-series-b"><?= $workforce_percent_service ?>%</span>
+              <span class="stat-label">Service</span>
+            </div>
+            <div class="inner-row">
+              <span class="stat-num ct-series-c"><?= $workforce_percent_industry ?>%</span>
+              <span class="stat-label">Industry</span>
+            </div>
+          </div>
+        </div><!-- END .row -->
+      </div><!-- END .grid-text-group -->
 
     </div><!-- END .body-inner -->
   </div><!-- END .grid-item-body -->

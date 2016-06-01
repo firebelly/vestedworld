@@ -19,7 +19,8 @@
     "fastclick": "~1.0.6",
     "jquery-validation": "^1.15.0",
     "boomsvgloader": "^0.0.2",
-    "swipebox": "^1.4.4"
+    "swipebox": "^1.4.4",
+    "chartist": "^0.9.7"
   },
   "overrides": {
     "modernizr": {
