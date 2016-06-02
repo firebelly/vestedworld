@@ -132,9 +132,9 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
             <div class="population-chart chart-row">
               <div class="inner-row">
                 <div class="chart">
-                  <div class="ct-chart ct-square donut-inner" data-label="/ 100M"></div>
-                  <div class="ct-chart ct-square donut-chart-stacked" data-total="100" data-value="<?= $projected_population ?>" data-class="ct-series-b"></div>
-                  <div class="ct-chart ct-square donut-chart-stacked" data-total="100" data-value="<?= $population ?>" data-class="ct-series-a"></div>
+                  <div class="ct-chart donut-inner" data-label="/ 100M"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $projected_population ?>" data-class="ct-series-b"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $population ?>" data-class="ct-series-a"></div>
                 </div>
                 <div class="chart-label">
                   <span class="stat-num ct-series-a"><?= $population ?>M</span>
@@ -217,10 +217,10 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
                   <div class="stat-label" data-source="World Bank">GDP Growth Chart Comparison</div>
                 </div>
                 <div class="chart">
-                  <div class="ct-chart ct-square donut-inner" data-label="/ 8%"></div>
-                  <div class="ct-chart ct-square donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth ?>" data-class="ct-series-a"></div>
-                  <div class="ct-chart ct-square donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_1 ?>" data-class="ct-series-b"></div>
-                  <div class="ct-chart ct-square donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_2 ?>" data-class="ct-series-c"></div>
+                  <div class="ct-chart donut-inner" data-label="/ 8%"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth ?>" data-class="ct-series-a"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_1 ?>" data-class="ct-series-b"></div>
+                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_2 ?>" data-class="ct-series-c"></div>
                 </div>
               </div>
             </div>
