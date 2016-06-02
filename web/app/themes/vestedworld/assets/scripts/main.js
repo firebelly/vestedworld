@@ -129,11 +129,22 @@ var VestedWorld = (function($) {
     });
 
     $('.donut-inner').each(function() {
+      var label = $(this).attr('data-label') || '';
       new Chartist.Pie(this, { series: [1] }, {
         donut: true,
         donutWidth: 1,
         chartPadding: 8,
-        showLabel: false
+        showLabel: true,
+        labelInterpolationFnc: function(value) {
+          return label;
+        }
+      }).on('draw', function(context){
+        if (context.type === 'label') {
+          context.element.attr({
+            dx: context.element.root().width() / 2,
+            dy: context.element.root().height() / 2
+          });
+        }
       });
     });
     $('.donut-chart').each(function() {

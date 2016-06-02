@@ -1,6 +1,14 @@
 .donut-inner .ct-series-a .ct-slice-donut {
   stroke: $gray;
 }
+.donut-inner .ct-label {
+  @include small-caps;
+  color: $gray-lite;
+  dominant-baseline: central;
+  text-anchor: middle;
+}
+
+
 .ct-series-a .ct-bar,
 .ct-series-a .ct-line,
 .ct-series-a .ct-point,
@@ -42,3 +50,4 @@
 .stat-num.ct-series-c {
   color: $gray;
 }
+
