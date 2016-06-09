@@ -15,18 +15,70 @@ body.single-country {
   }
 }
 
+// Keep charts from getting too large on small screens
+@include max-screen($breakpoint-md) {
+  .chart {
+    max-width: 60%;
+    margin: 0 auto;
+  }
+}
+
+a.source {
+  text-decoration: none;
+  color: $gray;
+}
+
+// General style for stat numbers
 .stat-num {
   color: $blue;
   display: block;
+  padding-right: 10px;
   @extend .h2;
   @extend %smooth;
   &.dark {
     color: $blue-dark;
   }
 }
+
+// Source list for stats in footer
+#sources-list {
+  margin-top: #{$vertical-beat * 12};
+  color: $gray-dark;
+  h3 {
+    @include small-caps;
+    color: $gray-dark;
+    margin-bottom: #{$vertical-beat * 2};
+  }
+  ul {
+    font: 11px/16px $sans;
+    &,li {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      span {
+        display: inline-block;
+        width: 30px;
+      }
+    }
+  }
+}
+
+// Flex rows inside .row
 .inner-row {
+  display: flex;
+  flex-flow: row wrap;
+  &.-persist {
+    flex-flow: row nowrap;
+    .chart {
+      flex: 0 1 33.333%;
+    }
+    .chart-labels {
+      flex: 0 1 66.666%;
+    }
+  }
   .chart {
-    flex: 0 1 33.333%;
+    flex: 0 1 100%;
     position: relative;
     .ct-chart {
       position: absolute;
@@ -39,7 +91,36 @@ body.single-country {
     }
   }
   .chart-labels {
-    flex: 0 1 66.666%;
+    flex: 0 1 100%;
+  }
+
+  @include media-md {
+    flex-flow: row wrap;
+  }
+}
+
+// Oft-used half width row
+.half-width-row {
+  .stat-row {
+    padding: #{$vertical-beat * 3} 0;
+    flex: 0 1 100%;
+    .stat-num {
+      flex: 0 1 50%;
+    }
+    .stat-label {
+      flex: 0 1 50%;
+      padding: 5px 10px 0 0;
+    }
+    &:nth-child(1) {
+      padding-left: 0;
+    }
+    @include media-md {
+      flex: 0 1 50%;
+      &:nth-child(2) {
+        border-left: 1px solid $gray-lite;
+        padding-left: $mobile-global-padding;
+      }
+    }
   }
 }
 
@@ -74,14 +155,17 @@ article.single.country {
       }
     }
   }
-  .timeline {
+  dl.timeline {
     display: flex;
     flex-flow: row wrap;
     border-bottom: 1px solid $gray-dark;
     padding-bottom: #{$vertical-beat * 2};
     dt {
       @extend .h2;
-      flex: 0 1 22%;
+      flex: 0 1 30%;
+      @include min-screen(1200px) {
+        flex: 0 1 22.2222%;
+      }
       color: $blue;
       @extend %smooth;
       border-right: 1px solid $blue;
@@ -122,8 +206,12 @@ article.single.country {
     }
     dd {
       margin: 0;
-      flex: 0 1 77%;
-      padding: 4px 0 #{$vertical-beat * 5} $global-padding;
+      padding: 4px 0 #{$vertical-beat * 5} $mobile-global-padding;
+      flex: 0 1 70%;
+      @include min-screen(1200px) {
+        flex: 0 1 77.7777%;
+        padding: 4px 0 #{$vertical-beat * 5} $global-padding;
+      }
     }
   }
   .grid-item-body {
@@ -140,8 +228,20 @@ article.single.country {
   // General stat styles
   .row {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     border-bottom: 1px solid $gray-lite;
+    &.-persist {
+      flex-flow: row nowrap;
+      .one-half {
+        flex-basis: 50%;
+      }
+    }
+    @include media-md {
+      flex-flow: row nowrap;
+      .one-half {
+        flex-basis: 50%;
+      }
+    }
   }
   .stat-label {
     display: block;
@@ -150,68 +250,88 @@ article.single.country {
   }
 
   // Country Overview
+  ///////////////////
   .country-overview-stats {
     border-top: 1px solid $gray-lite;
     border-bottom: 1px solid $gray-lite;
     margin: #{$vertical-beat * 2} 0;
   }
   .population-chart {
-    flex: 0 1 77.7%;
-    border-right: 1px solid $gray-lite;
     padding: #{$vertical-beat * 3} 0;
     .inner-row {
-      .chart {
-        flex: 0 1 28.57%;
+      justify-content: center;
+    }
+    .chart-labels {
+      align-self: center;
+      padding: 0 $mobile-global-padding;
+      flex: 0 1 71.42%;
+      .stat-num {
+        padding-right: 8px;
       }
-      .chart-labels {
-        align-self: center;
-        padding: 0 $mobile-global-padding;
-        flex: 0 1 71.42%;
-        .stat-num,
-        .stat-label {
-          float: left;
-          width: 50%;
-        }
-        .stat-num {
-          clear: left;
-        }
-        .row {
-          padding: $vertical-beat 0;
-          &:last-child {
-            border: none;
-          }
+      .row {
+        padding: $vertical-beat 0;
+        &:last-child {
+          border: none;
         }
       }
     }
-  }
+    @include media-md {
+      flex: 0 1 77.7777%;
+      border-right: 1px solid $gray-lite;
+      .chart-labels {
+        text-align: left;
+      }
+      .inner-row {
+        justify-content: flex-start;
+        .chart {
+          flex: 0 1 28.57%;
+        }
+      }
+    }
+  } // end .population-chart
   .median-age {
+    flex: 0 1 100%;
     padding: #{$vertical-beat * 6} $mobile-global-padding;
-    flex: 0 1 22.2%;
     align-self: center;
+    text-align: center;
+    border-top: 1px solid $gray-lite;
     .stat-num {
       margin-bottom: #{$vertical-beat * 1};
+    }
+    @include media-md {
+      border-top: none;
+      flex: 0 1 22.2%;
+      text-align: left;
     }
   }
   .poverty-chart,
   .workforce-chart {
-    padding: #{$vertical-beat * 3} $mobile-global-padding #{$vertical-beat * 3} 0;
-    flex: 0 1 50%;
     .chart-labels {
-      padding-left: $mobile-global-padding;
-      .stat-num {
-        margin-bottom: #{$vertical-beat * 1};
+      text-align: center;
+    }
+    @include media-md {
+      padding: #{$vertical-beat * 3} $mobile-global-padding #{$vertical-beat * 3} 0;
+      flex: 0 1 50%;
+      .chart-labels {
+        text-align: left;
+        padding-left: $mobile-global-padding;
+        .stat-num {
+          margin-bottom: #{$vertical-beat * 1};
+        }
       }
     }
   }
-  .poverty-chart {
-    border-right: 1px solid $gray-lite;
-  }
-  .workforce-chart {
-    padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 3} $mobile-global-padding;
+  @include media-md {
+    .poverty-chart {
+      border-right: 1px solid $gray-lite;
+    }
+    .workforce-chart {
+      padding: #{$vertical-beat * 3} 0 #{$vertical-beat * 3} $mobile-global-padding;
+    }
   }
   .income-level-classification {
     .stat-label {
-      flex: 0 1 33.33%;
+      flex: 0 1 100%;
     }
     ul,li {
       margin: 0;
@@ -222,71 +342,60 @@ article.single.country {
       border-bottom: none;
       li {
         @include small-caps;
+        flex: 0 1 100%;
+        display: block;
         line-height: 1.45;
-        flex: 0 1 16.67%;
-        padding: 0 8px;
+        padding: $vertical-beat 8px;
+        border-top: 1px solid $gray-lite;
         color: $gray-lite;
         align-self: center;
         text-align: center;
         position: relative;
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 50%;
-          width: 1px;
-          height: 30px;
-          margin-top: -15px;
-          background: $gray-lite;
-        }
         &.stat-label {
-          text-align: left;
+          border: none;
           color: $black;
-          &::before {
-            background: none;
-          }
         }
         &.active {
           color: $blue;
         }
       }
     }
-  } // .income-level-classification
 
-  // Economic Outlook
-  .outlook-stats {
-    border-top: 1px solid $gray-lite;
-    margin: #{$vertical-beat * 2} 0;
-  }
-  .inner-row {
-    display: flex;
-    flex-flow: row wrap;
-  }
-  .half-width-row {
-    .stat-row {
-      padding: #{$vertical-beat * 3} 0;
-      flex: 0 1 50%;
-      .stat-num {
-        flex: 0 1 44%;
-      }
+    @include media-md {
       .stat-label {
-        flex: 0 1 56%;
-        padding: 5px 10px 0 0;
+        flex: 0 1 33.33%;
       }
-      &:nth-child(1) {
-        padding-left: 0;
-      }
-      &:nth-child(2) {
-        border-left: 1px solid $gray-lite;
-        padding-left: $mobile-global-padding;
-        .stat-num {
-          flex: 0 1 55%;
-        }
-        .stat-label {
-          flex: 0 1 45%;
+      ul {
+        li {
+          flex: 0 1 16.67%;
+          border-top: none;
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 1px;
+            height: 30px;
+            margin-top: -15px;
+            background: $gray-lite;
+          }
+          &.stat-label {
+            text-align: left;
+            &::before {
+              background: none;
+            }
+          }
         }
       }
     }
+
+  } // .income-level-classification
+
+  // Economic Outlook
+  ///////////////////
+  .outlook-stats {
+    border-top: 1px solid $gray-lite;
+    margin: #{$vertical-beat * 2} 0;
   }
   .gdp-growth-chart,
   .gdp-growth-labels {
@@ -294,16 +403,29 @@ article.single.country {
     flex: 0 1 50%;
   }
   .gdp-growth-chart {
-    .inner-row {
-      .chart-labels,
-      .chart {
-        flex: 0 1 50%;
-        height: 140px;
+    .chart {
+      max-width: none;
+    }
+    > .inner-row {
+      padding-right: $mobile-global-padding;
+    }
+    @include media-md {
+      > .inner-row {
+        padding-right: $mobile-global-padding;
+      }
+      .inner-row {
+        .chart-labels,
+        .chart {
+          flex: 0 1 50%;
+          height: 140px;
+        }
       }
     }
   }
   .gdp-growth-labels {
-    padding-left: $mobile-global-padding;
+    @include media-md {
+      padding-left: $mobile-global-padding;
+    }
     .inner-row {
       border-bottom: 1px solid $gray-lite;
       padding: $vertical-beat 0;
@@ -315,12 +437,12 @@ article.single.country {
         padding-bottom: 0;
       }
     }
-    .stat-num {
-      flex: 0 1 55%;
-    }
     .stat-label {
       padding-top: 5px;
       flex: 0 1 45%;
+    }
+    .stat-num {
+      flex: 0 1 55%;
     }
   }
 
@@ -389,16 +511,26 @@ article.single.country {
   }
 
   // Key Sectors
+  //////////////
   .key-sector-stats {
     border-top: 1px solid $gray-lite;
     margin: #{$vertical-beat * 2} 0;
     .stat-row:nth-child(1) {
       padding-right: $mobile-global-padding;
+      border-bottom: 1px solid $gray-lite;
+      @include media-md {
+        border-bottom: none;
+      }
     }
     .chart {
       @include clearfix;
-      @include min-screen('1200px') {
+      .pie-label {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      @include min-screen(1200px) {
         .pie-label {
+          text-align: left;
           width: 44%;
           float: left;
         }
@@ -419,8 +551,5 @@ article.single.country {
         padding-bottom: 0;
       }
     }
-
   }
-
-
 } // article.single.country

@@ -63,6 +63,7 @@ var VestedWorld = (function($) {
     _initApplicationForms();
     _initStateHandling();
     _initFaqs();
+    _initCharts();
 
     // Esc handlers
     $(document).keyup(function(e) {
@@ -118,102 +119,6 @@ var VestedWorld = (function($) {
       if (!$(e.target).is('img')) {
         $('#swipebox-close').trigger('click');
       }
-    });
-
-    // Pie charts
-    $('.ct-chart.pie-chart').each(function() {
-      var numArr = $(this).closest('.chart-row').find('.stat-num').map(function() {
-          return parseInt($(this).text().replace('%',''));
-        }).get();
-      new Chartist.Pie(this, { series: numArr }, { showLabel: false });
-    });
-
-    $('.donut-inner').each(function() {
-      var label = $(this).attr('data-label') || '';
-      new Chartist.Pie(this, { series: [1] }, {
-        donut: true,
-        donutWidth: 1,
-        chartPadding: 8,
-        showLabel: true,
-        labelInterpolationFnc: function(value) {
-          return label;
-        }
-      }).on('draw', function(context){
-        if (context.type === 'label') {
-          context.element.attr({
-            dx: context.element.root().width() / 2,
-            dy: context.element.root().height() / 2
-          });
-        }
-      });
-    });
-    $('.donut-chart').each(function() {
-      var numArr = $(this).closest('.chart-row').find('.stat-num').map(function() {
-          return parseInt($(this).text().replace('%',''));
-        }).get();
-      var chart = new Chartist.Pie(this, { series: numArr }, {
-        donut: true,
-        donutWidth: 8,
-        showLabel: false,
-        total: $(this).attr('data-total')
-      });
-
-      chart.on('draw', function(data) {
-        if(data.type === 'slice') {
-          var pathLength = data.element._node.getTotalLength();
-          data.element.attr({
-            'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
-          });
-          var animationDefinition = {
-            'stroke-dashoffset': {
-              id: 'anim' + data.index,
-              dur: 2000,
-              from: -pathLength + 'px',
-              to:  '0px',
-              easing: Chartist.Svg.Easing.easeOutQuint,
-              // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
-              fill: 'freeze'
-            }
-          };
-          data.element.attr({
-            'stroke-dashoffset': -pathLength + 'px'
-          });
-          data.element.animate(animationDefinition, false);
-        }
-      });
-    });
-    $('.donut-chart-stacked').each(function() {
-      var chart = new Chartist.Pie(this, { series: [{ className: $(this).attr('data-class'), data: [$(this).attr('data-value')] }] }, {
-        donut: true,
-        donutWidth: 8,
-        showLabel: false,
-        total: $(this).attr('data-total')
-      });
-
-      chart.on('draw', function(data) {
-        if(data.type === 'slice') {
-          var pathLength = data.element._node.getTotalLength();
-          data.element.attr({
-            'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
-          });
-          var animationDefinition = {
-            'stroke-dashoffset': {
-              id: 'anim' + data.index,
-              dur: 2000,
-              from: -pathLength + 'px',
-              to:  '0px',
-              easing: Chartist.Svg.Easing.easeOutQuint,
-              // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
-              fill: 'freeze'
-            }
-          };
-          data.element.attr({
-            'stroke-dashoffset': -pathLength + 'px'
-          });
-          data.element.animate(animationDefinition, false);
-        }
-      });
-
     });
 
   } // end init()
@@ -1055,6 +960,85 @@ var VestedWorld = (function($) {
       // Set caption to next slide's img.title
       var caption = $(slick.$slides[nextSlide]).find('img').attr('title');
       slick.$caption.text(caption);
+    });
+  }
+
+  // Init Chartist Charts
+  function _initCharts() {
+    // Connect stats to sources list
+    $('#sources-list li').each(function() {
+      var src = $(this).find('a').text();
+      var marker = $(this).find('span').text();
+      console.log(src,marker);
+      $('*[data-source="' + src + '"]').each(function() {
+        console.log(this);
+        $('<a href="#sources-list" class="source smoothscroll" title="Source: ' + src + '">' + marker + '</a>').appendTo(this);
+      });
+    });
+
+    // Pie charts
+    $('.ct-chart.pie-chart').each(function() {
+      var numArr = $(this).closest('.chart-row').find('.stat-num').map(function() {
+          return parseInt($(this).text().replace('%',''));
+        }).get();
+      new Chartist.Pie(this, { series: numArr }, { showLabel: false });
+    });
+
+    // Donut chart inner circle + label
+    $('.donut-inner').each(function() {
+      var label = $(this).attr('data-label') || '';
+      new Chartist.Pie(this, { series: [1] }, {
+        donut: true,
+        donutWidth: 1,
+        chartPadding: 8,
+        showLabel: true,
+        labelInterpolationFnc: function(value) {
+          // Just return the data-label attribute for label
+          return label;
+        }
+      }).on('draw', function(context){
+        // Add centered label
+        if (context.type === 'label') {
+          context.element.attr({
+            dx: context.element.root().width() / 2,
+            dy: context.element.root().height() / 2
+          });
+        }
+      });
+    });
+
+    // Donut charts
+    $('.donut-chart').each(function() {
+      var delay = $(this).attr('data-delay') || 1;
+      var chart = new Chartist.Pie(this, { series: [{ className: $(this).attr('data-class') || 'ct-series-a', data: [$(this).attr('data-value')] }] }, {
+        donut: true,
+        donutWidth: 8,
+        showLabel: false,
+        total: $(this).attr('data-total')
+      });
+      chart.on('draw', function(data) {
+        if(data.type === 'slice') {
+          var pathLength = data.element._node.getTotalLength();
+          data.element.attr({
+            'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+          });
+          var animationDefinition = {
+            'stroke-dashoffset': {
+              id: 'anim' + data.index,
+              dur: 2000,
+              from: -pathLength + 'px',
+              to:  '0px',
+              begin: delay * 1000,
+              easing: Chartist.Svg.Easing.easeOutQuint,
+              fill: 'freeze'
+            }
+          };
+          data.element.attr({
+            'stroke-dashoffset': -pathLength + 'px'
+          });
+          data.element.animate(animationDefinition, false);
+        }
+      });
     });
   }
 

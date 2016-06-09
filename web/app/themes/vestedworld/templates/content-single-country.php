@@ -77,7 +77,7 @@ $ease_of_doing_business_ranking_arr = explode('/', $ease_of_doing_business_ranki
 $world_corruption_ranking_arr = explode('/', $world_corruption_ranking);
 
 // Wrap currency name in tag for styling (e.g. 99.73 KES -> 99.73 <span class="currency">KES</span>)
-$average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</span>', $average_exchange_rate);
+$average_exchange_rate = preg_replace('/ (.*)$/', '&nbsp;<span class="currency">$1</span>', $average_exchange_rate);
 ?>
 
 <article id="<?= $post->post_name ?>" class="grid-item-data single country" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
@@ -132,16 +132,16 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
               <div class="inner-row">
                 <div class="chart ct-square">
                   <div class="ct-chart donut-inner" data-label="/ 100M"></div>
-                  <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $projected_population ?>" data-class="ct-series-b"></div>
-                  <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $population ?>" data-class="ct-series-a"></div>
+                  <div class="ct-chart donut-chart" data-total="100" data-value="<?= $projected_population ?>" data-class="ct-series-a"></div>
+                  <div class="ct-chart donut-chart" data-total="100" data-value="<?= $population ?>" data-class="ct-series-b" data-delay="2"></div>
                 </div>
                 <div class="chart-labels">
-                  <div class="row">
-                    <span class="one-half stat-num ct-series-a"><?= $population ?>M</span>
+                  <div class="row -persist">
+                    <span class="one-half stat-num ct-series-b"><?= $population ?>M</span>
                     <span class="one-half stat-label" data-source="World Bank">Current<br> Population</span>
                   </div>
-                  <div class="row">
-                    <span class="one-half stat-num ct-series-b"><?= $projected_population ?>M</span>
+                  <div class="row -persist">
+                    <span class="one-half stat-num ct-series-a"><?= $projected_population ?>M</span>
                     <span class="one-half stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</span>
                   </div>
                 </div>
@@ -152,12 +152,12 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
               <span class="stat-label" data-source="CIA World Fact Book">Median<br> Age</span>
             </div>
           </div><!-- END .row -->
-          <div class="row">
-            <div class="poverty-chart chart-row">
+          <div class="row half-width-row">
+            <div class="poverty-chart stat-row chart-row">
               <div class="inner-row">
                 <div class="chart ct-square">
                   <div class="ct-chart donut-inner"></div>
-                  <div class="ct-chart donut-chart" data-total="100"></div>
+                  <div class="ct-chart donut-chart" data-total="100" data-value="<?= $poverty ?>" data-class="ct-series-a"></div>
                 </div>
                 <div class="chart-labels">
                   <span class="stat-num"><?= $poverty ?>%</span>
@@ -165,11 +165,11 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
                 </div>
               </div>
             </div>
-            <div class="workforce-chart chart-row">
+            <div class="workforce-chart stat-row chart-row">
               <div class="inner-row">
                 <div class="chart ct-square">
                   <div class="ct-chart donut-inner"></div>
-                  <div class="ct-chart donut-chart" data-total="100"></div>
+                  <div class="ct-chart donut-chart" data-total="100" data-value="<?= $workforce_participation ?>" data-class="ct-series-a"></div>
                 </div>
                 <div class="chart-labels">
                   <span class="stat-num"><?= $workforce_participation ?>%</span>
@@ -198,7 +198,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
           <?= apply_filters('the_content', $economic_outlook_intro) ?>
         </div>
         <div class="outlook-stats">
-          <div class="row half-width-row">
+          <div class="row half-width-row -persist">
             <div class="gross-gdp stat-row">
               <div class="inner-row">
                 <span class="stat-num">$<?= $gross_gdp ?>B</span>
@@ -221,14 +221,14 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
                 </div>
                 <div class="chart ct-square">
                   <div class="ct-chart donut-inner" data-label="/ 8%"></div>
-                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth ?>" data-class="ct-series-a"></div>
-                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_1 ?>" data-class="ct-series-b"></div>
-                  <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_2 ?>" data-class="ct-series-c"></div>
+                  <div class="ct-chart donut-chart" data-total="8" data-value="<?= $gdp_growth ?>" data-class="ct-series-a"></div>
+                  <div class="ct-chart donut-chart" data-total="8" data-value="<?= $gdp_growth_comparison_1 ?>" data-class="ct-series-b" data-delay="2"></div>
+                  <div class="ct-chart donut-chart" data-total="8" data-value="<?= $gdp_growth_comparison_2 ?>" data-class="ct-series-c" data-delay="3"></div>
                 </div>
               </div>
             </div>
             <div class="gdp-growth-labels">
-              <div class="inner-row">
+              <div class="inner-row stat-row">
                 <span class="stat-num ct-series-a"><?= $gdp_growth ?>%</span>
                 <span class="stat-label"><?= $post->post_title ?></span>
               </div>
@@ -245,8 +245,8 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
             </div>
           </div><!-- END .row -->
 
-          <div class="row half-width-row">
-            <div class="inflation stat-row">
+          <div class="row half-width-row -persist">
+            <div class="inflation stat-row -persist">
               <div class="inner-row">
                 <span class="stat-num"><?= $inflation ?>%</span>
                 <span class="stat-label" data-source="CIA World Fact Book">Inflation</span>
@@ -260,7 +260,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
             </div>
           </div><!-- END .row -->
 
-          <div class="row half-width-row">
+          <div class="row half-width-row -persist">
             <div class="inflation stat-row">
               <div class="inner-row">
                 <span class="stat-num ratio">
@@ -283,24 +283,22 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
             </div>
           </div><!-- END .row -->
 
-          <div class="row half-width-row">
+          <div class="row half-width-row -persist">
             <div class="average-exchange-rate stat-row">
               <div class="inner-row">
                 <span class="exchange-rate-comparison">
                   <?= $average_exchange_rate ?>
-                  <i>/</i>
-                  $1 <span class="currency">USD</span>
+                  <i>/</i> $1&nbsp;<span class="currency">USD</span>
                 </span>
               </div>
             </div>
             <div class="exchange-rate-details stat-row">
-              <span class="stat-label" data-source="CIA World Fact Book">2015 Average Exchange Rate</span>
+              <span class="stat-label" data-source="Currencylayer API">Current Average Exchange Rate</span>
               <span class="stat-label" data-source="Transparency International">Currency: <?= $currency_description ?></span>
             </div>
           </div><!-- END .row -->
         </div><!-- END .outlook-stats -->
       </div><!-- END .grid-text-group -->
-
       <div class="grid-text-group">
         <h3 class="tab">Key Sectors</h3>
         <div class="user-content">
@@ -349,6 +347,17 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
             </div>
           </div>
         </div><!-- END .row -->
+
+        <div id="sources-list">
+          <h3>Sources</h3>
+          <ul>
+            <li><span>*</span> <a target="_blank" href="http://data.worldbank.org/">World Bank</a></li>
+            <li><span>**</span> <a target="_blank" href="https://www.cia.gov/library/publications/the-world-factbook">CIA World Fact Book</a></li>
+            <li><span>^</span> <a target="_blank" href="http://www.prb.org/">Population Reference Bureau</a></li>
+            <li><span>^^</span> <a target="_blank" href="https://www.transparency.org/country/">Transparency International</a></li>
+          </ul>
+        </div>
+
       </div><!-- END .grid-text-group -->
 
     </div><!-- END .body-inner -->
