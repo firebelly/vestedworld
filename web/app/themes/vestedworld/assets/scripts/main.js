@@ -969,9 +969,7 @@ var VestedWorld = (function($) {
     $('#sources-list li').each(function() {
       var src = $(this).find('a').text();
       var marker = $(this).find('span').text();
-      console.log(src,marker);
       $('*[data-source="' + src + '"]').each(function() {
-        console.log(this);
         $('<a href="#sources-list" class="source smoothscroll" title="Source: ' + src + '">' + marker + '</a>').appendTo(this);
       });
     });

@@ -64,19 +64,34 @@ a.source {
   }
 }
 
+// General stat styles
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  border-bottom: 1px solid $gray-lite;
+  &.-persist {
+    flex-flow: row nowrap;
+    .one-half {
+      flex-basis: 50%;
+    }
+  }
+  @include media-md {
+    flex-flow: row nowrap;
+    .one-half {
+      flex-basis: 50%;
+    }
+  }
+}
+.stat-label {
+  display: block;
+  @include small-caps;
+  line-height: 1.45;
+}
+
 // Flex rows inside .row
 .inner-row {
   display: flex;
   flex-flow: row wrap;
-  &.-persist {
-    flex-flow: row nowrap;
-    .chart {
-      flex: 0 1 33.333%;
-    }
-    .chart-labels {
-      flex: 0 1 66.666%;
-    }
-  }
   .chart {
     flex: 0 1 100%;
     position: relative;
@@ -94,8 +109,25 @@ a.source {
     flex: 0 1 100%;
   }
 
+  &.-persist {
+    flex-flow: row nowrap;
+    .chart {
+      flex: 0 1 33.333%;
+    }
+    .chart-labels {
+      flex: 0 1 66.666%;
+    }
+  }
   @include media-md {
-    flex-flow: row wrap;
+    &:not(.wrap) {
+      flex-flow: row nowrap;
+    }
+    .chart {
+      flex: 0 1 33.333%;
+    }
+    .chart-labels {
+      flex: 0 1 66.666%;
+    }
   }
 }
 
@@ -225,30 +257,6 @@ article.single.country {
     }
   }
 
-  // General stat styles
-  .row {
-    display: flex;
-    flex-flow: row wrap;
-    border-bottom: 1px solid $gray-lite;
-    &.-persist {
-      flex-flow: row nowrap;
-      .one-half {
-        flex-basis: 50%;
-      }
-    }
-    @include media-md {
-      flex-flow: row nowrap;
-      .one-half {
-        flex-basis: 50%;
-      }
-    }
-  }
-  .stat-label {
-    display: block;
-    @include small-caps;
-    line-height: 1.45;
-  }
-
   // Country Overview
   ///////////////////
   .country-overview-stats {
@@ -264,7 +272,6 @@ article.single.country {
     .chart-labels {
       align-self: center;
       padding: 0 $mobile-global-padding;
-      flex: 0 1 71.42%;
       .stat-num {
         padding-right: 8px;
       }
@@ -279,6 +286,7 @@ article.single.country {
       flex: 0 1 77.7777%;
       border-right: 1px solid $gray-lite;
       .chart-labels {
+        // flex: 0 1 71.42%;
         text-align: left;
       }
       .inner-row {

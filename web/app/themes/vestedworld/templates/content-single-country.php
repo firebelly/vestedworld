@@ -253,7 +253,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', '&nbsp;<span class="currency">
               </div>
             </div>
             <div class="foreign-direct-investments stat-row">
-              <div class="inner-row">
+              <div class="inner-row wrap">
                 <span class="stat-num">$<?= $foreign_direct_investments ?>M</span>
                 <span class="stat-label" data-source="World Bank">Foreign Direct<br> Investments</span>
               </div>
@@ -262,7 +262,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', '&nbsp;<span class="currency">
 
           <div class="row half-width-row -persist">
             <div class="inflation stat-row">
-              <div class="inner-row">
+              <div class="inner-row wrap">
                 <span class="stat-num ratio">
                   <span class="num1"><?= $ease_of_doing_business_ranking_arr[0] ?></span>
                   <i>/</i>
@@ -272,7 +272,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', '&nbsp;<span class="currency">
               </div>
             </div>
             <div class="foreign-direct-investments stat-row">
-              <div class="inner-row">
+              <div class="inner-row wrap">
                 <span class="stat-num ratio">
                   <span class="num1"><?= $world_corruption_ranking_arr[0] ?></span>
                   <i>/</i>
