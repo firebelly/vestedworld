@@ -78,7 +78,6 @@ $world_corruption_ranking_arr = explode('/', $world_corruption_ranking);
 
 // Wrap currency name in tag for styling (e.g. 99.73 KES -> 99.73 <span class="currency">KES</span>)
 $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</span>', $average_exchange_rate);
-
 ?>
 
 <article id="<?= $post->post_name ?>" class="grid-item-data single country" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
@@ -131,28 +130,32 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
           <div class="row">
             <div class="population-chart chart-row">
               <div class="inner-row">
-                <div class="chart">
+                <div class="chart ct-square">
                   <div class="ct-chart donut-inner" data-label="/ 100M"></div>
                   <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $projected_population ?>" data-class="ct-series-b"></div>
                   <div class="ct-chart donut-chart-stacked" data-total="100" data-value="<?= $population ?>" data-class="ct-series-a"></div>
                 </div>
-                <div class="chart-label">
-                  <span class="stat-num ct-series-a"><?= $population ?>M</span>
-                  <span class="stat-label" data-source="World Bank">Current Population</span>
-                  <span class="stat-num ct-series-b"><?= $projected_population ?>M</span>
-                  <span class="stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</span>
+                <div class="chart-labels">
+                  <div class="row">
+                    <span class="one-half stat-num ct-series-a"><?= $population ?>M</span>
+                    <span class="one-half stat-label" data-source="World Bank">Current<br> Population</span>
+                  </div>
+                  <div class="row">
+                    <span class="one-half stat-num ct-series-b"><?= $projected_population ?>M</span>
+                    <span class="one-half stat-label" data-source="Population Reference Bureau">Projected Population Growth by 2050</span>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="median-age">
               <span class="stat-num"><?= $median_age ?></span>
-              <span class="stat-label" data-source="CIA World Fact Book">Median Age</span>
+              <span class="stat-label" data-source="CIA World Fact Book">Median<br> Age</span>
             </div>
           </div><!-- END .row -->
           <div class="row">
             <div class="poverty-chart chart-row">
               <div class="inner-row">
-                <div class="chart">
+                <div class="chart ct-square">
                   <div class="ct-chart donut-inner"></div>
                   <div class="ct-chart donut-chart" data-total="100"></div>
                 </div>
@@ -164,13 +167,13 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
             </div>
             <div class="workforce-chart chart-row">
               <div class="inner-row">
-                <div class="chart">
+                <div class="chart ct-square">
                   <div class="ct-chart donut-inner"></div>
                   <div class="ct-chart donut-chart" data-total="100"></div>
                 </div>
                 <div class="chart-labels">
                   <span class="stat-num"><?= $workforce_participation ?>%</span>
-                  <span class="stat-label" data-source="World Bank">Workforce Participation</span>
+                  <span class="stat-label" data-source="World Bank">Workforce<br> Participation</span>
                 </div>
               </div>
             </div>
@@ -216,7 +219,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', ' <span class="currency">$1</s
                 <div class="chart-labels">
                   <div class="stat-label" data-source="World Bank">GDP Growth Chart Comparison</div>
                 </div>
-                <div class="chart">
+                <div class="chart ct-square">
                   <div class="ct-chart donut-inner" data-label="/ 8%"></div>
                   <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth ?>" data-class="ct-series-a"></div>
                   <div class="ct-chart donut-chart-stacked" data-total="8" data-value="<?= $gdp_growth_comparison_1 ?>" data-class="ct-series-b"></div>

@@ -19,6 +19,7 @@ body.single-country {
   color: $blue;
   display: block;
   @extend .h2;
+  @extend %smooth;
   &.dark {
     color: $blue-dark;
   }
@@ -82,6 +83,7 @@ article.single.country {
       @extend .h2;
       flex: 0 1 22%;
       color: $blue;
+      @extend %smooth;
       border-right: 1px solid $blue;
       position: relative;
       clear: left;
@@ -156,11 +158,36 @@ article.single.country {
   .population-chart {
     flex: 0 1 77.7%;
     border-right: 1px solid $gray-lite;
-    padding: #{$vertical-beat * 6} 0;
+    padding: #{$vertical-beat * 3} 0;
+    .inner-row {
+      .chart {
+        flex: 0 1 28.57%;
+      }
+      .chart-labels {
+        align-self: center;
+        padding: 0 $mobile-global-padding;
+        flex: 0 1 71.42%;
+        .stat-num,
+        .stat-label {
+          float: left;
+          width: 50%;
+        }
+        .stat-num {
+          clear: left;
+        }
+        .row {
+          padding: $vertical-beat 0;
+          &:last-child {
+            border: none;
+          }
+        }
+      }
+    }
   }
   .median-age {
     padding: #{$vertical-beat * 6} $mobile-global-padding;
     flex: 0 1 22.2%;
+    align-self: center;
     .stat-num {
       margin-bottom: #{$vertical-beat * 1};
     }
@@ -169,6 +196,12 @@ article.single.country {
   .workforce-chart {
     padding: #{$vertical-beat * 3} $mobile-global-padding #{$vertical-beat * 3} 0;
     flex: 0 1 50%;
+    .chart-labels {
+      padding-left: $mobile-global-padding;
+      .stat-num {
+        margin-bottom: #{$vertical-beat * 1};
+      }
+    }
   }
   .poverty-chart {
     border-right: 1px solid $gray-lite;
@@ -178,7 +211,7 @@ article.single.country {
   }
   .income-level-classification {
     .stat-label {
-      flex: 0 1 33.3%;
+      flex: 0 1 33.33%;
     }
     ul,li {
       margin: 0;
@@ -191,6 +224,7 @@ article.single.country {
         @include small-caps;
         line-height: 1.45;
         flex: 0 1 16.67%;
+        padding: 0 8px;
         color: $gray-lite;
         align-self: center;
         text-align: center;
