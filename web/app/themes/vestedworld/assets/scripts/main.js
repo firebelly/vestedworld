@@ -797,11 +797,11 @@ var VestedWorld = (function($) {
     $(window).load(function() {
       if (window.location.hash && $(window.location.hash).length) {
         var url = $(window.location.hash).attr('data-page-url');
+        var parent_url = $(window.location.hash).attr('data-parent-url');
         History.replaceState({ignore_change: true}, null, '##');
-        original_url = root_url + 'community/';
+        original_url = root_url + parent_url.replace(/^\//,'');
         History.replaceState({}, document.title, original_url);
         setTimeout(function() { History.pushState({}, '', url); }, 250);
-
       }
     });
 
