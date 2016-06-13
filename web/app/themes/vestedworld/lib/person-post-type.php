@@ -197,18 +197,6 @@ function get_people($options=[]) {
   return $output;
 }
 
-function get_parent_url($post) {
-  $type = get_post_meta($post->ID, '_cmb2_member_type', true);
-  if ($type) {
-    if (preg_match('/(management)|(board)/i', $type)) {
-      return '/about-us/';
-    } else {
-      return '/community/';
-    }
-  }
-  return '';
-}
-
 // Redirect people posts to proper landing page
 function single_person_redirect() {
   if (is_single()) {

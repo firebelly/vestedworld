@@ -7,7 +7,7 @@ $quote = get_post_meta($post->ID, '_cmb2_quote', true);
 $callout = get_post_meta($post->ID, '_cmb2_callout', true);
 $image_is_logo = get_post_meta($post->ID, '_cmb2_image_is_logo', true) ? 'image-is-logo' : '';
 $body = apply_filters('the_content', $post->post_content);
-$parent_url = \Firebelly\PostTypes\Person\get_parent_url($post);
+$parent_url = \Firebelly\Utils\get_parent_url($post);
 ?>
 
 <article id="<?= $post->post_name ?>" class="grid-item-data <?= $image_is_logo ?> <?= $member_type ?>" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>" data-parent-url="<?= $parent_url  ?>">

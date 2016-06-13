@@ -107,7 +107,10 @@ function get_page_blocks($post) {
   return $output;
 }
 
-
+/**
+ * Shortcode to get query var (or default)
+ * [querystring param="foo" default="bar"]
+ */
 function get_query_string( $atts ) {
   extract(shortcode_atts(array(
        'param' => '',
@@ -123,3 +126,29 @@ function get_query_string( $atts ) {
   }
 }
 add_shortcode( 'querystring', __NAMESPACE__ .'\get_query_string' );
+
+/**
+ * Get Parent URL for a Post
+ */
+function get_parent_url($post) {
+  $parent_url = '/';
+
+  if ($post->post_type == 'company') {
+    $parent_url = '/portfolio/';
+  } elseif ($post->post_type == 'country') {
+    $parent_url = '/resources/country-profiles/';
+  } elseif ($post->post_type == 'industry') {
+    $parent_url = '/resources/industry-profiles/';
+  } elseif ($post->post_type == 'person') {
+    $type = get_post_meta($post->ID, '_cmb2_member_type', true);
+    if ($type) {
+      if (preg_match('/(management)|(board)/i', $type)) {
+        $parent_url = '/about-us/';
+      } else {
+        $parent_url = '/community/';
+      }
+    }
+  }
+
+  return $parent_url;
+}
