@@ -20,7 +20,8 @@
     "jquery-validation": "^1.15.0",
     "boomsvgloader": "^0.0.2",
     "swipebox": "^1.4.4",
-    "chartist": "^0.9.7"
+    "chartist": "^0.9.7",
+    "waypoints": "^4.0.0"
   },
   "overrides": {
     "modernizr": {
