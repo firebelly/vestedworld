@@ -1,20 +1,5 @@
 // Countries Page
 
-// Single Country
-body.single-country {
-  // todo: consolidate these for all single pages...
-
-  // Faux overlay styling
-  .site-wrap {
-    background: rgba($overlay-color,.9);
-    padding: #{$vertical-beat * 8} 0;
-  }
-  // We don't want position: absolute
-  .active-grid-item-container {
-    position: relative;
-  }
-}
-
 // Keep charts from getting too large on small screens
 @include max-screen($breakpoint-md) {
   .chart {
@@ -88,23 +73,24 @@ a.source {
   line-height: 1.45;
 }
 
+.chart {
+  position: relative;
+  .ct-chart {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 // Flex rows inside .row
 .inner-row {
   display: flex;
   flex-flow: row wrap;
-  .chart {
-    flex: 0 1 100%;
-    position: relative;
-    .ct-chart {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
+  .chart,
   .chart-labels {
     flex: 0 1 100%;
   }
@@ -156,7 +142,69 @@ a.source {
   }
 }
 
-// Single country styles
+// Shared Timeline styles
+dl.timeline {
+  display: flex;
+  flex-flow: row wrap;
+  border-bottom: 1px solid $gray-dark;
+  padding-bottom: #{$vertical-beat * 2};
+  dt {
+    @extend .h2;
+    flex: 0 1 30%;
+    @include min-screen(1200px) {
+      flex: 0 1 22.2222%;
+    }
+    color: $blue;
+    @extend %smooth;
+    border-right: 1px solid $blue;
+    position: relative;
+    clear: left;
+    min-height: 70px;
+    padding-bottom: #{$vertical-beat * 5};
+    &:last-of-type::before,
+    &:first-of-type::before {
+      display: block;
+      position: absolute;
+      content: '';
+      height: 20px;
+      width: 20px;
+      background: $gray-lite;
+      top: 0;
+      right: -10px;
+    }
+    &:last-of-type {
+      padding: 0;
+      &::before {
+        top: 20px;
+        height: calc(100% - 20px);
+      }
+    }
+    &::after {
+      display: block;
+      content: '';
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      background: $gray-lite;
+      top: 15px;
+      right: -4px;
+      border: 1px solid $blue;
+      border-radius: 50%;
+    }
+  }
+  dd {
+    margin: 0;
+    padding: 4px 0 #{$vertical-beat * 5} $mobile-global-padding;
+    flex: 0 1 70%;
+    @include min-screen(1200px) {
+      flex: 0 1 77.7777%;
+      padding: 4px 0 #{$vertical-beat * 5} $global-padding;
+    }
+  }
+}
+
+// Shared single country + industry styles
+article.single.industry,
 article.single.country {
   .section-title {
     color: $blue;
@@ -187,65 +235,7 @@ article.single.country {
       }
     }
   }
-  dl.timeline {
-    display: flex;
-    flex-flow: row wrap;
-    border-bottom: 1px solid $gray-dark;
-    padding-bottom: #{$vertical-beat * 2};
-    dt {
-      @extend .h2;
-      flex: 0 1 30%;
-      @include min-screen(1200px) {
-        flex: 0 1 22.2222%;
-      }
-      color: $blue;
-      @extend %smooth;
-      border-right: 1px solid $blue;
-      position: relative;
-      clear: left;
-      min-height: 70px;
-      padding-bottom: #{$vertical-beat * 5};
-      &:last-of-type::before,
-      &:first-of-type::before {
-        display: block;
-        position: absolute;
-        content: '';
-        height: 20px;
-        width: 20px;
-        background: $gray-lite;
-        top: 0;
-        right: -10px;
-      }
-      &:last-of-type {
-        padding: 0;
-        &::before {
-          top: 20px;
-          height: calc(100% - 20px);
-        }
-      }
-      &::after {
-        display: block;
-        content: '';
-        width: 8px;
-        height: 8px;
-        position: absolute;
-        background: $gray-lite;
-        top: 15px;
-        right: -4px;
-        border: 1px solid $blue;
-        border-radius: 50%;
-      }
-    }
-    dd {
-      margin: 0;
-      padding: 4px 0 #{$vertical-beat * 5} $mobile-global-padding;
-      flex: 0 1 70%;
-      @include min-screen(1200px) {
-        flex: 0 1 77.7777%;
-        padding: 4px 0 #{$vertical-beat * 5} $global-padding;
-      }
-    }
-  }
+
   .grid-item-body {
     padding: 0;
   }
@@ -256,6 +246,10 @@ article.single.country {
       padding: #{$vertical-beat * 5} $global-padding;
     }
   }
+}
+
+// Single country styles
+article.single.country {
 
   // Country Overview
   ///////////////////
@@ -286,7 +280,6 @@ article.single.country {
       flex: 0 1 77.7777%;
       border-right: 1px solid $gray-lite;
       .chart-labels {
-        // flex: 0 1 71.42%;
         text-align: left;
       }
       .inner-row {

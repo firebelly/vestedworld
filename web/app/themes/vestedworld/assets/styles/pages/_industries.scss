@@ -1,0 +1,67 @@
+// Industries Page
+
+// Single industry styles
+article.single.industry {
+
+  // Industries have smaller timeline titles
+  dl.timeline dt {
+    font: 16px/24px $sans;
+    letter-spacing: .2em;
+  }
+
+  table.industry-stats {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: #{$vertical-beat * 14};
+
+    .row {
+      border: none;
+    }
+    .stat-row {
+      .stat-label,
+      .stat-num {
+        flex: 0 1 50%;
+      }
+    }
+    .chart-row {
+      height: 75px;
+      .chart {
+        flex: 0 1 25%;
+      }
+      .chart-labels {
+        flex: 0 1 75%;
+        padding-left: 25%;
+      }
+      .stat-num {
+        padding-bottom: #{$vertical-beat * 1};
+      }
+    }
+
+    &,
+    thead {
+      border-bottom: 1px solid $gray-lite;
+    }
+    th {
+      width: 50%;
+      @extend .h3;
+      text-align: left;
+      vertical-align: top;
+      color: $blue;
+      padding-bottom: #{$vertical-beat * 3};
+    }
+    td {
+      padding: #{$vertical-beat * 3} $mobile-global-padding #{$vertical-beat * 3} 0;
+    }
+    td + td,
+    th + th {
+      padding-right: 0;
+      padding-left: $mobile-global-padding;
+      border-left: 1px solid $gray-lite;
+    }
+    tr + tr {
+      border-top: 1px solid $gray-lite;
+    }
+  }
+
+} // article.single.industry

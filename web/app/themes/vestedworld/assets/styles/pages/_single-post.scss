@@ -1,5 +1,18 @@
 // Single Posts
 
+body.single-country,
+body.single-industry {
+  // Faux overlay styling
+  .site-wrap {
+    background: rgba($overlay-color,.9);
+    padding: #{$vertical-beat * 8} 0;
+  }
+  // We don't want position: absolute
+  .active-grid-item-container {
+    position: relative;
+  }
+}
+
 .single-post {
 
   article {
