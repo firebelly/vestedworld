@@ -2,16 +2,16 @@
   animation: bake-donut 1s ease-in-out forwards;
 }
 .ct-chart.inview .bake-donut {
-  animation-delay: 1s;
+  animation-delay: .5s;
 }
 .ct-chart.inview[data-delay="2"] .bake-donut {
-  animation-delay: 2s;
+  animation-delay: 1.5s;
 }
 .ct-chart.inview[data-delay="3"] .bake-donut {
-  animation-delay: 3s;
+  animation-delay: 2.5s;
 }
 .ct-chart.inview[data-delay="4"] .bake-donut {
-  animation-delay: 4s;
+  animation-delay: 3.5s;
 }
 
 @keyframes bake-donut {
