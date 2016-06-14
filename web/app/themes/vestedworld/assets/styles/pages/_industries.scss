@@ -28,6 +28,7 @@ article.single.industry {
   // Industries have smaller timeline titles
   dl.timeline dt {
     font: 16px/24px $sans;
+    text-transform: uppercase;
     letter-spacing: .2em;
   }
 

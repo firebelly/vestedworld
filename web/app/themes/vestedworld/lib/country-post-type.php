@@ -228,7 +228,7 @@ function metaboxes( array $meta_boxes ) {
         'name' => 'GDP Growth Comparison 1 Label',
         'desc' => 'e.g. Sub-Saharan Africa',
         'id'   => $prefix . 'gdp_growth_comparison_1_label',
-        'type' => 'text_small',
+        'type' => 'text',
       ),
       array(
         'name' => 'GDP Growth Comparison 2 Percentage',
