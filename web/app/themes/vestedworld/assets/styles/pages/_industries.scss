@@ -3,17 +3,39 @@
 // Single industry styles
 article.single.industry {
 
+  // Breathing room for content area
+  .body-inner {
+    padding-bottom: 140px;
+  }
+  .grid-text-group {
+    .user-content {
+      padding-bottom: #{$vertical-beat * 3};
+      border-bottom: 1px solid $gray-lite;
+    }
+    &:first-child {
+      .user-content {
+        border-bottom: none;
+      }
+    }
+  }
+
+  // .grid-item-body {
+  //   .tab {
+  //     display: inline-block;
+  //   }
+  // }
+
   // Industries have smaller timeline titles
   dl.timeline dt {
     font: 16px/24px $sans;
     letter-spacing: .2em;
   }
 
+  // Table o' stats
   table.industry-stats {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: #{$vertical-beat * 14};
 
     .row {
       border: none;
@@ -24,17 +46,28 @@ article.single.industry {
         flex: 0 1 50%;
       }
     }
-    .chart-row {
-      height: 75px;
-      .chart {
-        flex: 0 1 25%;
-      }
-      .chart-labels {
-        flex: 0 1 75%;
-        padding-left: 25%;
-      }
-      .stat-num {
-        padding-bottom: #{$vertical-beat * 1};
+    .chart {
+      max-width: none;
+      flex: 0 1 100%;
+    }
+    .chart-labels {
+      padding-top: 24px;
+      flex: 0 1 100%;
+    }
+    @include media-md {
+      .chart-row {
+        height: 75px;
+        .chart {
+          flex: 0 1 25%;
+        }
+        .chart-labels {
+          padding-top: 0;
+          flex: 0 1 75%;
+          padding-left: 25%;
+        }
+        .stat-num {
+          padding-bottom: #{$vertical-beat * 1};
+        }
       }
     }
 

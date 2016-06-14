@@ -150,9 +150,15 @@ function metaboxes( array $meta_boxes ) {
     'show_names'    => true,
     'fields'        => array(
       array(
-        'name' => 'Total Current Size (Sub-Saharan Africa)',
+        'name' => 'Regional Label',
+        'desc' => 'e.g. Sub-Saharan Africa; Latin America; Developing World',
+        'id'   => $prefix . 'regional_label',
+        'type' => 'text_medium',
+      ),
+      array(
+        'name' => 'Total Current Size (Region)',
         'desc' => 'e.g. 313B',
-        'id'   => $prefix . 'total_current_size_africa',
+        'id'   => $prefix . 'total_current_size_region',
         'type' => 'text_small',
       ),
       array(
@@ -162,9 +168,9 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
-        'name' => 'Expected Size by 2030 (Africa)',
+        'name' => 'Expected Size by 2030 (Region)',
         'desc' => 'e.g. 1T',
-        'id'   => $prefix . 'expected_size_africa',
+        'id'   => $prefix . 'expected_size_region',
         'type' => 'text_small',
       ),
       array(
@@ -173,9 +179,9 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
-        'name' => 'Percentage of GDP (Africa)',
+        'name' => 'Percentage of GDP (Region)',
         'desc' => 'e.g. 32',
-        'id'   => $prefix . 'percentage_gdp_africa',
+        'id'   => $prefix . 'percentage_gdp_region',
         'type' => 'text_small',
       ),
       array(
@@ -184,8 +190,8 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
-        'name' => 'Percentage of Workforce (Africa)',
-        'id'   => $prefix . 'percentage_workforce_africa',
+        'name' => 'Percentage of Workforce (Region)',
+        'id'   => $prefix . 'percentage_workforce_region',
         'type' => 'text_small',
       ),
       array(
@@ -194,8 +200,8 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
-        'name' => 'Percentage of Consumer Spending (Africa)',
-        'id'   => $prefix . 'percentage_consumer_spending_africa',
+        'name' => 'Percentage of Consumer Spending (Region)',
+        'id'   => $prefix . 'percentage_consumer_spending_region',
         'type' => 'text_small',
       ),
       array(

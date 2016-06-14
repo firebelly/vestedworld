@@ -8,34 +8,35 @@ $news_links = get_post_meta($post->ID, '_cmb2_news_links', true);
 $video_links_parsed = get_post_meta($post->ID, '_cmb2_video_links_parsed', true);
 $image_slideshow = get_post_meta($post->ID, '_cmb2_image_slideshow', true);
 
-$total_current_size_africa = get_post_meta($post->ID, '_cmb2_total_current_size_africa', true);
+$regional_label = get_post_meta($post->ID, '_cmb2_regional_label', true);
+$total_current_size_region = get_post_meta($post->ID, '_cmb2_total_current_size_region', true);
 $total_current_size_world = get_post_meta($post->ID, '_cmb2_total_current_size_world', true);
-$expected_size_africa = get_post_meta($post->ID, '_cmb2_expected_size_africa', true);
+$expected_size_region = get_post_meta($post->ID, '_cmb2_expected_size_region', true);
 $expected_size_world = get_post_meta($post->ID, '_cmb2_expected_size_world', true);
-$percentage_gdp_africa = get_post_meta($post->ID, '_cmb2_percentage_gdp_africa', true);
+$percentage_gdp_region = get_post_meta($post->ID, '_cmb2_percentage_gdp_region', true);
 $percentage_gdp_world = get_post_meta($post->ID, '_cmb2_percentage_gdp_world', true);
-$percentage_workforce_africa = get_post_meta($post->ID, '_cmb2_percentage_workforce_africa', true);
+$percentage_workforce_region = get_post_meta($post->ID, '_cmb2_percentage_workforce_region', true);
 $percentage_workforce_world = get_post_meta($post->ID, '_cmb2_percentage_workforce_world', true);
-$percentage_consumer_spending_africa = get_post_meta($post->ID, '_cmb2_percentage_consumer_spending_africa', true);
+$percentage_consumer_spending_region = get_post_meta($post->ID, '_cmb2_percentage_consumer_spending_region', true);
 $percentage_consumer_spending_world = get_post_meta($post->ID, '_cmb2_percentage_consumer_spending_world', true);
 
-$subsectors = get_post_meta($post->ID, '_cmb2_subsectors', true);
-$global_leaders = get_post_meta($post->ID, '_cmb2_global_leaders', true);
-$trends = get_post_meta($post->ID, '_cmb2_trends', true);
-$risks_challenges = get_post_meta($post->ID, '_cmb2_risks_challenges', true);
-$future_outlook = get_post_meta($post->ID, '_cmb2_future_outlook', true);
+$subsectors = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_subsectors', true));
+$global_leaders = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_global_leaders', true));
+$trends = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_trends', true));
+$risks_challenges = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_risks_challenges', true));
+$future_outlook = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_future_outlook', true));
 
 // Clean up numeric fields, removing $ and any other random characters
 foreach ([
-    'total_current_size_africa',
+    'total_current_size_region',
     'total_current_size_world',
-    'expected_size_africa',
+    'expected_size_region',
     'expected_size_world',
-    'percentage_gdp_africa',
+    'percentage_gdp_region',
     'percentage_gdp_world',
-    'percentage_workforce_africa',
+    'percentage_workforce_region',
     'percentage_workforce_world',
-    'percentage_consumer_spending_africa',
+    'percentage_consumer_spending_region',
     'percentage_consumer_spending_world',
   ] as $clean_me) {
   // Remove any chars not a digit, comma, period, or slash
@@ -53,7 +54,7 @@ foreach ([
         </div>
       </div>
 
-      <div class="grid-item-text intro-text">
+      <div class="grid-item-text intro-text user-content">
         <?= $body ?>
       </div>
 
@@ -95,10 +96,10 @@ foreach ([
         <h3 class="tab">Statistics</h3>
         <div class="user-content">
 
-          <table class="industry-stats" summary="Statistics for industry <?= $post->post_title ?> in Sub-Saharan Africa vs. the world">
+          <table class="industry-stats" summary="Statistics for industry <?= $post->post_title ?> in <?= $regional_label ?> vs. the world">
             <thead>
               <tr>
-                <th scope="col">Sub-Saharan Africa:</th>
+                <th scope="col"><?= $regional_label ?>:</th>
                 <th scope="col">World:</th>
               </tr>
             </thead>
@@ -106,7 +107,7 @@ foreach ([
               <tr>
                 <td>
                   <div class="row stat-row">
-                    <span class="stat-num">$<?= $total_current_size_africa ?></span>
+                    <span class="stat-num">$<?= $total_current_size_region ?></span>
                     <span class="stat-label">Total Current Size ($)</span>
                   </div>
                 </td>
@@ -121,7 +122,7 @@ foreach ([
               <tr>
                 <td>
                   <div class="row stat-row">
-                    <span class="stat-num"><?= !empty($expected_size_africa) ? '$'.$expected_size_africa : '–' ?></span>
+                    <span class="stat-num"><?= !empty($expected_size_region) ? '$'.$expected_size_region : '–' ?></span>
                     <span class="stat-label">Expected Size by 2030 ($)</span>
                   </div>
                 </td>
@@ -138,10 +139,10 @@ foreach ([
                   <div class="row chart-row">
                     <div class="chart ct-square">
                       <div class="ct-chart donut-inner"></div>
-                      <div class="ct-chart donut-chart" data-total="100" data-value="<?= $percentage_gdp_africa ?>" data-class="ct-series-a"></div>
+                      <div class="ct-chart donut-chart" data-total="100" data-value="<?= $percentage_gdp_region ?>" data-class="ct-series-a"></div>
                     </div>
                     <div class="chart-labels">
-                      <span class="stat-num"><?= $percentage_gdp_africa ?>%</span>
+                      <span class="stat-num"><?= $percentage_gdp_region ?>%</span>
                       <span class="stat-label">of GDP</span>
                     </div>
                   </div>
@@ -167,10 +168,10 @@ foreach ([
                   <div class="row chart-row">
                     <div class="chart ct-square">
                       <div class="ct-chart donut-inner"></div>
-                      <div class="ct-chart donut-chart" data-total="100" data-value="<?= $percentage_workforce_africa ?>" data-class="ct-series-a"></div>
+                      <div class="ct-chart donut-chart" data-total="100" data-value="<?= $percentage_workforce_region ?>" data-class="ct-series-a"></div>
                     </div>
                     <div class="chart-labels">
-                      <span class="stat-num"><?= $percentage_workforce_africa ?>%</span>
+                      <span class="stat-num"><?= $percentage_workforce_region ?>%</span>
                       <span class="stat-label">of Workforce</span>
                     </div>
                   </div>
@@ -196,12 +197,12 @@ foreach ([
                   <div class="row chart-row">
                     <div class="chart ct-square">
                       <div class="ct-chart donut-inner"></div>
-                      <?php if (!empty($percentage_consumer_spending_africa)): ?>
-                        <div class="ct-chart donut-chart" data-total="100" data-value="<?= $percentage_consumer_spending_africa ?>" data-class="ct-series-a"></div>
+                      <?php if (!empty($percentage_consumer_spending_region)): ?>
+                        <div class="ct-chart donut-chart" data-total="100" data-value="<?= $percentage_consumer_spending_region ?>" data-class="ct-series-a"></div>
                       <?php endif ?>
                     </div>
                     <div class="chart-labels">
-                      <span class="stat-num"><?= !empty($percentage_consumer_spending_africa) ? $percentage_consumer_spending_africa.'%' : '–' ?></span>
+                      <span class="stat-num"><?= !empty($percentage_consumer_spending_region) ? $percentage_consumer_spending_region.'%' : '–' ?></span>
                       <span class="stat-label">of Total Consumer Spending</span>
                     </div>
                   </div>
@@ -227,42 +228,37 @@ foreach ([
       </div><!-- END .grid-text-group -->
 
       <div class="grid-text-group">
-        <h3 class="tab">Statistics</h3>
+        <h3 class="tab">Subsectors</h3>
         <div class="user-content">
-          <h2>Foo</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <?= $subsectors ?>
         </div>
       </div>
 
       <div class="grid-text-group">
         <h3 class="tab">Global Leaders</h3>
         <div class="user-content">
-          <h2>Foo</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <?= $global_leaders ?>
         </div>
       </div>
 
       <div class="grid-text-group">
         <h3 class="tab">Trends</h3>
         <div class="user-content">
-          <h2>Foo</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <?= $trends ?>
         </div>
       </div>
 
       <div class="grid-text-group">
         <h3 class="tab">Risks &amp; Challenges</h3>
         <div class="user-content">
-          <h2>Foo</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <?= $risks_challenges ?>
         </div>
       </div>
 
       <div class="grid-text-group">
         <h3 class="tab">Future Outlook</h3>
         <div class="user-content">
-          <h2>Foo</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <?= $future_outlook ?>
         </div>
       </div>
 
