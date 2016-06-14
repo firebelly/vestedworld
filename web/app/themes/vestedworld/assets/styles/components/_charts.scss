@@ -1,0 +1,80 @@
+// General Chart styles
+
+.ct-chart.inview .bake-donut {
+  animation: bake-donut 1s ease-out forwards;
+}
+.ct-chart.inview .bake-donut {
+  animation-delay: .5s;
+}
+.ct-chart.inview .bake-donut.delay-2,
+.ct-chart.inview[data-delay="2"] .bake-donut {
+  animation-delay: 1.5s;
+}
+.ct-chart.inview .bake-donut.delay-3,
+.ct-chart.inview[data-delay="3"] .bake-donut {
+  animation-delay: 2.5s;
+}
+.ct-chart.inview .bake-donut.delay-4,
+.ct-chart.inview[data-delay="4"] .bake-donut {
+  animation-delay: 3.5s;
+}
+
+@keyframes bake-donut {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.donut-inner .ct-series-a .ct-slice-donut {
+  stroke: $gray;
+}
+.donut-inner .ct-label {
+  @include small-caps;
+  color: $gray-lite;
+  dominant-baseline: central;
+  text-anchor: middle;
+}
+
+
+.ct-series-a .ct-bar,
+.ct-series-a .ct-line,
+.ct-series-a .ct-point,
+.ct-series-a .ct-slice-donut {
+  stroke: $blue;
+}
+.ct-series-a .ct-area,
+.ct-series-a .ct-slice-pie {
+  fill: $blue;
+}
+.stat-num.ct-series-a {
+  color: $blue;
+}
+
+.ct-series-b .ct-bar,
+.ct-series-b .ct-line,
+.ct-series-b .ct-point,
+.ct-series-b .ct-slice-donut {
+  stroke: $blue-dark;
+}
+.ct-series-b .ct-area,
+.ct-series-b .ct-slice-pie {
+  fill: $blue-dark;
+}
+.stat-num.ct-series-b {
+  color: $blue-dark;
+}
+
+.ct-series-c .ct-bar,
+.ct-series-c .ct-line,
+.ct-series-c .ct-point,
+.ct-series-c .ct-slice-donut {
+  stroke: $gray;
+}
+.ct-series-c .ct-area,
+.ct-series-c .ct-slice-pie {
+  fill: $gray;
+}
+.stat-num.ct-series-c {
+  color: $gray;
+}
+

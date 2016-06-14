@@ -6,6 +6,14 @@
 namespace Firebelly\PostTypes\Country;
 use Firebelly\Utils;
 
+function get_income_levels() {
+  return [
+    'low'           => 'Low',
+    'lower_middle'  => 'Lower Middle',
+    'higher_middle' => 'Higher Middle',
+    'high'          => 'High',
+  ];
+}
 
 /**
  * Register Custom Post Type
@@ -140,6 +148,12 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
+        'name' => 'Projected Population by 2050',
+        'desc' => 'in millions, e.g. 80.1',
+        'id'   => $prefix . 'projected_population',
+        'type' => 'text_small',
+      ),
+      array(
         'name' => 'Median Age',
         'id'   => $prefix . 'median_age',
         'type' => 'text_small',
@@ -151,6 +165,12 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
+        'name' => 'Poverty Label',
+        'desc' => 'e.g. Poverty (2012)',
+        'id'   => $prefix . 'poverty_label',
+        'type' => 'text',
+      ),
+      array(
         'name' => 'Workforce Participation',
         'desc' => 'percentage, e.g. 67.4',
         'id'   => $prefix . 'workforce_participation',
@@ -160,12 +180,7 @@ function metaboxes( array $meta_boxes ) {
         'name' => 'Income Level Classification',
         'id'   => $prefix . 'income_level_classification',
         'type' => 'radio_inline',
-        'options' => array(
-            'low' => 'Low',
-            'lower_middle'   => 'Lower Middle',
-            'higher_middle'   => 'Higher Middle',
-            'high'   => 'High',
-        ),
+        'options' => get_income_levels()
       ),
     ),
   );
@@ -198,6 +213,36 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
+        'name' => 'GDP Growth Percentage',
+        'desc' => 'e.g. 5.4',
+        'id'   => $prefix . 'gdp_growth',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 1 Percentage',
+        'desc' => 'e.g. 3.4 (used for chart on single Country pages)',
+        'id'   => $prefix . 'gdp_growth_comparison_1',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 1 Label',
+        'desc' => 'e.g. Sub-Saharan Africa',
+        'id'   => $prefix . 'gdp_growth_comparison_1_label',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 2 Percentage',
+        'desc' => 'e.g. 2.4',
+        'id'   => $prefix . 'gdp_growth_comparison_2',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'GDP Growth Comparison 2 Label',
+        'desc' => 'e.g. World',
+        'id'   => $prefix . 'gdp_growth_comparison_2_label',
+        'type' => 'text_small',
+      ),
+      array(
         'name' => 'Inflation',
         'desc' => 'percentage, e.g. 6.4',
         'id'   => $prefix . 'inflation',
@@ -223,7 +268,7 @@ function metaboxes( array $meta_boxes ) {
       ),
       array(
         'name' => 'Average Exchange Rate for previous year',
-        'desc' => 'e.g. 99.73',
+        'desc' => 'e.g. 99.73 KES',
         'id'   => $prefix . 'average_exchange_rate',
         'type' => 'text_small',
       ),
@@ -288,8 +333,6 @@ function metaboxes( array $meta_boxes ) {
   return $meta_boxes;
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
-
-
 
 
 /**

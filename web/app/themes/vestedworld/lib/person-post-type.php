@@ -202,16 +202,11 @@ function single_person_redirect() {
   if (is_single()) {
     global $post;
 
-    $post_id = $post->ID;
-    if (!empty($post_id) && $post->post_type == 'person') {
-      $type = get_post_meta($post_id, '_cmb2_member_type', true);
-      if ($type) {
-        if (preg_match('/(management)|(board)/i', $type)) {
-          wp_redirect('/about-us/#'.$post->post_name, 301);
-        } else {
-          wp_redirect('/community/#'.$post->post_name, 301);
-          exit();
-        }
+    if (!empty($post->ID) && $post->post_type == 'person') {
+      $parent_url = get_parent_url($post);
+      if ($parent_url) {
+        wp_redirect($parent_url . '#' . $post->post_name, 301);
+        exit();
       }
     }
   }

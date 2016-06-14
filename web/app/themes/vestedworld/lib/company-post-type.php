@@ -136,7 +136,6 @@ function metaboxes( array $meta_boxes ) {
       ),
       array(
         'name' => 'Image Slideshow',
-        // 'desc' => 'List of related Vimeo video URLs (e.g. https://vimeo.com/106786952 — one per line)',
         'id'   => $prefix . 'image_slideshow',
         'type' => 'file_list',
       ),
@@ -187,6 +186,7 @@ function parse_video_links($post_id, $post, $update) {
   }
 }
 add_action('save_post_company', __NAMESPACE__ . '\\parse_video_links', 10, 3);
+add_action('save_post_industry', __NAMESPACE__ . '\\parse_video_links', 10, 3);
 
 
 /**
