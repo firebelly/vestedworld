@@ -974,12 +974,47 @@ var VestedWorld = (function($) {
       });
     });
 
+    $('.ct-chart').each(function() {
+      var $this = $(this);
+      var inview = new Waypoint.Inview({
+        element: $this[0],
+        entered: function(direction) {
+          $this.addClass('inview');
+        },
+        exited: function(direction) {
+          $this.removeClass('inview');
+        }
+      });
+    });
+
     // Pie charts
     $('.pie-chart .ct-chart').each(function() {
       var numArr = $(this).closest('.chart-row').find('.stat-num').map(function() {
           return parseInt($(this).text().replace('%',''));
         }).get();
-      var chart = new Chartist.Pie(this, { series: numArr }, { showLabel: false });
+      var $this = $(this);
+      var chart = new Chartist.Pie(this, { series: numArr }, {
+        showLabel: false,
+        donut: true,
+        donutWidth: '100%'
+      });
+      // Index for staggered delay
+      var i = 0;
+      chart.on('draw', function(data) {
+        i++;
+        if(data.type === 'slice') {
+          // Prepare donut for baking
+          data.element.addClass('bake-donut');
+          data.element.addClass('delay-'+i);
+
+          // Set stroke attributes for animating
+          var pathLength = data.element._node.getTotalLength();
+          data.element.attr({
+            'stroke-dasharray': pathLength + 'px ' + pathLength + 'px',
+            'stroke-dashoffset': -pathLength + 'px'
+          });
+        }
+      });
     });
 
     // Donut chart inner circle + label
@@ -1020,17 +1055,6 @@ var VestedWorld = (function($) {
         if (data.type === 'slice') {
           // Prepare donut for baking
           data.element.addClass('bake-donut');
-
-          // Add waypoint to trigger animation when element enters viewport
-          var inview = new Waypoint.Inview({
-            element: $this[0],
-            entered: function(direction) {
-              $this.addClass('inview');
-            },
-            exited: function(direction) {
-              $this.removeClass('inview');
-            }
-          })
 
           // Set stroke attributes for animating
           var pathLength = data.element._node.getTotalLength();

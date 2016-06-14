@@ -4,12 +4,15 @@
 .ct-chart.inview .bake-donut {
   animation-delay: .5s;
 }
+.ct-chart.inview .bake-donut.delay-2,
 .ct-chart.inview[data-delay="2"] .bake-donut {
   animation-delay: 1.5s;
 }
+.ct-chart.inview .bake-donut.delay-3,
 .ct-chart.inview[data-delay="3"] .bake-donut {
   animation-delay: 2.5s;
 }
+.ct-chart.inview .bake-donut.delay-4,
 .ct-chart.inview[data-delay="4"] .bake-donut {
   animation-delay: 3.5s;
 }
