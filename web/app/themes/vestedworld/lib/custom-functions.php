@@ -152,3 +152,44 @@ function get_parent_url($post) {
 
   return $parent_url;
 }
+
+/**
+ * Spit out video slideshow
+ */
+function video_slideshow($video_links_parsed) {
+  $output = '';
+  if ($video_links_parsed) {
+    $output .= '<div class="videos slider-mini">';
+    $video_lines = explode(PHP_EOL, trim($video_links_parsed));
+    foreach ($video_lines as $line) {
+      list($vimeo_url,$img_url,$title) = explode('¶', $line);
+      $output .= '<div class="slide-item"><a class="lightbox" href="'.$vimeo_url.'" title="'.$title.'"><img src="'.$img_url.'" title="'.$title.'"><span>Watch Video</span></a></div class="slide-item">';
+    }
+    $output .= '</div>';
+  }
+  return $output;
+}
+
+/**
+ * Spit out image slideshow
+ */
+function image_slideshow($image_slideshow) {
+  $output = '';
+  if ($image_slideshow) {
+    $output .= '<div class="images slider-mini">';
+    foreach ((array)$image_slideshow as $attachment_id => $attachment_url) {
+      $medium = wp_get_attachment_image_src($attachment_id, 'grid-thumb');
+      if ($medium) {
+        $title = get_post_field('post_excerpt', $attachment_id);
+        $large = wp_get_attachment_image_src($attachment_id, 'large');
+        if ($large):
+          $output .= '<div class="slide-item"><a class="lightbox" rel="gallery" href="'.$large[0].'" title="'.$title.'"><img src="'.$medium[0].'" title="'.$title.'"></a></div>';
+        else:
+          $output .= '<div class="slide-item"><img src="'.$medium[0].'" title="'.$caption.'"></div>';
+        endif;
+      }
+    }
+    $output .= '</div>';
+  }
+  return $output;
+}

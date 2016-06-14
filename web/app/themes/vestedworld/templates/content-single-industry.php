@@ -6,8 +6,8 @@ $body = apply_filters('the_content', $post->post_content);
 $timeline = get_post_meta($post->ID, '_cmb2_timeline', true);
 $news_links = get_post_meta($post->ID, '_cmb2_news_links', true);
 $video_links_parsed = get_post_meta($post->ID, '_cmb2_video_links_parsed', true);
-
 $image_slideshow = get_post_meta($post->ID, '_cmb2_image_slideshow', true);
+
 $total_current_size_africa = get_post_meta($post->ID, '_cmb2_total_current_size_africa', true);
 $total_current_size_world = get_post_meta($post->ID, '_cmb2_total_current_size_world', true);
 $expected_size_africa = get_post_meta($post->ID, '_cmb2_expected_size_africa', true);
@@ -67,6 +67,14 @@ foreach ([
           <?php endforeach; ?>
         </dl>
       </div><!-- END .grid-item-text -->
+      <?php endif; ?>
+
+      <?php if (!empty($image_slideshow) || !empty($video_links_parsed)): ?>
+      <div class="grid-item-text">
+        <h3 class="tab">Multimedia</h3>
+        <?= \Firebelly\Utils\video_slideshow($video_links_parsed) ?>
+        <?= \Firebelly\Utils\image_slideshow($image_slideshow) ?>
+      </div>
       <?php endif; ?>
 
       <?php if ($news_links): ?>
