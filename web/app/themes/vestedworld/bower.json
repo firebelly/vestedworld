@@ -32,8 +32,14 @@
     },
     "slick-carousel": {
       "main": [
-        "slick/slick.min.js",
-        "slick/slick.css"
+        "./slick/slick.min.js",
+        "./slick/slick.css"
+      ]
+    },
+    "waypoints": {
+      "main": [
+        "./lib/jquery.waypoints.js",
+        "./lib/shortcuts/inview.js"
       ]
     }
   }

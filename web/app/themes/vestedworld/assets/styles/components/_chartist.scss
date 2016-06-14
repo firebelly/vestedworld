@@ -1,3 +1,25 @@
+.ct-chart.inview .bake-donut {
+  animation: bake-donut 1s ease-in-out forwards;
+}
+.ct-chart.inview .bake-donut {
+  animation-delay: 1s;
+}
+.ct-chart.inview[data-delay="2"] .bake-donut {
+  animation-delay: 2s;
+}
+.ct-chart.inview[data-delay="3"] .bake-donut {
+  animation-delay: 3s;
+}
+.ct-chart.inview[data-delay="4"] .bake-donut {
+  animation-delay: 4s;
+}
+
+@keyframes bake-donut {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .donut-inner .ct-series-a .ct-slice-donut {
   stroke: $gray;
 }

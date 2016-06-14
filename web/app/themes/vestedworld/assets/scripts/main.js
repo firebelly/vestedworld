@@ -975,11 +975,11 @@ var VestedWorld = (function($) {
     });
 
     // Pie charts
-    $('.ct-chart.pie-chart').each(function() {
+    $('.pie-chart .ct-chart').each(function() {
       var numArr = $(this).closest('.chart-row').find('.stat-num').map(function() {
           return parseInt($(this).text().replace('%',''));
         }).get();
-      new Chartist.Pie(this, { series: numArr }, { showLabel: false });
+      var chart = new Chartist.Pie(this, { series: numArr }, { showLabel: false });
     });
 
     // Donut chart inner circle + label
@@ -1008,33 +1008,36 @@ var VestedWorld = (function($) {
     // Donut charts
     $('.donut-chart').each(function() {
       var delay = $(this).attr('data-delay') || 1;
+      var $this = $(this);
       var chart = new Chartist.Pie(this, { series: [{ className: $(this).attr('data-class') || 'ct-series-a', data: [$(this).attr('data-value')] }] }, {
         donut: true,
         donutWidth: 8,
         showLabel: false,
         total: $(this).attr('data-total')
       });
+
       chart.on('draw', function(data) {
-        if(data.type === 'slice') {
+        if (data.type === 'slice') {
+          // Prepare donut for baking
+          data.element.addClass('bake-donut');
+
+          // Add waypoint to trigger animation when element enters viewport
+          var inview = new Waypoint.Inview({
+            element: $this[0],
+            entered: function(direction) {
+              $this.addClass('inview');
+            },
+            exited: function(direction) {
+              $this.removeClass('inview');
+            }
+          })
+
+          // Set stroke attributes for animating
           var pathLength = data.element._node.getTotalLength();
           data.element.attr({
-            'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
-          });
-          var animationDefinition = {
-            'stroke-dashoffset': {
-              id: 'anim' + data.index,
-              dur: 2000,
-              from: -pathLength + 'px',
-              to:  '0px',
-              begin: delay * 1000,
-              easing: Chartist.Svg.Easing.easeOutQuint,
-              fill: 'freeze'
-            }
-          };
-          data.element.attr({
+            'stroke-dasharray': pathLength + 'px ' + pathLength + 'px',
             'stroke-dashoffset': -pathLength + 'px'
           });
-          data.element.animate(animationDefinition, false);
         }
       });
     });
