@@ -309,7 +309,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', '&nbsp;<span class="currency">
         <div class="row half-width-row key-sector-stats">
           <div class="gdp-by-sector stat-row chart-row">
             <div class="chart">
-              <div class="pie-label">GDP by Sector</div>
+              <div class="pie-label">GDP<br> by Sector</div>
               <div class="pie-chart ct-square"><div class="ct-chart"></div></div>
             </div>
 

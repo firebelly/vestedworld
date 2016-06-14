@@ -974,6 +974,7 @@ var VestedWorld = (function($) {
       });
     });
 
+    // Trigger chart animations when they come in view
     $('.ct-chart').each(function() {
       var $this = $(this);
       var inview = new Waypoint.Inview({
