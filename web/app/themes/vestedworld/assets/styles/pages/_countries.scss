@@ -54,12 +54,6 @@ a.source {
   display: flex;
   flex-flow: row wrap;
   border-bottom: 1px solid $gray-lite;
-  &.-persist {
-    flex-flow: row nowrap;
-    .one-half {
-      flex-basis: 50%;
-    }
-  }
   @include media-md {
     flex-flow: row nowrap;
     .one-half {
@@ -67,6 +61,15 @@ a.source {
     }
   }
 }
+@include min-screen('400px') {
+  .row.-persist {
+    flex-flow: row nowrap;
+    .one-half {
+      flex-basis: 50%;
+    }
+  }
+}
+
 .stat-label {
   display: block;
   @include small-caps;
@@ -260,12 +263,13 @@ article.single.country {
   }
   .population-chart {
     padding: #{$vertical-beat * 3} 0;
+    flex: 0 1 100%;
     .inner-row {
       justify-content: center;
     }
     .chart-labels {
       align-self: center;
-      padding: 0 $mobile-global-padding;
+      padding: #{$vertical-beat * 2} $mobile-global-padding 0;
       .stat-num {
         padding-right: 8px;
       }
@@ -440,10 +444,10 @@ article.single.country {
     }
     .stat-label {
       padding-top: 5px;
-      flex: 0 1 45%;
+      flex: 0 1 50%;
     }
     .stat-num {
-      flex: 0 1 55%;
+      flex: 0 1 50%;
     }
   }
 
