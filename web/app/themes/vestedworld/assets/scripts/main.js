@@ -138,7 +138,7 @@ var VestedWorld = (function($) {
         return;
       }
 
-      if (State.url !== original_url && relative_url.match(/^\/(company|person|\d{0,4})\//)) {
+      if (State.url !== original_url && relative_url.match(/^\/(company|country|industry|person|\d{0,4})\//)) {
 
         // Standard post modals
         if (page_cache[encodeURIComponent(State.url)]) {
@@ -866,6 +866,9 @@ var VestedWorld = (function($) {
       $activeDataContainer.find('.slider-mini img:first').imagesLoaded(function(i) {
         _initSliders();
       });
+
+      // Init charts if any on page
+      _initCharts();
 
     }
   }

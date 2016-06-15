@@ -285,15 +285,13 @@ function get_industries() {
   if (!$industry_posts) return false;
 
   $output = '<ul class="grid-items industries-grid">';
-
+  ob_start();
   foreach ( $industry_posts as $post ):
-    $output .= '<li class="grid-item industry">';
-    ob_start();
+    echo '<li class="grid-item industry">';
     include(locate_template('templates/article-industry.php'));
-    $output .= ob_get_clean();
-    $output .= '</li>';
+    echo '</li>';
   endforeach;
-
+  $output .= ob_get_clean();
   $output .= '</ul>';
 
   return $output;

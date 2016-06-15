@@ -350,16 +350,14 @@ function get_countries() {
   $country_posts = get_posts($args);
   if (!$country_posts) return false;
 
-  $output = '<ul class="countries-grid">';
-
+  $output = '<ul class="grid-items countries-grid">';
+  ob_start();
   foreach ( $country_posts as $post ):
-    $output .= '<li class="country">';
-    ob_start();
+    echo '<li class="grid-item country">';
     include(locate_template('templates/article-country.php'));
-    $output .= ob_get_clean();
-    $output .= '</li>';
+    echo '</li>';
   endforeach;
-
+  $output .= ob_get_clean();
   $output .= '</ul>';
 
   return $output;
