@@ -313,6 +313,8 @@
       @include small-caps();
       font-size: 16px;
     }
+    ul,
+    ol,
     p {
       margin-top: 0;
       margin-bottom: #{$vertical-beat * 3};
