@@ -203,7 +203,7 @@ function single_person_redirect() {
     global $post;
 
     if (!empty($post->ID) && $post->post_type == 'person') {
-      $parent_url = get_parent_url($post);
+      $parent_url = \Firebelly\Utils\get_parent_url($post);
       if ($parent_url) {
         wp_redirect($parent_url . '#' . $post->post_name, 301);
         exit();
