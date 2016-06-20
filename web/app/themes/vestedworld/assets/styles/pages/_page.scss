@@ -71,9 +71,9 @@
     z-index: 1;
     position: relative;
     background: $white;
-    padding: 48px $mobile-global-padding 96px;
+    padding: #{$vertical-beat * 6} $mobile-global-padding #{$vertical-beat * 3};
     @include media-md {
-      padding: 48px $global-padding 96px;
+      padding: #{$vertical-beat * 6} $global-padding #{$vertical-beat * 12};
       &::before {
         left: 0;
         height: 1px;
@@ -93,6 +93,38 @@
     }
     p {
       @extend .h2;
+    }
+  }
+
+  // Intros with flush-right header images
+  .content.header-image {
+    padding: 0;
+    .summary {
+      padding: #{$vertical-beat * 3} $mobile-global-padding;
+      p {
+        font: 16px/24px $sans;
+        text-transform: uppercase;
+        letter-spacing: .15em;
+      }
+    }
+    .header-image-wrap {
+      background-size: cover;
+      background-position: center center;
+      padding-bottom: 56.8181818%;
+    }
+
+    @include media-md {
+      .summary {
+        padding: 48px $global-padding 96px;
+      }
+      .header-image-wrap {
+        position: absolute;
+        padding: 0;
+        top: 0;
+        left: 52.17%;
+        right: 0;
+        bottom: 0;
+      }
     }
   }
 
@@ -133,6 +165,7 @@
   }
 
   .content {
+    position: relative;
     color: $white;
     background: $brand-primary;
     &::before {

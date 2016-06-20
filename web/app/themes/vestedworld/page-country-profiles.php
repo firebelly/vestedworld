@@ -8,15 +8,12 @@ $featured_image = \Firebelly\Media\get_post_thumbnail($post->ID, 'large');
 ?>
 
 <article id="<?= $name ?>" class="page-section intro-section page-nav-section">
-  <div class="content">
+  <div class="content header-image">
     <h1 class="section-title page-nav-title">Country Profiles</h1>
+    <div class="header-image-wrap" style="background-image: url('<?= $featured_image ?>')"></div>
     <div class="summary">
       <h2><?= $headline ?></h2>
       <?= !empty($summary) ? '<p>'.$summary.'</p>' : ''; ?>
-    </div>
-    <div class="body user-content">
-      <!-- todo: style image -->
-      <img src="<?= $featured_image ?>">
     </div>
   </div>
 </article>
