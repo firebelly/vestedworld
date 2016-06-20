@@ -187,7 +187,8 @@ HTML;
 remove_action('manage_pages_custom_column', 'add_postratings_column_content');
 remove_filter('manage_pages_columns', 'add_postratings_column');
 remove_filter('manage_edit-page_sortable_columns', 'sort_postratings_column');
+
 // Remove WP-Ratings columns for posts
-emove_action('manage_posts_custom_column', 'add_postratings_column_content');
+remove_action('manage_posts_custom_column', 'add_postratings_column_content');
 remove_filter('manage_posts_columns', 'add_postratings_column');
 remove_filter('manage_edit-post_sortable_columns', 'sort_postratings_column');
