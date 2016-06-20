@@ -22,9 +22,9 @@ $firebelly_includes = [
   'lib/fb_init.php',                   // FB theme setups
   'lib/fb_assets.php',                 // FB assets
   'lib/fb_metatags.php',               // FB metatags / ogtags
+  'lib/fb_utils.php',                  // Rando utility functions and miscellany
   'lib/media.php',                     // FB media
   'lib/ajax.php',                      // AJAX functions
-  'lib/custom-functions.php',          // Rando utility functions and miscellany
   'lib/cmb2-custom-fields.php',        // Custom CMB2
   'lib/person-post-type.php',          // People
   'lib/faq-post-type.php',             // FAQs
