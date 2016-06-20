@@ -55,10 +55,7 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
 
     <!-- featured -->
     <section class="featured">
-      <h3 class="tab -white">Our Team</h3>
-      <div class="slider">
-        <?= \Firebelly\Featured\get_featured(); ?>
-      </div>
+      <?= \Firebelly\Featured\get_featured(); ?>
     </section>
 
   </div>

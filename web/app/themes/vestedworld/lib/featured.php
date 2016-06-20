@@ -1,9 +1,10 @@
 <?php
 
-
 namespace Firebelly\Featured;
 
-// Custom CMB2 fields for post type
+/**
+ * Custom CMB2 fields for post type
+ */
 function metaboxes( array $meta_boxes ) {
   $prefix = '_cmb2_'; // Start with underscore to hide from custom fields list
 
@@ -28,12 +29,16 @@ function metaboxes( array $meta_boxes ) {
 }
 add_filter( 'cmb2_meta_boxes', __NAMESPACE__ . '\metaboxes' );
 
-//put all the types of posts that can be featured here, for DRYness sake
+/**
+ * All the types of posts that can be featured
+ */
 function get_featured_types() {
-  return array( 'post', 'person', 'company', 'country');
+  return [ 'post', 'person', 'company', 'country' ];
 }
 
-// Get featured content
+/**
+ * Get featured content
+ */
 function get_featured() {
   $output = '';
 
@@ -50,29 +55,42 @@ function get_featured() {
   $featured_posts = get_posts($args);
   if(!$featured_posts) return false;
 
+  $parent_url_text = [
+    'country' => 'All Profiles',
+    'industry' => 'All Profiles',
+    'person' => 'Meet the Team',
+    'post' => 'All Posts',
+  ];
+
+  $tab_text = [
+    'country' => 'Resources',
+    'industry' => 'Resources',
+    'person' => 'Our Team',
+    'post' => 'News',
+  ];
+
+  $output .= '<h3 class="tab -white">' . $tab_text[$featured_posts[0]->post_type] . '</h3>';
+  $output .= '<div class="slider-featured">';
+
   foreach ($featured_posts as $post) {
     $type = $post->post_type;
     $link = get_permalink($post->ID);
+    $post_url = get_permalink($post);
+    $parent_url = \Firebelly\Utils\get_parent_url($post);
     $excerpt = \Firebelly\Utils\get_excerpt($post);
     $output .= <<<HTML
       <div class="slide-item">
-        <article>
+        <article data-tab-text="{$tab_text[$type]}" data-parent-url="{$parent_url}" data-parent-url-text="{$parent_url_text[$type]}">
           <h3>{$type}</h3>
           <h2>{$post->post_title}</h2>
           <p>{$excerpt}</p>
-          <!--<a class="learn-more" href="{$link}">Learn More</a>-->
-       </article>
+          <p><a class="learn-more" href="{$post_url}">Learn More</a></p>
+        </article>
       </div>
 HTML;
   }
 
-  // Temporarily adding the link to the about page outside of the slide items
-  $output .= <<<HTML
-  <div class="learn-more-wrap">
-    <!--<a class="button learn-more" href="/{$type}/">All {$type}s</a> temporary override-->
-    <a class="button learn-more" href="/about-us/#team">Meet the team</a>
-  </div>
-HTML;
+  $output .= '</div><a class="learn-more button" href="' . \Firebelly\Utils\get_parent_url($featured_posts[0]) . '">' . $parent_url_text[$featured_posts[0]->post_type] . '</a>';
 
   return $output;
 }

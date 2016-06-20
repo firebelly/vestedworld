@@ -299,9 +299,12 @@
     @extend %smooth;
     position: relative;
     background: $blue-dark;
-    padding: $mobile-global-padding;
+
     .tab {
       -webkit-font-smoothing: initial;
+    }
+    a.learn-more:hover {
+      color: $white;
     }
     h3 {
       margin-bottom: 0;
@@ -309,23 +312,53 @@
     .learn-more-wrap {
       margin-top: #{$vertical-beat * 12};
     }
-    @include media-md {
-      min-height: 480px;
-      padding: $global-padding;
-      .learn-more-wrap {
-        text-align: right;
-      }
+    .slide-item {
+      padding: $mobile-global-padding;
     }
-
+    .slider-featured {
+      padding-bottom: 76px;
+    }
     .slick-dots {
-      left: 0;
+      position: absolute;
+      bottom: 0;
+      left: $mobile-global-padding;
       margin: 0;
       padding: 0;
       width: 200px;
       text-align: left;
-      bottom: #{$vertical-beat * 8};
-      @include media-md {
-        bottom: -#{$vertical-beat * 8};
+      bottom: #{$vertical-beat * 4};
+    }
+    .learn-more.button {
+      position: absolute;
+      left: auto;
+      right: $mobile-global-padding;
+      bottom: #{$vertical-beat * 4};
+    }
+
+    // Small screens can't fit learn-more button with dots
+    @include max-screen(480px) {
+      .slider-featured {
+        padding-bottom: 116px;
+      }
+      .slick-dots {
+        bottom: #{$vertical-beat * 12};
+      }
+      .learn-more.button {
+        position: absolute;
+        right: auto;
+        left: $mobile-global-padding;
+        bottom: #{$vertical-beat * 4};
+      }
+    }
+
+    @include media-md {
+      .learn-more.button {
+      }
+      .slick-dots {
+        left: $global-padding;
+      }
+      .slide-item {
+        padding: $global-padding;
       }
     }
   }

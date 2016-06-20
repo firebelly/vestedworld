@@ -936,7 +936,8 @@ var VestedWorld = (function($) {
 
   //Initialize Slick Sliders
   function _initSliders(){
-    // Homepage slider
+
+    // Main homepage slider
     $('.slider:not(.slick-initialized)').slick({
       slide: '.slide-item',
       autoplay: true,
@@ -947,7 +948,28 @@ var VestedWorld = (function($) {
       adaptiveHeight: true,
       lazyLoad: 'ondemand'
     });
-    // Mini sliders (internal pages)
+
+    // Homepage Featured slider
+    $('section.featured').each(function() {
+      var $this = $(this);
+      var $tab = $this.find('h3.tab:first');
+      var $learn_more = $this.find('.learn-more.button');
+      $this.find('.slider-featured').slick({
+        slide: '.slide-item',
+        // autoplay: true,
+        arrows: false,
+        dots: true,
+        autoplaySpeed: 6000,
+        speed: 800,
+      }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        // Set attributes of fixed elements to match slide
+        var $slide = $(slick.$slides[nextSlide]).find('article');
+        $tab.text($slide.attr('data-tab-text'));
+        $learn_more.text($slide.attr('data-parent-url-text')).attr('href', $slide.attr('data-parent-url'));
+      });
+    });
+
+    // Mini sliders (country/industry profiles: images and videos)
     $('.slider-mini:not(.slick-initialized)').on('init', function(event, slick) {
       // Add a caption div on init
       var caption = $(slick.$slides[0]).find('img').attr('title') || '';
