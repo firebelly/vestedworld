@@ -154,7 +154,7 @@
     .menu-item-has-children {
       position: relative;
       > a {
-        padding-right: 20px;      
+        padding-right: 20px;
         &::before {
           top: 13px;
           content: "^";
@@ -195,7 +195,7 @@
             width: 1em;
             content: '';
             height: 1px;
-            position: absolute; 
+            position: absolute;
             background: $brand-primary;
             transition: background .2s ease-out;
           }
@@ -230,8 +230,9 @@
             display: block;
             background: $gray-lite;
             padding: #{$vertical-beat * 2} #{$vertical-beat * 4};
+            white-space: nowrap;
             &::before {
-              display: none; 
+              display: none;
             }
           }
         }
