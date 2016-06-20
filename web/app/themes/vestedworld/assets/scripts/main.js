@@ -1058,7 +1058,7 @@ var VestedWorld = (function($) {
       chart.on('draw', function(data) {
         if (data.type === 'slice') {
           // Prepare donut for baking
-          data.element.addClass('bake-donut');
+          data.element.addClass('draw-donut');
 
           // Set stroke attributes for animating
           var pathLength = data.element._node.getTotalLength();
