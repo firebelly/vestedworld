@@ -1008,7 +1008,7 @@ var VestedWorld = (function($) {
         i++;
         if(data.type === 'slice') {
           // Prepare donut for baking
-          data.element.addClass('bake-donut');
+          data.element.addClass('draw-donut');
           data.element.addClass('delay-'+i);
 
           // Set stroke attributes for animating

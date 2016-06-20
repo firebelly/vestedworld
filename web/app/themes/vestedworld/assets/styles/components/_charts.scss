@@ -1,25 +1,23 @@
 // General Chart styles
 
-.ct-chart.inview .bake-donut {
-  animation: bake-donut 1s ease-out forwards;
-}
-.ct-chart.inview .bake-donut {
+.ct-chart.inview .draw-donut {
+  animation: draw-donut 1s ease-out forwards;
   animation-delay: .5s;
 }
-.ct-chart.inview .bake-donut.delay-2,
-.ct-chart.inview[data-delay="2"] .bake-donut {
+.ct-chart.inview .draw-donut.delay-2,
+.ct-chart.inview[data-delay="2"] .draw-donut {
   animation-delay: 1.5s;
 }
-.ct-chart.inview .bake-donut.delay-3,
-.ct-chart.inview[data-delay="3"] .bake-donut {
+.ct-chart.inview .draw-donut.delay-3,
+.ct-chart.inview[data-delay="3"] .draw-donut {
   animation-delay: 2.5s;
 }
-.ct-chart.inview .bake-donut.delay-4,
-.ct-chart.inview[data-delay="4"] .bake-donut {
+.ct-chart.inview .draw-donut.delay-4,
+.ct-chart.inview[data-delay="4"] .draw-donut {
   animation-delay: 3.5s;
 }
 
-@keyframes bake-donut {
+@keyframes draw-donut {
   to {
     stroke-dashoffset: 0;
   }
