@@ -303,7 +303,7 @@
     .tab {
       -webkit-font-smoothing: initial;
     }
-    a.learn-more:hover {
+    a.learn-more:not(.button):hover {
       color: $white;
     }
     h3 {
@@ -333,6 +333,9 @@
       left: auto;
       right: $mobile-global-padding;
       bottom: #{$vertical-beat * 4};
+      &:hover {
+        color: $blue-dark;
+      }
     }
 
     // Small screens can't fit learn-more button with dots
