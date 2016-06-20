@@ -109,16 +109,16 @@
         },
         {
             "name": "drewm/mailchimp-api",
-            "version": "v2.2",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drewm/mailchimp-api.git",
-                "reference": "590fb71e3493b5daba382c44f714f2e25d785814"
+                "reference": "a2bf78208c49b205482c5ca884cb45a8cd266d5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/590fb71e3493b5daba382c44f714f2e25d785814",
-                "reference": "590fb71e3493b5daba382c44f714f2e25d785814",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/a2bf78208c49b205482c5ca884cb45a8cd266d5c",
+                "reference": "a2bf78208c49b205482c5ca884cb45a8cd266d5c",
                 "shasum": ""
             },
             "require": {
@@ -148,7 +148,7 @@
             ],
             "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
             "homepage": "https://github.com/drewm/mailchimp-api",
-            "time": "2016-04-23 12:43:28"
+            "time": "2016-04-23 18:00:21"
         },
         {
             "name": "johnpbloch/wordpress",
@@ -279,16 +279,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "63f37b9395e8041cd4313129c08ece896d06ca8e"
+                "reference": "9ca5644c536654e9509b9d257f53c58630eb2a6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/63f37b9395e8041cd4313129c08ece896d06ca8e",
-                "reference": "63f37b9395e8041cd4313129c08ece896d06ca8e",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/9ca5644c536654e9509b9d257f53c58630eb2a6a",
+                "reference": "9ca5644c536654e9509b9d257f53c58630eb2a6a",
                 "shasum": ""
             },
             "require": {
@@ -300,7 +300,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -325,7 +325,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-04-15 10:48:49"
+            "time": "2016-06-14 14:14:52"
         },
         {
             "name": "wpackagist-plugin/akismet",
@@ -449,15 +449,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "2.4.4",
+            "version": "2.4.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/2.4.4"
+                "reference": "tags/2.4.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.2.4.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/redirection.2.4.5.zip",
                 "reference": null,
                 "shasum": null
             },
