@@ -64,12 +64,15 @@ article.single.company {
       }
       li {
         border-top: 1px solid $gray-lite;
-        width: 50%;
-        float: left;
-        padding: #{$vertical-beat * 4} 0;
-        &:nth-child(2n) {
-          border-left: 1px solid $gray-lite;
-          padding-left: 30px;
+        padding: #{$vertical-beat * 2} 0;
+        @include media-md {
+          width: 50%;
+          float: left;
+          padding: #{$vertical-beat * 4} 0;
+          &:nth-child(2n) {
+            border-left: 1px solid $gray-lite;
+            padding-left: 30px;
+          }
         }
       }
     }
@@ -78,7 +81,7 @@ article.single.company {
         margin: 0;
         padding: 0;
       }
-      font: 48px/48px $sans;
+      @extend .h1;
       color: $blue;
     }
   }
@@ -102,6 +105,8 @@ article.single.company {
     position: absolute;
     bottom: 30px;
     right: 30px;
+    width: 30%;
+    text-align: right;
     color: $gray-dark;
     @include small-caps;
   }
