@@ -109,5 +109,6 @@ article.single.company {
     text-align: right;
     color: $gray-dark;
     @include small-caps;
+    line-height: 1.2;
   }
 }

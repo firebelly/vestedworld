@@ -39,9 +39,6 @@
 }
 
 .grid-item-data {
-  .slick-list {
-    max-width: 600px;
-  }
   h2 {
     margin: 0;
     @include small-caps();
