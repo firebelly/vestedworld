@@ -15,7 +15,7 @@
     "respond": "~1.4.2",
     "svg4everybody": "~1.0.0",
     "velocity": "~1.2.2",
-    "slick-carousel": "~1.4.1",
+    "slick-carousel": "~1.6.0",
     "fastclick": "~1.0.6",
     "jquery-validation": "^1.15.0",
     "boomsvgloader": "^0.0.2",
