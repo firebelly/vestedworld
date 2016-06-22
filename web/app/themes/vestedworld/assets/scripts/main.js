@@ -140,12 +140,6 @@ var VestedWorld = (function($) {
 
       if (State.url !== original_url && relative_url.match(/^\/(company|country|industry|person|\d{0,4})\//)) {
 
-        // Slideshows are currently having issues being inside an AJAX popup, just load URL normally
-        if (relative_url.match(/^\/(company|industry)\//)) {
-          location.href = State.url;
-          return;
-        }
-
         // Standard post modals
         if (page_cache[encodeURIComponent(State.url)]) {
           _showGridItem();
