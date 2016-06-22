@@ -140,6 +140,12 @@ var VestedWorld = (function($) {
 
       if (State.url !== original_url && relative_url.match(/^\/(company|country|industry|person|\d{0,4})\//)) {
 
+        // Slideshows are currently having issues being inside a mobile AJAX popup, just load URL normally
+        if (!breakpoint_md && relative_url.match(/^\/(company|industry)\//)) {
+          location.href = State.url;
+          return;
+        }
+
         // Standard post modals
         if (page_cache[encodeURIComponent(State.url)]) {
           _showGridItem();
@@ -935,7 +941,7 @@ var VestedWorld = (function($) {
   }
 
   //Initialize Slick Sliders
-  function _initSliders(){
+  function _initSliders() {
 
     // Main homepage slider
     $('.slider:not(.slick-initialized)').slick({
