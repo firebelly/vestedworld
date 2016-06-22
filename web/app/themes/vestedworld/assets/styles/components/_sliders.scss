@@ -29,6 +29,10 @@
     right: 0;
     @include small-caps;
     color: $gray-dark;
+    display: none;
+    @include min-screen(1200px) {
+      display: block;
+    }
   }
 }
 .slick-dots {
