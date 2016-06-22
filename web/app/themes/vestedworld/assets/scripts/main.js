@@ -140,8 +140,8 @@ var VestedWorld = (function($) {
 
       if (State.url !== original_url && relative_url.match(/^\/(company|country|industry|person|\d{0,4})\//)) {
 
-        // Slideshows are currently having issues being inside a mobile AJAX popup, just load URL normally
-        if (!breakpoint_md && relative_url.match(/^\/(company|industry)\//)) {
+        // Slideshows are currently having issues being inside an AJAX popup, just load URL normally
+        if (relative_url.match(/^\/(company|industry)\//)) {
           location.href = State.url;
           return;
         }
@@ -869,7 +869,7 @@ var VestedWorld = (function($) {
       $activeContainer.addClass('-active');
       _scrollBody($activeContainer, 250, 0, headerOffset + 64);
 
-      $activeDataContainer.find('.slider-mini img:first').imagesLoaded(function(i) {
+      $activeDataContainer.find('.slider-mini').imagesLoaded(function(i) {
         _initSliders();
       });
 
@@ -980,7 +980,7 @@ var VestedWorld = (function($) {
       // Add a caption div on init
       var caption = $(slick.$slides[0]).find('img').attr('title') || '';
       slick.$caption = $('<div class="slick-caption">'+caption+'</div>').appendTo(slick.$slider);
-      // autoplayVideos seems to not work when there are > 1 videos: https://github.com/brutaldesign/swipebox/issues/149
+      // todo: autoplayVideos seems to not work when there are > 1 videos, see https://github.com/brutaldesign/swipebox/issues/149
       $('a.lightbox').swipebox({autoplayVideos: true});
     }).slick({
       slide: '.slide-item',

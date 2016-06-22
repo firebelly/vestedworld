@@ -163,7 +163,7 @@ function video_slideshow($video_links_parsed) {
     $video_lines = explode(PHP_EOL, trim($video_links_parsed));
     foreach ($video_lines as $line) {
       list($vimeo_url,$img_url,$title) = explode('¶', $line);
-      $output .= '<div class="slide-item"><a class="lightbox" href="'.$vimeo_url.'" title="'.$title.'"><img src="'.$img_url.'" title="'.$title.'"><span>Watch Video</span></a></div class="slide-item">';
+      $output .= '<div class="slide-item"><a class="lightbox" href="'.$vimeo_url.'" title="'.$title.'"><img src="'.$img_url.'" title="'.$title.'"><span>Watch Video</span></a></div>';
     }
     $output .= '</div>';
   }
