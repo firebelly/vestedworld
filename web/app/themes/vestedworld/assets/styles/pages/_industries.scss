@@ -26,6 +26,18 @@ article.single.industry {
     letter-spacing: .2em;
     padding-right: 15px;
   }
+  @include max-screen(480px) {
+    dl.timeline {
+      dt {
+        font: 14px/1.5 $sans;
+        letter-spacing: .15em;
+      }
+      dd {
+        font: 14px/1.5 $sans;
+        padding-left: 20px;
+      }
+    }
+  }
 
   // Table o' stats
   table.industry-stats {
@@ -64,12 +76,12 @@ article.single.industry {
       .chart-row {
         height: 75px;
         .chart {
-          flex: 0 1 25%;
+          flex: 0 1 35%;
         }
         .chart-labels {
           padding-top: 0;
-          flex: 0 1 75%;
-          padding-left: 25%;
+          flex: 0 1 65%;
+          padding-left: 15%;
         }
         .stat-num {
           padding-bottom: #{$vertical-beat * 1};
