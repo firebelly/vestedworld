@@ -1,7 +1,7 @@
 set :stage, :production
 set :domain, 'vestedworld.com'
-set :php, 'php70'
-set :login, 'vestedworld'
+set :application, 'vestedworld'
+set :login, 'firebelly'
 
 # Simple Role Syntax
 # ==================
