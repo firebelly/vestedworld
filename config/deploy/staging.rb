@@ -1,7 +1,7 @@
 set :stage, :staging
-set :domain, 'vestedworld.firebelly.co'
+set :domain, 'vestedworld.webfactional.com'
 set :application, 'vestedworld_staging'
-set :login, 'firebelly'
+set :login, 'vestedworld'
 
 # Simple Role Syntax
 # ==================
