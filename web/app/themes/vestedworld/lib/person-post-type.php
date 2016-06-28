@@ -220,7 +220,9 @@ function get_people($options=[]) {
   return $output;
 }
 
-// Redirect people posts to proper landing page
+/**
+ * Redirect people posts to proper landing page
+ */
 function single_person_redirect() {
   if (is_single()) {
     global $post;

@@ -31,6 +31,7 @@
   </div>
   <div class="copyright">
     <p>&copy; <?php echo date('Y'); ?> VestedWorld, Inc.<br>
-    all rights reserved.</p>
+    All Rights Reserved.<br>
+    <a href="/privacy-policy/">Privacy Policy</a></p>
   </div>
 </footer>
