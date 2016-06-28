@@ -25,6 +25,7 @@ $global_leaders = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_g
 $trends = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_trends', true));
 $risks_challenges = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_risks_challenges', true));
 $future_outlook = apply_filters('the_content', get_post_meta($post->ID, '_cmb2_future_outlook', true));
+$sources_list = get_post_meta($post->ID, '_cmb2_sources_list', true);
 
 // Clean up numeric fields, removing $ and any other random characters
 foreach ([
@@ -261,6 +262,15 @@ foreach ([
           <?= $future_outlook ?>
         </div>
       </div>
+
+      <?php if ($sources_list): ?>
+        <div class="grid-text-group">
+          <div id="sources-list">
+            <h3>Sources</h3>
+            <?= apply_filters('the_content', $sources_list) ?>
+          </div>
+        </div>
+      <?php endif; ?>
 
     </div><!-- END .body-inner -->
   </div><!-- END .grid-item-body -->

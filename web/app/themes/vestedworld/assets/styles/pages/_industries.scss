@@ -19,6 +19,23 @@ article.single.industry {
     }
   }
 
+  // User-editable sources list in industries is styled more like normal ULs
+  #sources-list {
+    ul {
+      li {
+        list-style: none;
+        margin-left: 1.2em;
+        position: relative;
+        &::before {
+          content: '·';
+          position: absolute;
+          top: 0;
+          left: -1.2em;
+        }
+      }
+    }
+  }
+
   // Industries have smaller timeline titles
   dl.timeline dt {
     font: 16px/24px $sans;

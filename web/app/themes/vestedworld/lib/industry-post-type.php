@@ -261,6 +261,14 @@ function metaboxes( array $meta_boxes ) {
           'textarea_rows' => 8,
         ),
       ),
+      array(
+        'name' => 'Sources List',
+        'id'   => $prefix . 'sources_list',
+        'type' => 'wysiwyg',
+        'options' => array(
+          'textarea_rows' => 8,
+        ),
+      ),
     )
   );
 
