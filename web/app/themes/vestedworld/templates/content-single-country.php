@@ -28,6 +28,7 @@ $inflation = get_post_meta($post->ID, '_cmb2_inflation', true);
 $foreign_direct_investments = get_post_meta($post->ID, '_cmb2_foreign_direct_investments', true);
 $ease_of_doing_business_ranking = get_post_meta($post->ID, '_cmb2_ease_of_doing_business_ranking', true);
 $world_corruption_ranking = get_post_meta($post->ID, '_cmb2_world_corruption_ranking', true);
+$currency_code = get_post_meta($post->ID, '_cmb2_currency_code', true);
 $average_exchange_rate = get_post_meta($post->ID, '_cmb2_average_exchange_rate', true);
 $currency_description = get_post_meta($post->ID, '_cmb2_currency_description', true);
 
@@ -56,6 +57,7 @@ foreach ([
     'foreign_direct_investments',
     'ease_of_doing_business_ranking',
     'world_corruption_ranking',
+    'average_exchange_rate',
 
     'gdp_percent_agriculture',
     'gdp_percent_service',
@@ -75,9 +77,6 @@ $per_capita_gdp = number_format($per_capita_gdp);
 // Split number/number stats
 $ease_of_doing_business_ranking_arr = explode('/', $ease_of_doing_business_ranking);
 $world_corruption_ranking_arr = explode('/', $world_corruption_ranking);
-
-// Wrap currency name in tag for styling (e.g. 99.73 KES -> 99.73 <span class="currency">KES</span>)
-$average_exchange_rate = preg_replace('/ (.*)$/', '&nbsp;<span class="currency">$1</span>', $average_exchange_rate);
 ?>
 
 <article id="<?= $post->post_name ?>" class="grid-item-data single country" data-id="<?= $post->ID ?>" data-page-title="<?= $post->post_title ?>" data-page-url="<?= get_permalink($post) ?>">
@@ -287,7 +286,7 @@ $average_exchange_rate = preg_replace('/ (.*)$/', '&nbsp;<span class="currency">
             <div class="average-exchange-rate stat-row">
               <div class="inner-row">
                 <span class="exchange-rate-comparison">
-                  <?= $average_exchange_rate ?>
+                  <?= $average_exchange_rate ?> <span class="currency"><?= $currency_code ?></span>
                   <i>/</i> $1&nbsp;<span class="currency">USD</span>
                 </span>
               </div>

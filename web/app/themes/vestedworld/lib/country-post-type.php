@@ -267,8 +267,14 @@ function metaboxes( array $meta_boxes ) {
         'type' => 'text_small',
       ),
       array(
-        'name' => 'Average Exchange Rate for previous year',
-        'desc' => 'e.g. 99.73 KES',
+        'name' => '3-letter Currency Code',
+        'desc' => 'e.g. KES—used for API calls and shown next to Avg Exchange Rate on single countries',
+        'id'   => $prefix . 'currency_code',
+        'type' => 'text_small',
+      ),
+      array(
+        'name' => 'Current Average Exchange Rate',
+        'desc' => 'Updated automatically from CurrencyLayer API, based on Currency Code above',
         'id'   => $prefix . 'average_exchange_rate',
         'type' => 'text_small',
       ),
@@ -362,3 +368,53 @@ function get_countries() {
 
   return $output;
 }
+
+/**
+ * Use CurrencyLayer API to update Average Currency Rate for each country
+ */
+function update_exchange_rates() {
+  $currency_code_arr = [];
+
+  // Get Currency Layer API Key
+  $currency_layer_api_key = getenv('CURRENCY_LAYER_API_KEY');
+  if (!$currency_layer_api_key) return;
+
+  // Pull all Country posts
+  $country_posts = get_posts([ 'numberposts' => -1, 'post_type' => 'country' ]);
+  if (!$country_posts) return;
+
+  // Loop through countries and pull currency_code values into array
+  foreach($country_posts as $country_post) {
+    $currency_code = get_post_meta($country_post->ID, '_cmb2_currency_code', true);
+    if ($currency_code) {
+      $currency_code_arr[$currency_code] = $country_post->ID;
+    }
+  }
+  if (empty($currency_code_arr)) return;
+
+  // Call Currency Layer API
+  $ch = curl_init('http://apilayer.net/api/live?access_key=' . $currency_layer_api_key . '&currencies=' . implode(',', array_keys($currency_code_arr)) . '&source=USD&format=1');
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $json = curl_exec($ch);
+  curl_close($ch);
+
+  // Decode JSON response:
+  $exchangeRates = json_decode($json, true);
+
+  // debug
+  wp_mail('nate@firebellydesign.com', 'VestedWorld CurrencyLayer cron', print_r($exchangeRates,1));
+
+  // Update each country's exchange rate
+  foreach ($exchangeRates['quotes'] as $key => $value) {
+    update_post_meta($currency_code_arr[str_replace('USD','',$key)], '_cmb2_average_exchange_rate', sprintf('%0.2f', $value));
+  }
+}
+
+// Register cronjob
+register_activation_hook(__FILE__, __NAMESPACE__ . '\activate_cron');
+function activate_cron() {
+  if (!wp_next_scheduled('update_country_exchange_rates')) {
+    wp_schedule_event(time(), 'twicedaily', 'update_country_exchange_rates');
+  }
+}
+add_action('update_country_exchange_rates', __NAMESPACE__ . \'update_exchange_rates');
