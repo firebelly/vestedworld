@@ -417,4 +417,4 @@ function activate_cron() {
     wp_schedule_event(time(), 'twicedaily', 'update_country_exchange_rates');
   }
 }
-add_action('update_country_exchange_rates', __NAMESPACE__ . \'update_exchange_rates');
+add_action('update_country_exchange_rates', __NAMESPACE__ . '\update_exchange_rates');
