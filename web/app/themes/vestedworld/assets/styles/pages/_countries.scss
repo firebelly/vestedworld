@@ -101,10 +101,10 @@ a.source {
   &.-persist {
     flex-flow: row nowrap;
     .chart {
-      flex: 0 1 33.333%;
+      flex: 0 0 33.333%;
     }
     .chart-labels {
-      flex: 0 1 66.666%;
+      flex: 0 0 66.666%;
     }
   }
   @include media-md {
@@ -112,10 +112,10 @@ a.source {
       flex-flow: row nowrap;
     }
     .chart {
-      flex: 0 1 33.333%;
+      flex: 0 0 33.333%;
     }
     .chart-labels {
-      flex: 0 1 66.666%;
+      flex: 0 0 66.666%;
     }
   }
 }

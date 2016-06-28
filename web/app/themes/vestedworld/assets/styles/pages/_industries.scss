@@ -26,6 +26,7 @@ article.single.industry {
     letter-spacing: .2em;
     padding-right: 15px;
   }
+  // Smaller timeline text <480px as breakout starts to have issues
   @include max-screen(480px) {
     dl.timeline {
       dt {
