@@ -1,5 +1,5 @@
-<?php /* Template Name: Front Page */
-
+<?php
+// Populate custom areas
 $target  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_target', true ));
 $connect = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_connect', true ));
 $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest', true ));
@@ -29,7 +29,6 @@ $invest  = apply_filters('the_content', get_post_meta( $post->ID, '_cmb2_invest'
       <img data-src="<?= Roots\Sage\Assets\asset_path('images/Target.gif?'.time().'') ?>" alt="Target" class="gif-to-play">
       <h2>Target</h2>
       <p><?= $target ?></p>
-      <!-- <a href="/about-us/#" class="learn-more">Learn More</a> -->
     </article>
     <article>
       <img data-src="<?= Roots\Sage\Assets\asset_path('images/Connect.gif?'.time().'') ?>" alt="Connect" class="gif-to-play">
