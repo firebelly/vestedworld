@@ -1,4 +1,5 @@
 <?php
+/* Template name: About Us */
 
 $title = $post->post_title;
 $name = $post->post_name;
@@ -25,19 +26,16 @@ $body = apply_filters('the_content', $post->post_content);
 </article>
 
 <?php
-
-//get child pages of About Us.  These are articles.
+// Get child pages and display as separate articles
 $args = array(
     'post_type' => 'page',
     'post_parent' => $post->ID,
     'order' => 'ASC'
   );
-$pages = get_posts($args);
-// get_page_children( $post->post_ID, $pages );
-foreach($pages as $page) {
-  include(locate_template("templates/about-article.php"));
+$child_pages = get_posts($args);
+foreach($child_pages as $child_page) {
+  include(locate_template("templates/child-page.php"));
 }
-
 ?>
 
 <div class="active-grid-item-container active-person">
@@ -63,7 +61,7 @@ foreach($pages as $page) {
   </section>
   <section class="page-section grid-section people board page-nav-section" id="advisory-board">
   	<h1 class="section-title page-nav-title">Advisory Board</h1>
-    <div class="grid-intro">    
+    <div class="grid-intro">
       <p>VestedWorld’s approach is influenced by a diverse team of leaders who uphold our values and support our mission to invest for the greatest global impact.</p>
     </div>
   	<?= \Firebelly\PostTypes\Person\get_people(['member_type' => 'board']); ?>

@@ -46,7 +46,7 @@ namespace Firebelly\PostTypes\Pages;
      'title'         => __( 'Summary Area', 'cmb2' ),
      'object_types'  => array( 'page', ), // Post type
      'context'       => 'normal',
-     'show_on'       => array( 'key' => 'page-template', 'value' => 'templates/about-article.php' || 'page-about-us.php' || 'page-community.php'),
+     'show_on'       => array( 'key' => 'page-template', 'value' => 'templates/child-page.php' || 'page-about-us.php' || 'page-community.php' || 'templates/template-general-page.php'),
      'priority'      => 'high',
      'show_names'    => true, // Show field names on the left
      'fields'        => array(
