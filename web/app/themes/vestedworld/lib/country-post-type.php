@@ -411,7 +411,7 @@ function update_exchange_rates() {
 }
 
 // Register cronjob
-register_activation_hook(__FILE__, __NAMESPACE__ . '\activate_cron');
+add_action('wp', __NAMESPACE__ . '\activate_cron');
 function activate_cron() {
   if (!wp_next_scheduled('update_country_exchange_rates')) {
     wp_schedule_event(time(), 'twicedaily', 'update_country_exchange_rates');
