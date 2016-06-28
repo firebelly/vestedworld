@@ -59,10 +59,10 @@ add_action( 'init', __NAMESPACE__ . '\post_type', 0 );
 /* define member types here for the sake of DRYness */
 function get_member_type_array() {
   return array(
-    'management' => __( 'Management', 'cmb' ),
-    'board' => __( 'Advisory Board', 'cmb' ),
-    'vested_angel' => __( 'VestedAngel', 'cmb' ),
-    'vested_advisor' => __( 'VestedAdvisor', 'cmb' ),
+    'management' => 'Management',
+    'board' => 'Advisory Board',
+    'vested_angel' => 'VestedAngel',
+    'vested_advisor' => 'VestedAdvisor',
   );
 }
 
@@ -94,7 +94,7 @@ function custom_columns($column){
       $type_name = get_member_type_array();
       $custom = get_post_custom();
       if (array_key_exists($column, $custom))
-        echo $type_name[$custom[$column][0]];
+        echo '<a href="/wp/wp-admin/edit.php?post_type=person&member_type=' . array_search($type_name[$custom[$column][0]], get_member_type_array()) . '">' . $type_name[$custom[$column][0]] . '</a>';
     } else {
       $custom = get_post_custom();
       if (array_key_exists($column, $custom))
@@ -103,6 +103,29 @@ function custom_columns($column){
   };
 }
 add_action('manage_posts_custom_column',  __NAMESPACE__ . '\custom_columns');
+
+/**
+ * Allow filtering by person type
+ */
+function add_member_type_filter_to_people($query){
+  global $post_type, $pagenow;
+  // Check if on edit person page
+  if($pagenow == 'edit.php' && $post_type == 'person'){
+    if(isset($_GET['member_type'])){
+
+      // Add member_type to query
+      $member_type = sanitize_text_field($_GET['member_type']);
+      $query->query_vars['meta_query'] = array(
+        array(
+          'key' => '_cmb2_member_type',
+          'value' => $member_type,
+        )
+      );
+    }
+  }
+}
+add_action('pre_get_posts',__NAMESPACE__.'\add_member_type_filter_to_people');
+
 
 // Custom CMB2 fields for post type
 function metaboxes( array $meta_boxes ) {
