@@ -92,7 +92,8 @@ function edit_columns($columns){
     'cb' => '<input type="checkbox" />',
     'title' => 'Question',
     'content' => 'Answer',
-    'taxonomy-faq_cat' => 'Category'
+    'taxonomy-faq_cat' => 'Category',
+    'the_ratings' => 'Feedback',
   );
   return $columns;
 }
@@ -102,8 +103,13 @@ add_filter('manage_faq_posts_columns', __NAMESPACE__ . '\edit_columns');
 function custom_columns($column){
   global $post;
   if ( $post->post_type == 'faq' ) {
-    if ( $column == 'content' )
+    if ( $column == 'content' ) {
       echo Utils\get_excerpt($post);
+    } elseif ($column=='the_ratings') {
+      if ( function_exists( 'the_ratings' ) ) {
+        echo expand_ratings_template( '%RATINGS_ALT_TEXT%', $post, null, 0, false );
+      } else echo 'n/a';
+    }
   }
 }
 add_action('manage_posts_custom_column',  __NAMESPACE__ . '\custom_columns');
