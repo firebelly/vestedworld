@@ -28,6 +28,9 @@ var VestedWorld = (function($) {
     // touch-friendly fast clicks
     FastClick.attach(document.body);
 
+    // oofda, open all external links in new window
+    _painfulExternalLinksOverride();
+
     // Cache some common DOM queries
     $document = $(document);
     $load_more = $('.load-more');
@@ -122,6 +125,21 @@ var VestedWorld = (function($) {
     });
 
   } // end init()
+
+  // Eyeball stab, look away
+  function _painfulExternalLinksOverride() {
+    $('body').delegate('a', 'click', function() {
+      if ($(this).hasClass('lightbox')) {
+        return;
+      }
+      var a = new RegExp('/' + window.location.host + '/');
+      if(!a.test(this.href)) {
+        event.preventDefault();
+        event.stopPropagation();
+        window.open(this.href, '_blank');
+      }
+    });
+  }
 
   // Bind to state changes and handle back/forward
   function _initStateHandling() {
