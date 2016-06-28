@@ -354,6 +354,7 @@ $world_corruption_ranking_arr = explode('/', $world_corruption_ranking);
             <li><span>**</span> <a target="_blank" href="https://www.cia.gov/library/publications/the-world-factbook">CIA World Fact Book</a></li>
             <li><span>^</span> <a target="_blank" href="http://www.prb.org/">Population Reference Bureau</a></li>
             <li><span>^^</span> <a target="_blank" href="https://www.transparency.org/country/">Transparency International</a></li>
+            <li><span>^^^</span> <a target="_blank" href="https://currencylayer.com/">Currencylayer API</a></li>
           </ul>
         </div>
 

@@ -186,6 +186,7 @@ function parse_video_links($post_id, $post, $update) {
   }
 }
 add_action('save_post_company', __NAMESPACE__ . '\\parse_video_links', 10, 3);
+// Also parse Industry fields on save
 add_action('save_post_industry', __NAMESPACE__ . '\\parse_video_links', 10, 3);
 
 
