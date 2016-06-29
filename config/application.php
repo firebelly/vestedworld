@@ -63,7 +63,7 @@ define('NONCE_SALT', getenv('NONCE_SALT'));
 /**
  * Custom Settings
  */
-define('AUTOMATIC_UPDATER_DISABLED', true);
+// define('AUTOMATIC_UPDATER_DISABLED', true);
 define('DISABLE_WP_CRON', getenv('DISABLE_WP_CRON') == 'true');
 define('DISALLOW_FILE_EDIT', true);
 
@@ -73,3 +73,4 @@ define('DISALLOW_FILE_EDIT', true);
 if (!defined('ABSPATH')) {
   define('ABSPATH', $webroot_dir . '/wp/');
 }
+s
