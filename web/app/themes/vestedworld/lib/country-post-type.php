@@ -401,9 +401,6 @@ function update_exchange_rates() {
   // Decode JSON response:
   $exchangeRates = json_decode($json, true);
 
-  // debug
-  wp_mail('nate@firebellydesign.com', 'VestedWorld CurrencyLayer cron', print_r($exchangeRates,1));
-
   // Update each country's exchange rate
   foreach ($exchangeRates['quotes'] as $key => $value) {
     update_post_meta($currency_code_arr[str_replace('USD','',$key)], '_cmb2_average_exchange_rate', sprintf('%0.2f', $value));

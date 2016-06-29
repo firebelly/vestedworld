@@ -1,5 +1,5 @@
 set :stage, :staging
-set :domain, 'vestedworld.webfactional.com'
+set :domain, 'staging.vestedworld.com'
 set :application, 'vestedworld_staging'
 set :login, 'vestedworld'
 

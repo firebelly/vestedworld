@@ -1,12 +1,9 @@
 <?php
-/* Template name: About Us */
-
 $title = $post->post_title;
 $name = $post->post_name;
 $headline = get_post_meta($post->ID, '_cmb2_headline', true);
 $summary = get_post_meta($post->ID, '_cmb2_summary', true);
 $body = apply_filters('the_content', $post->post_content);
-
 ?>
 
 <article id="<?= $name ?>" class="page-section intro-section page-nav-section">
