@@ -104,13 +104,13 @@ var VestedWorld = (function($) {
     });
 
     // Smoothscroll links
-    $('a.smoothscroll, .smoothscroll a').click(function(e) {
+    $(document).delegate('.smoothscroll a, a.smoothscroll', 'click', function(e) {
       e.preventDefault();
-      var href = $(this).attr('href');
+      var href = $(e.target).attr('href');
       _scrollBody($(href));
     });
 
-    // Scroll down to hash afer page load
+    // Scroll down to hash after page load
     $(window).load(function() {
       if (window.location.hash) {
         _scrollBody($(window.location.hash));
