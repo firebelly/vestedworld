@@ -37,3 +37,7 @@ web/app/themes/.DS_Store
 
 #rbenv
 .gems
+
+# Make exception to gravityforms directory
+!gravityforms
+!gravityformsmailchimp
