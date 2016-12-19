@@ -36,7 +36,7 @@
     "php": ">=5.5",
     "composer/installers": "~1.0.12",
     "vlucas/phpdotenv": "^2.0.1",
-    "johnpbloch/wordpress": ">=4.5.1",
+    "johnpbloch/wordpress": ">=4.7",
     "roots/soil": ">=3.0.0",
     "wpackagist-plugin/duplicate-post": ">=2.6",
     "wpackagist-plugin/limit-login-attempts" : "*",
