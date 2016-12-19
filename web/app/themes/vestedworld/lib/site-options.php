@@ -140,6 +140,41 @@ class FbSiteOptions {
 		) );
 
 		$cmb->add_field( array(
+			'name' => __( 'Contact Address - Street', '350 N. Orleans, Suite 9000N' ),
+			'id'   => 'contact_address_street',
+			'desc' => __( 'Physical address shown in the footer'),
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'name' => __( 'Contact Address - City', 'Chicago' ),
+			'id'   => 'contact_address_city',
+			'desc' => __( 'Physical address shown in the footer'),
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'name' => __( 'Contact Address - State', 'Illinois' ),
+			'id'   => 'contact_address_state',
+			'desc' => __( 'Physical address shown in the footer'),
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'name' => __( 'Contact Address - Postal Code', '60654' ),
+			'id'   => 'contact_address_postal',
+			'desc' => __( 'Physical address shown in the footer'),
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'name' => __( 'Contact Address - Google Maps URL', 'https://goo.gl/maps/Dtk4ZRe8SwJ2' ),
+			'id'   => 'contact_address_googlemapurl',
+			'desc' => __( 'Link to google map of contact address'),
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
 			'name' => __( 'Facebook App ID', 'firebelly' ),
 			'desc'    => __( 'Used for OG tags, set up at https://developers.facebook.com/apps/', 'firebelly' ),
 			'id'   => 'facebook_app_id',

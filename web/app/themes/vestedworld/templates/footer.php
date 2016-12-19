@@ -6,10 +6,10 @@
   <div class="office">
     <h3>Office</h3>
     <address class="vcard">
-      <a target="_blank" href="https://goo.gl/maps/WNv9ytDxkuL2">
+      <a target="_blank" href="<?php echo get_option( 'contact_address_googlemapurl', 'https://goo.gl/maps/Dtk4ZRe8SwJ2' ); ?>">
         <span class="adr">
-          <span class="street-address">222 W. Merchandise Mart Plaza, Suite 1212</span><br>
-          <span class="locality">Chicago</span>, <span class="region">Illinois</span> <span class="postal-code">60654</span>
+          <span class="street-address"><?php echo get_option( 'contact_address_street', '350 N. Orleans, Suite 9000N' ); ?></span><br>
+          <span class="locality"><?php echo get_option( 'contact_address_city', 'Chicago' ); ?></span>, <span class="region"><?php echo get_option( 'contact_address_state', 'Illinois' ); ?></span> <span class="postal-code"><?php echo get_option( 'contact_address_postal', '60654' ); ?></span>
         </span>
       </a>
     </address>
