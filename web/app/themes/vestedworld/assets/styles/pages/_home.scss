@@ -312,8 +312,12 @@
     .learn-more-wrap {
       margin-top: #{$vertical-beat * 12};
     }
+    .slick-list {
+      width: 320px;
+    }
     .slide-item {
       padding: $mobile-global-padding;
+      outline: none;
     }
     .slider-featured {
       padding-bottom: 76px;
@@ -339,6 +343,11 @@
     }
 
     // Small screens can't fit learn-more button with dots
+    @include min-screen(480px) {
+      .slick-list {
+        width: 480px;
+      }
+    }
     @include max-screen(480px) {
       .slider-featured {
         padding-bottom: 116px;
@@ -355,6 +364,9 @@
     }
 
     @include media-md {
+      .slick-list {
+        width: 100%;
+      }
       .learn-more.button {
       }
       .slick-dots {
