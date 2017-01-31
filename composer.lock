@@ -109,16 +109,16 @@
         },
         {
             "name": "drewm/mailchimp-api",
-            "version": "v2.2.4",
+            "version": "v2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drewm/mailchimp-api.git",
-                "reference": "89b7dbc54b7ba8c2e249d6e63f66d22ecb8070f8"
+                "reference": "6a5373378f8e61284be81d6424d22fb2a3a1ff9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/89b7dbc54b7ba8c2e249d6e63f66d22ecb8070f8",
-                "reference": "89b7dbc54b7ba8c2e249d6e63f66d22ecb8070f8",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/6a5373378f8e61284be81d6424d22fb2a3a1ff9e",
+                "reference": "6a5373378f8e61284be81d6424d22fb2a3a1ff9e",
                 "shasum": ""
             },
             "require": {
@@ -148,20 +148,20 @@
             ],
             "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
             "homepage": "https://github.com/drewm/mailchimp-api",
-            "time": "2016-07-01 15:53:33"
+            "time": "2016-12-21 14:50:24"
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.7",
+            "version": "4.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "b327faa6feea3a4058178dee7ac8b512bd957e92"
+                "reference": "ac7b1792641d1fb61cb2901db292903b31694057"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/b327faa6feea3a4058178dee7ac8b512bd957e92",
-                "reference": "b327faa6feea3a4058178dee7ac8b512bd957e92",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/ac7b1792641d1fb61cb2901db292903b31694057",
+                "reference": "ac7b1792641d1fb61cb2901db292903b31694057",
                 "shasum": ""
             },
             "require": {
@@ -185,7 +185,7 @@
                 "blog",
                 "cms"
             ],
-            "time": "2016-12-06 18:46:46"
+            "time": "2017-01-26 18:32:19"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -532,15 +532,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-postratings",
-            "version": "1.84",
+            "version": "1.84.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-postratings/",
-                "reference": "tags/1.84"
+                "reference": "tags/1.84.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-postratings.1.84.zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-postratings.1.84.1.zip",
                 "reference": null,
                 "shasum": null
             },
